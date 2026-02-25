@@ -1,0 +1,14 @@
+﻿Roles of Athena and Onyx
+========================
+
+Athena:
+- Acts as a dashboard and intelligence layer for Mason2.
+- Aggregates system health data, tracks important files, and provides summaries of system status.
+- Helps Mason2 maintain awareness of the state of Onyx and other components.
+
+Onyx:
+- A core application or service managed by Mason2.
+- Subject to health checks and performance monitoring.
+- Provides critical functionality that Mason2 and Athena depend on.
+
+Both Athena and Onyx are essential to the overall operation and health of the Mason2 ecosystem. Mason2's role is to monitor, coordinate, and propose improvements for both.

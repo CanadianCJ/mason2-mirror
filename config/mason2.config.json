@@ -1,0 +1,17 @@
+﻿{
+    "Env":  "dev",
+    "CleanupDays":  2,
+    "UseFolderTime":  true,
+    "KeepTopN":  10,
+    "VerifyMode":  "strict",
+    "Auto":  {
+                 "VerifyEveryHours":  4,
+                 "CleanupEveryHours":  1,
+                 "NightlyTrimAt":  "03:30",
+                 "NightlyApplyAt":  "03:45",
+                 "DiskHealthAt":  "03:30",
+                 "QuietHours":  [
+                                    "00:30-06:00"
+                                ]
+             }
+}

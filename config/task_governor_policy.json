@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "mode": "auto-fix-safe",
+  "quarantine_unknown_mason_tasks": false,
+  "quarantine_legacy_paths_contains": [
+    "Broken mason",
+    "Mason_old",
+    "Mason_Backup"
+  ],
+  "allow_task_creation": true,
+  "allow_task_updates": true,
+  "allow_task_disable": true
+}

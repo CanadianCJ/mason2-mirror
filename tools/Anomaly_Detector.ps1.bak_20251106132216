@@ -1,0 +1,318 @@
+# Mason base/bootstrap (null-safe)
+Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+Import-Module (Join-Path $env:USERPROFILE "Desktop\Mason2\services\Log.psm1") -Force
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rep  = Join-Path $Base "reports"
+$Logs = Join-Path $Base "logs"
+$Sig  = Join-Path $Rep  "signals"
+$null = New-Item $Sig -ItemType Directory -ea SilentlyContinue
+
+$today = Get-Date -Format 'yyyy-MM-dd'
+$sum   = Join-Path $Rep 'telemetry_summary.csv'
+$total = 0
+try{
+  if(Test-Path $sum){
+    $rows = Import-Csv $sum | Where-Object { $_.date -eq $today }
+    $total = ($rows | Measure-Object -Property count -Sum).Sum
+  } else {
+    $files = Get-ChildItem $Logs -Recurse -Filter "$today.jsonl" -ea SilentlyContinue
+    foreach($f in $files){ $total += (Get-Content $f.FullName | Measure-Object).Count }
+  }
+}catch{}
+
+$hb = Join-Path $Logs 'telemetry\heartbeat.log'
+$hbStale = $true
+if(Test-Path $hb){
+  $hbAge = [int]([datetime]::Now - (Get-Item $hb).LastWriteTime).TotalMinutes
+  $hbStale = ($hbAge -gt 5)
+}
+
+$anomaly = ($total -gt 10000) -or $hbStale
+$state = [ordered]@{ generated=(Get-Date).ToString('o'); log_total=$total; hb_stale=$hbStale; anomaly=$anomaly }
+$state | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $Rep 'anomaly_state.json') -Encoding UTF8
+
+if($anomaly){ Write-JsonLog -Component "anomaly" -Level "WARN" -Message "anomaly flagged" -Props @{ total=$total; hb_stale=$hbStale } }
+else        { Write-JsonLog -Component "anomaly" -Level "INFO" -Message "normal" -Props @{ total=$total } }
+
+_tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace(Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+Import-Module (Join-Path $env:USERPROFILE "Desktop\Mason2\services\Log.psm1") -Force
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rep  = Join-Path $Base "reports"
+$Logs = Join-Path $Base "logs"
+$Sig  = Join-Path $Rep  "signals"
+$null = New-Item $Sig -ItemType Directory -ea SilentlyContinue
+
+$today = Get-Date -Format 'yyyy-MM-dd'
+$sum   = Join-Path $Rep 'telemetry_summary.csv'
+$total = 0
+try{
+  if(Test-Path $sum){
+    $rows = Import-Csv $sum | Where-Object { $_.date -eq $today }
+    $total = ($rows | Measure-Object -Property count -Sum).Sum
+  } else {
+    $files = Get-ChildItem $Logs -Recurse -Filter "$today.jsonl" -ea SilentlyContinue
+    foreach($f in $files){ $total += (Get-Content $f.FullName | Measure-Object).Count }
+  }
+}catch{}
+
+$hb = Join-Path $Logs 'telemetry\heartbeat.log'
+$hbStale = $true
+if(Test-Path $hb){
+  $hbAge = [int]([datetime]::Now - (Get-Item $hb).LastWriteTime).TotalMinutes
+  $hbStale = ($hbAge -gt 5)
+}
+
+$anomaly = ($total -gt 10000) -or $hbStale
+$state = [ordered]@{ generated=(Get-Date).ToString('o'); log_total=$total; hb_stale=$hbStale; anomaly=$anomaly }
+$state | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $Rep 'anomaly_state.json') -Encoding UTF8
+
+if($anomaly){ Write-JsonLog -Component "anomaly" -Level "WARN" -Message "anomaly flagged" -Props @{ total=$total; hb_stale=$hbStale } }
+else        { Write-JsonLog -Component "anomaly" -Level "INFO" -Message "normal" -Props @{ total=$total } }
+
+_tryRoot)) {
+  try { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+Import-Module (Join-Path $env:USERPROFILE "Desktop\Mason2\services\Log.psm1") -Force
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rep  = Join-Path $Base "reports"
+$Logs = Join-Path $Base "logs"
+$Sig  = Join-Path $Rep  "signals"
+$null = New-Item $Sig -ItemType Directory -ea SilentlyContinue
+
+$today = Get-Date -Format 'yyyy-MM-dd'
+$sum   = Join-Path $Rep 'telemetry_summary.csv'
+$total = 0
+try{
+  if(Test-Path $sum){
+    $rows = Import-Csv $sum | Where-Object { $_.date -eq $today }
+    $total = ($rows | Measure-Object -Property count -Sum).Sum
+  } else {
+    $files = Get-ChildItem $Logs -Recurse -Filter "$today.jsonl" -ea SilentlyContinue
+    foreach($f in $files){ $total += (Get-Content $f.FullName | Measure-Object).Count }
+  }
+}catch{}
+
+$hb = Join-Path $Logs 'telemetry\heartbeat.log'
+$hbStale = $true
+if(Test-Path $hb){
+  $hbAge = [int]([datetime]::Now - (Get-Item $hb).LastWriteTime).TotalMinutes
+  $hbStale = ($hbAge -gt 5)
+}
+
+$anomaly = ($total -gt 10000) -or $hbStale
+$state = [ordered]@{ generated=(Get-Date).ToString('o'); log_total=$total; hb_stale=$hbStale; anomaly=$anomaly }
+$state | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $Rep 'anomaly_state.json') -Encoding UTF8
+
+if($anomaly){ Write-JsonLog -Component "anomaly" -Level "WARN" -Message "anomaly flagged" -Props @{ total=$total; hb_stale=$hbStale } }
+else        { Write-JsonLog -Component "anomaly" -Level "INFO" -Message "normal" -Props @{ total=$total } }
+
+_tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+Import-Module (Join-Path $env:USERPROFILE "Desktop\Mason2\services\Log.psm1") -Force
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rep  = Join-Path $Base "reports"
+$Logs = Join-Path $Base "logs"
+$Sig  = Join-Path $Rep  "signals"
+$null = New-Item $Sig -ItemType Directory -ea SilentlyContinue
+
+$today = Get-Date -Format 'yyyy-MM-dd'
+$sum   = Join-Path $Rep 'telemetry_summary.csv'
+$total = 0
+try{
+  if(Test-Path $sum){
+    $rows = Import-Csv $sum | Where-Object { $_.date -eq $today }
+    $total = ($rows | Measure-Object -Property count -Sum).Sum
+  } else {
+    $files = Get-ChildItem $Logs -Recurse -Filter "$today.jsonl" -ea SilentlyContinue
+    foreach($f in $files){ $total += (Get-Content $f.FullName | Measure-Object).Count }
+  }
+}catch{}
+
+$hb = Join-Path $Logs 'telemetry\heartbeat.log'
+$hbStale = $true
+if(Test-Path $hb){
+  $hbAge = [int]([datetime]::Now - (Get-Item $hb).LastWriteTime).TotalMinutes
+  $hbStale = ($hbAge -gt 5)
+}
+
+$anomaly = ($total -gt 10000) -or $hbStale
+$state = [ordered]@{ generated=(Get-Date).ToString('o'); log_total=$total; hb_stale=$hbStale; anomaly=$anomaly }
+$state | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $Rep 'anomaly_state.json') -Encoding UTF8
+
+if($anomaly){ Write-JsonLog -Component "anomaly" -Level "WARN" -Message "anomaly flagged" -Props @{ total=$total; hb_stale=$hbStale } }
+else        { Write-JsonLog -Component "anomaly" -Level "INFO" -Message "normal" -Props @{ total=$total } }
+
+_tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+Import-Module (Join-Path $env:USERPROFILE "Desktop\Mason2\services\Log.psm1") -Force
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rep  = Join-Path $Base "reports"
+$Logs = Join-Path $Base "logs"
+$Sig  = Join-Path $Rep  "signals"
+$null = New-Item $Sig -ItemType Directory -ea SilentlyContinue
+
+$today = Get-Date -Format 'yyyy-MM-dd'
+$sum   = Join-Path $Rep 'telemetry_summary.csv'
+$total = 0
+try{
+  if(Test-Path $sum){
+    $rows = Import-Csv $sum | Where-Object { $_.date -eq $today }
+    $total = ($rows | Measure-Object -Property count -Sum).Sum
+  } else {
+    $files = Get-ChildItem $Logs -Recurse -Filter "$today.jsonl" -ea SilentlyContinue
+    foreach($f in $files){ $total += (Get-Content $f.FullName | Measure-Object).Count }
+  }
+}catch{}
+
+$hb = Join-Path $Logs 'telemetry\heartbeat.log'
+$hbStale = $true
+if(Test-Path $hb){
+  $hbAge = [int]([datetime]::Now - (Get-Item $hb).LastWriteTime).TotalMinutes
+  $hbStale = ($hbAge -gt 5)
+}
+
+$anomaly = ($total -gt 10000) -or $hbStale
+$state = [ordered]@{ generated=(Get-Date).ToString('o'); log_total=$total; hb_stale=$hbStale; anomaly=$anomaly }
+$state | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $Rep 'anomaly_state.json') -Encoding UTF8
+
+if($anomaly){ Write-JsonLog -Component "anomaly" -Level "WARN" -Message "anomaly flagged" -Props @{ total=$total; hb_stale=$hbStale } }
+else        { Write-JsonLog -Component "anomaly" -Level "INFO" -Message "normal" -Props @{ total=$total } }
+
+_lib = Join-Path (Split-Path Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+Import-Module (Join-Path $env:USERPROFILE "Desktop\Mason2\services\Log.psm1") -Force
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rep  = Join-Path $Base "reports"
+$Logs = Join-Path $Base "logs"
+$Sig  = Join-Path $Rep  "signals"
+$null = New-Item $Sig -ItemType Directory -ea SilentlyContinue
+
+$today = Get-Date -Format 'yyyy-MM-dd'
+$sum   = Join-Path $Rep 'telemetry_summary.csv'
+$total = 0
+try{
+  if(Test-Path $sum){
+    $rows = Import-Csv $sum | Where-Object { $_.date -eq $today }
+    $total = ($rows | Measure-Object -Property count -Sum).Sum
+  } else {
+    $files = Get-ChildItem $Logs -Recurse -Filter "$today.jsonl" -ea SilentlyContinue
+    foreach($f in $files){ $total += (Get-Content $f.FullName | Measure-Object).Count }
+  }
+}catch{}
+
+$hb = Join-Path $Logs 'telemetry\heartbeat.log'
+$hbStale = $true
+if(Test-Path $hb){
+  $hbAge = [int]([datetime]::Now - (Get-Item $hb).LastWriteTime).TotalMinutes
+  $hbStale = ($hbAge -gt 5)
+}
+
+$anomaly = ($total -gt 10000) -or $hbStale
+$state = [ordered]@{ generated=(Get-Date).ToString('o'); log_total=$total; hb_stale=$hbStale; anomaly=$anomaly }
+$state | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $Rep 'anomaly_state.json') -Encoding UTF8
+
+if($anomaly){ Write-JsonLog -Component "anomaly" -Level "WARN" -Message "anomaly flagged" -Props @{ total=$total; hb_stale=$hbStale } }
+else        { Write-JsonLog -Component "anomaly" -Level "INFO" -Message "normal" -Props @{ total=$total } }
+
+_tryRoot -Parent) 'lib\Mason.Base.psm1'
+Import-Module Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+Import-Module (Join-Path $env:USERPROFILE "Desktop\Mason2\services\Log.psm1") -Force
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rep  = Join-Path $Base "reports"
+$Logs = Join-Path $Base "logs"
+$Sig  = Join-Path $Rep  "signals"
+$null = New-Item $Sig -ItemType Directory -ea SilentlyContinue
+
+$today = Get-Date -Format 'yyyy-MM-dd'
+$sum   = Join-Path $Rep 'telemetry_summary.csv'
+$total = 0
+try{
+  if(Test-Path $sum){
+    $rows = Import-Csv $sum | Where-Object { $_.date -eq $today }
+    $total = ($rows | Measure-Object -Property count -Sum).Sum
+  } else {
+    $files = Get-ChildItem $Logs -Recurse -Filter "$today.jsonl" -ea SilentlyContinue
+    foreach($f in $files){ $total += (Get-Content $f.FullName | Measure-Object).Count }
+  }
+}catch{}
+
+$hb = Join-Path $Logs 'telemetry\heartbeat.log'
+$hbStale = $true
+if(Test-Path $hb){
+  $hbAge = [int]([datetime]::Now - (Get-Item $hb).LastWriteTime).TotalMinutes
+  $hbStale = ($hbAge -gt 5)
+}
+
+$anomaly = ($total -gt 10000) -or $hbStale
+$state = [ordered]@{ generated=(Get-Date).ToString('o'); log_total=$total; hb_stale=$hbStale; anomaly=$anomaly }
+$state | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $Rep 'anomaly_state.json') -Encoding UTF8
+
+if($anomaly){ Write-JsonLog -Component "anomaly" -Level "WARN" -Message "anomaly flagged" -Props @{ total=$total; hb_stale=$hbStale } }
+else        { Write-JsonLog -Component "anomaly" -Level "INFO" -Message "normal" -Props @{ total=$total } }
+
+_lib -Force
+$MasonBase = Get-MasonBase
+Set-Location $MasonBase
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+Import-Module (Join-Path $env:USERPROFILE "Desktop\Mason2\services\Log.psm1") -Force
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rep  = Join-Path $Base "reports"
+$Logs = Join-Path $Base "logs"
+$Sig  = Join-Path $Rep  "signals"
+$null = New-Item $Sig -ItemType Directory -ea SilentlyContinue
+
+$today = Get-Date -Format 'yyyy-MM-dd'
+$sum   = Join-Path $Rep 'telemetry_summary.csv'
+$total = 0
+try{
+  if(Test-Path $sum){
+    $rows = Import-Csv $sum | Where-Object { $_.date -eq $today }
+    $total = ($rows | Measure-Object -Property count -Sum).Sum
+  } else {
+    $files = Get-ChildItem $Logs -Recurse -Filter "$today.jsonl" -ea SilentlyContinue
+    foreach($f in $files){ $total += (Get-Content $f.FullName | Measure-Object).Count }
+  }
+}catch{}
+
+$hb = Join-Path $Logs 'telemetry\heartbeat.log'
+$hbStale = $true
+if(Test-Path $hb){
+  $hbAge = [int]([datetime]::Now - (Get-Item $hb).LastWriteTime).TotalMinutes
+  $hbStale = ($hbAge -gt 5)
+}
+
+$anomaly = ($total -gt 10000) -or $hbStale
+$state = [ordered]@{ generated=(Get-Date).ToString('o'); log_total=$total; hb_stale=$hbStale; anomaly=$anomaly }
+$state | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $Rep 'anomaly_state.json') -Encoding UTF8
+
+if($anomaly){ Write-JsonLog -Component "anomaly" -Level "WARN" -Message "anomaly flagged" -Props @{ total=$total; hb_stale=$hbStale } }
+else        { Write-JsonLog -Component "anomaly" -Level "INFO" -Message "normal" -Props @{ total=$total } }
+

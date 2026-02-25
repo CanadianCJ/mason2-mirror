@@ -1,0 +1,415 @@
+﻿# Mason2-Version: 1.1.4
+param()
+
+# Ensure STA
+if ([Threading.Thread]::CurrentThread.GetApartmentState() -ne 'STA') {
+  Start-Process "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" `
+    -ArgumentList '-NoProfile','-Sta','-ExecutionPolicy','Bypass','-File',"`"$PSCommandPath`""
+  return
+}
+
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rep  = Join-Path $Base "reports"
+$Sig  = Join-Path $Rep  "signals"
+$Logs = Join-Path $Base "logs"
+
+function Safe-ReadText([string]$p){ if(Test-Path $p){ Get-Content $p -Raw } else { "" } }
+
+function Get-TaskInfo([string]$name,[int]$ageGateMins=0){
+  $o = @{ name=$name; ok=$false; last=""; code=""; msg="" }
+  try{
+    $csv = & schtasks.exe /Query /TN $name /V /FO CSV 2>$null
+    if(-not $? -or -not $csv){ $csv = & schtasks.exe /Query /TN ("\{0}" -f $name) /V /FO CSV 2>$null }
+    if(-not $? -or -not $csv){ $o.msg="not found"; return $o }
+    $obj = ($csv | ConvertFrom-Csv | Select-Object -First 1)
+    $o.last = ($obj.'Last Run Time' + '')
+    $o.code = ($obj.'Last Result' + '')
+    $o.ok   = @('0','267009','267011') -contains $o.code
+    if($ageGateMins -gt 0 -and $o.last -and $o.last -notmatch 'Never'){
+      $mins = [int]([datetime]::Now - [datetime]::Parse($o.last)).TotalMinutes
+      if($mins -gt $ageGateMins){ $o.ok = $false; $o.msg="stale ${mins}m" }
+    }
+    return $o
+  }catch{ $o.msg = $_.Exception.Message; return $o }
+}
+
+function Get-Status {
+  $status = [ordered]@{}
+
+  # Heartbeat age
+  $hb = Join-Path $Logs "telemetry\heartbeat.log"
+  $status.hb_age_m = $null
+  if(Test-Path $hb){ $status.hb_age_m = [int]([datetime]::Now - (Get-Item $hb).LastWriteTime).TotalMinutes }
+
+  # Disk series (last 40)
+  $dh = Join-Path $Logs "telemetry\disk_health.csv"
+  $status.disk_series   = @()
+  $status.disk_free_pct = $null
+  if(Test-Path $dh){
+    $lines = Get-Content $dh | Select-Object -Skip 1 | Select-Object -Last 40
+    foreach($l in $lines){ if($l -match ','){ $status.disk_series += [double]($l.Split(',')[-1]) } }
+    if($status.disk_series.Count -gt 0){ $status.disk_free_pct = ("{0:n2}" -f $status.disk_series[-1]) }
+  }
+
+  # Pricebook
+  $status.price_total_cad = (Safe-ReadText (Join-Path $Rep "price\total_cad.txt")).Trim()
+
+  # Integrity + stamps
+  $status.integrity    = Test-Path (Join-Path $Rep "roadmap_integrity.json")
+  $status.phase_accept = Test-Path (Join-Path $Sig "roadmap-phase-1-validated.ok")
+  $status.phase_full   = Test-Path (Join-Path $Sig "phase1_full_applied.ok")
+
+  # Logs today (summary preferred; fallback scan)
+  $status.log_total = 0; $status.log_top = @()
+  $sum = Join-Path $Rep 'telemetry_summary.csv'
+  $today = Get-Date -Format 'yyyy-MM-dd'
+  if(Test-Path $sum){
+    try{
+      $rows = Import-Csv $sum | Where-Object { $_.date -eq $today }
+      $status.log_total = ($rows | Measure-Object -Property count -Sum).Sum
+      $status.log_top   = $rows | Sort-Object {[int]$_.count} -Descending | Select-Object -First 5
+    }catch{}
+  }
+  if($status.log_total -eq 0){
+    try{
+      $fileName = "$today.jsonl"
+      $files = Get-ChildItem (Join-Path $Logs '*') -Recurse -Filter $fileName -ea SilentlyContinue
+      $acc = @{}
+      foreach($f in $files){
+        $comp = Split-Path $f.DirectoryName -Leaf
+        $n = (Get-Content $f.FullName -TotalCount 200000 | Measure-Object).Count
+        if(-not $acc.ContainsKey($comp)){ $acc[$comp]=0 }; $acc[$comp]+=$n
+      }
+      $status.log_total = ($acc.Values | Measure-Object -Sum).Sum
+      $status.log_top   = $acc.GetEnumerator() | Sort-Object Value -Descending | Select-Object -First 5 |
+        ForEach-Object { [pscustomobject]@{ component=$_.Key; count=$_.Value } }
+    }catch{}
+  }
+
+  # Alerts (anomaly/drift/stuck)
+  $status.alerts = @{ anomaly=$false; drift=0; stuck=0 }
+  $anomFile = Join-Path $Rep "anomaly_state.json"
+  if (Test-Path $anomFile) { try{ $j = Get-Content $anomFile -Raw | ConvertFrom-Json; if($j.anomaly){ $status.alerts.anomaly = $true } }catch{} }
+  $driftFile = Join-Path $Rep "scheduler_drift.json"
+  if (Test-Path $driftFile) { try{ $j = Get-Content $driftFile -Raw | ConvertFrom-Json; $status.alerts.drift = @($j | Where-Object {$_.high}).Count }catch{} }
+  $stuckFile = Join-Path $Rep "stuck_jobs.json"
+  if (Test-Path $stuckFile) { try{ $j = Get-Content $stuckFile -Raw | ConvertFrom-Json; $status.alerts.stuck = @($j).Count }catch{} }
+
+  # Tasks
+  $status.tasks = @(
+    Get-TaskInfo "Mason2 Heartbeat" 2
+    Get-TaskInfo "Mason2 Watchdog"  3
+    Get-TaskInfo "Mason2 Governor"  4
+    Get-TaskInfo "Mason2 Snapshot"
+    Get-TaskInfo "Mason2 WeeklyRestoreTest"
+    Get-TaskInfo "Mason2 LogMaintenance"
+    Get-TaskInfo "Mason2 TopicSync"
+    Get-TaskInfo "Mason2 AutoAdvance"
+    Get-TaskInfo "Mason2 DiskHealth"
+    Get-TaskInfo "Mason2 RetrySweeper"
+    Get-TaskInfo "Mason2 StuckJobDetector"
+    Get-TaskInfo "Mason2 ScheduleDriftAlarms"
+    Get-TaskInfo "Mason2 Dashboard"
+  )
+  return $status
+}
+
+Add-Type -AssemblyName PresentationFramework,PresentationCore,WindowsBase
+
+# XAML (includes Alerts line)
+function Preflight-Checks{
+  try{
+    $pct = Get-DiskFreePct
+    if($pct -lt 5){ throw "Disk free too low ($pct%). Need at least 5%." }
+    $need = @($Tool_VerifyTighten,$Tool_VerifyUnpack,$Tool_CleanupStages) | Where-Object { $_ }
+    foreach($t in $need){ if(-not (Test-Path -LiteralPath $t)){ throw "Missing tool: $t" } }
+    $cfg = Join-Path $Base 'config\mason2.config.json'
+    if(Test-Path $cfg){ $null = (Get-Content $cfg -Raw | ConvertFrom-Json) }
+    $true
+  }catch{
+    Alert $_.Exception.Message
+    $false
+  }
+}[xml]$xaml = @"
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        Title="Mason2 — Phase 1 Dashboard" Height="560" Width="880" WindowStartupLocation="CenterScreen"
+        Background="#0f1115" Foreground="#e6e6e6">
+  <Grid Margin="16">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,8">
+      <TextBlock Text="Mason2" FontSize="22" FontWeight="Bold" Margin="0,0,12,0"/>
+      <TextBlock Text="Phase 1 — live status" FontSize="14" Opacity="0.8"/>
+    </StackPanel>
+
+    <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,8">
+      <!-- Price -->
+      <Border Padding="8" Margin="4" Background="#171923" CornerRadius="12">
+        <StackPanel>
+          <TextBlock Text="Price (CAD)" FontWeight="SemiBold"/>
+          <TextBlock Name="PriceText" FontSize="20" FontWeight="Bold"/>
+        </StackPanel>
+      </Border>
+
+      <!-- Heartbeat -->
+      <Border Padding="8" Margin="4" Background="#171923" CornerRadius="12">
+        <StackPanel>
+          <TextBlock Text="Heartbeat age (min)" FontWeight="SemiBold"/>
+          <TextBlock Name="HbText" FontSize="20" FontWeight="Bold"/>
+        </StackPanel>
+      </Border>
+
+      <!-- Disk with sparkline -->
+      <Border Padding="8" Margin="4" Background="#171923" CornerRadius="12">
+        <StackPanel>
+          <TextBlock Text="Disk Free (%)" FontWeight="SemiBold"/>
+          <TextBlock Name="DiskText" FontSize="20" FontWeight="Bold" Margin="0,0,0,4"/>
+          <Border Background="#0b0d13" Margin="0,4,0,0" Padding="2" CornerRadius="8">
+            <Canvas Name="DiskSpark" Height="48" MinWidth="200"/>
+          </Border>
+        </StackPanel>
+      </Border>
+
+      <!-- Integrity + Logs + Alerts -->
+      <Border Padding="8" Margin="4" Background="#171923" CornerRadius="12">
+        <StackPanel>
+          <TextBlock Text="Integrity / Stamps" FontWeight="SemiBold"/>
+          <TextBlock Name="StampText" FontSize="14" TextWrapping="Wrap" Margin="0,0,0,6"/>
+          <TextBlock Text="Logs today" FontWeight="SemiBold" Margin="0,4,0,2"/>
+          <TextBlock Name="LogCountText" FontSize="18" FontWeight="Bold"/>
+          <ItemsControl Name="LogTopItems" Margin="0,4,0,0">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding component}" Width="120"/>
+                  <TextBlock Text="{Binding count}" Width="60" HorizontalAlignment="Right"/>
+                </StackPanel>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+          <TextBlock Text="Alerts" FontWeight="SemiBold" Margin="0,8,0,2"/>
+          <TextBlock Name="AlertText" FontSize="14" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+    </UniformGrid>
+
+    <!-- Tasks -->
+    <Border Grid.Row="2" Padding="8" Background="#0b0d13" CornerRadius="12">
+      <ScrollViewer>
+        <StackPanel>
+          <TextBlock Text="Scheduled Tasks" FontSize="14" FontWeight="Bold" Margin="0,0,0,6"/>
+          <ItemsControl Name="TaskItems">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Grid Margin="0,2,0,2">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="*"/>
+                  </Grid.ColumnDefinitions>
+                  <TextBlock Text="{Binding name}" />
+                  <TextBlock Grid.Column="1" Text="{Binding code}" />
+                  <TextBlock Grid.Column="2" Text="{Binding last}" />
+                  <TextBlock Grid.Column="3" Text="{Binding msg}" />
+                </Grid>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </StackPanel>
+      </ScrollViewer>
+    </Border>
+
+    <!-- Buttons -->
+    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+      <Button Name="RefreshBtn" Content="Refresh" Width="100" Margin="6" Padding="6"/>
+      <Button Name="OpenLogsBtn" Content="Open Logs" Width="110" Margin="6" Padding="6"/>
+      <Button Name="FullVerifyBtn" Content="Run Verify" Width="110" Margin="6" Padding="6"/>
+        <Button Name="btnAutoOps" Content="Auto Ops..." Padding="12,6" Margin="8,0,0,0"/>
+        <Button Name="btnSettings" Content="Settings..." Padding="12,6" Margin="8,0,0,0"/>
+      <Button Name="ExitBtn" Content="Exit" Width="90" Margin="6" Padding="6"/>
+    </StackPanel>
+  </Grid>
+</Window>
+"@
+
+$reader = New-Object System.Xml.XmlNodeReader $xaml
+$window = [Windows.Markup.XamlReader]::Load($reader)
+
+
+$ModeFile = Join-Path $Base "config\mode.txt"
+if(Test-Path $ModeFile){ $mode = (Get-Content $ModeFile -Raw).Trim() } else { $mode = "dev" }
+$window.Title = "Mason2 — Phase 1 Dashboard (" + $mode + ")"
+$PriceText     = $window.FindName("PriceText")
+$HbText        = $window.FindName("HbText")
+$DiskText      = $window.FindName("DiskText")
+$DiskSpark     = $window.FindName("DiskSpark")
+$StampText     = $window.FindName("StampText")
+$LogCountText  = $window.FindName("LogCountText")
+$LogTopItems   = $window.FindName("LogTopItems")
+$AlertText     = $window.FindName("AlertText")
+$TaskItems     = $window.FindName("TaskItems")
+$RefreshBtn    = $window.FindName("RefreshBtn")
+$OpenLogsBtn   = $window.FindName("OpenLogsBtn")
+$FullVerifyBtn = $window.FindName("FullVerifyBtn")
+$ExitBtn       = $window.FindName("ExitBtn")
+
+function Draw-Spark([System.Windows.Controls.Canvas]$canvas, [double[]]$series){
+  $canvas.Children.Clear()
+  if(-not $series -or $series.Count -lt 2){ return }
+  $w = $canvas.ActualWidth; if($w -le 0){ $w = $canvas.Width; if($w -le 0){ $w = 260 } }
+  $h = $canvas.ActualHeight; if($h -le 0){ $h = 48 }
+  $min = [double]::PositiveInfinity; $max = [double]::NegativeInfinity
+  foreach($v in $series){ if($v -lt $min){$min=$v}; if($v -gt $max){$max=$v} }
+  if($max -le $min){ $max = $min + 0.0001 }
+  $poly = New-Object System.Windows.Shapes.Polyline
+  $poly.Stroke = [System.Windows.Media.Brushes]::LightSteelBlue
+  $poly.StrokeThickness = 1.5
+  for($i=0;$i -lt $series.Count;$i++){
+    $x = ($i/([double]($series.Count-1))) * $w
+    $yn = ($series[$i]-$min)/($max-$min)
+    $y = $h - ($yn * $h)
+    $poly.Points.Add([System.Windows.Point]::new($x,$y)) | Out-Null
+  }
+  [void]$canvas.Children.Add($poly)
+}
+
+function Paint([hashtable]$s){
+  if(-not $s){ return }
+  $PriceText.Text    = if([string]::IsNullOrWhiteSpace($s.price_total_cad)){"(n/a)"}else{"$($s.price_total_cad)"}
+  $HbText.Text       = if($s.hb_age_m -ne $null -and "$($s.hb_age_m)" -ne ""){ "$($s.hb_age_m)" } else { "(n/a)" }
+  $DiskText.Text     = if($s.disk_free_pct -ne $null -and "$($s.disk_free_pct)" -ne ""){ "$($s.disk_free_pct)" } else { "(n/a)" }
+  $StampText.Text    = "Integrity: $($s.integrity) • Phase1 Accepted: $($s.phase_accept) • Full Applied: $($s.phase_full)"
+  $LogCountText.Text = if($s.log_total -ne $null) { "$($s.log_total)" } else { "0" }
+  $LogTopItems.ItemsSource = @()
+  if($s.log_top){
+    $LogTopItems.ItemsSource = $s.log_top | ForEach-Object {
+      if($_.PSObject.Properties.Name -contains 'component'){ $_ } else { [pscustomobject]@{ component=$_.component; count=$_.count } }
+    }
+  }
+  Draw-Spark $DiskSpark $s.disk_series
+  $AlertText.Text = ("Anomaly: {0}  •  Drift: {1}  •  Stuck: {2}" -f $s.alerts.anomaly,$s.alerts.drift,$s.alerts.stuck)
+  $TaskItems.ItemsSource = $s.tasks | ForEach-Object { $_ | Select-Object name,code,last,msg }
+}
+
+$RefreshBtn.Add_Click({ try{ Paint (Get-Status) }catch{ [System.Windows.MessageBox]::Show($_.Exception.Message,"Refresh error") } })
+$OpenLogsBtn.Add_Click({ Start-Process explorer.exe $Logs })
+$FullVerifyBtn.Add_Click({
+      if (-not (Preflight-Checks)) { return }
+    try{
+    Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile","-ExecutionPolicy Bypass","-File", (Join-Path $Base "tools\Phase1_DeepVerify.ps1") -Verb RunAs
+  }catch{ [System.Windows.MessageBox]::Show($_.Exception.Message,"Verify error") }
+})
+$ExitBtn.Add_Click({ $window.Close() })
+
+Paint (Get-Status)
+# -- Auto Ops launcher --
+$btnAutoOps = $window.FindName('btnAutoOps')
+if ($btnAutoOps) {
+  $btnAutoOps.Add_Click({
+    Start-Process -FilePath "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -ArgumentList ('-STA -NoProfile -ExecutionPolicy Bypass -File "{0}"' -f (Join-Path $PSScriptRoot 'Start_AutoOps.ps1')) -WindowStyle Hidden | Out-Null
+  })
+}
+# -- Settings launcher --
+$btnSettings = $window.FindName('btnSettings')
+if($btnSettings){
+  $btnSettings.Add_Click({
+    Start-Process -FilePath "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" 
+      -ArgumentList ('-STA -NoProfile -ExecutionPolicy Bypass -File "{0}"' -f (Join-Path $PSScriptRoot 'Start_Settings.ps1')) | Out-Null
+  })
+}
+
+
+
+$null = $window.ShowDialog()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+} | Sort-Object TaskName
+  } catch { @() }
+}
+
+} | Sort-Object TaskName
+  } catch { @() }
+}
+
+function Get-M2TasksSnapshot {
+  try {
+    $tasks = Get-ScheduledTask 'Mason2-*' | ForEach-Object {
+      $i = $_ | Get-ScheduledTaskInfo
+      [pscustomobject]@{
+        TaskName       = $_.TaskName
+        State          = ($_.State | Out-String).Trim()
+        LastRunTime    = $i.LastRunTime
+        LastTaskResult = $i.LastTaskResult
+        NextRunTime    = $i.NextRunTime
+      }
+    }
+    $tasks | Sort-Object TaskName
+  } catch { @() }
+}
+# ----- M2TasksPanelInjected (read-only) -----
+try{
+  Add-Type -AssemblyName PresentationFramework -ErrorAction SilentlyContinue
+  $createTasksPanel = {
+    param($window)
+    if(-not $window){ return }
+    $root = $window.Content
+    $grid = if($root -is [System.Windows.Controls.Grid]){ $root } else { $window.FindName('MainGrid') }
+    if(-not $grid){ return }
+
+    if($window.Resources['M2TasksPatched']){ return }
+    $window.Resources['M2TasksPatched'] = $true
+
+    if($grid.ColumnDefinitions.Count -lt 2){
+      $grid.ColumnDefinitions.Add((New-Object System.Windows.Controls.ColumnDefinition -Property @{Width='*'}))
+      $grid.ColumnDefinitions.Add((New-Object System.Windows.Controls.ColumnDefinition -Property @{Width='380'}))
+    }
+
+    $host = New-Object System.Windows.Controls.Border -Property @{
+      Name='TasksPanelHost'; Padding=6; Background=[Windows.Media.Brushes]::Transparent; Margin='8,0,0,0'
+    }
+    [System.Windows.Controls.Grid]::SetColumn($host,1)
+    $grid.Children.Add($host) | Out-Null
+
+    $stack = New-Object System.Windows.Controls.StackPanel -Property @{ Orientation='Vertical' }
+    $label = New-Object System.Windows.Controls.TextBlock -Property @{ Text='Scheduled Tasks (read-only)'; FontSize=14; Margin='0,0,0,6' }
+    $dg    = New-Object System.Windows.Controls.DataGrid
+    $dg.IsReadOnly=$true; $dg.AutoGenerateColumns=$true; $dg.CanUserAddRows=$false; $dg.CanUserDeleteRows=$false; $dg.HeadersVisibility='Column'; $dg.Height=300
+    $btn   = New-Object System.Windows.Controls.Button -Property @{ Content='Refresh'; Padding='10,4'; HorizontalAlignment='Right'; Margin='0,6,0,0' }
+
+    $stack.Children.Add($label) | Out-Null
+    $stack.Children.Add($dg)    | Out-Null
+    $stack.Children.Add($btn)   | Out-Null
+    $host.Child = $stack
+
+    $fill = {
+      $dg.ItemsSource = Get-M2TasksSnapshot | Select-Object TaskName,State,LastRunTime,LastTaskResult,NextRunTime
+    }
+    $btn.Add_Click({ & $fill })
+    & $fill
+  }
+
+  if([System.Windows.Application]::Current){
+    [System.Windows.Application]::Current.MainWindow.add_ContentRendered({ & $createTasksPanel ([System.Windows.Application]::Current.MainWindow) })
+  }
+}catch{}
+# ----- /M2TasksPanelInjected -----
+

@@ -1,0 +1,9 @@
+{
+  "mode": "strict",
+  "bundleFilter": "dev",
+  "keepReleases": 10,
+  "cleanupDays": 2,
+  "minFreePct": 15,
+  "nightWindow": "02:00-05:30",
+  "applyUnpack": true
+}

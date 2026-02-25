@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "Mason_Watchdog",
+      "category": "mason",
+      "description": "Core health checks for Mason2 stack",
+      "enabled": true,
+      "script_rel_path": "tools\\Mason_Watchdog.ps1",
+      "run_level": "Highest",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "AtStartup"
+        },
+        {
+          "type": "Simple",
+          "repeat_minutes": 1
+        }
+      ]
+    },
+    {
+      "id": "Mason_Learner",
+      "category": "mason",
+      "description": "Universal Evolution learning loop",
+      "enabled": true,
+      "script_rel_path": "tools\\Mason_Learner.ps1",
+      "run_level": "Limited",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "Simple",
+          "repeat_minutes": 10
+        }
+      ]
+    },
+    {
+      "id": "Mason2-PCResource-10m",
+      "category": "health",
+      "description": "Monitor CPU/RAM/disk usage and write to pc_resource_watch log",
+      "enabled": true,
+      "script_rel_path": "tools\\PC_Resource_Watch.ps1",
+      "run_level": "Limited",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "Simple",
+          "repeat_minutes": 10
+        }
+      ]
+    },
+    {
+      "id": "Mason2-OnyxHealth-10m",
+      "category": "health",
+      "description": "Onyx runtime health checks (services, ports, smoke tests)",
+      "enabled": true,
+      "script_rel_path": "tools\\Onyx_Health_Check.ps1",
+      "run_level": "Limited",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "Simple",
+          "repeat_minutes": 10
+        }
+      ]
+    },
+    {
+      "id": "Mason2-OnyxHealthSummary-1h",
+      "category": "health",
+      "description": "Rollup summary of Onyx health into reports",
+      "enabled": true,
+      "script_rel_path": "tools\\Onyx_Health_Summary.ps1",
+      "run_level": "Limited",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "Simple",
+          "repeat_minutes": 60
+        }
+      ]
+    },
+    {
+      "id": "Mason2-AthenaStatus-10m",
+      "category": "health",
+      "description": "Snapshot of Athena / bridge status for logs",
+      "enabled": true,
+      "script_rel_path": "tools\\Athena_Status_Snapshot.ps1",
+      "run_level": "Limited",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "Simple",
+          "repeat_minutes": 10
+        }
+      ]
+    },
+    {
+      "id": "Mason2-MasonSelfReview-Daily",
+      "category": "introspection",
+      "description": "Daily self-review of Mason2 state and logs",
+      "enabled": true,
+      "script_rel_path": "tools\\Mason_SelfReview_Report.ps1",
+      "run_level": "Limited",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "Simple",
+          "repeat_minutes": 1440
+        }
+      ]
+    },
+    {
+      "id": "Mason2-OnyxCodeHealth-Daily",
+      "category": "introspection",
+      "description": "Daily static checks and metrics for Onyx codebase",
+      "enabled": true,
+      "script_rel_path": "tools\\Onyx_Code_Health_Report.ps1",
+      "run_level": "Limited",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "Simple",
+          "repeat_minutes": 1440
+        }
+      ]
+    },
+    {
+      "id": "Mason2-Forensics-Cleanup-Weekly",
+      "category": "maintenance",
+      "description": "Weekly cleanup of old crash dumps / forensics artifacts inside Mason2",
+      "enabled": true,
+      "script_rel_path": "tools\\Mason_Forensics_Cleanup.ps1",
+      "run_level": "Limited",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "Simple",
+          "repeat_minutes": 10080
+        }
+      ]
+    },
+    {
+      "id": "Mason_Morning_Report_9AM",
+      "category": "reports",
+      "description": "Daily status summary for you (Mason and Onyx highlights)",
+      "enabled": true,
+      "script_rel_path": "tools\\Mason_Morning_Report.ps1",
+      "run_level": "Limited",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "Simple",
+          "repeat_minutes": 1440
+        }
+      ]
+    },
+    {
+      "id": "Mason2-TaskInventory-1h",
+      "category": "governance",
+      "description": "Hourly inventory of all scheduled tasks (input to TaskGovernor)",
+      "enabled": true,
+      "script_rel_path": "tools\\Mason_TaskInventory.ps1",
+      "run_level": "Limited",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "Simple",
+          "repeat_minutes": 60
+        }
+      ]
+    },
+    {
+      "id": "Mason2-TaskGovernor-1h",
+      "category": "governance",
+      "description": "Hourly enforcement of scheduler manifest + policy",
+      "enabled": true,
+      "script_rel_path": "tools\\Mason_TaskGovernor.ps1",
+      "run_level": "Limited",
+      "logon_type": "Interactive",
+      "triggers": [
+        {
+          "type": "Simple",
+          "repeat_minutes": 60
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "sections": [
+    {
+      "id": "business",
+      "label": "Business",
+      "items": [
+        {
+          "id": "business_profile",
+          "label": "Business profile",
+          "feature_id": "onyx.business_profile",
+          "route_hint": "/business/profile",
+          "min_tier": "Founder",
+          "owner_only": false,
+          "visible": true
+        },
+        {
+          "id": "plan_and_features",
+          "label": "Plan & features",
+          "feature_id": null,
+          "route_hint": "/plan",
+          "min_tier": "Founder",
+          "owner_only": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "label": "Tools",
+      "items": [
+        {
+          "id": "feature_library",
+          "label": "Tool & feature library",
+          "feature_id": "onyx.feature_library",
+          "route_hint": "/tools",
+          "min_tier": "Founder",
+          "owner_only": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "system",
+      "label": "System",
+      "items": [
+        {
+          "id": "mason_status",
+          "label": "Mason & Onyx status",
+          "feature_id": null,
+          "route_hint": "/system/status",
+          "min_tier": "Founder",
+          "owner_only": true,
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

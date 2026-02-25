@@ -1,0 +1,156 @@
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.0.0
+param([string]$Bundle)
+if(-not (Test-Path $Bundle)){ throw "Bundle not found: $Bundle" }
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rel  = Join-Path $Base "dist\releases"
+$Stage= Join-Path $Base ("dist\stage-" + [guid]::NewGuid().ToString("N"))
+ni $Stage -ItemType Directory -ea SilentlyContinue | Out-Null
+# expand
+tar -xf $Bundle -C $Stage
+# keep last 3
+$alls = Get-ChildItem $Rel -Filter "*.zip" | Sort-Object LastWriteTime -desc
+if($alls.Count -gt 3){ $alls | Select-Object -Skip 3 | Remove-Item -Force }
+# atomic swap (copy-on-top strategy for Phase1)
+robocopy $Stage $Base /E /NFL /NDL /NJH /NJS | Out-Null
+Remove-Item $Stage -Recurse -Force
+
+_tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace(Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.0.0
+param([string]$Bundle)
+if(-not (Test-Path $Bundle)){ throw "Bundle not found: $Bundle" }
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rel  = Join-Path $Base "dist\releases"
+$Stage= Join-Path $Base ("dist\stage-" + [guid]::NewGuid().ToString("N"))
+ni $Stage -ItemType Directory -ea SilentlyContinue | Out-Null
+# expand
+tar -xf $Bundle -C $Stage
+# keep last 3
+$alls = Get-ChildItem $Rel -Filter "*.zip" | Sort-Object LastWriteTime -desc
+if($alls.Count -gt 3){ $alls | Select-Object -Skip 3 | Remove-Item -Force }
+# atomic swap (copy-on-top strategy for Phase1)
+robocopy $Stage $Base /E /NFL /NDL /NJH /NJS | Out-Null
+Remove-Item $Stage -Recurse -Force
+
+_tryRoot)) {
+  try { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.0.0
+param([string]$Bundle)
+if(-not (Test-Path $Bundle)){ throw "Bundle not found: $Bundle" }
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rel  = Join-Path $Base "dist\releases"
+$Stage= Join-Path $Base ("dist\stage-" + [guid]::NewGuid().ToString("N"))
+ni $Stage -ItemType Directory -ea SilentlyContinue | Out-Null
+# expand
+tar -xf $Bundle -C $Stage
+# keep last 3
+$alls = Get-ChildItem $Rel -Filter "*.zip" | Sort-Object LastWriteTime -desc
+if($alls.Count -gt 3){ $alls | Select-Object -Skip 3 | Remove-Item -Force }
+# atomic swap (copy-on-top strategy for Phase1)
+robocopy $Stage $Base /E /NFL /NDL /NJH /NJS | Out-Null
+Remove-Item $Stage -Recurse -Force
+
+_tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.0.0
+param([string]$Bundle)
+if(-not (Test-Path $Bundle)){ throw "Bundle not found: $Bundle" }
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rel  = Join-Path $Base "dist\releases"
+$Stage= Join-Path $Base ("dist\stage-" + [guid]::NewGuid().ToString("N"))
+ni $Stage -ItemType Directory -ea SilentlyContinue | Out-Null
+# expand
+tar -xf $Bundle -C $Stage
+# keep last 3
+$alls = Get-ChildItem $Rel -Filter "*.zip" | Sort-Object LastWriteTime -desc
+if($alls.Count -gt 3){ $alls | Select-Object -Skip 3 | Remove-Item -Force }
+# atomic swap (copy-on-top strategy for Phase1)
+robocopy $Stage $Base /E /NFL /NDL /NJH /NJS | Out-Null
+Remove-Item $Stage -Recurse -Force
+
+_tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.0.0
+param([string]$Bundle)
+if(-not (Test-Path $Bundle)){ throw "Bundle not found: $Bundle" }
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rel  = Join-Path $Base "dist\releases"
+$Stage= Join-Path $Base ("dist\stage-" + [guid]::NewGuid().ToString("N"))
+ni $Stage -ItemType Directory -ea SilentlyContinue | Out-Null
+# expand
+tar -xf $Bundle -C $Stage
+# keep last 3
+$alls = Get-ChildItem $Rel -Filter "*.zip" | Sort-Object LastWriteTime -desc
+if($alls.Count -gt 3){ $alls | Select-Object -Skip 3 | Remove-Item -Force }
+# atomic swap (copy-on-top strategy for Phase1)
+robocopy $Stage $Base /E /NFL /NDL /NJH /NJS | Out-Null
+Remove-Item $Stage -Recurse -Force
+
+_lib = Join-Path (Split-Path Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.0.0
+param([string]$Bundle)
+if(-not (Test-Path $Bundle)){ throw "Bundle not found: $Bundle" }
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rel  = Join-Path $Base "dist\releases"
+$Stage= Join-Path $Base ("dist\stage-" + [guid]::NewGuid().ToString("N"))
+ni $Stage -ItemType Directory -ea SilentlyContinue | Out-Null
+# expand
+tar -xf $Bundle -C $Stage
+# keep last 3
+$alls = Get-ChildItem $Rel -Filter "*.zip" | Sort-Object LastWriteTime -desc
+if($alls.Count -gt 3){ $alls | Select-Object -Skip 3 | Remove-Item -Force }
+# atomic swap (copy-on-top strategy for Phase1)
+robocopy $Stage $Base /E /NFL /NDL /NJH /NJS | Out-Null
+Remove-Item $Stage -Recurse -Force
+
+_tryRoot -Parent) 'lib\Mason.Base.psm1'
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.0.0
+param([string]$Bundle)
+if(-not (Test-Path $Bundle)){ throw "Bundle not found: $Bundle" }
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rel  = Join-Path $Base "dist\releases"
+$Stage= Join-Path $Base ("dist\stage-" + [guid]::NewGuid().ToString("N"))
+ni $Stage -ItemType Directory -ea SilentlyContinue | Out-Null
+# expand
+tar -xf $Bundle -C $Stage
+# keep last 3
+$alls = Get-ChildItem $Rel -Filter "*.zip" | Sort-Object LastWriteTime -desc
+if($alls.Count -gt 3){ $alls | Select-Object -Skip 3 | Remove-Item -Force }
+# atomic swap (copy-on-top strategy for Phase1)
+robocopy $Stage $Base /E /NFL /NDL /NJH /NJS | Out-Null
+Remove-Item $Stage -Recurse -Force
+
+_lib -Force
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.0.0
+param([string]$Bundle)
+
+# Mason base/bootstrap (safe; after param)
+$__tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace($__tryRoot)) {
+  try { $__tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { $__tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$__lib = Join-Path (Split-Path $__tryRoot -Parent) 'lib\Mason.Base.psm1'
+Import-Module $__lib -Force
+$MasonBase = Get-MasonBase -FromPath $__tryRoot
+Set-Location $MasonBase
+if(-not (Test-Path $Bundle)){ throw "Bundle not found: $Bundle" }
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Rel  = Join-Path $Base "dist\releases"
+$Stage= Join-Path $Base ("dist\stage-" + [guid]::NewGuid().ToString("N"))
+ni $Stage -ItemType Directory -ea SilentlyContinue | Out-Null
+# expand
+tar -xf $Bundle -C $Stage
+# keep last 3
+$alls = Get-ChildItem $Rel -Filter "*.zip" | Sort-Object LastWriteTime -desc
+if($alls.Count -gt 3){ $alls | Select-Object -Skip 3 | Remove-Item -Force }
+# atomic swap (copy-on-top strategy for Phase1)
+robocopy $Stage $Base /E /NFL /NDL /NJH /NJS | Out-Null
+Remove-Item $Stage -Recurse -Force
+

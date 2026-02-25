@@ -1,0 +1,14 @@
+{
+  "backup_root": "backups",
+  "max_backups_per_component": 10,
+  "components": {
+    "onyx": {
+      "label": "Onyx Business Manager",
+      "source_root": "Component - Onyx App"
+    },
+    "athena": {
+      "label": "Athena Console",
+      "source_root": "MasonConsole"
+    }
+  }
+}

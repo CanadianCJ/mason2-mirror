@@ -1,0 +1,129 @@
+﻿# Mason base/bootstrap (safe; after param)
+$__tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace($__tryRoot)) {
+  try { $__tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { $__tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$__lib = Join-Path (Split-Path $__tryRoot -Parent) 'lib\Mason.Base.psm1'
+Import-Module $__lib -Force
+$MasonBase = Get-MasonBase -FromPath $__tryRoot
+Set-Location $MasonBase
+$__tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace($__tryRoot)) {
+  try { $__tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { $__tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$__lib = Join-Path (Split-Path $__tryRoot -Parent) 'lib\Mason.Base.psm1'
+Import-Module $__lib -Force
+$ErrorActionPreference='Stop'
+$grp='Administrators'
+$rows=@()
+try{
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $rows += [pscustomobject]@{ member=$obj }
+    }catch{}
+  }
+}catch{}
+($rows | ConvertTo-Json -Depth 4) | Out-File -FilePath (Join-Path $Base 'config\admins_baseline.json') -Encoding UTF8
+_tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace(Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+$grp='Administrators'
+$rows=@()
+try{
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $rows += [pscustomobject]@{ member=$obj }
+    }catch{}
+  }
+}catch{}
+($rows | ConvertTo-Json -Depth 4) | Out-File -FilePath (Join-Path $Base 'config\admins_baseline.json') -Encoding UTF8
+_tryRoot)) {
+  try { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+$grp='Administrators'
+$rows=@()
+try{
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $rows += [pscustomobject]@{ member=$obj }
+    }catch{}
+  }
+}catch{}
+($rows | ConvertTo-Json -Depth 4) | Out-File -FilePath (Join-Path $Base 'config\admins_baseline.json') -Encoding UTF8
+_tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+$grp='Administrators'
+$rows=@()
+try{
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $rows += [pscustomobject]@{ member=$obj }
+    }catch{}
+  }
+}catch{}
+($rows | ConvertTo-Json -Depth 4) | Out-File -FilePath (Join-Path $Base 'config\admins_baseline.json') -Encoding UTF8
+_tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$ErrorActionPreference='Stop'
+$grp='Administrators'
+$rows=@()
+try{
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $rows += [pscustomobject]@{ member=$obj }
+    }catch{}
+  }
+}catch{}
+($rows | ConvertTo-Json -Depth 4) | Out-File -FilePath (Join-Path $Base 'config\admins_baseline.json') -Encoding UTF8
+_lib = Join-Path (Split-Path Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+$grp='Administrators'
+$rows=@()
+try{
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $rows += [pscustomobject]@{ member=$obj }
+    }catch{}
+  }
+}catch{}
+($rows | ConvertTo-Json -Depth 4) | Out-File -FilePath (Join-Path $Base 'config\admins_baseline.json') -Encoding UTF8
+_tryRoot -Parent) 'lib\Mason.Base.psm1'
+$ErrorActionPreference='Stop'
+$grp='Administrators'
+$rows=@()
+try{
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $rows += [pscustomobject]@{ member=$obj }
+    }catch{}
+  }
+}catch{}
+($rows | ConvertTo-Json -Depth 4) | Out-File -FilePath (Join-Path $Base 'config\admins_baseline.json') -Encoding UTF8
+_lib -Force
+$ErrorActionPreference='Stop'
+$grp='Administrators'
+$rows=@()
+try{
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $rows += [pscustomobject]@{ member=$obj }
+    }catch{}
+  }
+}catch{}
+($rows | ConvertTo-Json -Depth 4) | Out-File -FilePath (Join-Path $Base 'config\admins_baseline.json') -Encoding UTF8

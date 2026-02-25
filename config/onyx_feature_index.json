@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "generated_by": "chris_initial",
+  "features": [
+    {
+      "id": "onyx.dashboard_founder",
+      "label": "Founder dashboard",
+      "description": "Home dashboard with invoices summary and founder preview card.",
+      "category": "ops",
+      "status": "basic",
+      "readiness": "stable",
+      "visible": true,
+      "default_tiers": ["Founder"],
+      "allowed_tiers": ["Founder"],
+      "allowed_business_types": ["any"],
+      "capability_id": "onyx.ui.founder_dashboard",
+      "ui": {
+        "kind": "screen",
+        "route_hint": "/"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "onyx.invoices",
+      "label": "Invoices",
+      "description": "Create, edit, and track invoices for clients.",
+      "category": "money",
+      "status": "basic",
+      "readiness": "stable",
+      "visible": true,
+      "default_tiers": ["Founder"],
+      "allowed_tiers": ["Founder"],
+      "allowed_business_types": ["any"],
+      "capability_id": "onyx.feature.invoices",
+      "ui": {
+        "kind": "screen",
+        "route_hint": "/invoices"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "onyx.tasks",
+      "label": "Tasks",
+      "description": "Lightweight task lists for the founder to keep work organized.",
+      "category": "ops",
+      "status": "basic",
+      "readiness": "beta",
+      "visible": true,
+      "default_tiers": ["Founder"],
+      "allowed_tiers": ["Founder"],
+      "allowed_business_types": ["any"],
+      "capability_id": "onyx.feature.tasks",
+      "ui": {
+        "kind": "screen",
+        "route_hint": "/tasks"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "onyx.deals",
+      "label": "Deals / Jobs",
+      "description": "Simple deal / job pipeline for tracking opportunities.",
+      "category": "money",
+      "status": "basic",
+      "readiness": "beta",
+      "visible": true,
+      "default_tiers": ["Founder"],
+      "allowed_tiers": ["Founder"],
+      "allowed_business_types": ["any"],
+      "capability_id": "onyx.feature.deals",
+      "ui": {
+        "kind": "screen",
+        "route_hint": "/deals"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "onyx.business_profile",
+      "label": "Business profile",
+      "description": "Business name, type, size, region, currency, and main goal.",
+      "category": "ops",
+      "status": "basic",
+      "readiness": "stable",
+      "visible": true,
+      "default_tiers": ["Founder"],
+      "allowed_tiers": ["Founder"],
+      "allowed_business_types": ["any"],
+      "capability_id": "onyx.feature.business_profile",
+      "ui": {
+        "kind": "screen",
+        "route_hint": "/business/profile"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "onyx.feature_library",
+      "label": "Tool & feature library",
+      "description": "Catalog of all available tools, grouped by category and tier.",
+      "category": "meta",
+      "status": "basic",
+      "readiness": "beta",
+      "visible": true,
+      "default_tiers": ["Founder"],
+      "allowed_tiers": ["Founder"],
+      "allowed_business_types": ["any"],
+      "capability_id": "onyx.meta.feature_library",
+      "ui": {
+        "kind": "screen",
+        "route_hint": "/tools"
+      },
+      "dependencies": []
+    }
+  ]
+}

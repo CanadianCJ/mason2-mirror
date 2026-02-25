@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "id": "mason",
+      "label": "Mason Core",
+      "type": "agent",
+      "root_paths": [
+        "."
+      ],
+      "status_sources": [
+        "reports/mason_self_state.json",
+        "reports/mason_health_aggregated.json",
+        "reports/mason_selfheal_summary.json",
+        "reports/mason_ue_status.json"
+      ],
+      "approvals_filters": {
+        "area_prefix": "mason_"
+      },
+      "readme_path": "docs/Mason_README.md"
+    },
+    {
+      "id": "onyx",
+      "label": "Onyx App",
+      "type": "app",
+      "root_paths": [
+        "Component - Onyx App"
+      ],
+      "status_sources": [
+        "reports/onyx_feature_index_report.json",
+        "reports/onyx_android_debug_build.json",
+        "reports/onyx_android_release_build.json",
+        "reports/onyx_stack_health.json"
+      ],
+      "approvals_filters": {
+        "area_prefix": "onyx_"
+      },
+      "readme_path": "docs/Onyx_README.md"
+    },
+    {
+      "id": "athena",
+      "label": "Athena Console",
+      "type": "console",
+      "root_paths": [
+        "MasonConsole"
+      ],
+      "status_sources": [
+        "reports/athena_self_state.json",
+        "reports/athena_widget_status.json"
+      ],
+      "approvals_filters": {
+        "area_prefix": "athena_"
+      },
+      "readme_path": "docs/Athena_README.md"
+    }
+  ],
+  "dynamic_rules": {
+    "auto_discover_components": true,
+    "scan_paths": [
+      ".",
+      "Component - *",
+      "MasonConsole"
+    ],
+    "naming_patterns": [
+      {
+        "pattern": "Component - Onyx App",
+        "id": "onyx",
+        "label": "Onyx App",
+        "type": "app"
+      }
+    ],
+    "default_component_template": {
+      "type": "generic",
+      "status_sources": [],
+      "approvals_filters": {
+        "area_prefix": "generic_"
+      },
+      "readme_path_template": "docs/{ID_UPPER}_README.md"
+    }
+  }
+}

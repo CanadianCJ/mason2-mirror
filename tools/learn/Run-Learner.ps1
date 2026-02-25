@@ -1,0 +1,1 @@
+ $ts=(Get-Date).ToString('s'); $o=@{kind='learner'; ts=$ts}; $o|ConvertTo-Json -Compress|Out-File (Join-Path "C:\Users\Chris\Desktop\Mason2" 'reports\learner_last.json') -Encoding utf8 

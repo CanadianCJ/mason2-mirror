@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "current_mode": "launch",
+  "modes": {
+    "prelaunch": {
+      "description": "Pre-release work. Mason can propose patches at any risk level, but nothing is auto-applied. All changes must be approved and executed via Athena.",
+      "requires_athena_approval_for_patches": true,
+      "auto_apply": {
+        "R0": "never",
+        "R1": "never",
+        "R2": "never",
+        "R3": "never"
+      },
+      "min_successes_before_auto_request": {
+        "R2": 3,
+        "R3": 5
+      }
+    },
+    "launch": {
+      "description": "App is live. Mason can start doing safe, noticeable improvements automatically, but heavier changes remain manual.",
+      "requires_athena_approval_for_patches": true,
+      "auto_apply": {
+        "R0": "always",
+        "R1": "trusted_with_governor_opt_in",
+        "R2": "never",
+        "R3": "never"
+      },
+      "min_successes_before_auto_request": {
+        "R1": 2,
+        "R2": 3,
+        "R3": 5
+      },
+      "notes": [
+        "R0 (observe_only) behaviors can auto-run without extra approvals.",
+        "R1 behaviors may become auto-apply ONLY after they are trusted AND Chris has approved automation for that specific behavior.",
+        "R2 and R3 behaviors remain manual during launch mode; they may be proposed and executed via Athena but not auto-applied."
+      ]
+    },
+    "postlaunch": {
+      "description": "Stable growth mode. R0/R1 auto-apply is normal. Certain R2 behaviors may become automated after proving themselves and explicit approval.",
+      "requires_athena_approval_for_patches": true,
+      "auto_apply": {
+        "R0": "always",
+        "R1": "trusted_with_governor_opt_in",
+        "R2": "trusted_with_governor_opt_in",
+        "R3": "never"
+      },
+      "min_successes_before_auto_request": {
+        "R1": 2,
+        "R2": 3,
+        "R3": 5
+      },
+      "notes": [
+        "R0 plus R1 are the main automation classes.",
+        "R2 behaviors are eligible to REQUEST automation only after several successful manual runs and Teacher approval.",
+        "R3 behaviors remain manual unless Chris deliberately changes this policy later."
+      ]
+    }
+  },
+  "integration": {
+    "risk_mapping": {
+      "observe_only": "R0",
+      "low": "R1",
+      "medium": "R2",
+      "high": "R3"
+    },
+    "knowledge_policy_file": "config/mason_knowledge_policy.json",
+    "trust_index_file": "state/knowledge/trust_index.json",
+    "auto_apply_requests_file": "state/knowledge/pending_auto_apply_requests.json",
+    "patch_run_requests_file": "state/knowledge/pending_patch_runs.json",
+    "athena_approvals_ui": true,
+    "athena_component_routing": {
+      "use_component_registry": true,
+      "component_registry_file": "config/component_registry.json",
+      "match_area_prefix_to_component": true
+    }
+  }
+}

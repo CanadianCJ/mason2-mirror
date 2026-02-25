@@ -1,0 +1,150 @@
+﻿$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+$drive = (Get-Item $Base).PSDrive
+$freeGB = [math]::Round(($drive.Free / 1GB),2)
+$minGB  = 2
+if($freeGB -lt $minGB){
+  # remove oldest archives until threshold OK
+  $removed = @()
+  Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime | ForEach-Object {
+    if($freeGB -ge $minGB){ return }
+    try{ $size = $_.Length/1MB; Remove-Item $_.FullName -Force; $removed += @{ name=$_.Name; MB=[int] } }catch{}
+    $drive = (Get-Item $Base).PSDrive
+    $freeGB = [math]::Round(($drive.Free / 1GB),2)
+
+  Out-MasonJsonl -Kind 'disk' -Event 'cleanup' -Level 'WARN' -Data @{ freed=$removed; freeGB=$freeGB }
+}else{
+  Out-MasonJsonl -Kind 'disk' -Event 'ok' -Level 'INFO' -Data @{ freeGB=$freeGB }
+}_tryRoot = $PSScriptRoot
+if ([string]::$null
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+$drive = (Get-Item $Base).PSDrive
+$freeGB = [math]::Round(($drive.Free / 1GB),2)
+$minGB  = 2
+if($freeGB -lt $minGB){
+  # remove oldest archives until threshold OK
+  $removed = @()
+  Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime | ForEach-Object {
+    if($freeGB -ge $minGB){ return }
+    try{ $size = $_.Length/1MB; Remove-Item $_.FullName -Force; $removed += @{ name=$_.Name; MB=[int] } }catch{}
+    $drive = (Get-Item $Base).PSDrive
+    $freeGB = [math]::Round(($drive.Free / 1GB),2)
+
+  Out-MasonJsonl -Kind 'disk' -Event 'cleanup' -Level 'WARN' -Data @{ freed=$removed; freeGB=$freeGB }
+}else{
+  Out-MasonJsonl -Kind 'disk' -Event 'ok' -Level 'INFO' -Data @{ freeGB=$freeGB }
+}_tryRoot)) {
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+$drive = (Get-Item $Base).PSDrive
+$freeGB = [math]::Round(($drive.Free / 1GB),2)
+$minGB  = 2
+if($freeGB -lt $minGB){
+  # remove oldest archives until threshold OK
+  $removed = @()
+  Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime | ForEach-Object {
+    if($freeGB -ge $minGB){ return }
+    try{ $size = $_.Length/1MB; Remove-Item $_.FullName -Force; $removed += @{ name=$_.Name; MB=[int] } }catch{}
+    $drive = (Get-Item $Base).PSDrive
+    $freeGB = [math]::Round(($drive.Free / 1GB),2)
+
+  Out-MasonJsonl -Kind 'disk' -Event 'cleanup' -Level 'WARN' -Data @{ freed=$removed; freeGB=$freeGB }
+}else{
+  Out-MasonJsonl -Kind 'disk' -Event 'ok' -Level 'INFO' -Data @{ freeGB=$freeGB }
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+$drive = (Get-Item $Base).PSDrive
+$freeGB = [math]::Round(($drive.Free / 1GB),2)
+$minGB  = 2
+if($freeGB -lt $minGB){
+  # remove oldest archives until threshold OK
+  $removed = @()
+  Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime | ForEach-Object {
+    if($freeGB -ge $minGB){ return }
+    try{ $size = $_.Length/1MB; Remove-Item $_.FullName -Force; $removed += @{ name=$_.Name; MB=[int] } }catch{}
+    $drive = (Get-Item $Base).PSDrive
+    $freeGB = [math]::Round(($drive.Free / 1GB),2)
+
+  Out-MasonJsonl -Kind 'disk' -Event 'cleanup' -Level 'WARN' -Data @{ freed=$removed; freeGB=$freeGB }
+}else{
+  Out-MasonJsonl -Kind 'disk' -Event 'ok' -Level 'INFO' -Data @{ freeGB=$freeGB }
+}_tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+$drive = (Get-Item $Base).PSDrive
+$freeGB = [math]::Round(($drive.Free / 1GB),2)
+$minGB  = 2
+if($freeGB -lt $minGB){
+  # remove oldest archives until threshold OK
+  $removed = @()
+  Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime | ForEach-Object {
+    if($freeGB -ge $minGB){ return }
+    try{ $size = $_.Length/1MB; Remove-Item $_.FullName -Force; $removed += @{ name=$_.Name; MB=[int] } }catch{}
+    $drive = (Get-Item $Base).PSDrive
+    $freeGB = [math]::Round(($drive.Free / 1GB),2)
+
+  Out-MasonJsonl -Kind 'disk' -Event 'cleanup' -Level 'WARN' -Data @{ freed=$removed; freeGB=$freeGB }
+}else{
+  Out-MasonJsonl -Kind 'disk' -Event 'ok' -Level 'INFO' -Data @{ freeGB=$freeGB }
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+$drive = (Get-Item $Base).PSDrive
+$freeGB = [math]::Round(($drive.Free / 1GB),2)
+$minGB  = 2
+if($freeGB -lt $minGB){
+  # remove oldest archives until threshold OK
+  $removed = @()
+  Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime | ForEach-Object {
+    if($freeGB -ge $minGB){ return }
+    try{ $size = $_.Length/1MB; Remove-Item $_.FullName -Force; $removed += @{ name=$_.Name; MB=[int] } }catch{}
+    $drive = (Get-Item $Base).PSDrive
+    $freeGB = [math]::Round(($drive.Free / 1GB),2)
+
+  Out-MasonJsonl -Kind 'disk' -Event 'cleanup' -Level 'WARN' -Data @{ freed=$removed; freeGB=$freeGB }
+}else{
+  Out-MasonJsonl -Kind 'disk' -Event 'ok' -Level 'INFO' -Data @{ freeGB=$freeGB }
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+$drive = (Get-Item $Base).PSDrive
+$freeGB = [math]::Round(($drive.Free / 1GB),2)
+$minGB  = 2
+if($freeGB -lt $minGB){
+  # remove oldest archives until threshold OK
+  $removed = @()
+  Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime | ForEach-Object {
+    if($freeGB -ge $minGB){ return }
+    try{ $size = $_.Length/1MB; Remove-Item $_.FullName -Force; $removed += @{ name=$_.Name; MB=[int] } }catch{}
+    $drive = (Get-Item $Base).PSDrive
+    $freeGB = [math]::Round(($drive.Free / 1GB),2)
+
+  Out-MasonJsonl -Kind 'disk' -Event 'cleanup' -Level 'WARN' -Data @{ freed=$removed; freeGB=$freeGB }
+}else{
+  Out-MasonJsonl -Kind 'disk' -Event 'ok' -Level 'INFO' -Data @{ freeGB=$freeGB }
+}_lib -Force
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+$drive = (Get-Item $Base).PSDrive
+$freeGB = [math]::Round(($drive.Free / 1GB),2)
+$minGB  = 2
+if($freeGB -lt $minGB){
+  # remove oldest archives until threshold OK
+  $removed = @()
+  Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime | ForEach-Object {
+    if($freeGB -ge $minGB){ return }
+    try{ $size = $_.Length/1MB; Remove-Item $_.FullName -Force; $removed += @{ name=$_.Name; MB=[int] } }catch{}
+    $drive = (Get-Item $Base).PSDrive
+    $freeGB = [math]::Round(($drive.Free / 1GB),2)
+
+  Out-MasonJsonl -Kind 'disk' -Event 'cleanup' -Level 'WARN' -Data @{ freed=$removed; freeGB=$freeGB }
+}else{
+  Out-MasonJsonl -Kind 'disk' -Event 'ok' -Level 'INFO' -Data @{ freeGB=$freeGB }

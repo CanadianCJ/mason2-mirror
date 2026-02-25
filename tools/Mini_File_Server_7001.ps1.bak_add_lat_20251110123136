@@ -1,0 +1,215 @@
+﻿param([int]$RunSeconds = 864000)
+$ErrorActionPreference = 'Stop'
+
+# Base folder (prefer env, fallback to script folder)
+$Base = $env:MASON2_BASE
+if ([string]::IsNullOrWhiteSpace($Base)) { $Base = Split-Path -Parent $PSCommandPath }
+
+# Tiny logger (jsonl) + PII redactor
+function _redact([string]$s){
+  if([string]::IsNullOrWhiteSpace($s)){ return $s }
+  $r=$s
+  # emails
+  $r = [regex]::Replace($r,'(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b','<email>')
+  # phone numbers (rough)
+  $r = [regex]::Replace($r,'(?i)\b(?:\+?\d{1,3}[\s-]?)?(?:\(?\d{3}\)?[\s-]?)?\d{3}[\s-]?\d{4}\b','<phone>')
+  # credit cards (very rough)
+  $r = [regex]::Replace($r,'\b(?:\d[ -]*?){13,19}\b','<card>')
+  return $r
+}
+function _log($kv) {
+  try {
+    $p = Join-Path $Base 'reports\http7001.jsonl'
+    $null = New-Item -ItemType Directory -Force -Path (Split-Path $p)
+    ($kv | ConvertTo-Json -Compress) | Add-Content -LiteralPath $p -Encoding UTF8
+  } catch {}
+}
+
+# HTTP listener setup
+Add-Type -AssemblyName System.Net
+$prefixes = @("http://localhost:7001/","http://127.0.0.1:7001/","http://[::1]:7001/")
+$listener = [System.Net.HttpListener]::new()
+$listener.Prefixes.Clear(); foreach($p in $prefixes){ [void]$listener.Prefixes.Add($p) }
+
+function Write-RespBytes($res,[byte[]]$bytes,[string]$ct){
+  $res.ContentType     = $ct
+  $res.ContentLength64 = $bytes.Length
+  $res.OutputStream.Write($bytes,0,$bytes.Length)
+  $res.OutputStream.Close()
+  return $bytes.Length
+}
+function Write-RespText($res,[string]$s,[string]$ct){
+  return (Write-RespBytes $res ([Text.Encoding]::UTF8.GetBytes($s)) $ct)
+}
+function _tailJson($p){
+  if(Test-Path -LiteralPath $p){
+    try {
+      return (Get-Content -LiteralPath $p -Tail 1 |
+              ForEach-Object { try { $_ | ConvertFrom-Json } catch { $null } } |
+              Select-Object -Last 1)
+    } catch {}
+  }
+  return $null
+}
+
+try {
+  $listener.Start()
+  _log @{ ts=(Get-Date).ToString('s'); kind='server7001'; event='started'; prefixes=$prefixes }
+  Write-Host "[Mini-7001] started on: $($prefixes -join ', ')"
+} catch {
+  _log @{ ts=(Get-Date).ToString('s'); kind='server7001'; event='start_failed'; err=$_.Exception.Message }
+  throw
+}
+
+$stopAt = (Get-Date).AddSeconds([int]$RunSeconds)
+
+# Keep exactly one BeginGetContext outstanding
+$ar = $listener.BeginGetContext($null,$null)
+while($listener.IsListening -and (Get-Date) -lt $stopAt){
+  try{
+    if(-not $ar.AsyncWaitHandle.WaitOne(500)){ continue }
+    $ctx = $listener.EndGetContext($ar)
+    $ar  = $listener.BeginGetContext($null,$null)
+
+    $req  = $ctx.Request
+    $res  = $ctx.Response
+    $path = ($req.Url.AbsolutePath).TrimEnd('/').ToLower()
+
+    # per-request correlation + start time
+    $start = [DateTime]::UtcNow
+    $corr  = [Guid]::NewGuid().ToString('N')
+    try { $res.Headers['X-Correlation-Id'] = $corr } catch {}
+
+    switch($path){
+      '' {
+        $w = Write-RespText $res "ok" "text/plain"
+        _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds);
+                method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w;
+                ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }
+        continue
+      }
+      '/healthz' {
+        $w = Write-RespText $res "ok" "text/plain"
+        _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds);
+                method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w;
+                ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }
+        continue
+      }
+
+      '/lastok' {
+        $j = $null
+        $p = Join-Path $Base 'reports\net_external.jsonl'
+        if(Test-Path $p){
+          $j = (Get-Content $p -Tail 200 -ErrorAction SilentlyContinue |
+                ForEach-Object { try{ $_|ConvertFrom-Json }catch{$null} } |
+                Where-Object { $_ -and $_.dns -and $_.https } |
+                Select-Object -Last 1)
+        }
+        $obj = @{ ts=(Get-Date).ToString('s'); last_ok = $(if($j){ $j.ts } else { $null }) }
+        $w = Write-RespText $res ($obj | ConvertTo-Json -Depth 5) "application/json"
+        _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds);
+                method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w;
+                ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }
+        continue
+      }
+
+      '/metrics.json' {
+        $obj = @{
+          ts        = (Get-Date).ToString('s')
+          net       = _tailJson (Join-Path $Base 'reports\net_external.jsonl')
+          timedrift = _tailJson (Join-Path $Base 'reports\timedrift.jsonl')
+          cpu       = _tailJson (Join-Path $Base 'reports\cpu_pressure.jsonl')
+          mem       = _tailJson (Join-Path $Base 'reports\mem_pressure.jsonl')
+          health    = _tailJson (Join-Path $Base 'reports\health_index.jsonl')
+        }
+        $w = Write-RespText $res ($obj | ConvertTo-Json -Depth 6) "application/json"
+        _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds);
+                method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w;
+                ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }
+        continue
+      }
+
+      '/metrics' {
+        $net  = _tailJson (Join-Path $Base 'reports\net_external.jsonl')
+        $td   = _tailJson (Join-Path $Base 'reports\timedrift.jsonl')
+        $cpu  = _tailJson (Join-Path $Base 'reports\cpu_pressure.jsonl')
+        $mem  = _tailJson (Join-Path $Base 'reports\mem_pressure.jsonl')
+        $lines = @()
+        if($net){
+          $up   = (if($net.https -and $net.dns){1}else{0})
+          $ms   = (if($net.ms){ [int]$net.ms }else{ -1 })
+          $host = (if($net.host){ $net.host }else{ 'unknown' })
+          $lines += "mason2_net_up{host=""$host""} $up"
+          $lines += "mason2_net_latency_ms{host=""$host""} $ms"
+        }
+        if($td  -and $td.offset_s -ne $null){ $lines += "mason2_timesync_offset_seconds $($td.offset_s)" }
+        if($cpu -and $cpu.pct     -ne $null){ $lines += "mason2_cpu_pressure_pct $($cpu.pct)" }
+        if($mem -and $mem.pct     -ne $null){ $lines += "mason2_mem_pressure_pct $($mem.pct)" }
+        $w = Write-RespText $res ( ($lines -join "`n") + "`n" ) "text/plain"
+        _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds);
+                method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w;
+                ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }
+        continue
+      }
+
+      '/list' {
+        $qs = $req.Url.Query
+        $dirParam = $null
+        if($qs -match 'dir=([^&]+)'){ $dirParam = [uri]::UnescapeDataString($Matches[1]) }
+        if(-not $dirParam){ $res.StatusCode=400; $w=Write-RespText $res "missing dir" "text/plain"; _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds); method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w; ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }; continue }
+        $dirRel = $dirParam.TrimStart('\','/')
+        $dirAbs = Join-Path $Base $dirRel
+        if(-not (Test-Path -LiteralPath $dirAbs)){ $res.StatusCode=404; $w=Write-RespText $res "not found" "text/plain"; _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds); method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w; ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }; continue }
+        if(-not ($dirAbs -like ($Base+'\*'))){    $res.StatusCode=403; $w=Write-RespText $res "forbidden" "text/plain"; _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds); method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w; ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }; continue }
+        $items = @()
+        Get-ChildItem -LiteralPath $dirAbs -ErrorAction SilentlyContinue | ForEach-Object {
+          $items += [pscustomobject]@{ name=$_.Name; dir=$_.PSIsContainer; bytes=($_.Length); last=$_.LastWriteTime }
+        }
+        $w = Write-RespText $res (($items | ConvertTo-Json -Depth 4)) "application/json"
+        _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds);
+                method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w;
+                ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }
+        continue
+      }
+
+      '/files' {
+        $qs = $req.Url.Query
+        $rel = $null
+        if($qs -match 'path=([^&]+)'){ $rel = [uri]::UnescapeDataString($Matches[1]) }
+        if(-not $rel){ $res.StatusCode=400; $w=Write-RespText $res "missing path" "text/plain"; _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds); method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w; ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }; continue }
+        $rel = $rel.TrimStart('\','/')
+        $abs = Join-Path $Base $rel
+        if(-not (Test-Path -LiteralPath $abs)){ $res.StatusCode=404; $w=Write-RespText $res "not found" "text/plain"; _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds); method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w; ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }; continue }
+        if(-not ($abs -like ($Base+'\*'))){      $res.StatusCode=403; $w=Write-RespText $res "forbidden" "text/plain"; _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds); method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w; ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }; continue }
+        try {
+          $bytes = [IO.File]::ReadAllBytes($abs)
+          $w = Write-RespBytes $res $bytes "application/octet-stream"
+        } catch {
+          $res.StatusCode=500; $w=Write-RespText $res $_.Exception.Message "text/plain"
+        }
+        _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds);
+                method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w;
+                ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }
+        continue
+      }
+
+      default {
+        $res.StatusCode=404
+        $w = Write-RespText $res "not found" "text/plain"
+        _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=$corr; ms=[int](([DateTime]::UtcNow-$start).TotalMilliseconds);
+                method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w;
+                ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address) }
+        continue
+      }
+    }
+  } catch {
+    try {
+      $res.StatusCode=500; $w=Write-RespText $res $_.Exception.Message "text/plain"
+      _log @{ ts=(Get-Date).ToString('s'); kind='http7001'; corr=[Guid]::NewGuid().ToString('N'); ms=$null;
+              method=$req.HttpMethod; path=$path; status=$res.StatusCode; bytes=$w;
+              ua=_redact($req.UserAgent); ip=([string]$req.RemoteEndPoint.Address); err=$_.Exception.Message }
+    } catch {}
+  }
+}
+
+$listener.Stop()

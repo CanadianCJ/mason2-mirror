@@ -1,0 +1,1 @@
+ $ts=(Get-Date).ToString('s'); $o=@{kind='governor'; ts=$ts}; $o|ConvertTo-Json -Compress|Out-File (Join-Path "C:\Users\Chris\Desktop\Mason2" 'reports\governor_last.json') -Encoding utf8 

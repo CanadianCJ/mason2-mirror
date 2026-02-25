@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "topics": [
+    {
+      "id": "mason_core_ops_basics",
+      "group": "mason_self_ops_health",
+      "description": "How to run a small, long-lived local service safely on a personal PC: scheduling, error handling, restart policies, configuration management.",
+      "queries": [
+        "best practices running long lived background services on windows",
+        "small local automation agent error handling and restart strategy",
+        "configuration management basics for internal automation tools"
+      ],
+      "priority": "high",
+      "domain": "app_ops",
+      "max_depth": "deep"
+    },
+    {
+      "id": "mason_watchdog_and_restarts",
+      "group": "mason_self_ops_health",
+      "description": "Watchdog design: health checks, crash detection, safe automatic restarts, and avoiding restart storms.",
+      "queries": [
+        "watchdog pattern for background services",
+        "implementing health checks and restarts safely",
+        "how to avoid restart storms in service watchdogs"
+      ],
+      "priority": "high",
+      "domain": "app_ops",
+      "max_depth": "standard"
+    },
+    {
+      "id": "mason_resource_guard_maintenance",
+      "group": "mason_self_ops_health",
+      "description": "Managing CPU, memory, and disk usage for a local automation agent, including safe cleanup and log rotation.",
+      "queries": [
+        "resource limits for local automation agents",
+        "best practices log rotation and disk guardrails",
+        "preventing background tools from overusing cpu and ram"
+      ],
+      "priority": "medium",
+      "domain": "engineering",
+      "max_depth": "standard"
+    },
+    {
+      "id": "mason_security_isolation",
+      "group": "mason_self_ops_health",
+      "description": "Security and isolation for a local assistant: least privilege, data boundaries, update strategy, and safe handling of secrets/config.",
+      "queries": [
+        "security best practices for local automation tools",
+        "least privilege and isolation for local agents",
+        "secure configuration and secrets handling on windows"
+      ],
+      "priority": "high",
+      "domain": "security",
+      "max_depth": "deep"
+    },
+    {
+      "id": "mason_autonomy_safety",
+      "group": "mason_self_ops_health",
+      "description": "Safe autonomy patterns: risk levels, canary runs, audit trails, and kill switches for automated changes.",
+      "queries": [
+        "safe autonomy design patterns for automation agents",
+        "canary and rollback strategies for automated changes",
+        "audit trail and kill switch best practices"
+      ],
+      "priority": "high",
+      "domain": "governance",
+      "max_depth": "standard"
+    }
+  ]
+}

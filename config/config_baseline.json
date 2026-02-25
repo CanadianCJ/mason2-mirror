@@ -1,0 +1,62 @@
+﻿[
+    {
+        "path":  "config\\agent.json",
+        "sha256":  "25A68F6A5DBE4BE6B861523979AF1A16AE0412A2D829065EC347F4805F4439E5",
+        "bytes":  174
+    },
+    {
+        "path":  "config\\approvals.json",
+        "sha256":  "50056C08CE479CC2F54C4D6595A4264BDF32BF84F2995D59FF3BD513897AB414",
+        "bytes":  7
+    },
+    {
+        "path":  "config\\config_baseline.json",
+        "sha256":  "C49B095F4695473265494A52495BD190286CC3268CA82B0035935164F2A1D10F",
+        "bytes":  1875
+    },
+    {
+        "path":  "config\\env.json",
+        "sha256":  "9E22BD4714FFA8E2B54B9821A12DA8CD4E4602CA7F1770F69D6D2E3059A7A585",
+        "bytes":  77
+    },
+    {
+        "path":  "config\\freeze.json",
+        "sha256":  "C933EE7C187FD988D0A7D7D4E6B4F6BA7DC8069396ECB2680C10D831AB81488D",
+        "bytes":  56
+    },
+    {
+        "path":  "config\\mason2.config.json",
+        "sha256":  "7403047BA81332169485D5879757600D871E2C0D9A5FB83A6381D9DDEC62B229",
+        "bytes":  507
+    },
+    {
+        "path":  "config\\policy.json",
+        "sha256":  "6E8CEA7FB75BE77C120DB56265B62F2DF4090EFD42E0D33308D115D630BFA869",
+        "bytes":  1563
+    },
+    {
+        "path":  "config\\quiet_hours.json",
+        "sha256":  "3D23489DE97139EA3B5483F5CB894F4B3F9724F2884256479156562F1088025E",
+        "bytes":  34
+    },
+    {
+        "path":  "config\\sample.policy.json",
+        "sha256":  "6E8CEA7FB75BE77C120DB56265B62F2DF4090EFD42E0D33308D115D630BFA869",
+        "bytes":  1563
+    },
+    {
+        "path":  "config\\services.json",
+        "sha256":  "F3497E6E9FDA7E2EDCCCD618F77ECCA951B98D30762D4BFCC4AC237ECD8C1779",
+        "bytes":  243
+    },
+    {
+        "path":  "config\\tasks_baseline.json",
+        "sha256":  "FC968CCE705B880ECABA8BC86F7F326B75D38626C38C68E29A0B542108BBD066",
+        "bytes":  596060
+    },
+    {
+        "path":  "config\\watchdog.json",
+        "sha256":  "461F0E4BA31C3A2650A8C0CE40ADD0BF9182B4582388340E1969AA952809FE8A",
+        "bytes":  1219
+    }
+]

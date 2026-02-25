@@ -1,0 +1,137 @@
+﻿# Mason base/bootstrap (safe; after param)
+$__tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace($__tryRoot)) {
+  try { $__tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { $__tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$__lib = Join-Path (Split-Path $__tryRoot -Parent) 'lib\Mason.Base.psm1'
+Import-Module $__lib -Force
+$MasonBase = Get-MasonBase -FromPath $__tryRoot
+Set-Location $MasonBase
+$__tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace($__tryRoot)) {
+  try { $__tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { $__tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$__lib = Join-Path (Split-Path $__tryRoot -Parent) 'lib\Mason.Base.psm1'
+Import-Module $__lib -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$ok=$true; $warns=@()
+try{
+  $acl = Get-Acl -LiteralPath $Base
+  foreach($ace in $acl.Access){
+    $id = $ace.IdentityReference.Value
+    $w  = $ace.FileSystemRights.ToString()
+    if(($id -match 'Everyone$' -or $id -match '\\Users$') -and ($w -match 'Write' -or $w -match 'FullControl')){
+      $ok=$false; $warns += "$id has $w"
+    }
+  }
+}catch{ $ok=$false; $warns += 'acl_read_failed' }
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\acl_audit.jsonl') -Obj @{ ts=(Get-Date).ToString('s'); kind='acl_audit'; ok=$ok; warns=$warns }
+_tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace(Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$ok=$true; $warns=@()
+try{
+  $acl = Get-Acl -LiteralPath $Base
+  foreach($ace in $acl.Access){
+    $id = $ace.IdentityReference.Value
+    $w  = $ace.FileSystemRights.ToString()
+    if(($id -match 'Everyone$' -or $id -match '\\Users$') -and ($w -match 'Write' -or $w -match 'FullControl')){
+      $ok=$false; $warns += "$id has $w"
+    }
+  }
+}catch{ $ok=$false; $warns += 'acl_read_failed' }
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\acl_audit.jsonl') -Obj @{ ts=(Get-Date).ToString('s'); kind='acl_audit'; ok=$ok; warns=$warns }
+_tryRoot)) {
+  try { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$ok=$true; $warns=@()
+try{
+  $acl = Get-Acl -LiteralPath $Base
+  foreach($ace in $acl.Access){
+    $id = $ace.IdentityReference.Value
+    $w  = $ace.FileSystemRights.ToString()
+    if(($id -match 'Everyone$' -or $id -match '\\Users$') -and ($w -match 'Write' -or $w -match 'FullControl')){
+      $ok=$false; $warns += "$id has $w"
+    }
+  }
+}catch{ $ok=$false; $warns += 'acl_read_failed' }
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\acl_audit.jsonl') -Obj @{ ts=(Get-Date).ToString('s'); kind='acl_audit'; ok=$ok; warns=$warns }
+_tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$ok=$true; $warns=@()
+try{
+  $acl = Get-Acl -LiteralPath $Base
+  foreach($ace in $acl.Access){
+    $id = $ace.IdentityReference.Value
+    $w  = $ace.FileSystemRights.ToString()
+    if(($id -match 'Everyone$' -or $id -match '\\Users$') -and ($w -match 'Write' -or $w -match 'FullControl')){
+      $ok=$false; $warns += "$id has $w"
+    }
+  }
+}catch{ $ok=$false; $warns += 'acl_read_failed' }
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\acl_audit.jsonl') -Obj @{ ts=(Get-Date).ToString('s'); kind='acl_audit'; ok=$ok; warns=$warns }
+_tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$ok=$true; $warns=@()
+try{
+  $acl = Get-Acl -LiteralPath $Base
+  foreach($ace in $acl.Access){
+    $id = $ace.IdentityReference.Value
+    $w  = $ace.FileSystemRights.ToString()
+    if(($id -match 'Everyone$' -or $id -match '\\Users$') -and ($w -match 'Write' -or $w -match 'FullControl')){
+      $ok=$false; $warns += "$id has $w"
+    }
+  }
+}catch{ $ok=$false; $warns += 'acl_read_failed' }
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\acl_audit.jsonl') -Obj @{ ts=(Get-Date).ToString('s'); kind='acl_audit'; ok=$ok; warns=$warns }
+_lib = Join-Path (Split-Path Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$ok=$true; $warns=@()
+try{
+  $acl = Get-Acl -LiteralPath $Base
+  foreach($ace in $acl.Access){
+    $id = $ace.IdentityReference.Value
+    $w  = $ace.FileSystemRights.ToString()
+    if(($id -match 'Everyone$' -or $id -match '\\Users$') -and ($w -match 'Write' -or $w -match 'FullControl')){
+      $ok=$false; $warns += "$id has $w"
+    }
+  }
+}catch{ $ok=$false; $warns += 'acl_read_failed' }
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\acl_audit.jsonl') -Obj @{ ts=(Get-Date).ToString('s'); kind='acl_audit'; ok=$ok; warns=$warns }
+_tryRoot -Parent) 'lib\Mason.Base.psm1'
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$ok=$true; $warns=@()
+try{
+  $acl = Get-Acl -LiteralPath $Base
+  foreach($ace in $acl.Access){
+    $id = $ace.IdentityReference.Value
+    $w  = $ace.FileSystemRights.ToString()
+    if(($id -match 'Everyone$' -or $id -match '\\Users$') -and ($w -match 'Write' -or $w -match 'FullControl')){
+      $ok=$false; $warns += "$id has $w"
+    }
+  }
+}catch{ $ok=$false; $warns += 'acl_read_failed' }
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\acl_audit.jsonl') -Obj @{ ts=(Get-Date).ToString('s'); kind='acl_audit'; ok=$ok; warns=$warns }
+_lib -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$ok=$true; $warns=@()
+try{
+  $acl = Get-Acl -LiteralPath $Base
+  foreach($ace in $acl.Access){
+    $id = $ace.IdentityReference.Value
+    $w  = $ace.FileSystemRights.ToString()
+    if(($id -match 'Everyone$' -or $id -match '\\Users$') -and ($w -match 'Write' -or $w -match 'FullControl')){
+      $ok=$false; $warns += "$id has $w"
+    }
+  }
+}catch{ $ok=$false; $warns += 'acl_read_failed' }
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\acl_audit.jsonl') -Obj @{ ts=(Get-Date).ToString('s'); kind='acl_audit'; ok=$ok; warns=$warns }

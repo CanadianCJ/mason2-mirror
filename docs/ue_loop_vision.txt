@@ -1,0 +1,12 @@
+﻿Universal Evolution (UE) Loop Vision
+====================================
+
+The Universal Evolution (UE) loop is an active, ongoing process within Mason2. Its purpose is to continuously monitor, evaluate, and propose improvements to the system, ensuring that Mason2, Athena, and Onyx remain healthy, efficient, and aligned with user goals.
+
+Key Elements:
+- Continuous self-assessment using system reports and health snapshots.
+- Proposing low-risk, incremental improvements.
+- Maintaining strict guardrails to prevent instability or unsafe changes.
+- Adapting to new information and user preferences as they evolve.
+
+The UE loop is designed to be transparent and auditable, with all proposed changes documented and subject to user review.

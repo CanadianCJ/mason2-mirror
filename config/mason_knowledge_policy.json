@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "roles": {
+    "governor": "Chris (owner, sets laws, risk limits, and high-level goals)",
+    "agent": "Mason2 (local operator that learns, plans, and executes within guardrails)",
+    "teacher": "Teacher API (external deep learning chat API Mason consults for review, critique, and promotion decisions)"
+  },
+  "pipeline": {
+    "states": [
+      "candidate",
+      "tested",
+      "shadowed",
+      "teacher_approved",
+      "trusted"
+    ],
+    "description": {
+      "candidate": "New knowledge, rule, or behavior Mason has just learned or inferred. Never used for real actions. Stored only for review and testing.",
+      "tested": "Candidate that has passed basic internal checks (syntax, consistency, basic unit-like tests) but has not yet been tried against real workloads.",
+      "shadowed": "Behavior that is run in 'what I would do' mode only, logging proposed actions without actually changing the system.",
+      "teacher_approved": "Behavior that the Teacher API has explicitly endorsed after reviewing tests and shadow logs according to Chris's laws and policies.",
+      "trusted": "Behavior that has proven safe and effective over time (stable runs, no critical incidents) and may be used automatically within risk limits configured by Chris."
+    }
+  },
+  "risk_levels": {
+    "low": "Changes that are easy to revert and cannot meaningfully damage user data or revenue (e.g., small UI tweaks, extra log fields, non-critical widgets).",
+    "medium": "Changes that affect workflows or monetization but are reversible with care (e.g., adjustments to limits, enabling/disabling a non-destructive feature, small monetization hooks).",
+    "high": "Changes that can delete data, affect billing/charges, materially change autonomy, or impact security (e.g., automated cleanups, destructive tasks, money flows, security settings)."
+  },
+  "promotion_rules": {
+    "candidate_to_tested": {
+      "required_checks": [
+        "syntax_or_format_valid",
+        "internal_consistency_check",
+        "no_conflict_with_constitution_or_ethics"
+      ]
+    },
+    "tested_to_shadowed": {
+      "required_checks": [
+        "basic_safety_check_passed"
+      ],
+      "notes": "Run in shadow-only mode. All proposed actions are logged but not executed."
+    },
+    "shadowed_to_teacher_approved": {
+      "required_checks": [
+        "shadow_logs_reviewed_by_teacher_api",
+        "teacher_api_confirms_no_critical_incidents_in_shadow",
+        "teacher_api_explicit_approval_recorded"
+      ]
+    },
+    "teacher_approved_to_trusted": {
+      "minimum_successful_real_runs": {
+        "low": 3,
+        "medium": 5,
+        "high": 10
+      },
+      "max_rollbacks_allowed": 0,
+      "notes": "If a rollback is ever required for this behavior, its state should drop back to at most 'tested' and be re-evaluated with the Teacher API."
+    }
+  },
+  "auto_apply_policies": {
+    "low_risk": {
+      "allowed_from_state": "trusted",
+      "require_teacher_confirmation": false,
+      "require_governor_opt_in": false,
+      "notes": "Trusted low-risk behaviors may be auto-applied without explicit per-run approval once Chris has enabled the relevant autonomy level."
+    },
+    "medium_risk": {
+      "allowed_from_state": "trusted",
+      "require_teacher_confirmation": true,
+      "require_governor_opt_in": true,
+      "notes": "Medium-risk behaviors can be automated only if the Teacher API has endorsed them AND Chris has opted in at a higher autonomy level."
+    },
+    "high_risk": {
+      "allowed_from_state": null,
+      "require_teacher_confirmation": true,
+      "require_governor_opt_in": true,
+      "notes": "High-risk behaviors should stay semi-manual by default. Auto-apply is only allowed if Chris explicitly raises policy/env flags to permit it in the future."
+    },
+    "governor_auto_apply_prompt_thresholds": {
+      "low": 3,
+      "medium": 4,
+      "high": 8,
+      "notes": "When a behavior is trusted, Teacher API-approved, and has at least this many successful real runs for its risk level, Mason should send Chris an approval request asking whether to enable auto-apply for that behavior."
+    }
+  },
+  "default_behavior": {
+    "if_not_in_trust_index": "treat_as_candidate_and_require_full_pipeline",
+    "if_in_trust_index_but_not_trusted": "do_not_auto_apply",
+    "notes": "Unless behavior is explicitly marked as 'trusted' in the knowledge/trust index AND allowed for auto-apply by risk policy and autonomy level, Mason must go through the full pipeline and/or request Teacher API approval before use."
+  }
+}

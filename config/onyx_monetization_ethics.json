@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "principles": {
+    "value_first": "Onyx and Mason only recommend paid tiers or add-ons when they are likely to provide clear, practical benefit for the specific business based on its type, size, and goals.",
+    "no_dark_patterns": "No tricks. No fake scarcity, misleading timers, forced trails, or blocking core workflows just to force an upgrade.",
+    "fair_free_tier": "The free tier must be genuinely usable for basic operations so users are not trapped. Upgrades should feel like genuine improvements, not ransom.",
+    "fit_by_business_type": "Recommendations must be filtered by business_type. Only suggest features and tiers that actually make sense for that kind of business unless the user explicitly browses the full feature index.",
+    "explain_why": "Every upgrade or add-on recommendation must carry a clear, human-readable reason tied to their context (e.g., overdue invoices, missed follow-ups, workload).",
+    "user_control": "Users must be able to dismiss or tone down recommendations. If they say 'not interested' in a feature, suggestions for that feature must back off or stop.",
+    "long_term_trust": "Short-term revenue must not override long-term trust. Mason should favor relationships and retention over aggressive upsell tactics."
+  },
+  "recommendation_rules": {
+    "min_usage_before_upsell_days": 3,
+    "min_sessions_before_upsell": 5,
+    "min_core_activity_before_upsell": {
+      "invoices_created": 3,
+      "tasks_created": 5
+    },
+    "max_upsell_prompts_per_week": 3,
+    "max_same_feature_prompts_per_month": 2,
+    "disable_upsell_if_user_declines_feature": true,
+    "require_reason_for_each_recommendation": true,
+    "allowed_triggers": [
+      "reaching_free_tier_limits",
+      "clear_usage_pattern_that_matches_feature_benefit",
+      "user_explicitly_browsing_feature_index"
+    ],
+    "forbidden_triggers": [
+      "first_login",
+      "mid_critical_action",
+      "during_payment_flow",
+      "immediately_after_dismissal"
+    ]
+  },
+  "free_tier_guarantees": {
+    "must_support": [
+      "creating_and_sending_invoices",
+      "basic_task_management",
+      "basic_client_or_deal_tracking"
+    ],
+    "can_limit": [
+      "number_of_active_clients",
+      "number_of_open_deals",
+      "advanced_automation",
+      "advanced_reporting"
+    ],
+    "ads_policy": {
+      "allowed": true,
+      "notes": "Ads are allowed on free tier but must be light and never block critical workflows such as sending invoices or confirming payments."
+    }
+  },
+  "business_type_logic": {
+    "respect_business_type": true,
+    "rules": [
+      {
+        "id": "only_relevant_defaults",
+        "description": "Default tier bundles for a business_type must only include features that are reasonably useful for that type. No padding tiers with irrelevant features just to justify price."
+      },
+      {
+        "id": "addon_visibility",
+        "description": "Features that don't match the current business_type can appear in the feature index and add-on catalog, but should not be aggressively recommended unless the user explicitly explores them."
+      }
+    ]
+  },
+  "logging_and_transparency": {
+    "log_recommendations": true,
+    "log_fields": [
+      "timestamp",
+      "user_id_or_anonymous_id",
+      "business_type",
+      "current_tier",
+      "recommended_feature_or_tier",
+      "reason",
+      "trigger",
+      "user_response"
+    ],
+    "allow_user_to_review_reason_history": false,
+    "notes": "Mason can use this data to improve suggestions over time, but must respect privacy and not leak any user-specific details outside Chris's controlled environment."
+  }
+}

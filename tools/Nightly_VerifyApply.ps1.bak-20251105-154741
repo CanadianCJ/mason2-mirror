@@ -1,0 +1,10 @@
+﻿param()
+. (Join-Path $PSScriptRoot 'Common.ps1')
+$bundle = Get-LatestBundle
+if (-not $bundle) { Write-Host "No Mason2_*.zip found in releases."; exit 0 }
+& powershell -NoProfile -ExecutionPolicy Bypass `
+  -File (Join-Path $PSScriptRoot 'Verify_And_Unpack.ps1') `
+  -Bundle $bundle -Apply
+
+exit 0
+

@@ -1,0 +1,190 @@
+{
+  "version": 3,
+  "description": "Autonomy levels & risk rules per area and per domain. Mason can invent new domains; they start at level 0 and must earn trust.",
+
+  "levels": {
+    "0": {
+      "name": "read_only",
+      "allowed_risks": ["none"],
+      "notes": "Observe only; can measure, log, and propose tasks, but cannot change anything."
+    },
+    "1": {
+      "name": "low_only",
+      "allowed_risks": ["low"],
+      "notes": "May auto-apply low-risk tasks with clear rollback and tight bounds."
+    },
+    "2": {
+      "name": "low_and_medium",
+      "allowed_risks": ["low", "medium"],
+      "notes": "May auto-apply low-risk and experiment with medium-risk tasks under canary/rollback rules."
+    },
+    "3": {
+      "name": "full_stability_plus_scoped_high",
+      "allowed_risks": ["low", "medium", "high_scoped"],
+      "notes": "May run low/medium and carefully-scoped high-risk (no money) with strict safety checks."
+    }
+  },
+
+  "areas": {
+    "pc": {
+      "max_level": 3,
+      "description": "Chris's Windows PC.",
+      "domains": {
+        "stability": {
+          "level": 2,
+          "target_level": 3,
+          "notes": "Crashes, startup noise, schedule drift, watchdog tuning."
+        },
+        "hygiene": {
+          "level": 2,
+          "target_level": 3,
+          "notes": "Temp/cache cleanup, disk hygiene, safe file hygiene."
+        },
+        "performance": {
+          "level": 1,
+          "target_level": 3,
+          "notes": "CPU/RAM analysis, gentle tuning. Must earn trust before deeper changes."
+        },
+        "security": {
+          "level": 0,
+          "target_level": 3,
+          "notes": "Firewall, hardening, AV-style behavior. Observe-only for now."
+        },
+        "observability": {
+          "level": 2,
+          "target_level": 3,
+          "notes": "Logging, metrics, reports about the PC."
+        }
+      }
+    },
+
+    "mason": {
+      "max_level": 3,
+      "description": "Mason2 internals.",
+      "domains": {
+        "stability": {
+          "level": 2,
+          "target_level": 3,
+          "notes": "Task health, crash recovery, watchdog settings."
+        },
+        "hygiene": {
+          "level": 2,
+          "target_level": 3,
+          "notes": "Forensics/log cleanup and temp files inside Mason folders only."
+        },
+        "policies": {
+          "level": 1,
+          "target_level": 3,
+          "notes": "Tuning his own configs (non-money). Must prove he doesn't break safety rules."
+        },
+        "observability": {
+          "level": 2,
+          "target_level": 3,
+          "notes": "Self-review reports, dashboards, summaries."
+        }
+      }
+    },
+
+    "onyx": {
+      "max_level": 3,
+      "description": "Onyx app – business manager UI/backend.",
+      "domains": {
+        "stability": {
+          "level": 3,
+          "target_level": 3,
+          "notes": "Health checks, crashes, error rates. Kickstarted at 3 so we can see bigger fixes."
+        },
+        "ux": {
+          "level": 3,
+          "target_level": 3,
+          "notes": "Screen layout, labels, hints, non-breaking workflow changes."
+        },
+        "performance": {
+          "level": 2,
+          "target_level": 3,
+          "notes": "Query performance, load times, lightweight caching."
+        },
+        "schema": {
+          "level": 1,
+          "target_level": 3,
+          "notes": "Database/model changes (non-money). Needs solid migrations + rollbacks."
+        },
+        "integrations": {
+          "level": 1,
+          "target_level": 3,
+          "notes": "Talking to other services (but not billing). Starts cautious."
+        }
+      }
+    },
+
+    "athena": {
+      "max_level": 3,
+      "description": "Athena UI & status layer – control panel and reporting.",
+      "domains": {
+        "stability": {
+          "level": 1,
+          "target_level": 3,
+          "notes": "Avoid freezes, broken views, or confusing status."
+        },
+        "ux": {
+          "level": 1,
+          "target_level": 3,
+          "notes": "Layout and wording tweaks. Must not confuse or hide important controls."
+        },
+        "observability": {
+          "level": 2,
+          "target_level": 3,
+          "notes": "Graphs, summaries, state views are encouraged."
+        }
+      }
+    },
+
+    "money": {
+      "max_level": 3,
+      "description": "Anything that moves or changes real money.",
+      "domains": {
+        "billing": {
+          "level": 0,
+          "target_level": 1,
+          "notes": "Stripe/PayPal/etc. Read-only until explicit PIN + MoneyPolicy."
+        },
+        "pricing": {
+          "level": 0,
+          "target_level": 1,
+          "notes": "Suggestions only; cannot change pricing automatically yet."
+        },
+        "offers": {
+          "level": 0,
+          "target_level": 1,
+          "notes": "May propose offers/discounts for review only."
+        }
+      }
+    }
+  },
+
+  "new_domain_defaults": {
+    "level": 0,
+    "target_level": 3,
+    "notes": "Any new domain Mason invents for an area starts at level 0 (read-only) and must earn trust."
+  },
+
+  "level_up_rules": {
+    "default": {
+      "min_successful_tasks": 20,
+      "max_error_rate": 0.05,
+      "min_days_stable": 3,
+      "notes": "Generic rule for new domains: after 20+ successful tasks, <5% failures, and 3+ stable days, Mason can propose a level-up."
+    },
+    "pc.security": {
+      "min_successful_tasks": 50,
+      "max_error_rate": 0.02,
+      "min_days_stable": 7,
+      "requires_owner_approval": true,
+      "notes": "PC security is sensitive; even 0->1 or 1->2 should require Chris to approve."
+    },
+    "money.*": {
+      "requires_owner_pin": true,
+      "notes": "Any money-related domain always requires explicit Chris PIN to change levels."
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "goals": {
+    "must_generate_revenue_on_launch": true,
+    "description": "Onyx must be capable of generating revenue from day one of public launch, even with a small feature set.",
+    "priorities": [
+      "value_first_for_business_owners",
+      "long_term_trust_over_short_term_cash",
+      "no_dark_patterns",
+      "keep_free_tier_genuinely_useful"
+    ]
+  },
+  "pricing_model": {
+    "allow_free_tier": true,
+    "free_tier_revenue_sources": [
+      "ads",
+      "upgrade_suggestions_when_legit_helpful"
+    ],
+    "allow_subscriptions": true,
+    "allow_addons": true,
+    "disallowed_mechanisms": [
+      "manual_unlock_codes_for_normal_users",
+      "confusing_limited_time_traps",
+      "fake_discounts"
+    ]
+  },
+  "tiers": {
+    "min_tiers": 2,
+    "max_tiers": 4,
+    "base_tiers": [
+      "Free",
+      "Core",
+      "Pro"
+    ],
+    "per_business_type_bundles": true,
+    "rules": {
+      "per_business_type_defaults": "Each business_type gets a default recommended tier and feature bundle that actually fits that type.",
+      "unused_features_hidden_by_default": "If a feature is clearly irrelevant for a business_type, it should not clutter the default UI.",
+      "optional_addons_for_all": "Any feature can still be added as a paid add-on if the user explicitly wants it."
+    }
+  },
+  "addons": {
+    "allowed": true,
+    "billing_model": "monthly_recurring",
+    "rules": {
+      "transparent_pricing": true,
+      "no_forced_bundles": true,
+      "clear_billing_summary": true
+    }
+  },
+  "ads": {
+    "enabled_for_free_tier": true,
+    "removal_options": [
+      "paid_tier_includes_no_ads",
+      "specific_addon_to_remove_ads"
+    ],
+    "placement_rules": {
+      "no_ads_in_critical_flows": [
+        "payment_flows",
+        "data_entry_forms_for_money",
+        "sensitive_settings"
+      ],
+      "preferred_placements": [
+        "dashboard_side_panel",
+        "non_intrusive_banner_areas",
+        "empty_states"
+      ],
+      "max_ads_per_screen": 2
+    }
+  },
+  "ethics": {
+    "ethics_config_file": "config/onyx_monetization_ethics.json",
+    "must_use_ethics_config": true,
+    "suggestion_rules": {
+      "only_suggest_if_likely_to_help": true,
+      "no_spammy_upsells": true,
+      "respect_business_type_and_size": true
+    }
+  },
+  "launch_requirements": {
+    "at_least_one_revenue_path_live": [
+      "free_with_ads",
+      "base_paid_tier",
+      "addon_based_revenue"
+    ],
+    "test_scenarios": [
+      "new_free_user_generates_some_ad_impressions",
+      "user_can_upgrade_to_paid_tier_cleanly",
+      "user_can_add_a_single_addon_and_see_clear_price_change"
+    ],
+    "fail_if": [
+      "no_real_way_to_pay",
+      "ads_configured_but_never_shown",
+      "upsells_are_confusing_or_deceptive"
+    ]
+  }
+}

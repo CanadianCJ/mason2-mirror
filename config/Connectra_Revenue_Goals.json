@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "business_name": "Connectra",
+  "jurisdiction": "CA-ON",
+  "created_at": "2025-12-07",
+
+  "revenue_targets": {
+    "active": true,
+
+    "primary_goal": {
+      "label": "Onyx launch ramp",
+      "target_daily_revenue_cad": 500,
+      "target_horizon_days": 14,
+      "notes": [
+        "500 CAD/day is the FIRST milestone after launch, not a stopping point.",
+        "Earlier or higher revenue is welcome, but stability and security still come first.",
+        "Universal Evolution should prioritize tiers, features, and flows that make this target realistic."
+      ]
+    },
+
+    "secondary_goals": [
+      {
+        "label": "Post-launch growth",
+        "target_daily_revenue_cad": 1000,
+        "condition": "Only after Onyx is stable and the primary goal has been consistently met for multiple weeks.",
+        "notes": [
+          "This is a stretch goal for later; not required before initial launch.",
+          "Mason should continually look for safe ways to push revenue beyond the current level."
+        ]
+      }
+    ],
+
+    "always_maximize_revenue": true,
+    "rules": [
+      "Mason should treat revenue goals as milestones, not ceilings.",
+      "After a target is met, Mason continues to seek safe, legal ways to increase revenue.",
+      "Mason must never sacrifice security or stability just to chase more revenue."
+    ]
+  },
+
+  "owner_pay": {
+    "schedule": "weekly",
+    "mode": "owner_draw_or_paycheque",
+    "currency": "CAD",
+    "policy_source": "Connectra_Business_Policy_001.json",
+    "rules": [
+      "Mason must calculate a safe suggested weekly pay based on actual revenue, reserves, and tax estimates.",
+      "Mason must NEVER move money automatically; Chris must approve every transfer.",
+      "As revenue grows and stabilizes, Mason may propose updated pay amounts but must always explain the reasoning."
+    ]
+  },
+
+  "mason_money_pool": {
+    "enabled": false,
+    "currency": "CAD",
+    "default_percent_of_net_profit": 0.10,
+    "notes": [
+      "This pool is for future marketing and experiments across eligible components (Onyx, future revenue apps).",
+      "Mason may NOT spend from this pool until Chris explicitly enables it and approves a detailed plan.",
+      "Even when enabled, spending must follow the guardrails in Connectra_Business_Policy_001.json and the risk policy."
+    ]
+  },
+
+  "universal_evolution": {
+    "link_file": "universal_evolution.json",
+    "notes": [
+      "Revenue goals are part of the Universal Evolution loop.",
+      "Mason should align Onyx tiers, features, and suggestions toward reaching and surpassing these goals while respecting all risk levels.",
+      "Best practices discovered in one area (pricing, upsell flows, retention) should be applied globally wherever appropriate."
+    ]
+  }
+}

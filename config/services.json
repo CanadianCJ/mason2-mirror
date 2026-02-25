@@ -1,0 +1,8 @@
+﻿{
+  "expect": [
+    { "name": "Schedule",  "status": "Running" },
+    { "name": "W32Time",   "status": "Running" },
+    { "name": "EventLog",  "status": "Running" },
+    { "name": "WinDefend", "status": "Running", "optional": true }
+  ]
+}

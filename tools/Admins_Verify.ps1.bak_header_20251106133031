@@ -1,0 +1,281 @@
+# Mason base/bootstrap (safe; after param)
+$__tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace($__tryRoot)) {
+  try { $__tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { $__tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$__lib = Join-Path (Split-Path $__tryRoot -Parent) 'lib\Mason.Base.psm1'
+Import-Module $__lib -Force
+$MasonBase = Get-MasonBase -FromPath $__tryRoot
+Set-Location $MasonBase
+$__tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace($__tryRoot)) {
+  try { $__tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { $__tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$__lib = Join-Path (Split-Path $__tryRoot -Parent) 'lib\Mason.Base.psm1'
+Import-Module $__lib -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$baseP = Join-Path $Base 'config\admins_baseline.json'
+if(-not (Test-Path $baseP)){ exit 0 }
+try{ $baseRaw = Get-Content $baseP -Raw | ConvertFrom-Json }catch{ exit 0 }
+$base = @()
+if($baseRaw){ if($baseRaw -is [array]){ $base=$baseRaw } else { $base=@($baseRaw) } }
+$baseSet = @{}
+foreach($b in $base){ if($b -and $b.member){ $baseSet[$b.member]=$true } }
+
+# current
+$curr=@()
+try{
+  $grp='Administrators'
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $curr += $obj
+    }catch{}
+  }
+}catch{}
+$currSet=@{}
+foreach($c in $curr){ $currSet[$c]=$true }
+
+$added=@(); $removed=@()
+foreach($k in $currSet.Keys){ if(-not $baseSet.ContainsKey($k)){ $added += $k } }
+foreach($k in $baseSet.Keys){ if(-not $currSet.ContainsKey($k)){ $removed += $k } }
+
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\admins_diff.jsonl') -Obj @{
+  ts=(Get-Date).ToString('s'); kind='admins_diff'; added=$added; removed=$removed
+}
+_tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace(Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$baseP = Join-Path $Base 'config\admins_baseline.json'
+if(-not (Test-Path $baseP)){ exit 0 }
+try{ $baseRaw = Get-Content $baseP -Raw | ConvertFrom-Json }catch{ exit 0 }
+$base = @()
+if($baseRaw){ if($baseRaw -is [array]){ $base=$baseRaw } else { $base=@($baseRaw) } }
+$baseSet = @{}
+foreach($b in $base){ if($b -and $b.member){ $baseSet[$b.member]=$true } }
+
+# current
+$curr=@()
+try{
+  $grp='Administrators'
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $curr += $obj
+    }catch{}
+  }
+}catch{}
+$currSet=@{}
+foreach($c in $curr){ $currSet[$c]=$true }
+
+$added=@(); $removed=@()
+foreach($k in $currSet.Keys){ if(-not $baseSet.ContainsKey($k)){ $added += $k } }
+foreach($k in $baseSet.Keys){ if(-not $currSet.ContainsKey($k)){ $removed += $k } }
+
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\admins_diff.jsonl') -Obj @{
+  ts=(Get-Date).ToString('s'); kind='admins_diff'; added=$added; removed=$removed
+}
+_tryRoot)) {
+  try { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$baseP = Join-Path $Base 'config\admins_baseline.json'
+if(-not (Test-Path $baseP)){ exit 0 }
+try{ $baseRaw = Get-Content $baseP -Raw | ConvertFrom-Json }catch{ exit 0 }
+$base = @()
+if($baseRaw){ if($baseRaw -is [array]){ $base=$baseRaw } else { $base=@($baseRaw) } }
+$baseSet = @{}
+foreach($b in $base){ if($b -and $b.member){ $baseSet[$b.member]=$true } }
+
+# current
+$curr=@()
+try{
+  $grp='Administrators'
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $curr += $obj
+    }catch{}
+  }
+}catch{}
+$currSet=@{}
+foreach($c in $curr){ $currSet[$c]=$true }
+
+$added=@(); $removed=@()
+foreach($k in $currSet.Keys){ if(-not $baseSet.ContainsKey($k)){ $added += $k } }
+foreach($k in $baseSet.Keys){ if(-not $currSet.ContainsKey($k)){ $removed += $k } }
+
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\admins_diff.jsonl') -Obj @{
+  ts=(Get-Date).ToString('s'); kind='admins_diff'; added=$added; removed=$removed
+}
+_tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$baseP = Join-Path $Base 'config\admins_baseline.json'
+if(-not (Test-Path $baseP)){ exit 0 }
+try{ $baseRaw = Get-Content $baseP -Raw | ConvertFrom-Json }catch{ exit 0 }
+$base = @()
+if($baseRaw){ if($baseRaw -is [array]){ $base=$baseRaw } else { $base=@($baseRaw) } }
+$baseSet = @{}
+foreach($b in $base){ if($b -and $b.member){ $baseSet[$b.member]=$true } }
+
+# current
+$curr=@()
+try{
+  $grp='Administrators'
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $curr += $obj
+    }catch{}
+  }
+}catch{}
+$currSet=@{}
+foreach($c in $curr){ $currSet[$c]=$true }
+
+$added=@(); $removed=@()
+foreach($k in $currSet.Keys){ if(-not $baseSet.ContainsKey($k)){ $added += $k } }
+foreach($k in $baseSet.Keys){ if(-not $currSet.ContainsKey($k)){ $removed += $k } }
+
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\admins_diff.jsonl') -Obj @{
+  ts=(Get-Date).ToString('s'); kind='admins_diff'; added=$added; removed=$removed
+}
+_tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$baseP = Join-Path $Base 'config\admins_baseline.json'
+if(-not (Test-Path $baseP)){ exit 0 }
+try{ $baseRaw = Get-Content $baseP -Raw | ConvertFrom-Json }catch{ exit 0 }
+$base = @()
+if($baseRaw){ if($baseRaw -is [array]){ $base=$baseRaw } else { $base=@($baseRaw) } }
+$baseSet = @{}
+foreach($b in $base){ if($b -and $b.member){ $baseSet[$b.member]=$true } }
+
+# current
+$curr=@()
+try{
+  $grp='Administrators'
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $curr += $obj
+    }catch{}
+  }
+}catch{}
+$currSet=@{}
+foreach($c in $curr){ $currSet[$c]=$true }
+
+$added=@(); $removed=@()
+foreach($k in $currSet.Keys){ if(-not $baseSet.ContainsKey($k)){ $added += $k } }
+foreach($k in $baseSet.Keys){ if(-not $currSet.ContainsKey($k)){ $removed += $k } }
+
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\admins_diff.jsonl') -Obj @{
+  ts=(Get-Date).ToString('s'); kind='admins_diff'; added=$added; removed=$removed
+}
+_lib = Join-Path (Split-Path Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$baseP = Join-Path $Base 'config\admins_baseline.json'
+if(-not (Test-Path $baseP)){ exit 0 }
+try{ $baseRaw = Get-Content $baseP -Raw | ConvertFrom-Json }catch{ exit 0 }
+$base = @()
+if($baseRaw){ if($baseRaw -is [array]){ $base=$baseRaw } else { $base=@($baseRaw) } }
+$baseSet = @{}
+foreach($b in $base){ if($b -and $b.member){ $baseSet[$b.member]=$true } }
+
+# current
+$curr=@()
+try{
+  $grp='Administrators'
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $curr += $obj
+    }catch{}
+  }
+}catch{}
+$currSet=@{}
+foreach($c in $curr){ $currSet[$c]=$true }
+
+$added=@(); $removed=@()
+foreach($k in $currSet.Keys){ if(-not $baseSet.ContainsKey($k)){ $added += $k } }
+foreach($k in $baseSet.Keys){ if(-not $currSet.ContainsKey($k)){ $removed += $k } }
+
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\admins_diff.jsonl') -Obj @{
+  ts=(Get-Date).ToString('s'); kind='admins_diff'; added=$added; removed=$removed
+}
+_tryRoot -Parent) 'lib\Mason.Base.psm1'
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$baseP = Join-Path $Base 'config\admins_baseline.json'
+if(-not (Test-Path $baseP)){ exit 0 }
+try{ $baseRaw = Get-Content $baseP -Raw | ConvertFrom-Json }catch{ exit 0 }
+$base = @()
+if($baseRaw){ if($baseRaw -is [array]){ $base=$baseRaw } else { $base=@($baseRaw) } }
+$baseSet = @{}
+foreach($b in $base){ if($b -and $b.member){ $baseSet[$b.member]=$true } }
+
+# current
+$curr=@()
+try{
+  $grp='Administrators'
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $curr += $obj
+    }catch{}
+  }
+}catch{}
+$currSet=@{}
+foreach($c in $curr){ $currSet[$c]=$true }
+
+$added=@(); $removed=@()
+foreach($k in $currSet.Keys){ if(-not $baseSet.ContainsKey($k)){ $added += $k } }
+foreach($k in $baseSet.Keys){ if(-not $currSet.ContainsKey($k)){ $removed += $k } }
+
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\admins_diff.jsonl') -Obj @{
+  ts=(Get-Date).ToString('s'); kind='admins_diff'; added=$added; removed=$removed
+}
+_lib -Force
+$ErrorActionPreference='Stop'
+. (Join-Path $Base "tools\Common_Compat.ps1")
+$baseP = Join-Path $Base 'config\admins_baseline.json'
+if(-not (Test-Path $baseP)){ exit 0 }
+try{ $baseRaw = Get-Content $baseP -Raw | ConvertFrom-Json }catch{ exit 0 }
+$base = @()
+if($baseRaw){ if($baseRaw -is [array]){ $base=$baseRaw } else { $base=@($baseRaw) } }
+$baseSet = @{}
+foreach($b in $base){ if($b -and $b.member){ $baseSet[$b.member]=$true } }
+
+# current
+$curr=@()
+try{
+  $grp='Administrators'
+  $group = [ADSI]"WinNT://./$grp,group"
+  $group.psbase.Invoke('Members') | ForEach-Object {
+    try{
+      $obj = $_.GetType().InvokeMember('Adspath','GetProperty',$null,$_,$null)
+      $curr += $obj
+    }catch{}
+  }
+}catch{}
+$currSet=@{}
+foreach($c in $curr){ $currSet[$c]=$true }
+
+$added=@(); $removed=@()
+foreach($k in $currSet.Keys){ if(-not $baseSet.ContainsKey($k)){ $added += $k } }
+foreach($k in $baseSet.Keys){ if(-not $currSet.ContainsKey($k)){ $removed += $k } }
+
+Write-JsonLineSafe -Path (Join-Path $Base 'reports\admins_diff.jsonl') -Obj @{
+  ts=(Get-Date).ToString('s'); kind='admins_diff'; added=$added; removed=$removed
+}

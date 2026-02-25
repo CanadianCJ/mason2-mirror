@@ -1,0 +1,199 @@
+﻿$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$events = Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue
+$http   = Get-Content (Join-Path $Rep 'http7001.jsonl') -ErrorAction SilentlyContinue
+$ago = (Get-Date).AddHours(-1)
+$score = 100
+$restarts = 0; $backoffs = 0; $live = True
+foreach($l in ($events + $http)){
+  try{
+    $j = $l | ConvertFrom-Json
+    if($j.ts){ if([datetime]::Parse($j.ts) -lt $ago){ continue } }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'restart'){ $restarts++ }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'backoff'){ $backoffs++ }
+    if($j.kind -eq 'server7001' -and $j.event -eq 'readiness'){
+      if(-not $j.data.ready){ $live = False }
+
+  }catch{}
+
+$score -= (20 * [int])
+$score -= (10 * [int])
+if(-not $live){ $score -= 30 }
+if($score -lt 0){ $score = 0 } ; if($score -gt 100){ $score = 100 }
+$out = @{ score=$score; restarts=$restarts; backoffs=$backoffs; live=$live; ts=(Get-Date).ToString('s') }
+$out | ConvertTo-Json -Compress | Set-Content (Join-Path $Rep 'health_index.json')
+Out-MasonJsonl -Kind 'health' -Event 'aggregated' -Level 'INFO' -Data $out_tryRoot = $PSScriptRoot
+if ([string]::$null
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$events = Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue
+$http   = Get-Content (Join-Path $Rep 'http7001.jsonl') -ErrorAction SilentlyContinue
+$ago = (Get-Date).AddHours(-1)
+$score = 100
+$restarts = 0; $backoffs = 0; $live = True
+foreach($l in ($events + $http)){
+  try{
+    $j = $l | ConvertFrom-Json
+    if($j.ts){ if([datetime]::Parse($j.ts) -lt $ago){ continue } }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'restart'){ $restarts++ }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'backoff'){ $backoffs++ }
+    if($j.kind -eq 'server7001' -and $j.event -eq 'readiness'){
+      if(-not $j.data.ready){ $live = False }
+
+  }catch{}
+
+$score -= (20 * [int])
+$score -= (10 * [int])
+if(-not $live){ $score -= 30 }
+if($score -lt 0){ $score = 0 } ; if($score -gt 100){ $score = 100 }
+$out = @{ score=$score; restarts=$restarts; backoffs=$backoffs; live=$live; ts=(Get-Date).ToString('s') }
+$out | ConvertTo-Json -Compress | Set-Content (Join-Path $Rep 'health_index.json')
+Out-MasonJsonl -Kind 'health' -Event 'aggregated' -Level 'INFO' -Data $out_tryRoot)) {
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$events = Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue
+$http   = Get-Content (Join-Path $Rep 'http7001.jsonl') -ErrorAction SilentlyContinue
+$ago = (Get-Date).AddHours(-1)
+$score = 100
+$restarts = 0; $backoffs = 0; $live = True
+foreach($l in ($events + $http)){
+  try{
+    $j = $l | ConvertFrom-Json
+    if($j.ts){ if([datetime]::Parse($j.ts) -lt $ago){ continue } }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'restart'){ $restarts++ }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'backoff'){ $backoffs++ }
+    if($j.kind -eq 'server7001' -and $j.event -eq 'readiness'){
+      if(-not $j.data.ready){ $live = False }
+
+  }catch{}
+
+$score -= (20 * [int])
+$score -= (10 * [int])
+if(-not $live){ $score -= 30 }
+if($score -lt 0){ $score = 0 } ; if($score -gt 100){ $score = 100 }
+$out = @{ score=$score; restarts=$restarts; backoffs=$backoffs; live=$live; ts=(Get-Date).ToString('s') }
+$out | ConvertTo-Json -Compress | Set-Content (Join-Path $Rep 'health_index.json')
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$events = Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue
+$http   = Get-Content (Join-Path $Rep 'http7001.jsonl') -ErrorAction SilentlyContinue
+$ago = (Get-Date).AddHours(-1)
+$score = 100
+$restarts = 0; $backoffs = 0; $live = True
+foreach($l in ($events + $http)){
+  try{
+    $j = $l | ConvertFrom-Json
+    if($j.ts){ if([datetime]::Parse($j.ts) -lt $ago){ continue } }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'restart'){ $restarts++ }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'backoff'){ $backoffs++ }
+    if($j.kind -eq 'server7001' -and $j.event -eq 'readiness'){
+      if(-not $j.data.ready){ $live = False }
+
+  }catch{}
+
+$score -= (20 * [int])
+$score -= (10 * [int])
+if(-not $live){ $score -= 30 }
+if($score -lt 0){ $score = 0 } ; if($score -gt 100){ $score = 100 }
+$out = @{ score=$score; restarts=$restarts; backoffs=$backoffs; live=$live; ts=(Get-Date).ToString('s') }
+$out | ConvertTo-Json -Compress | Set-Content (Join-Path $Rep 'health_index.json')
+Out-MasonJsonl -Kind 'health' -Event 'aggregated' -Level 'INFO' -Data $out_tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$events = Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue
+$http   = Get-Content (Join-Path $Rep 'http7001.jsonl') -ErrorAction SilentlyContinue
+$ago = (Get-Date).AddHours(-1)
+$score = 100
+$restarts = 0; $backoffs = 0; $live = True
+foreach($l in ($events + $http)){
+  try{
+    $j = $l | ConvertFrom-Json
+    if($j.ts){ if([datetime]::Parse($j.ts) -lt $ago){ continue } }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'restart'){ $restarts++ }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'backoff'){ $backoffs++ }
+    if($j.kind -eq 'server7001' -and $j.event -eq 'readiness'){
+      if(-not $j.data.ready){ $live = False }
+
+  }catch{}
+
+$score -= (20 * [int])
+$score -= (10 * [int])
+if(-not $live){ $score -= 30 }
+if($score -lt 0){ $score = 0 } ; if($score -gt 100){ $score = 100 }
+$out = @{ score=$score; restarts=$restarts; backoffs=$backoffs; live=$live; ts=(Get-Date).ToString('s') }
+$out | ConvertTo-Json -Compress | Set-Content (Join-Path $Rep 'health_index.json')
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$events = Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue
+$http   = Get-Content (Join-Path $Rep 'http7001.jsonl') -ErrorAction SilentlyContinue
+$ago = (Get-Date).AddHours(-1)
+$score = 100
+$restarts = 0; $backoffs = 0; $live = True
+foreach($l in ($events + $http)){
+  try{
+    $j = $l | ConvertFrom-Json
+    if($j.ts){ if([datetime]::Parse($j.ts) -lt $ago){ continue } }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'restart'){ $restarts++ }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'backoff'){ $backoffs++ }
+    if($j.kind -eq 'server7001' -and $j.event -eq 'readiness'){
+      if(-not $j.data.ready){ $live = False }
+
+  }catch{}
+
+$score -= (20 * [int])
+$score -= (10 * [int])
+if(-not $live){ $score -= 30 }
+if($score -lt 0){ $score = 0 } ; if($score -gt 100){ $score = 100 }
+$out = @{ score=$score; restarts=$restarts; backoffs=$backoffs; live=$live; ts=(Get-Date).ToString('s') }
+$out | ConvertTo-Json -Compress | Set-Content (Join-Path $Rep 'health_index.json')
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$events = Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue
+$http   = Get-Content (Join-Path $Rep 'http7001.jsonl') -ErrorAction SilentlyContinue
+$ago = (Get-Date).AddHours(-1)
+$score = 100
+$restarts = 0; $backoffs = 0; $live = True
+foreach($l in ($events + $http)){
+  try{
+    $j = $l | ConvertFrom-Json
+    if($j.ts){ if([datetime]::Parse($j.ts) -lt $ago){ continue } }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'restart'){ $restarts++ }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'backoff'){ $backoffs++ }
+    if($j.kind -eq 'server7001' -and $j.event -eq 'readiness'){
+      if(-not $j.data.ready){ $live = False }
+
+  }catch{}
+
+$score -= (20 * [int])
+$score -= (10 * [int])
+if(-not $live){ $score -= 30 }
+if($score -lt 0){ $score = 0 } ; if($score -gt 100){ $score = 100 }
+$out = @{ score=$score; restarts=$restarts; backoffs=$backoffs; live=$live; ts=(Get-Date).ToString('s') }
+$out | ConvertTo-Json -Compress | Set-Content (Join-Path $Rep 'health_index.json')
+Out-MasonJsonl -Kind 'health' -Event 'aggregated' -Level 'INFO' -Data $out_lib -Force
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$events = Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue
+$http   = Get-Content (Join-Path $Rep 'http7001.jsonl') -ErrorAction SilentlyContinue
+$ago = (Get-Date).AddHours(-1)
+$score = 100
+$restarts = 0; $backoffs = 0; $live = True
+foreach($l in ($events + $http)){
+  try{
+    $j = $l | ConvertFrom-Json
+    if($j.ts){ if([datetime]::Parse($j.ts) -lt $ago){ continue } }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'restart'){ $restarts++ }
+    if($j.kind -eq 'watch7001' -and $j.event -eq 'backoff'){ $backoffs++ }
+    if($j.kind -eq 'server7001' -and $j.event -eq 'readiness'){
+      if(-not $j.data.ready){ $live = False }
+
+  }catch{}
+
+$score -= (20 * [int])
+$score -= (10 * [int])
+if(-not $live){ $score -= 30 }
+if($score -lt 0){ $score = 0 } ; if($score -gt 100){ $score = 100 }
+$out = @{ score=$score; restarts=$restarts; backoffs=$backoffs; live=$live; ts=(Get-Date).ToString('s') }
+$out | ConvertTo-Json -Compress | Set-Content (Join-Path $Rep 'health_index.json')
+Out-MasonJsonl -Kind 'health' -Event 'aggregated' -Level 'INFO' -Data $out

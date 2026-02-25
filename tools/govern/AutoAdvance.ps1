@@ -1,0 +1,1 @@
+ $o=@{ts=(Get-Date).ToString('s'); op='autoadvance'}; $o|ConvertTo-Json -Compress|Out-File (Join-Path "C:\Users\Chris\Desktop\Mason2" 'reports\autoadvance.json') -Encoding utf8 

@@ -1,0 +1,37 @@
+{
+  "stage": "founder",
+
+  "stages": {
+    "founder": {
+      "description": "Early founder/preview build. Safe, limited features, no real money flows.",
+      "min_risk_level": 0
+    },
+    "early_access": {
+      "description": "More features live, still clearly labeled as early access.",
+      "min_risk_level": 1
+    },
+    "full": {
+      "description": "Full public app. Founder labels removed, full flows live (money still risk-gated).",
+      "min_risk_level": 2
+    }
+  },
+
+  "auto_promotion_policy": {
+    "to_early_access": {
+      "from": "founder",
+      "to": "early_access",
+      "min_risk_level": 1,
+      "min_successful_tasks": 10,
+      "min_days_health_green": 3
+    },
+    "to_full": {
+      "from": "early_access",
+      "to": "full",
+      "min_risk_level": 2,
+      "min_successful_tasks": 40,
+      "min_days_health_green": 7
+    }
+  },
+
+  "notes": "Mason is allowed to promote Onyx stage automatically once the risk level and health criteria are met. You do not need to tell him to leave founder mode."
+}

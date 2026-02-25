@@ -1,0 +1,55 @@
+{
+  "universal_evolution_active": true,
+
+  "areas": {
+    "mason":  { "enabled": true },
+    "onyx":   { "enabled": true },
+    "athena": { "enabled": true },
+    "pc":     { "enabled": true }
+  },
+
+  "principles": {
+    "share_best_practices_globally": true,
+    "stability_first": true,
+    "security_second": true,
+    "respect_risk_levels": true,
+    "no_unapproved_money_spend": true
+  },
+
+  "budget": {
+    "weekly_usd_cap": 50,
+    "min_ratio_for_learn": 0.15
+  },
+
+  "programs": [
+    {
+      "id": "mason_self_ops",
+      "label": "Mason Self-Ops & Health",
+      "component_id": "mason",
+      "cadence_hours": 3,
+      "uses_web": true,
+      "topics_config": "config/learn_topics_mason.json",
+      "enabled": true
+    },
+    {
+      "id": "athena_self_ops",
+      "label": "Athena Console Self-Ops",
+      "component_id": "athena",
+      "cadence_hours": 6,
+      "uses_web": true,
+      "topics_config": "config/learn_topics_athena.json",
+      "enabled": false
+    },
+    {
+      "id": "onyx_app_health",
+      "label": "Onyx App Health & Ops",
+      "component_id": "onyx",
+      "cadence_hours": 6,
+      "uses_web": true,
+      "topics_config": "config/learn_topics_onyx.json",
+      "enabled": false
+    }
+  ],
+
+  "notes": "Universal Evolution is active. Mason should evolve all listed areas under the risk system, share proven best practices globally wherever they apply, prioritize stability + security while pushing revenue, and respect the weekly budget cap with no unapproved money spend."
+}

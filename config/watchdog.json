@@ -1,0 +1,40 @@
+﻿{
+    "processes":  [
+                      {
+                          "name":  "powershell",
+                          "friendly":  "Mason Scripts"
+                      }
+                  ],
+    "ports":  [
+                  7000,
+                  7001
+              ],
+    "http":  [
+                 {
+                     "url":  "http://127.0.0.1:7000/healthz",
+                     "timeout_s":  3
+                 },
+                 {
+                     "url":  "http://127.0.0.1:7001/healthz",
+                     "timeout_s":  2
+                 }
+             ],
+    "restart_backoff":  {
+                            "window_min":  30,
+                            "max_in_window":  3
+                        },
+    "tasks_expected":  [
+                           "Mason2-Agent",
+                           "Mason2-Watchdog-1m",
+                           "Mason2-TopicSync-1m",
+                           "Mason2-UIStatus-1m",
+                           "Mason2-ProcHealth-5m",
+                           "Mason2-HttpHealthz-5m",
+                           "Mason2-ServiceHealth-15m",
+                           "Mason2-Heartbeat-1m",
+                           "Mason2-WatchdogLiveness-2m",
+                           "Mason2-SafeModeLowDisk-5m",
+                           "Mason2-Sidecar7000-1m",
+                           "Mason2-FileServer-7001"
+                       ]
+}

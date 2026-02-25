@@ -1,0 +1,291 @@
+﻿$Base = "$env:USERPROFILE\Desktop\Mason2"
+$Cfg  = Join-Path $Base 'config\governor.json'
+$Rep  = Join-Path $Base 'reports'
+$Freeze = Join-Path $Rep 'governor_freeze.flag'
+$cfgObj = @{ restart_budget_per_hour=4; freeze_when_health_below=60; quarantine_threshold=3 }
+try{ if(Test-Path $Cfg){ $cfgObj = Get-Content $Cfg -Raw | ConvertFrom-Json } }catch{}
+
+# count restarts in last hour
+$events = @(Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue)
+$now = Get-Date
+$ago = $now.AddHours(-1)
+$recent = 0
+foreach($line in $events){
+  if([string]::IsNullOrWhiteSpace($line)){ continue }
+  try{
+    $j = $line | ConvertFrom-Json
+    if($j.kind -eq 'watch7001' -and ($j.event -eq 'restart')){
+      $ts = [datetime]::Parse($j.ts)
+      if($ts -ge $ago){ $recent++ }
+    }
+  }catch{}
+}
+$healthIdx = 100
+try{
+  $h = Get-Content (Join-Path $Rep 'health_index.json') -Raw -ErrorAction SilentlyContinue
+  if($h){ $healthIdx = ([int]((ConvertFrom-Json $h).score)) }
+}catch{}
+
+$shouldFreeze = ($recent -ge [int]$cfgObj.restart_budget_per_hour) -or ($healthIdx -lt [int]$cfgObj.freeze_when_health_below)
+if($shouldFreeze){
+  "1" | Set-Content $Freeze -Encoding ASCII
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_on' -Level 'WARN' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}else{
+  Remove-Item $Freeze -ErrorAction SilentlyContinue
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_off' -Level 'INFO' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}_tryRoot = $PSScriptRoot
+if ([string]::$null
+$Base = "$env:USERPROFILE\Desktop\Mason2"
+$Cfg  = Join-Path $Base 'config\governor.json'
+$Rep  = Join-Path $Base 'reports'
+$Freeze = Join-Path $Rep 'governor_freeze.flag'
+$cfgObj = @{ restart_budget_per_hour=4; freeze_when_health_below=60; quarantine_threshold=3 }
+try{ if(Test-Path $Cfg){ $cfgObj = Get-Content $Cfg -Raw | ConvertFrom-Json } }catch{}
+
+# count restarts in last hour
+$events = @(Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue)
+$now = Get-Date
+$ago = $now.AddHours(-1)
+$recent = 0
+foreach($line in $events){
+  if([string]::IsNullOrWhiteSpace($line)){ continue }
+  try{
+    $j = $line | ConvertFrom-Json
+    if($j.kind -eq 'watch7001' -and ($j.event -eq 'restart')){
+      $ts = [datetime]::Parse($j.ts)
+      if($ts -ge $ago){ $recent++ }
+    }
+  }catch{}
+}
+$healthIdx = 100
+try{
+  $h = Get-Content (Join-Path $Rep 'health_index.json') -Raw -ErrorAction SilentlyContinue
+  if($h){ $healthIdx = ([int]((ConvertFrom-Json $h).score)) }
+}catch{}
+
+$shouldFreeze = ($recent -ge [int]$cfgObj.restart_budget_per_hour) -or ($healthIdx -lt [int]$cfgObj.freeze_when_health_below)
+if($shouldFreeze){
+  "1" | Set-Content $Freeze -Encoding ASCII
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_on' -Level 'WARN' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}else{
+  Remove-Item $Freeze -ErrorAction SilentlyContinue
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_off' -Level 'INFO' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}_tryRoot)) {
+  try { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$Base = "$env:USERPROFILE\Desktop\Mason2"
+$Cfg  = Join-Path $Base 'config\governor.json'
+$Rep  = Join-Path $Base 'reports'
+$Freeze = Join-Path $Rep 'governor_freeze.flag'
+$cfgObj = @{ restart_budget_per_hour=4; freeze_when_health_below=60; quarantine_threshold=3 }
+try{ if(Test-Path $Cfg){ $cfgObj = Get-Content $Cfg -Raw | ConvertFrom-Json } }catch{}
+
+# count restarts in last hour
+$events = @(Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue)
+$now = Get-Date
+$ago = $now.AddHours(-1)
+$recent = 0
+foreach($line in $events){
+  if([string]::IsNullOrWhiteSpace($line)){ continue }
+  try{
+    $j = $line | ConvertFrom-Json
+    if($j.kind -eq 'watch7001' -and ($j.event -eq 'restart')){
+      $ts = [datetime]::Parse($j.ts)
+      if($ts -ge $ago){ $recent++ }
+    }
+  }catch{}
+}
+$healthIdx = 100
+try{
+  $h = Get-Content (Join-Path $Rep 'health_index.json') -Raw -ErrorAction SilentlyContinue
+  if($h){ $healthIdx = ([int]((ConvertFrom-Json $h).score)) }
+}catch{}
+
+$shouldFreeze = ($recent -ge [int]$cfgObj.restart_budget_per_hour) -or ($healthIdx -lt [int]$cfgObj.freeze_when_health_below)
+if($shouldFreeze){
+  "1" | Set-Content $Freeze -Encoding ASCII
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_on' -Level 'WARN' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}else{
+  Remove-Item $Freeze -ErrorAction SilentlyContinue
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_off' -Level 'INFO' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}_tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$Base = "$env:USERPROFILE\Desktop\Mason2"
+$Cfg  = Join-Path $Base 'config\governor.json'
+$Rep  = Join-Path $Base 'reports'
+$Freeze = Join-Path $Rep 'governor_freeze.flag'
+$cfgObj = @{ restart_budget_per_hour=4; freeze_when_health_below=60; quarantine_threshold=3 }
+try{ if(Test-Path $Cfg){ $cfgObj = Get-Content $Cfg -Raw | ConvertFrom-Json } }catch{}
+
+# count restarts in last hour
+$events = @(Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue)
+$now = Get-Date
+$ago = $now.AddHours(-1)
+$recent = 0
+foreach($line in $events){
+  if([string]::IsNullOrWhiteSpace($line)){ continue }
+  try{
+    $j = $line | ConvertFrom-Json
+    if($j.kind -eq 'watch7001' -and ($j.event -eq 'restart')){
+      $ts = [datetime]::Parse($j.ts)
+      if($ts -ge $ago){ $recent++ }
+    }
+  }catch{}
+}
+$healthIdx = 100
+try{
+  $h = Get-Content (Join-Path $Rep 'health_index.json') -Raw -ErrorAction SilentlyContinue
+  if($h){ $healthIdx = ([int]((ConvertFrom-Json $h).score)) }
+}catch{}
+
+$shouldFreeze = ($recent -ge [int]$cfgObj.restart_budget_per_hour) -or ($healthIdx -lt [int]$cfgObj.freeze_when_health_below)
+if($shouldFreeze){
+  "1" | Set-Content $Freeze -Encoding ASCII
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_on' -Level 'WARN' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}else{
+  Remove-Item $Freeze -ErrorAction SilentlyContinue
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_off' -Level 'INFO' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}_tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$Base = "$env:USERPROFILE\Desktop\Mason2"
+$Cfg  = Join-Path $Base 'config\governor.json'
+$Rep  = Join-Path $Base 'reports'
+$Freeze = Join-Path $Rep 'governor_freeze.flag'
+$cfgObj = @{ restart_budget_per_hour=4; freeze_when_health_below=60; quarantine_threshold=3 }
+try{ if(Test-Path $Cfg){ $cfgObj = Get-Content $Cfg -Raw | ConvertFrom-Json } }catch{}
+
+# count restarts in last hour
+$events = @(Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue)
+$now = Get-Date
+$ago = $now.AddHours(-1)
+$recent = 0
+foreach($line in $events){
+  if([string]::IsNullOrWhiteSpace($line)){ continue }
+  try{
+    $j = $line | ConvertFrom-Json
+    if($j.kind -eq 'watch7001' -and ($j.event -eq 'restart')){
+      $ts = [datetime]::Parse($j.ts)
+      if($ts -ge $ago){ $recent++ }
+    }
+  }catch{}
+}
+$healthIdx = 100
+try{
+  $h = Get-Content (Join-Path $Rep 'health_index.json') -Raw -ErrorAction SilentlyContinue
+  if($h){ $healthIdx = ([int]((ConvertFrom-Json $h).score)) }
+}catch{}
+
+$shouldFreeze = ($recent -ge [int]$cfgObj.restart_budget_per_hour) -or ($healthIdx -lt [int]$cfgObj.freeze_when_health_below)
+if($shouldFreeze){
+  "1" | Set-Content $Freeze -Encoding ASCII
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_on' -Level 'WARN' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}else{
+  Remove-Item $Freeze -ErrorAction SilentlyContinue
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_off' -Level 'INFO' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}_lib = Join-Path (Split-Path Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$Base = "$env:USERPROFILE\Desktop\Mason2"
+$Cfg  = Join-Path $Base 'config\governor.json'
+$Rep  = Join-Path $Base 'reports'
+$Freeze = Join-Path $Rep 'governor_freeze.flag'
+$cfgObj = @{ restart_budget_per_hour=4; freeze_when_health_below=60; quarantine_threshold=3 }
+try{ if(Test-Path $Cfg){ $cfgObj = Get-Content $Cfg -Raw | ConvertFrom-Json } }catch{}
+
+# count restarts in last hour
+$events = @(Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue)
+$now = Get-Date
+$ago = $now.AddHours(-1)
+$recent = 0
+foreach($line in $events){
+  if([string]::IsNullOrWhiteSpace($line)){ continue }
+  try{
+    $j = $line | ConvertFrom-Json
+    if($j.kind -eq 'watch7001' -and ($j.event -eq 'restart')){
+      $ts = [datetime]::Parse($j.ts)
+      if($ts -ge $ago){ $recent++ }
+    }
+  }catch{}
+}
+$healthIdx = 100
+try{
+  $h = Get-Content (Join-Path $Rep 'health_index.json') -Raw -ErrorAction SilentlyContinue
+  if($h){ $healthIdx = ([int]((ConvertFrom-Json $h).score)) }
+}catch{}
+
+$shouldFreeze = ($recent -ge [int]$cfgObj.restart_budget_per_hour) -or ($healthIdx -lt [int]$cfgObj.freeze_when_health_below)
+if($shouldFreeze){
+  "1" | Set-Content $Freeze -Encoding ASCII
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_on' -Level 'WARN' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}else{
+  Remove-Item $Freeze -ErrorAction SilentlyContinue
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_off' -Level 'INFO' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}_tryRoot -Parent) 'lib\Mason.Base.psm1'
+$Base = "$env:USERPROFILE\Desktop\Mason2"
+$Cfg  = Join-Path $Base 'config\governor.json'
+$Rep  = Join-Path $Base 'reports'
+$Freeze = Join-Path $Rep 'governor_freeze.flag'
+$cfgObj = @{ restart_budget_per_hour=4; freeze_when_health_below=60; quarantine_threshold=3 }
+try{ if(Test-Path $Cfg){ $cfgObj = Get-Content $Cfg -Raw | ConvertFrom-Json } }catch{}
+
+# count restarts in last hour
+$events = @(Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue)
+$now = Get-Date
+$ago = $now.AddHours(-1)
+$recent = 0
+foreach($line in $events){
+  if([string]::IsNullOrWhiteSpace($line)){ continue }
+  try{
+    $j = $line | ConvertFrom-Json
+    if($j.kind -eq 'watch7001' -and ($j.event -eq 'restart')){
+      $ts = [datetime]::Parse($j.ts)
+      if($ts -ge $ago){ $recent++ }
+    }
+  }catch{}
+}
+$healthIdx = 100
+try{
+  $h = Get-Content (Join-Path $Rep 'health_index.json') -Raw -ErrorAction SilentlyContinue
+  if($h){ $healthIdx = ([int]((ConvertFrom-Json $h).score)) }
+}catch{}
+
+$shouldFreeze = ($recent -ge [int]$cfgObj.restart_budget_per_hour) -or ($healthIdx -lt [int]$cfgObj.freeze_when_health_below)
+if($shouldFreeze){
+  "1" | Set-Content $Freeze -Encoding ASCII
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_on' -Level 'WARN' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}else{
+  Remove-Item $Freeze -ErrorAction SilentlyContinue
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_off' -Level 'INFO' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}_lib -Force
+$Base = "$env:USERPROFILE\Desktop\Mason2"
+$Cfg  = Join-Path $Base 'config\governor.json'
+$Rep  = Join-Path $Base 'reports'
+$Freeze = Join-Path $Rep 'governor_freeze.flag'
+$cfgObj = @{ restart_budget_per_hour=4; freeze_when_health_below=60; quarantine_threshold=3 }
+try{ if(Test-Path $Cfg){ $cfgObj = Get-Content $Cfg -Raw | ConvertFrom-Json } }catch{}
+
+# count restarts in last hour
+$events = @(Get-Content (Join-Path $Rep 'events.jsonl') -ErrorAction SilentlyContinue)
+$now = Get-Date
+$ago = $now.AddHours(-1)
+$recent = 0
+foreach($line in $events){
+  if([string]::IsNullOrWhiteSpace($line)){ continue }
+  try{
+    $j = $line | ConvertFrom-Json
+    if($j.kind -eq 'watch7001' -and ($j.event -eq 'restart')){
+      $ts = [datetime]::Parse($j.ts)
+      if($ts -ge $ago){ $recent++ }
+    }
+  }catch{}
+}
+$healthIdx = 100
+try{
+  $h = Get-Content (Join-Path $Rep 'health_index.json') -Raw -ErrorAction SilentlyContinue
+  if($h){ $healthIdx = ([int]((ConvertFrom-Json $h).score)) }
+}catch{}
+
+$shouldFreeze = ($recent -ge [int]$cfgObj.restart_budget_per_hour) -or ($healthIdx -lt [int]$cfgObj.freeze_when_health_below)
+if($shouldFreeze){
+  "1" | Set-Content $Freeze -Encoding ASCII
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_on' -Level 'WARN' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}else{
+  Remove-Item $Freeze -ErrorAction SilentlyContinue
+  Out-MasonJsonl -Kind 'governor' -Event 'freeze_off' -Level 'INFO' -Data @{ restarts_last_hour=$recent; health=$healthIdx }
+}

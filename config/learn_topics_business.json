@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "topics": [
+    {
+      "id": "onyx_navigation_patterns",
+      "group": "onyx_app_bestpractices",
+      "description": "Navigation patterns for serious business manager / CRM / invoicing apps (tabs vs hamburger, where to put settings, business profile, feature catalog).",
+      "queries": [
+        "business manager app navigation best practices",
+        "crm app hamburger menu vs tabs ux",
+        "small business management app settings and profile ux"
+      ],
+      "priority": "high",
+      "domain": "product_ux",
+      "max_depth": "standard"
+    },
+    {
+      "id": "onyx_dashboard_design",
+      "group": "onyx_app_bestpractices",
+      "description": "How founder dashboards and home screens for business manager apps should look (today view, near-term, money at a glance).",
+      "queries": [
+        "small business dashboard design best practices",
+        "crm home screen design tasks pipeline invoices",
+        "founder cockpit app design patterns"
+      ],
+      "priority": "high",
+      "domain": "product_ux",
+      "max_depth": "deep"
+    },
+    {
+      "id": "onyx_invoicing_cashflow",
+      "group": "onyx_app_bestpractices",
+      "description": "Invoicing and cashflow best practices for small service businesses, to drive how Onyx invoices should behave and look.",
+      "queries": [
+        "small business invoicing best practices",
+        "how to reduce overdue invoices",
+        "cash flow management basics for freelancers"
+      ],
+      "priority": "high",
+      "domain": "business_finance",
+      "max_depth": "deep"
+    },
+    {
+      "id": "onyx_tasks_pipeline",
+      "group": "onyx_app_bestpractices",
+      "description": "Task and pipeline patterns in light-weight CRMs and project managers (status, filters, views that a solo founder actually uses).",
+      "queries": [
+        "lightweight crm task management patterns",
+        "small business sales pipeline best practices",
+        "simple kanban pipeline for freelancers"
+      ],
+      "priority": "medium",
+      "domain": "product_ux",
+      "max_depth": "standard"
+    },
+    {
+      "id": "onyx_security_privacy",
+      "group": "onyx_app_bestpractices",
+      "description": "Basic security and privacy expectations for small business SaaS (data handling, local vs cloud, auth, settings).",
+      "queries": [
+        "security best practices small business saas app",
+        "flutter mobile app security basics",
+        "privacy expectations for small business crm"
+      ],
+      "priority": "medium",
+      "domain": "security",
+      "max_depth": "standard"
+    },
+    {
+      "id": "onyx_app_ops_health_basics",
+      "group": "onyx_app_ops_health",
+      "description": "How to operate and keep a small production web/mobile app healthy: health checks, error handling, safe restarts, and incident response.",
+      "queries": [
+        "production app health checks best practices",
+        "small web app error handling and restart strategy",
+        "mobile app stability monitoring basics"
+      ],
+      "priority": "high",
+      "domain": "app_ops",
+      "max_depth": "deep"
+    },
+    {
+      "id": "onyx_app_observability",
+      "group": "onyx_app_ops_health",
+      "description": "Logging, metrics, and basic observability patterns for small business apps (what to log, how to summarize health, how to track incidents).",
+      "queries": [
+        "logging best practices for small web apps",
+        "what metrics to monitor for small saas apps",
+        "error logging and health summary patterns for flutter and web backends"
+      ],
+      "priority": "medium",
+      "domain": "app_ops",
+      "max_depth": "standard"
+    },
+    {
+      "id": "onyx_app_release_engineering",
+      "group": "onyx_app_ops_health",
+      "description": "Safe build and release patterns for web + mobile apps: debug vs release, canary, simple rollback strategies.",
+      "queries": [
+        "mobile app release management best practices",
+        "flutter app debug vs release builds best practices",
+        "simple release and rollback strategy for small saas apps"
+      ],
+      "priority": "medium",
+      "domain": "engineering",
+      "max_depth": "standard"
+    },
+    {
+      "id": "onyx_app_security_engineering",
+      "group": "onyx_app_ops_health",
+      "description": "Basic app security expectations: config handling, secrets, dependencies, local data, and simple hardening steps for small apps.",
+      "queries": [
+        "flutter app security best practices",
+        "basic security checklist for small web apps",
+        "handling secrets and config securely in small saas apps"
+      ],
+      "priority": "high",
+      "domain": "security",
+      "max_depth": "deep"
+    },
+    {
+      "id": "onyx_monetization_models",
+      "group": "onyx_monetization",
+      "description": "Modern monetization patterns for small business manager apps: free tier, subscriptions, pay-to-remove-ads, and feature-based tiers.",
+      "queries": [
+        "saas monetization strategies for small business management apps",
+        "crm and invoicing app pricing models subscription freemium",
+        "flutter business app monetization subscriptions pay to remove ads"
+      ],
+      "priority": "high",
+      "domain": "business_monetization",
+      "max_depth": "deep"
+    },
+    {
+      "id": "onyx_ads_best_practices",
+      "group": "onyx_monetization",
+      "description": "Best practices for using ads in a Flutter business app and letting users pay to remove ads.",
+      "queries": [
+        "flutter admob best practices business app",
+        "where to place ads in productivity apps without annoying users",
+        "flutter pay to remove ads subscription implementation"
+      ],
+      "priority": "high",
+      "domain": "business_monetization",
+      "max_depth": "deep"
+    },
+    {
+      "id": "onyx_store_billing_policies",
+      "group": "onyx_monetization",
+      "description": "Google Play and App Store rules for subscriptions, remove-ads, and in-app purchases for digital services.",
+      "queries": [
+        "google play payments policy app functionality digital goods",
+        "app store guidelines in app purchases external payment links 2025",
+        "flutter app subscriptions and remove ads using play billing and storekit"
+      ],
+      "priority": "medium",
+      "domain": "compliance",
+      "max_depth": "standard"
+    }
+  ]
+}

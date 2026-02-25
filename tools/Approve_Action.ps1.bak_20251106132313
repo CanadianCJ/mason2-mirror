@@ -1,0 +1,158 @@
+# Mason base/bootstrap (null-safe)
+Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+param([Parameter(Mandatory)][string]$Id,[Parameter(Mandatory)][string]$Pin)
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Cfg  = Join-Path $Base "config"
+$pol  = Get-Content (Join-Path $Cfg "policy.json") -Raw | ConvertFrom-Json
+$hash = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($Pin))).Replace('-','').ToLower()
+if($hash -ne $pol.operator_pin_hash){ throw "Invalid PIN" }
+$file = Join-Path $Cfg "approvals.json"
+$items = (Get-Content $file -Raw | ConvertFrom-Json)
+$hit = $items | Where-Object { $_.id -eq $Id } | Select-Object -First 1
+if(-not $hit){ throw "Not found" }
+if([string]::IsNullOrWhiteSpace($hit.a2)){ $hit.a2 = $env:USERNAME }
+($items) | ConvertTo-Json -Depth 5 | Set-Content $file -Encoding UTF8
+"APPROVED: $Id"
+
+_tryRoot = $PSScriptRoot
+if ([string]::IsNullOrWhiteSpace(Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+param([Parameter(Mandatory)][string]$Id,[Parameter(Mandatory)][string]$Pin)
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Cfg  = Join-Path $Base "config"
+$pol  = Get-Content (Join-Path $Cfg "policy.json") -Raw | ConvertFrom-Json
+$hash = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($Pin))).Replace('-','').ToLower()
+if($hash -ne $pol.operator_pin_hash){ throw "Invalid PIN" }
+$file = Join-Path $Cfg "approvals.json"
+$items = (Get-Content $file -Raw | ConvertFrom-Json)
+$hit = $items | Where-Object { $_.id -eq $Id } | Select-Object -First 1
+if(-not $hit){ throw "Not found" }
+if([string]::IsNullOrWhiteSpace($hit.a2)){ $hit.a2 = $env:USERNAME }
+($items) | ConvertTo-Json -Depth 5 | Set-Content $file -Encoding UTF8
+"APPROVED: $Id"
+
+_tryRoot)) {
+  try { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+param([Parameter(Mandatory)][string]$Id,[Parameter(Mandatory)][string]$Pin)
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Cfg  = Join-Path $Base "config"
+$pol  = Get-Content (Join-Path $Cfg "policy.json") -Raw | ConvertFrom-Json
+$hash = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($Pin))).Replace('-','').ToLower()
+if($hash -ne $pol.operator_pin_hash){ throw "Invalid PIN" }
+$file = Join-Path $Cfg "approvals.json"
+$items = (Get-Content $file -Raw | ConvertFrom-Json)
+$hit = $items | Where-Object { $_.id -eq $Id } | Select-Object -First 1
+if(-not $hit){ throw "Not found" }
+if([string]::IsNullOrWhiteSpace($hit.a2)){ $hit.a2 = $env:USERNAME }
+($items) | ConvertTo-Json -Depth 5 | Set-Content $file -Encoding UTF8
+"APPROVED: $Id"
+
+_tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+param([Parameter(Mandatory)][string]$Id,[Parameter(Mandatory)][string]$Pin)
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Cfg  = Join-Path $Base "config"
+$pol  = Get-Content (Join-Path $Cfg "policy.json") -Raw | ConvertFrom-Json
+$hash = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($Pin))).Replace('-','').ToLower()
+if($hash -ne $pol.operator_pin_hash){ throw "Invalid PIN" }
+$file = Join-Path $Cfg "approvals.json"
+$items = (Get-Content $file -Raw | ConvertFrom-Json)
+$hit = $items | Where-Object { $_.id -eq $Id } | Select-Object -First 1
+if(-not $hit){ throw "Not found" }
+if([string]::IsNullOrWhiteSpace($hit.a2)){ $hit.a2 = $env:USERNAME }
+($items) | ConvertTo-Json -Depth 5 | Set-Content $file -Encoding UTF8
+"APPROVED: $Id"
+
+_tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+param([Parameter(Mandatory)][string]$Id,[Parameter(Mandatory)][string]$Pin)
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Cfg  = Join-Path $Base "config"
+$pol  = Get-Content (Join-Path $Cfg "policy.json") -Raw | ConvertFrom-Json
+$hash = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($Pin))).Replace('-','').ToLower()
+if($hash -ne $pol.operator_pin_hash){ throw "Invalid PIN" }
+$file = Join-Path $Cfg "approvals.json"
+$items = (Get-Content $file -Raw | ConvertFrom-Json)
+$hit = $items | Where-Object { $_.id -eq $Id } | Select-Object -First 1
+if(-not $hit){ throw "Not found" }
+if([string]::IsNullOrWhiteSpace($hit.a2)){ $hit.a2 = $env:USERNAME }
+($items) | ConvertTo-Json -Depth 5 | Set-Content $file -Encoding UTF8
+"APPROVED: $Id"
+
+_lib = Join-Path (Split-Path Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+param([Parameter(Mandatory)][string]$Id,[Parameter(Mandatory)][string]$Pin)
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Cfg  = Join-Path $Base "config"
+$pol  = Get-Content (Join-Path $Cfg "policy.json") -Raw | ConvertFrom-Json
+$hash = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($Pin))).Replace('-','').ToLower()
+if($hash -ne $pol.operator_pin_hash){ throw "Invalid PIN" }
+$file = Join-Path $Cfg "approvals.json"
+$items = (Get-Content $file -Raw | ConvertFrom-Json)
+$hit = $items | Where-Object { $_.id -eq $Id } | Select-Object -First 1
+if(-not $hit){ throw "Not found" }
+if([string]::IsNullOrWhiteSpace($hit.a2)){ $hit.a2 = $env:USERNAME }
+($items) | ConvertTo-Json -Depth 5 | Set-Content $file -Encoding UTF8
+"APPROVED: $Id"
+
+_tryRoot -Parent) 'lib\Mason.Base.psm1'
+Import-Module Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$MasonBase = Get-MasonBase -FromPath $PSScriptRoot
+Set-Location $MasonBase# Mason2 Version: Mason2_20251104_145719.zip
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+param([Parameter(Mandatory)][string]$Id,[Parameter(Mandatory)][string]$Pin)
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Cfg  = Join-Path $Base "config"
+$pol  = Get-Content (Join-Path $Cfg "policy.json") -Raw | ConvertFrom-Json
+$hash = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($Pin))).Replace('-','').ToLower()
+if($hash -ne $pol.operator_pin_hash){ throw "Invalid PIN" }
+$file = Join-Path $Cfg "approvals.json"
+$items = (Get-Content $file -Raw | ConvertFrom-Json)
+$hit = $items | Where-Object { $_.id -eq $Id } | Select-Object -First 1
+if(-not $hit){ throw "Not found" }
+if([string]::IsNullOrWhiteSpace($hit.a2)){ $hit.a2 = $env:USERNAME }
+($items) | ConvertTo-Json -Depth 5 | Set-Content $file -Encoding UTF8
+"APPROVED: $Id"
+
+_lib -Force
+$MasonBase = Get-MasonBase
+Set-Location $MasonBase
+# Stamped: 2025-11-05T17:02:01
+# Mason2-Version: 1.1.1
+param([Parameter(Mandatory)][string]$Id,[Parameter(Mandatory)][string]$Pin)
+$Base = Join-Path $env:USERPROFILE "Desktop\Mason2"
+$Cfg  = Join-Path $Base "config"
+$pol  = Get-Content (Join-Path $Cfg "policy.json") -Raw | ConvertFrom-Json
+$hash = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($Pin))).Replace('-','').ToLower()
+if($hash -ne $pol.operator_pin_hash){ throw "Invalid PIN" }
+$file = Join-Path $Cfg "approvals.json"
+$items = (Get-Content $file -Raw | ConvertFrom-Json)
+$hit = $items | Where-Object { $_.id -eq $Id } | Select-Object -First 1
+if(-not $hit){ throw "Not found" }
+if([string]::IsNullOrWhiteSpace($hit.a2)){ $hit.a2 = $env:USERNAME }
+($items) | ConvertTo-Json -Depth 5 | Set-Content $file -Encoding UTF8
+"APPROVED: $Id"
+

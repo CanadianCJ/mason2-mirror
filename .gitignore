@@ -1,0 +1,28 @@
+﻿# secrets
+.env*
+config/secrets_mason.json
+**/secrets*.json
+
+# runtime state / logs / reports
+state/
+logs/
+reports/
+knowledge/ingest/raw/
+**/*log*
+**/*.pid
+
+# environments / deps
+**/.venv/
+**/venv/
+**/__pycache__/
+**/node_modules/
+**/.dart_tool/
+**/build/
+**/dist/
+**/.pytest_cache/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

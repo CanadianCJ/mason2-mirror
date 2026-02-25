@@ -1,0 +1,119 @@
+{
+  "version": 2,
+  "goals": {
+    "summary": "Athena is the operator console / cockpit for Mason: chat, per-component tabs (Mason, Onyx, Athena, etc.), live status, approvals, and self-evolving READMEs.",
+    "primary_user": "Chris (governor/owner)",
+    "primary_agent": "Mason2 (local operator) via Teacher API",
+    "dynamic_component_tabs": true
+  },
+  "protected_elements": {
+    "must_preserve_chat_tab": true,
+    "chat_tab_id": "chat",
+    "must_preserve_chat_endpoint": true,
+    "chat_endpoint": "/api/chat",
+    "notes": "Future Athena changes must not remove or break the main chat box. Layout can change, but there must always be a working chat tab and chat endpoint."
+  },
+  "global_tabs": [
+    {
+      "id": "chat",
+      "label": "Chat",
+      "description": "Two-way chat with Mason routed through the bridge. This tab is protected and must always exist."
+    },
+    {
+      "id": "uploads",
+      "label": "Uploads",
+      "description": "UI to upload text and zip files to Mason2 for ingest.",
+      "endpoints": [
+        "POST /api/upload_text",
+        "POST /api/upload_zip"
+      ]
+    }
+  ],
+  "component_tabs": {
+    "source": "config/component_registry.json",
+    "tab_layout": {
+      "sections": [
+        {
+          "id": "status",
+          "label": "Status",
+          "description": "Live status and health metrics for this component.",
+          "widgets": [
+            "component_status_summary",
+            "component_health_metrics"
+          ]
+        },
+        {
+          "id": "approvals",
+          "label": "Approvals",
+          "description": "Approvals and decisions that apply to this component only.",
+          "widgets": [
+            "component_pending_approvals"
+          ]
+        },
+        {
+          "id": "readme",
+          "label": "README",
+          "description": "Self-evolving, human-readable README for this component.",
+          "widgets": [
+            "component_readme_view"
+          ]
+        }
+      ]
+    }
+  },
+  "approvals_requirements": {
+    "source_file": "state/knowledge/pending_auto_apply_requests.json",
+    "component_routing": {
+      "use_field": "area",
+      "match_against": "component_registry.components[].approvals_filters.area_prefix"
+    },
+    "display_rules": {
+      "show_reason": true,
+      "show_risk_level": true,
+      "show_success_counts": true,
+      "show_teacher_api_status": true
+    }
+  },
+  "readme_requirements": {
+    "per_component_readmes": true,
+    "readme_path_from_registry": "readme_path",
+    "update_triggers": [
+      "component_patch_applied",
+      "important_config_changed",
+      "new_feature_enabled",
+      "new_seed_for_component_trusted"
+    ],
+    "goals": [
+      "Explain what the component does in simple terms.",
+      "Explain how to use it day-to-day.",
+      "Explain what changed recently, in a short 'Changelog' section."
+    ]
+  },
+  "ue_loop_requirements": {
+    "apply_to": [
+      "athena_ui",
+      "component_tabs",
+      "status_widgets",
+      "approval_views",
+      "readme_views"
+    ],
+    "goals": [
+      "Continuously increase the amount of genuinely useful information shown for each component.",
+      "Simplify layouts and wording over time based on usage and feedback.",
+      "Never reduce chat availability or break the protected chat flow."
+    ],
+    "signals_example": [
+      "which tabs Chris uses most",
+      "which components often have pending approvals",
+      "where Chris spends time reading READMEs"
+    ],
+    "notes": "Mason should treat Athena itself as a UE loop subject: measure, propose small improvements, get Teacher API approval, then apply via patches."
+  },
+  "design_notes": {
+    "default_dark_mode": true,
+    "minimize_clicks_for_status": true,
+    "component_tabs_auto_expand": true,
+    "emphasize_component_context": true,
+    "show_current_component_urls": true
+  }
+}

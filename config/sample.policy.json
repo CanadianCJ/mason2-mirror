@@ -1,0 +1,41 @@
+﻿{
+    "high_risk_window":  "00:00-23:59",
+    "risk_score":  {
+                       "size":  1.0,
+                       "blast":  1.0,
+                       "risk":  1.0,
+                       "gate":  5.0
+                   },
+    "two_key_required":  true,
+    "egress_denylist":  [
+                            "*://*.pastebin.*",
+                            "*://*.anonfiles.*"
+                        ],
+    "cmd_allowlist":  [
+                          "powershell",
+                          "cmd",
+                          "robocopy",
+                          "tar",
+                          "esbuild"
+                      ],
+    "file_scope_root":  "%USERPROFILE%/Desktop/Mason2",
+    "outbound_budget_kb_per_min":  5120,
+    "prompt_injection_patterns":  [
+                                      "ignore previous",
+                                      "system override",
+                                      "exfiltrate"
+                                  ],
+    "output_moderation_rules":  [
+                                    "no PII",
+                                    "no secrets",
+                                    "no credentials"
+                                ],
+    "legal_banner":  true,
+    "safe_mode":  false,
+    "operator_pin_hash":  "819400ea6fa9fad96a2ef62de70caf3641c30e23e1438b141015052cf46bd04c",
+    "incident_paging_throttle_min":  15,
+    "risk_budget":  {
+                        "max_size_mb":  50,
+                        "max_blast":  "medium"
+                    }
+}

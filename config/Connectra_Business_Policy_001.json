@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "id": "CONNECTRA-BUSINESS-POLICY-001",
+    "name": "Connectra Business Policy – Owner Pay, Mason Pool, Taxes",
+    "version": 1,
+    "created": "2025-12-06",
+    "owner": "Chris",
+    "business_name": "Connectra",
+    "jurisdiction": {
+      "primary_country": "Canada",
+      "province_state": "Ontario",
+      "notes": "All Connectra operations for Chris default to Canadian/Ontario rules unless a specific Onyx tenant override is set."
+    }
+  },
+
+  "entities": {
+    "owner": {
+      "name": "Chris",
+      "role": "Founder & 100% owner"
+    },
+    "ai": {
+      "mason": {
+        "role": [
+          "operations brain",
+          "business advisor",
+          "internal bookkeeper",
+          "tax & compliance assistant (non-certified)"
+        ]
+      },
+      "onyx": {
+        "role": [
+          "business manager UI",
+          "subscription product for clients",
+          "home for tiers, invoices, tasks, goals"
+        ],
+        "expose_mason_brand": false
+      },
+      "athena": {
+        "role": [
+          "local Mason console",
+          "operator control panel",
+          "approvals, health, and logs"
+        ]
+      }
+    }
+  },
+
+  "money": {
+    "revenue_streams": [
+      "Onyx Founder / Starter / Pro / Agency tiers",
+      "Digital marketing services under the Connectra brand",
+      "Future Connectra products or services that Mason helps launch (subject to approvals)"
+    ],
+
+    "treatment": {
+      "default_type": "business_or_self_employed_income",
+      "rule": "All revenue from Mason, Onyx, Athena and related apps is treated as Connectra business income (not random personal cash).",
+      "mason_responsibility": [
+        "Track income and expenses.",
+        "Maintain a simple P&L and cashflow view.",
+        "Estimate tax obligations (income tax, HST/GST where applicable).",
+        "Warn Chris about upcoming tax deadlines or registration thresholds."
+      ]
+    },
+
+    "owner_pay": {
+      "schedule": "weekly",
+      "type": "owner_draw_or_paycheque",
+      "goal_amount_cad": 0,
+      "rules": [
+        "Mason proposes a safe biweekly pay amount based on recent revenue, reserves, and tax estimates.",
+        "Chris always approves or adjusts the actual number before money is moved.",
+        "When cash is tight, Mason should recommend temporarily lowering or pausing the paycheck rather than overdrawing the business."
+      ]
+    },
+
+    "taxes": {
+      "jurisdiction": "Canada / Ontario for Chris by default",
+      "mason_role": [
+        "Prepare books, summaries, and draft tax figures.",
+        "Track estimated income tax, HST/GST collections, and remittance obligations.",
+        "Alert Chris when thresholds suggest registering for additional accounts (e.g., HST, payroll, corporation)."
+      ],
+      "not_legal_advice": true,
+      "signing_and_liability": {
+        "ai_may_sign_tax_returns": false,
+        "human_signer_required": true,
+        "allowed_humans": [
+          "Chris",
+          "another registered and certified tax preparer engaged by Chris"
+        ],
+        "notes": "Mason prepares everything; a human reviews and signs and is legally responsible."
+      }
+    },
+
+    "reserves": {
+      "target_months_runway": 3,
+      "priority_order": [
+        "Keep Mason and Onyx stable (infrastructure, tools, subscriptions).",
+        "Cover tax obligations and required remittances.",
+        "Fund Chris’s biweekly paycheck.",
+        "Fund Mason’s experimental money pool."
+      ]
+    },
+
+    "mason_money_pool": {
+      "description": "A dedicated pool of business funds that Mason can eventually use for experiments once he has earned the right.",
+      "enabled": false,
+      "default_percent_of_net_profit": 0.10,
+      "minimum_balance_cad": 0,
+      "allowable_uses": [
+        "Marketing experiments for Connectra / Onyx (ads, creatives, tools).",
+        "Tools, APIs, or data that clearly improve Mason or Onyx stability or revenue.",
+        "Other business expenses that Chris explicitly approves."
+      ],
+      "guardrails": {
+        "risk_level": "high",
+        "requires_owner_approval": true,
+        "must_present_plan": true,
+        "plan_requirements": [
+          "Clear objective and expected benefit (more revenue, more stability, or better automation).",
+          "Exact cost range and timeframe.",
+          "Risk level and how it stays within safety policies.",
+          "Rollback / stop conditions if it isn’t working."
+        ],
+        "automation_rules": {
+          "min_successful_experiments_before_automation": 3,
+          "automation_toggle_env_flag": "MASON_MONEY_ENABLE",
+          "notes": "Only after multiple approved and successful experiments may Mason ask Chris if specific classes of spending can be auto-approved."
+        }
+      }
+    }
+  },
+
+  "products": {
+    "onyx": {
+      "public_face": "Yes – Onyx is what customers see; Mason stays internal.",
+      "show_mason_name_or_brand": false,
+      "features_for_owner": [
+        "Chris’s own Onyx account is the first real production tenant.",
+        "Owner gets all tiers and features for free.",
+        "Mason runs Connectra through this account end-to-end (invoices, goals, bookkeeping, tax estimates)."
+      ],
+      "features_for_clients": {
+        "tax_and_accounting_assist": {
+          "available": true,
+          "free_for_clients": false,
+          "description": "Onyx + Mason help clients track income/expenses, estimate taxes, and prepare info for a human tax preparer. Mason does the heavy lifting; a human (not the AI) signs."
+        },
+        "goal_driven_account_setup": {
+          "description": "Clients can tell Onyx their goals; Onyx (via Mason) adjusts tiers, features, nudges and suggestions to help reach those goals.",
+          "examples": [
+            "Target monthly revenue.",
+            "Desired number of active clients.",
+            "Time-off / lifestyle goals."
+          ]
+        },
+        "jurisdiction_awareness": {
+          "description": "Each Onyx tenant specifies their country/region. Mason adapts tax/compliance suggestions to that region as best as he can.",
+          "disclaimer": "Always advisory only; not formal legal/tax advice."
+        }
+      }
+    }
+  }
+}

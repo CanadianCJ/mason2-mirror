@@ -1,0 +1,5 @@
+{
+  "auto_ingest_enabled": false,
+  "auto_web_enabled": true,
+  "run_aggregator": true
+}

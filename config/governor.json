@@ -1,0 +1,6 @@
+{
+  "restart_budget_per_hour": 4,
+  "freeze_when_health_below": 60,
+  "task_weights": { "Mason2-FileServer-7001": 5, "Mason2-Watchdog-7001": 1 },
+  "quarantine_threshold": 3
+}

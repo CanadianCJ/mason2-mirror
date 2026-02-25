@@ -1,0 +1,2772 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Athena â€“ Mason Console</title>
+  <style>
+    :root {
+      --bg: #05070b;
+      --bg-card: #101320;
+      --bg-card-soft: #15192a;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.15);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2937;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --warning: #eab308;
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --shadow-soft: 0 14px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 60%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1200px;
+      margin: 16px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(15,23,42,0.96), rgba(17,24,39,0.98));
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,0.2);
+    }
+
+    .header {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top left, rgba(59,130,246,0.15), transparent 50%);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #60a5fa, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: #0b1120;
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.8), 0 12px 30px rgba(37,99,235,0.7);
+    }
+
+    .header-title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .header-title-main {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .header-title-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .status-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(22,163,74,0.08);
+      border: 1px solid rgba(34,197,94,0.4);
+      color: #bbf7d0;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.3);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      padding: 8px 16px 0 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top right, rgba(15,118,110,0.12), transparent 45%);
+    }
+
+    .tab-button {
+      border: none;
+      background: transparent;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease-out;
+    }
+
+    .tab-button span.badge {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.18);
+      color: var(--text-muted);
+    }
+
+    .tab-button.active {
+      background: var(--accent-soft);
+      color: #dbeafe;
+    }
+
+    .tab-button.active span.badge {
+      background: rgba(59,130,246,0.4);
+      color: #eff6ff;
+    }
+
+    .main-body {
+      display: flex;
+      flex: 1;
+      padding: 12px 16px 16px 16px;
+      gap: 12px;
+    }
+
+    .main-body:not(.chat-mode) #panel-chat {
+      display: none;
+    }
+
+    .main-body.chat-mode #panel-primary {
+      display: none;
+    }
+
+    .main-body.chat-mode #panel-chat {
+      display: flex;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .panel {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.95), rgba(15,23,42,0.96));
+      border: 1px solid var(--border-subtle);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .panel-title {
+      font-weight: 500;
+    }
+
+    .panel-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .panel-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+      color: var(--text-main);
+      padding: 5px 10px;
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.12s ease-out;
+    }
+
+    .btn:hover {
+      border-color: rgba(191,219,254,0.9);
+      background: rgba(30,64,175,0.8);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      border-color: rgba(129,140,248,0.9);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1d4ed8, #4338ca);
+    }
+
+    .btn-danger {
+      border-color: rgba(248,113,113,0.9);
+      color: #fecaca;
+    }
+
+    .btn-danger:hover {
+      background: rgba(127,29,29,0.9);
+    }
+
+    .btn-xs {
+      padding: 3px 7px;
+      font-size: 11px;
+    }
+
+    .btn-soft {
+      background: rgba(15,23,42,0.8);
+    }
+
+    .content-scroll {
+      flex: 1;
+      overflow: auto;
+      border-radius: var(--radius-md);
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(2,6,23,0.98));
+      padding: 8px;
+      border: 1px solid rgba(31,41,55,0.9);
+    }
+
+    /* Tabs content */
+
+    .tab-content {
+      display: none;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .tab-content.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Status text area */
+
+    .status-text {
+      white-space: pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      line-height: 1.4;
+      color: #e5e7eb;
+    }
+
+    /* Approvals cards */
+
+    .approvals-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .approvals-filters {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .filter-field select,
+    .filter-field input {
+      border-radius: 8px;
+      border: 1px solid rgba(75,85,99,0.9);
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      padding: 6px 8px;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .filter-field select:focus,
+    .filter-field input:focus {
+      border-color: rgba(59,130,246,0.9);
+    }
+
+    .filter-search {
+      grid-column: span 1;
+    }
+
+    .approvals-triage-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 8px;
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(2,6,23,0.82);
+    }
+
+    .triage-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+
+    .triage-label {
+      min-width: 72px;
+      color: #94a3b8;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+    }
+
+    .triage-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .triage-pill {
+      border-radius: 999px;
+      border: 1px solid rgba(71,85,105,0.9);
+      background: rgba(15,23,42,0.85);
+      color: #e2e8f0;
+      padding: 2px 8px;
+      font-size: 11px;
+    }
+
+    .approval-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .approval-group-header {
+      font-size: 12px;
+      font-weight: 600;
+      color: #dbeafe;
+      border: 1px solid rgba(59,130,246,0.45);
+      background: rgba(30,64,175,0.2);
+      border-radius: 8px;
+      padding: 6px 8px;
+    }
+
+    .approval-card {
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,1));
+      border: 1px solid rgba(55,65,81,0.9);
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    .approval-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .approval-title {
+      font-weight: 500;
+    }
+
+    .approval-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      border: 1px solid rgba(75,85,99,0.9);
+      background: rgba(15,23,42,0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pill-risk {
+      border-color: rgba(248,250,252,0.15);
+      background: rgba(15,23,42,0.95);
+    }
+
+    .pill-component {
+      border-color: rgba(59,130,246,0.7);
+      background: rgba(30,64,175,0.35);
+      color: #e0f2fe;
+    }
+
+    .pill-status {
+      border-color: rgba(148,163,184,0.8);
+      background: rgba(15,23,42,0.85);
+    }
+
+    .pill-status-approved {
+      border-color: rgba(34,197,94,0.8);
+      color: #bbf7d0;
+    }
+
+    .pill-status-pending {
+      border-color: rgba(234,179,8,0.8);
+      color: #facc15;
+    }
+
+    .pill-status-rejected {
+      border-color: rgba(248,113,113,0.9);
+      color: #fecaca;
+    }
+
+    .pill-run-eligible {
+      border-color: rgba(34,197,94,0.75);
+      background: rgba(20,83,45,0.35);
+      color: #bbf7d0;
+    }
+
+    .pill-blocked {
+      border-color: rgba(248,113,113,0.85);
+      background: rgba(127,29,29,0.28);
+      color: #fecaca;
+    }
+
+    .approval-runline {
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .approval-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .approval-operator-summary {
+      border-radius: 8px;
+      border: 1px solid rgba(71,85,105,0.85);
+      background: rgba(2,6,23,0.8);
+      color: #cbd5e1;
+      padding: 6px 8px;
+      font-size: 11px;
+      line-height: 1.35;
+      white-space: pre-wrap;
+    }
+
+    .approval-domain-line {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .approval-actions-panel {
+      margin-top: 4px;
+      border-radius: 8px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(2,6,23,0.86);
+      padding: 6px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .approval-actions-toggle {
+      border: none;
+      background: transparent;
+      color: #bfdbfe;
+      cursor: pointer;
+      font-size: 11px;
+      text-align: left;
+      padding: 0;
+    }
+
+    .approval-actions-list {
+      margin: 0;
+      padding-left: 18px;
+      color: #cbd5e1;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .approval-details {
+      margin-top: 4px;
+      border-radius: 8px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(2,6,23,0.86);
+      padding: 6px 8px;
+    }
+
+    .approval-details summary {
+      cursor: pointer;
+      color: #bfdbfe;
+      font-size: 11px;
+      font-weight: 500;
+      list-style: none;
+      outline: none;
+    }
+
+    .approval-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .approval-details summary::before {
+      content: "+ ";
+      color: #93c5fd;
+    }
+
+    .approval-details[open] summary::before {
+      content: "- ";
+    }
+
+    .approval-details-body {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+
+    .helper-text {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .run-result {
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(2,6,23,0.9);
+      padding: 8px;
+      color: #cbd5e1;
+      font-size: 11px;
+      line-height: 1.35;
+      overflow: auto;
+      white-space: pre-wrap;
+      min-height: 44px;
+    }
+
+    .trust-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .trust-section {
+      border-radius: 10px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(2,6,23,0.88);
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .trust-section-title {
+      font-size: 12px;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    .trust-table {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+
+    .trust-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-radius: 8px;
+      border: 1px solid rgba(55,65,81,0.85);
+      background: rgba(15,23,42,0.75);
+      padding: 6px 8px;
+    }
+
+    .trust-row-left {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .trust-row-right {
+      color: #9ca3af;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+    }
+
+    .trust-smoke {
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.4;
+      white-space: pre-wrap;
+    }
+
+    .trust-capabilities {
+      margin: 0;
+      padding-left: 18px;
+      color: #e5e7eb;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .notifications-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .notification-item {
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,1));
+      border: 1px solid rgba(55,65,81,0.9);
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    .notification-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .notification-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .notification-level {
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 1px 7px;
+      border: 1px solid rgba(148,163,184,0.8);
+      background: rgba(15,23,42,0.85);
+      font-size: 10px;
+      letter-spacing: 0.4px;
+      color: #e2e8f0;
+    }
+
+    .notification-message {
+      color: #e5e7eb;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .notification-context {
+      margin: 0;
+      border-radius: 8px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(2,6,23,0.9);
+      padding: 6px 8px;
+      color: #cbd5e1;
+      font-size: 11px;
+      line-height: 1.35;
+      overflow: auto;
+    }
+
+    /* Chat */
+
+    .chat-layout {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      gap: 10px;
+    }
+
+    .chat-sidebar {
+      width: 260px;
+      min-width: 220px;
+      max-width: 320px;
+      border-radius: 10px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(2,6,23,0.9);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .chat-sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px;
+      border-bottom: 1px solid rgba(55,65,81,0.85);
+    }
+
+    .chat-conversations {
+      flex: 1;
+      overflow: auto;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .chat-conversation-item {
+      border-radius: 10px;
+      border: 1px solid rgba(55,65,81,0.85);
+      background: rgba(15,23,42,0.85);
+      padding: 8px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 100%;
+      text-align: left;
+      color: inherit;
+      transition: border-color 0.12s ease-out, background 0.12s ease-out;
+    }
+
+    .chat-conversation-item:hover {
+      border-color: rgba(96,165,250,0.9);
+      background: rgba(30,64,175,0.25);
+    }
+
+    .chat-conversation-item.active {
+      border-color: rgba(59,130,246,0.95);
+      background: rgba(30,64,175,0.35);
+    }
+
+    .chat-conversation-title {
+      font-size: 12px;
+      color: #e2e8f0;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chat-conversation-meta {
+      font-size: 11px;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chat-main {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      border-radius: 10px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(2,6,23,0.9);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-main-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(55,65,81,0.85);
+    }
+
+    .chat-main-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #dbeafe;
+    }
+
+    .chat-main-sub {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .chat-messages {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.95), rgba(2,6,23,0.98));
+    }
+
+    .chat-message-row {
+      display: flex;
+    }
+
+    .chat-message-row.user {
+      justify-content: flex-end;
+    }
+
+    .chat-message-row.assistant {
+      justify-content: flex-start;
+    }
+
+    .chat-bubble {
+      width: fit-content;
+      max-width: min(820px, 85%);
+      border-radius: 12px;
+      border: 1px solid rgba(55,65,81,0.9);
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .chat-bubble.user {
+      background: rgba(30,64,175,0.35);
+      border-color: rgba(59,130,246,0.85);
+      color: #eff6ff;
+    }
+
+    .chat-bubble.assistant {
+      background: rgba(15,23,42,0.92);
+      border-color: rgba(71,85,105,0.95);
+      color: #e5e7eb;
+    }
+
+    .chat-message-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 10px;
+      color: #9ca3af;
+    }
+
+    .chat-message-role {
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+    }
+
+    .chat-message-time {
+      color: #94a3b8;
+    }
+
+    .chat-copy-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.9);
+      color: #e2e8f0;
+      font-size: 10px;
+      padding: 2px 8px;
+      cursor: pointer;
+    }
+
+    .chat-copy-btn:hover {
+      border-color: rgba(191,219,254,0.9);
+      background: rgba(30,64,175,0.7);
+    }
+
+    .chat-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .chat-text-block {
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: inherit;
+    }
+
+    .chat-code-block {
+      margin: 0;
+      border-radius: 8px;
+      border: 1px solid rgba(71,85,105,0.95);
+      background: rgba(2,6,23,0.98);
+      padding: 8px 10px;
+      overflow: auto;
+    }
+
+    .chat-code-block code {
+      display: block;
+      white-space: pre;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #e2e8f0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .chat-typing {
+      font-style: italic;
+      color: #cbd5e1;
+    }
+
+    .chat-composer {
+      border-top: 1px solid rgba(55,65,81,0.85);
+      padding: 10px;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      background: rgba(2,6,23,0.92);
+    }
+
+    .chat-input-wrap {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .chat-input {
+      width: 100%;
+      min-height: 46px;
+      max-height: 180px;
+      resize: vertical;
+      border-radius: 10px;
+      border: 1px solid rgba(75,85,99,0.9);
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      padding: 8px 10px;
+      font-size: 13px;
+      line-height: 1.4;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .chat-input:focus {
+      border-color: rgba(59,130,246,0.9);
+    }
+
+    .chat-hint {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .empty-state {
+      font-size: 12px;
+      color: var(--text-muted);
+      padding: 4px 2px;
+    }
+
+    @media (max-width: 900px) {
+      .main-body {
+        flex-direction: column;
+      }
+
+      .approvals-filters {
+        grid-template-columns: 1fr;
+      }
+
+      .chat-layout {
+        flex-direction: column;
+      }
+
+      .chat-sidebar {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        max-height: 220px;
+      }
+
+      .chat-bubble {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="header">
+      <div class="header-left">
+        <div class="brand-badge">A</div>
+        <div class="header-title">
+          <div class="header-title-main">Athena â€“ Mason Console</div>
+          <div class="header-title-sub">Your control surface for Mason, Onyx, and approvals</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="status-pill">
+          <div class="status-dot"></div>
+          <span id="status-pill-text">Online</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-button active" data-tab="status">
+        Status
+      </button>
+      <button class="tab-button" data-tab="trust">
+        Trust
+      </button>
+      <button class="tab-button" data-tab="approvals">
+        Approvals <span class="badge" id="approvals-count-badge">0</span>
+      </button>
+      <button class="tab-button" data-tab="notifications">
+        Notifications <span class="badge" id="notifications-count-badge">0</span>
+      </button>
+      <button class="tab-button" data-tab="chat">
+        Chat
+      </button>
+    </div>
+
+    <div class="main-body">
+      <!-- Left side: Status / Approvals -->
+      <div class="panel" id="panel-primary" style="flex: 2;">
+        <!-- Status tab -->
+        <div id="tab-status" class="tab-content active">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Mason status</div>
+              <div class="panel-sub">Aggregated health, risk state, and resource summary</div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn btn-soft btn-xs" id="btn-refresh-status">Refresh status</button>
+            </div>
+          </div>
+          <div class="content-scroll">
+            <div id="status-text" class="status-text">
+              Loading Mason status...
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust tab -->
+        <div id="tab-trust" class="tab-content">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Trust</div>
+              <div class="panel-sub">Current risk policy, auto-apply levels, latest smoke status, and active capabilities.</div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn btn-soft btn-xs" id="btn-refresh-trust">Refresh trust</button>
+            </div>
+          </div>
+          <div class="content-scroll">
+            <div class="trust-stack">
+              <div class="trust-section">
+                <div class="trust-section-title">Current Risk Policy Level</div>
+                <div id="trust-component-levels" class="trust-table"></div>
+              </div>
+              <div class="trust-section">
+                <div class="trust-section-title">Auto-Apply By Risk Level</div>
+                <div id="trust-auto-apply" class="trust-table"></div>
+              </div>
+              <div class="trust-section">
+                <div class="trust-section-title">Last Smoke Test</div>
+                <div id="trust-smoke-status" class="trust-smoke">Loading...</div>
+              </div>
+              <div class="trust-section">
+                <div class="trust-section-title">Capabilities Right Now</div>
+                <ul id="trust-capabilities" class="trust-capabilities"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Approvals tab -->
+        <div id="tab-approvals" class="tab-content">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Approvals</div>
+              <div class="panel-sub">
+                Review and approve/reject Mason proposals. Executed/rejected items drop out of this list.
+              </div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn btn-primary btn-xs" id="btn-bulk-approve-r0">Bulk Approve R0</button>
+              <button class="btn btn-primary btn-xs" id="btn-apply-r0-now">Apply R0</button>
+              <button class="btn btn-soft btn-xs" id="btn-apply-r1-now">Apply R1 (Mason/Athena)</button>
+              <button class="btn btn-soft btn-xs" id="btn-generate-workorder">Generate Codex Work Order (R1)</button>
+              <button class="btn btn-soft btn-xs" id="btn-refresh-approvals">Refresh approvals</button>
+            </div>
+          </div>
+          <div class="approvals-filters">
+            <label class="filter-field">
+              Domain
+              <select id="filter-domain">
+                <option value="all">All</option>
+                <option value="mason">Mason</option>
+                <option value="athena">Athena</option>
+                <option value="onyx">Onyx</option>
+              </select>
+            </label>
+            <label class="filter-field">
+              Risk
+              <select id="filter-risk">
+                <option value="all">All</option>
+                <option value="R0">R0</option>
+                <option value="R1">R1</option>
+                <option value="R2">R2</option>
+                <option value="R3">R3</option>
+              </select>
+            </label>
+            <label class="filter-field">
+              Status
+              <select id="filter-status">
+                <option value="all">All</option>
+                <option value="pending">pending</option>
+                <option value="approve">approve</option>
+                <option value="reject">reject</option>
+                <option value="executed">executed</option>
+              </select>
+            </label>
+            <label class="filter-field filter-search">
+              Search
+              <input id="filter-search" type="text" placeholder="Search by ID or title" />
+            </label>
+          </div>
+          <div id="approvals-triage-summary" class="approvals-triage-summary"></div>
+          <div class="content-scroll">
+            <div id="approvals-list" class="approvals-list">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+          <div class="helper-text">
+            For each approval, Athena will:
+            1) save your decision and reason,
+            2) show whether each item will run now or why it is blocked,
+            3) apply approved items in R0 or R1 (Mason/Athena only for R1) with smoke + rollback gates,
+            4) generate Codex work orders for approved R1 items,
+            5) hide the item once it is executed or rejected.
+          </div>
+          <pre id="approvals-run-result" class="run-result">{ "ok": null, "mode": "R0", "smoke_pass": null, "log_path": "", "applied_count": 0, "skipped_count": 0 }</pre>
+          <pre id="approvals-workorder-result" class="run-result">{ "ok": null, "count": 0, "workorder_path": "", "log_path": "" }</pre>
+        </div>
+
+        <!-- Notifications tab -->
+        <div id="tab-notifications" class="tab-content">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Notifications</div>
+              <div class="panel-sub">Newest-first runtime events from Athena and executor actions.</div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn btn-soft btn-xs" id="btn-refresh-notifications">Refresh notifications</button>
+            </div>
+          </div>
+          <div class="content-scroll">
+            <div id="notifications-list" class="notifications-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side: Chat -->
+      <div class="panel" id="panel-chat" style="flex: 1.4;">
+        <div id="tab-chat" class="tab-content">
+          <div class="chat-layout">
+            <section class="chat-main">
+              <div class="chat-main-header">
+                <div>
+                  <div id="chat-active-title" class="chat-main-title">Mason Chat</div>
+                  <div class="chat-main-sub">Persistent conversation memory is shared across refreshes.</div>
+                </div>
+                <button class="btn btn-soft btn-xs" id="btn-refresh-chat">Refresh</button>
+              </div>
+
+              <div id="chat-messages" class="chat-messages"></div>
+
+              <div class="chat-composer">
+                <div class="chat-input-wrap">
+                  <textarea id="chat-input" class="chat-input" rows="3" placeholder="Message Mason..."></textarea>
+                  <div class="chat-hint">Enter = send, Shift+Enter = newline</div>
+                </div>
+                <button class="btn btn-primary" id="btn-send-chat">Send</button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple fetch helper
+    async function fetchJson(url, options) {
+      const resp = await fetch(url, options || {});
+      const text = await resp.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        console.error("Failed to parse JSON from", url, text);
+        throw e;
+      }
+      return data;
+    }
+
+    // Tabs
+    function setActiveTab(tabId) {
+      const mainBody = document.querySelector(".main-body");
+      if (mainBody) {
+        mainBody.classList.toggle("chat-mode", tabId === "chat");
+      }
+      document.querySelectorAll(".tab-button").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === tabId);
+      });
+      document.querySelectorAll(".tab-content").forEach(el => {
+        el.classList.toggle("active", el.id === "tab-" + tabId);
+      });
+    }
+
+    document.querySelectorAll(".tab-button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const tabId = btn.dataset.tab;
+        setActiveTab(tabId);
+        if (tabId === "trust") {
+          refreshTrust();
+        }
+        if (tabId === "notifications") {
+          refreshNotifications();
+        }
+        if (tabId === "chat") {
+          initChat();
+        }
+      });
+    });
+
+    // Status
+    async function refreshStatus() {
+      const statusEl = document.getElementById("status-text");
+      statusEl.textContent = "Loading Mason status...";
+      try {
+        const data = await fetchJson("/api/mason_status");
+        if (!data.ok) {
+          statusEl.textContent = "Status error: " + (data.message || "unknown error");
+          return;
+        }
+        statusEl.textContent = data.status || "No status text returned.";
+        const pillText = document.getElementById("status-pill-text");
+        pillText.textContent = data.severity === "error" ? "Error" :
+                               data.severity === "warn" ? "Warning" : "Online";
+      } catch (e) {
+        console.error(e);
+        statusEl.textContent = "Failed to load Mason status: " + e;
+      }
+    }
+
+    document.getElementById("btn-refresh-status").addEventListener("click", refreshStatus);
+
+    // Trust
+    function appendTrustRow(container, leftText, rightText) {
+      const row = document.createElement("div");
+      row.className = "trust-row";
+
+      const left = document.createElement("div");
+      left.className = "trust-row-left";
+      left.textContent = leftText;
+
+      const right = document.createElement("div");
+      right.className = "trust-row-right";
+      right.textContent = rightText;
+
+      row.appendChild(left);
+      row.appendChild(right);
+      container.appendChild(row);
+    }
+
+    function formatTrustTimestamp(rawTs) {
+      if (!rawTs) return "Unknown time";
+      const dt = new Date(rawTs);
+      if (Number.isNaN(dt.getTime())) return String(rawTs);
+      return dt.toLocaleString();
+    }
+
+    async function refreshTrust() {
+      const componentEl = document.getElementById("trust-component-levels");
+      const autoApplyEl = document.getElementById("trust-auto-apply");
+      const smokeEl = document.getElementById("trust-smoke-status");
+      const capabilitiesEl = document.getElementById("trust-capabilities");
+
+      componentEl.innerHTML = "";
+      autoApplyEl.innerHTML = "";
+      smokeEl.textContent = "Loading trust data...";
+      capabilitiesEl.innerHTML = "";
+
+      try {
+        const data = await fetchJson("/api/trust");
+
+        const componentPolicy = (data && typeof data.component_risk_policy === "object")
+          ? data.component_risk_policy
+          : {};
+
+        for (const key of ["mason", "athena", "onyx"]) {
+          const entry = componentPolicy[key] || {};
+          const label = String(entry.label || key);
+          const level = String(entry.risk_policy_level || "R0");
+          const source = String(entry.source || "unknown");
+          appendTrustRow(componentEl, label, `${level} (source: ${source})`);
+        }
+
+        const autoApplyByRisk = (data && typeof data.auto_apply_by_risk === "object")
+          ? data.auto_apply_by_risk
+          : {};
+        for (const risk of ["R0", "R1", "R2", "R3"]) {
+          const entry = autoApplyByRisk[risk] || {};
+          const enabled = Boolean(entry.enabled);
+          const comps = Array.isArray(entry.components) ? entry.components : [];
+          const suffix = enabled
+            ? (comps.length ? `Enabled for ${comps.join(", ")}` : "Enabled")
+            : "Disabled";
+          appendTrustRow(autoApplyEl, risk, suffix);
+        }
+
+        const smoke = (data && typeof data.last_smoke_test === "object")
+          ? data.last_smoke_test
+          : {};
+        const smokeStatus = String(smoke.status || "UNKNOWN");
+        const smokeTs = formatTrustTimestamp(smoke.timestamp);
+        const smokeSource = String(smoke.source || "unknown");
+        smokeEl.textContent = `Status: ${smokeStatus}\nTime: ${smokeTs}\nSource: ${smokeSource}`;
+
+        const capabilities = Array.isArray(data.capabilities_right_now)
+          ? data.capabilities_right_now
+          : [];
+        if (capabilities.length === 0) {
+          const li = document.createElement("li");
+          li.textContent = "No capability summary available.";
+          capabilitiesEl.appendChild(li);
+        } else {
+          for (const line of capabilities) {
+            const li = document.createElement("li");
+            li.textContent = String(line);
+            capabilitiesEl.appendChild(li);
+          }
+        }
+      } catch (e) {
+        console.error(e);
+        smokeEl.textContent = "Failed to load trust data: " + e;
+        appendTrustRow(componentEl, "Mason", "Unavailable");
+        appendTrustRow(componentEl, "Athena", "Unavailable");
+        appendTrustRow(componentEl, "Onyx", "Unavailable");
+        appendTrustRow(autoApplyEl, "R0", "Unavailable");
+        appendTrustRow(autoApplyEl, "R1", "Unavailable");
+        appendTrustRow(autoApplyEl, "R2", "Unavailable");
+        appendTrustRow(autoApplyEl, "R3", "Unavailable");
+        const li = document.createElement("li");
+        li.textContent = "Trust capability list unavailable due to API error.";
+        capabilitiesEl.appendChild(li);
+      }
+    }
+
+    document.getElementById("btn-refresh-trust").addEventListener("click", refreshTrust);
+
+    // Approvals
+    const approvalsUiState = {
+      rawItems: [],
+      explainMode: "R0",
+      explainById: {},
+      groupedCounts: {
+        domain_component: {
+          mason: 0,
+          athena: 0,
+          onyx: 0,
+          other: 0
+        },
+        risk_level: {
+          R0: 0,
+          R1: 0,
+          R2: 0,
+          R3: 0
+        },
+        status: {
+          pending: 0,
+          approve: 0,
+          reject: 0,
+          executed: 0
+        }
+      },
+      filters: {
+        domain: "all",
+        risk: "all",
+        status: "all",
+        search: ""
+      }
+    };
+
+    function makeStatusClass(status) {
+      const s = String(status || "").toLowerCase();
+      if (s === "pending") return "pill-status pill-status-pending";
+      if (s === "approve" || s === "approved") return "pill-status pill-status-approved";
+      if (s === "reject" || s === "rejected") return "pill-status pill-status-rejected";
+      return "pill-status";
+    }
+    function normalizeStatusValue(status) {
+      const s = String(status || "").trim().toLowerCase();
+      if (s === "approved") return "approve";
+      if (s === "rejected") return "reject";
+      return s || "pending";
+    }
+
+    function normalizeRiskLabel(risk) {
+      const raw = String(risk || "").trim().toUpperCase();
+      if (!raw) return "R0";
+      if (/^R[0-3]$/.test(raw)) return raw;
+      if (/^[0-3]$/.test(raw)) return `R${raw}`;
+      return raw;
+    }
+
+    function compactText(value) {
+      return String(value || "").replace(/\s+/g, " ").trim();
+    }
+
+    function normalizeDomain(domain) {
+      const raw = String(domain || "").trim().toLowerCase();
+      if (raw === "mason" || raw === "athena" || raw === "onyx") return raw;
+      return raw || "other";
+    }
+
+    function getItemDomain(item) {
+      const explicit = normalizeDomain(item && item.domain_component);
+      if (explicit !== "other") return explicit;
+      const areaDomain = normalizeDomain(item && item.area);
+      if (areaDomain !== "other") return areaDomain;
+      return normalizeDomain(item && item.component_id);
+    }
+
+    function parseTimeMs(ts) {
+      if (!ts) return 0;
+      const ms = Date.parse(ts);
+      return Number.isFinite(ms) ? ms : 0;
+    }
+
+    function approvalSortMs(item) {
+      return Math.max(
+        parseTimeMs(item && item.created_at),
+        parseTimeMs(item && item.decision_at)
+      );
+    }
+
+    function firstTwoSentences(text) {
+      const cleaned = compactText(text);
+      if (!cleaned) return "";
+      const parts = cleaned.split(/(?<=[.!?])\s+/).filter(Boolean);
+      const shortText = parts.length ? parts.slice(0, 2).join(" ") : cleaned;
+      if (shortText.length <= 220) return shortText;
+      return shortText.slice(0, 217).trimEnd() + "...";
+    }
+
+    function getShortSummary(item) {
+      const preferred = firstTwoSentences(item && item.shortSummary);
+      if (preferred) return preferred;
+
+      const description = compactText(item && item.description);
+      if (description) {
+        const markerMatch = /why this helps:\s*/i.exec(description);
+        if (markerMatch) {
+          const tail = description.slice(markerMatch.index + markerMatch[0].length).trim();
+          if (tail) return firstTwoSentences(tail);
+        }
+        return firstTwoSentences(description);
+      }
+
+      const operatorSummary = firstTwoSentences(item && (item.operator_summary || item.operatorSummary));
+      if (operatorSummary) return operatorSummary;
+
+      return "No summary available.";
+    }
+
+    function extractActionStrings(item, maxItems = 2) {
+      const results = [];
+      const seen = new Set();
+
+      function pushValue(value) {
+        if (results.length >= maxItems) return;
+        if (value === null || value === undefined) return;
+
+        if (Array.isArray(value)) {
+          for (const entry of value) {
+            pushValue(entry);
+            if (results.length >= maxItems) return;
+          }
+          return;
+        }
+
+        if (typeof value === "string") {
+          let trimmed = compactText(value);
+          if (trimmed.length > 180) {
+            trimmed = trimmed.slice(0, 177).trimEnd() + "...";
+          }
+          if (trimmed && !seen.has(trimmed)) {
+            seen.add(trimmed);
+            results.push(trimmed);
+          }
+          return;
+        }
+
+        if (typeof value === "number" || typeof value === "boolean") {
+          const asText = String(value);
+          if (!seen.has(asText)) {
+            seen.add(asText);
+            results.push(asText);
+          }
+          return;
+        }
+
+        if (typeof value === "object") {
+          const preferredKeys = [
+            "action",
+            "title",
+            "description",
+            "summary",
+            "text",
+            "name",
+            "command",
+            "cmd",
+            "change",
+            "step"
+          ];
+          let foundPreferred = false;
+          for (const key of preferredKeys) {
+            if (value[key]) {
+              pushValue(value[key]);
+              foundPreferred = true;
+              if (results.length >= maxItems) return;
+            }
+          }
+          if (!foundPreferred && value.id) {
+            pushValue(value.id);
+          }
+        }
+      }
+
+      const candidateKeys = [
+        "actions",
+        "action_items",
+        "proposed_actions",
+        "steps",
+        "changes",
+        "patches"
+      ];
+      for (const key of candidateKeys) {
+        if (item && Object.prototype.hasOwnProperty.call(item, key)) {
+          pushValue(item[key]);
+          if (results.length >= maxItems) break;
+        }
+      }
+
+      return results.slice(0, maxItems);
+    }
+
+    function getTopActions(item) {
+      const provided = Array.isArray(item && item.topActions)
+        ? item.topActions.map(v => compactText(v)).filter(Boolean)
+        : [];
+      if (provided.length > 0) {
+        return provided.slice(0, 2);
+      }
+
+      const derived = extractActionStrings(item, 2);
+      if (derived.length > 0) return derived;
+
+      const fallback = compactText(item && item.title);
+      return fallback ? [fallback] : [];
+    }
+
+    function getExplainForItem(item) {
+      const id = compactText(item && item.id);
+      if (!id) return null;
+      const table = approvalsUiState.explainById || {};
+      if (!Object.prototype.hasOwnProperty.call(table, id)) {
+        return null;
+      }
+      return table[id];
+    }
+
+    function normalizeBlockedReason(reason) {
+      const key = compactText(reason).toLowerCase();
+      if (!key) return "";
+      if (key === "risk_gate" || key === "risk_above_max") return "risk gate";
+      if (key === "allowlist" || key === "not_allowlisted" || key === "no_allowlist_keyword_match") return "allowlist";
+      if (key === "missing_executor") return "missing executor";
+      if (key === "status_not_approved") return "status not approved";
+      return key.replace(/_/g, " ");
+    }
+
+    function getBlockedReasonLabels(explainRow) {
+      const raw = Array.isArray(explainRow && explainRow.blocked_reasons)
+        ? explainRow.blocked_reasons
+        : [];
+      const labels = [];
+      const seen = new Set();
+      for (const item of raw) {
+        const label = normalizeBlockedReason(item);
+        if (!label || seen.has(label)) continue;
+        seen.add(label);
+        labels.push(label);
+      }
+      return labels;
+    }
+
+    function computeGroupedCounts(items) {
+      const counts = {
+        domain_component: {
+          mason: 0,
+          athena: 0,
+          onyx: 0,
+          other: 0
+        },
+        risk_level: {
+          R0: 0,
+          R1: 0,
+          R2: 0,
+          R3: 0
+        },
+        status: {}
+      };
+
+      for (const item of items) {
+        const domain = getItemDomain(item);
+        if (Object.prototype.hasOwnProperty.call(counts.domain_component, domain)) {
+          counts.domain_component[domain] += 1;
+        } else {
+          counts.domain_component.other += 1;
+        }
+
+        const risk = normalizeRiskLabel(item && item.risk_level);
+        counts.risk_level[risk] = Number(counts.risk_level[risk] || 0) + 1;
+
+        const status = normalizeStatusValue(item && item.status);
+        counts.status[status] = Number(counts.status[status] || 0) + 1;
+      }
+
+      return counts;
+    }
+
+    function getCountFromMap(mapObj, key) {
+      const value = Number(mapObj && mapObj[key]);
+      if (!Number.isFinite(value) || value < 0) return 0;
+      return Math.floor(value);
+    }
+
+    function mergeCountMaps(baseMap, incomingMap) {
+      const out = {};
+      if (baseMap && typeof baseMap === "object") {
+        for (const [key, value] of Object.entries(baseMap)) {
+          out[key] = getCountFromMap({ [key]: value }, key);
+        }
+      }
+      if (incomingMap && typeof incomingMap === "object") {
+        for (const [key, value] of Object.entries(incomingMap)) {
+          out[key] = getCountFromMap({ [key]: value }, key);
+        }
+      }
+      return out;
+    }
+
+    function addTriageSummaryRow(container, label, items) {
+      const row = document.createElement("div");
+      row.className = "triage-row";
+
+      const rowLabel = document.createElement("div");
+      rowLabel.className = "triage-label";
+      rowLabel.textContent = label;
+      row.appendChild(rowLabel);
+
+      const pills = document.createElement("div");
+      pills.className = "triage-pills";
+      for (const entry of items) {
+        const pill = document.createElement("span");
+        pill.className = "triage-pill";
+        pill.textContent = `${entry.label}: ${entry.count}`;
+        pills.appendChild(pill);
+      }
+      row.appendChild(pills);
+      container.appendChild(row);
+    }
+
+    function renderApprovalsTriageSummary() {
+      const summaryEl = document.getElementById("approvals-triage-summary");
+      if (!summaryEl) return;
+
+      summaryEl.innerHTML = "";
+      const grouped = approvalsUiState.groupedCounts || {};
+      const byDomain = grouped.domain_component || {};
+      const byRisk = grouped.risk_level || {};
+      const byStatus = grouped.status || {};
+
+      addTriageSummaryRow(summaryEl, "Domain", [
+        { label: "Mason", count: getCountFromMap(byDomain, "mason") },
+        { label: "Athena", count: getCountFromMap(byDomain, "athena") },
+        { label: "Onyx", count: getCountFromMap(byDomain, "onyx") },
+        { label: "Other", count: getCountFromMap(byDomain, "other") }
+      ]);
+
+      addTriageSummaryRow(summaryEl, "Risk", [
+        { label: "R0", count: getCountFromMap(byRisk, "R0") },
+        { label: "R1", count: getCountFromMap(byRisk, "R1") },
+        { label: "R2", count: getCountFromMap(byRisk, "R2") },
+        { label: "R3", count: getCountFromMap(byRisk, "R3") }
+      ]);
+
+      addTriageSummaryRow(summaryEl, "Status", [
+        { label: "pending", count: getCountFromMap(byStatus, "pending") },
+        { label: "approve", count: getCountFromMap(byStatus, "approve") },
+        { label: "reject", count: getCountFromMap(byStatus, "reject") },
+        { label: "executed", count: getCountFromMap(byStatus, "executed") }
+      ]);
+    }
+
+    function setSelectOptionLabel(selectEl, value, label) {
+      if (!selectEl) return;
+      const option = Array.from(selectEl.options).find(opt => opt.value === value);
+      if (!option) return;
+      option.textContent = label;
+    }
+
+    function updateApprovalsFilterOptionLabels() {
+      const grouped = approvalsUiState.groupedCounts || {};
+      const byDomain = grouped.domain_component || {};
+      const byRisk = grouped.risk_level || {};
+      const byStatus = grouped.status || {};
+      const total = Array.isArray(approvalsUiState.rawItems) ? approvalsUiState.rawItems.length : 0;
+
+      const domainSelect = document.getElementById("filter-domain");
+      const riskSelect = document.getElementById("filter-risk");
+      const statusSelect = document.getElementById("filter-status");
+
+      setSelectOptionLabel(domainSelect, "all", `All (${total})`);
+      setSelectOptionLabel(domainSelect, "mason", `Mason (${getCountFromMap(byDomain, "mason")})`);
+      setSelectOptionLabel(domainSelect, "athena", `Athena (${getCountFromMap(byDomain, "athena")})`);
+      setSelectOptionLabel(domainSelect, "onyx", `Onyx (${getCountFromMap(byDomain, "onyx")})`);
+
+      setSelectOptionLabel(riskSelect, "all", `All (${total})`);
+      setSelectOptionLabel(riskSelect, "R0", `R0 (${getCountFromMap(byRisk, "R0")})`);
+      setSelectOptionLabel(riskSelect, "R1", `R1 (${getCountFromMap(byRisk, "R1")})`);
+      setSelectOptionLabel(riskSelect, "R2", `R2 (${getCountFromMap(byRisk, "R2")})`);
+      setSelectOptionLabel(riskSelect, "R3", `R3 (${getCountFromMap(byRisk, "R3")})`);
+
+      setSelectOptionLabel(statusSelect, "all", `All (${total})`);
+      setSelectOptionLabel(statusSelect, "pending", `pending (${getCountFromMap(byStatus, "pending")})`);
+      setSelectOptionLabel(statusSelect, "approve", `approve (${getCountFromMap(byStatus, "approve")})`);
+      setSelectOptionLabel(statusSelect, "reject", `reject (${getCountFromMap(byStatus, "reject")})`);
+      setSelectOptionLabel(statusSelect, "executed", `executed (${getCountFromMap(byStatus, "executed")})`);
+    }
+
+    function getFilteredApprovals(items) {
+      const filters = approvalsUiState.filters;
+      const search = String(filters.search || "").trim().toLowerCase();
+
+      return items.filter(item => {
+        const domain = getItemDomain(item);
+        const risk = normalizeRiskLabel(item && item.risk_level);
+        const status = normalizeStatusValue(item && item.status);
+
+        if (filters.domain !== "all" && domain !== filters.domain) return false;
+        if (filters.risk !== "all" && risk !== filters.risk) return false;
+        if (filters.status !== "all" && status !== filters.status) return false;
+
+        if (search) {
+          const haystack = [
+            String((item && item.title) || ""),
+            String((item && item.id) || "")
+          ].join(" ").toLowerCase();
+          if (!haystack.includes(search)) return false;
+        }
+        return true;
+      });
+    }
+
+    function getGroupLabel(domain) {
+      if (domain === "mason") return "Mason";
+      if (domain === "athena") return "Athena";
+      if (domain === "onyx") return "Onyx";
+      return "Other";
+    }
+
+    function createApprovalCard(item) {
+      const card = document.createElement("div");
+      card.className = "approval-card";
+
+      const domain = getItemDomain(item);
+      const displayDomain = domain === "other" ? "other" : domain;
+      const componentId = compactText(item && item.component_id) || displayDomain;
+      const area = compactText(item && item.area) || displayDomain;
+      const rawStatus = normalizeStatusValue(item && item.status);
+      const riskLabel = normalizeRiskLabel(item && item.risk_level);
+      const shortSummary = getShortSummary(item);
+      const topActions = getTopActions(item);
+      const explainRow = getExplainForItem(item);
+      const blockedReasons = getBlockedReasonLabels(explainRow);
+      const willRunNow = Boolean(explainRow && explainRow.will_execute === true && blockedReasons.length === 0);
+
+      const rowTop = document.createElement("div");
+      rowTop.className = "approval-row";
+
+      const titleDiv = document.createElement("div");
+      titleDiv.className = "approval-title";
+      titleDiv.textContent = item.title || item.id || "Approval";
+
+      const metaDiv = document.createElement("div");
+      metaDiv.className = "approval-meta";
+
+      const domainSpan = document.createElement("span");
+      domainSpan.className = "pill pill-component";
+      domainSpan.textContent = "Domain: " + displayDomain;
+      metaDiv.appendChild(domainSpan);
+
+      const riskSpan = document.createElement("span");
+      riskSpan.className = "pill pill-risk";
+      riskSpan.textContent = "Risk: " + riskLabel;
+      metaDiv.appendChild(riskSpan);
+
+      const statusSpan = document.createElement("span");
+      statusSpan.className = makeStatusClass(rawStatus);
+      statusSpan.textContent = "Status: " + rawStatus;
+      metaDiv.appendChild(statusSpan);
+
+      rowTop.appendChild(titleDiv);
+      rowTop.appendChild(metaDiv);
+      card.appendChild(rowTop);
+
+      const domainLine = document.createElement("div");
+      domainLine.className = "approval-domain-line";
+      domainLine.textContent = `Component: ${componentId} | Area: ${area}`;
+      card.appendChild(domainLine);
+
+      const summaryDiv = document.createElement("div");
+      summaryDiv.className = "approval-operator-summary";
+      summaryDiv.textContent = shortSummary;
+      card.appendChild(summaryDiv);
+
+      const runLine = document.createElement("div");
+      runLine.className = "approval-runline";
+      if (willRunNow) {
+        const runNow = document.createElement("span");
+        runNow.className = "pill pill-run-eligible";
+        runNow.textContent = "Will run now";
+        runLine.appendChild(runNow);
+      } else {
+        const reasons = blockedReasons.length > 0
+          ? blockedReasons
+          : ["missing explain data"];
+        for (const reason of reasons) {
+          const blocked = document.createElement("span");
+          blocked.className = "pill pill-blocked";
+          blocked.textContent = "Blocked by: " + reason;
+          runLine.appendChild(blocked);
+        }
+      }
+      card.appendChild(runLine);
+
+      const details = document.createElement("details");
+      details.className = "approval-details";
+      const detailsSummary = document.createElement("summary");
+      detailsSummary.textContent = `Details (${topActions.length} action${topActions.length === 1 ? "" : "s"})`;
+      details.appendChild(detailsSummary);
+
+      const detailsBody = document.createElement("div");
+      detailsBody.className = "approval-details-body";
+
+      const detailMeta = document.createElement("div");
+      detailMeta.className = "approval-domain-line";
+      detailMeta.textContent = `ID: ${item.id || "unknown"} | Kind: ${item.kind || "patch_run"}`;
+      detailsBody.appendChild(detailMeta);
+
+      const actionsList = document.createElement("ul");
+      actionsList.className = "approval-actions-list";
+
+      if (topActions.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "No action details provided.";
+        actionsList.appendChild(li);
+      } else {
+        for (const actionText of topActions) {
+          const li = document.createElement("li");
+          li.textContent = actionText;
+          actionsList.appendChild(li);
+        }
+      }
+
+      detailsBody.appendChild(actionsList);
+      details.appendChild(detailsBody);
+      card.appendChild(details);
+
+      const rowBottom = document.createElement("div");
+      rowBottom.className = "approval-actions";
+
+      const approveBtn = document.createElement("button");
+      approveBtn.className = "btn btn-primary btn-xs";
+      approveBtn.textContent = "Approve";
+      approveBtn.disabled = !item.id;
+      approveBtn.addEventListener("click", () => {
+        handleDecision(item.id, "approve");
+      });
+
+      const rejectBtn = document.createElement("button");
+      rejectBtn.className = "btn btn-danger btn-xs";
+      rejectBtn.textContent = "Reject";
+      rejectBtn.disabled = !item.id;
+      rejectBtn.addEventListener("click", () => {
+        handleDecision(item.id, "reject");
+      });
+
+      rowBottom.appendChild(approveBtn);
+      rowBottom.appendChild(rejectBtn);
+      card.appendChild(rowBottom);
+
+      return card;
+    }
+
+    function renderApprovals() {
+      const listEl = document.getElementById("approvals-list");
+      const countBadge = document.getElementById("approvals-count-badge");
+      const items = Array.isArray(approvalsUiState.rawItems) ? approvalsUiState.rawItems : [];
+
+      listEl.innerHTML = "";
+
+      if (items.length === 0) {
+        countBadge.textContent = "0";
+        listEl.innerHTML = "<div class='empty-state'>No approvals available.</div>";
+        return;
+      }
+
+      const filtered = getFilteredApprovals(items);
+      countBadge.textContent = String(filtered.length);
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = "<div class='empty-state'>No approvals match your current filters.</div>";
+        return;
+      }
+
+      const groups = {
+        mason: [],
+        athena: [],
+        onyx: [],
+        other: []
+      };
+
+      for (const item of filtered) {
+        const domain = getItemDomain(item);
+        if (domain === "mason" || domain === "athena" || domain === "onyx") {
+          groups[domain].push(item);
+        } else {
+          groups.other.push(item);
+        }
+      }
+
+      for (const domain of ["mason", "athena", "onyx", "other"]) {
+        const groupedItems = groups[domain];
+        if (!groupedItems || groupedItems.length === 0) {
+          continue;
+        }
+
+        groupedItems.sort((a, b) => approvalSortMs(b) - approvalSortMs(a));
+
+        const section = document.createElement("div");
+        section.className = "approval-group";
+
+        const header = document.createElement("div");
+        header.className = "approval-group-header";
+        header.textContent = `${getGroupLabel(domain)} (${groupedItems.length})`;
+        section.appendChild(header);
+
+        groupedItems.forEach(item => {
+          section.appendChild(createApprovalCard(item));
+        });
+
+        listEl.appendChild(section);
+      }
+    }
+
+    function bindApprovalsFilters() {
+      const domainSelect = document.getElementById("filter-domain");
+      const riskSelect = document.getElementById("filter-risk");
+      const statusSelect = document.getElementById("filter-status");
+      const searchInput = document.getElementById("filter-search");
+
+      if (!domainSelect || !riskSelect || !statusSelect || !searchInput) {
+        return;
+      }
+
+      domainSelect.addEventListener("change", () => {
+        approvalsUiState.filters.domain = domainSelect.value;
+        renderApprovals();
+      });
+      riskSelect.addEventListener("change", () => {
+        approvalsUiState.filters.risk = riskSelect.value;
+        renderApprovals();
+      });
+      statusSelect.addEventListener("change", () => {
+        approvalsUiState.filters.status = statusSelect.value;
+        renderApprovals();
+      });
+      searchInput.addEventListener("input", () => {
+        approvalsUiState.filters.search = searchInput.value;
+        renderApprovals();
+      });
+    }
+
+    async function refreshApprovalsExplain() {
+      const mode = compactText(approvalsUiState.explainMode || "R0").toUpperCase() || "R0";
+      try {
+        const data = await fetchJson("/api/approvals/explain?mode=" + encodeURIComponent(mode));
+        const rows = Array.isArray(data && data.approvals) ? data.approvals : [];
+        const map = {};
+        for (const row of rows) {
+          const id = compactText(row && row.id);
+          if (!id) continue;
+          map[id] = row;
+        }
+        approvalsUiState.explainById = map;
+      } catch (e) {
+        console.error(e);
+        approvalsUiState.explainById = {};
+      }
+    }
+
+    async function refreshApprovals() {
+      const listEl = document.getElementById("approvals-list");
+      listEl.innerHTML = "<div class='empty-state'>Loading approvals...</div>";
+      try {
+        const data = await fetchJson("/api/approvals/triage");
+        if (data && data.ok === false) {
+          listEl.innerHTML = "<div class='empty-state'>Approvals not available: " +
+            (data.error || data.message || "unknown error") + "</div>";
+          document.getElementById("approvals-count-badge").textContent = "0";
+          approvalsUiState.rawItems = [];
+          approvalsUiState.explainById = {};
+          approvalsUiState.groupedCounts = computeGroupedCounts([]);
+          updateApprovalsFilterOptionLabels();
+          renderApprovalsTriageSummary();
+          return;
+        }
+
+        approvalsUiState.rawItems = Array.isArray(data)
+          ? data
+          : (Array.isArray(data.items) ? data.items : []);
+
+        const fallbackCounts = computeGroupedCounts(approvalsUiState.rawItems);
+        const grouped = (data && typeof data.grouped_counts === "object")
+          ? data.grouped_counts
+          : {};
+
+        approvalsUiState.groupedCounts = {
+          domain_component: mergeCountMaps(
+            fallbackCounts.domain_component,
+            (grouped && (grouped.domain_component || grouped.by_component)) || {}
+          ),
+          risk_level: mergeCountMaps(
+            fallbackCounts.risk_level,
+            (grouped && (grouped.risk_level || grouped.by_risk)) || {}
+          ),
+          status: mergeCountMaps(
+            fallbackCounts.status,
+            (grouped && (grouped.status || grouped.by_status)) || {}
+          )
+        };
+
+        await refreshApprovalsExplain();
+        updateApprovalsFilterOptionLabels();
+        renderApprovalsTriageSummary();
+        renderApprovals();
+      } catch (e) {
+        console.error(e);
+        approvalsUiState.rawItems = [];
+        approvalsUiState.explainById = {};
+        approvalsUiState.groupedCounts = computeGroupedCounts([]);
+        listEl.innerHTML = "<div class='empty-state'>Failed to load approvals: " + e + "</div>";
+        document.getElementById("approvals-count-badge").textContent = "0";
+        updateApprovalsFilterOptionLabels();
+        renderApprovalsTriageSummary();
+      }
+    }
+
+    function setApprovalsRunResult(data) {
+      const resultEl = document.getElementById("approvals-run-result");
+      if (!data || typeof data !== "object") {
+        resultEl.textContent = '{ "ok": false, "mode": "R0", "smoke_pass": false, "log_path": "", "applied_count": 0, "skipped_count": 0 }';
+        return;
+      }
+
+      const payload = {
+        ok: Boolean(data.ok),
+        mode: String(data.mode || approvalsUiState.explainMode || "R0"),
+        smoke_pass: Boolean(data.smoke_pass),
+        log_path: String(data.log_path || ""),
+        applied_count: Number(data.applied_count || 0),
+        skipped_count: Number(data.skipped_count || 0)
+      };
+
+      let text = JSON.stringify(payload, null, 2);
+      if (data.message) {
+        text += "\nmessage: " + String(data.message);
+      }
+      resultEl.textContent = text;
+    }
+
+    function setWorkOrderResult(data) {
+      const resultEl = document.getElementById("approvals-workorder-result");
+      if (!data || typeof data !== "object") {
+        resultEl.textContent = '{ "ok": false, "count": 0, "workorder_path": "", "log_path": "" }';
+        return;
+      }
+
+      const payload = {
+        ok: Boolean(data.ok),
+        count: Number(data.count || 0),
+        workorder_path: String(data.workorder_path || ""),
+        log_path: String(data.log_path || "")
+      };
+
+      let text = JSON.stringify(payload, null, 2);
+      if (data.run_in_codex) {
+        text += "\nrun_in_codex: " + String(data.run_in_codex);
+      }
+      if (data.message) {
+        text += "\nmessage: " + String(data.message);
+      }
+      resultEl.textContent = text;
+    }
+
+    async function bulkApproveR0() {
+      const bulkBtn = document.getElementById("btn-bulk-approve-r0");
+      const resultEl = document.getElementById("approvals-run-result");
+      const candidates = approvalsUiState.rawItems.filter(item => {
+        const id = compactText(item && item.id);
+        const risk = normalizeRiskLabel(item && item.risk_level);
+        const status = normalizeStatusValue(item && item.status);
+        return Boolean(id) && risk === "R0" && status === "pending";
+      });
+
+      if (candidates.length === 0) {
+        resultEl.textContent = JSON.stringify(
+          {
+            ok: true,
+            attempted: 0,
+            approved: 0,
+            failed: 0,
+            scope: "R0 pending only"
+          },
+          null,
+          2
+        );
+        return;
+      }
+
+      const confirmed = window.confirm(
+        `Bulk approve ${candidates.length} pending R0 item(s)? This will not approve R1, R2, or R3.`
+      );
+      if (!confirmed) return;
+
+      bulkBtn.disabled = true;
+      resultEl.textContent = `Bulk approving ${candidates.length} pending R0 item(s)...`;
+
+      let approved = 0;
+      const failures = [];
+
+      for (const item of candidates) {
+        const id = compactText(item && item.id);
+        if (!id) continue;
+        try {
+          const resp = await fetch("/api/approvals/decision", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              id,
+              decision: "approve",
+              note: "Bulk approved in Athena (R0 pending only)."
+            })
+          });
+          const data = await resp.json();
+          if (data && data.ok) {
+            approved += 1;
+          } else {
+            failures.push({
+              id,
+              message: String((data && (data.message || data.error)) || "unknown error")
+            });
+          }
+        } catch (e) {
+          failures.push({ id, message: String(e) });
+        }
+      }
+
+      const payload = {
+        ok: failures.length === 0,
+        attempted: candidates.length,
+        approved,
+        failed: failures.length,
+        scope: "R0 pending only"
+      };
+      let text = JSON.stringify(payload, null, 2);
+      if (failures.length) {
+        text += "\nfailed_ids: " + failures.map(entry => `${entry.id} (${entry.message})`).join("; ");
+      }
+      resultEl.textContent = text;
+
+      try {
+        await refreshApprovals();
+        await refreshNotifications();
+      } finally {
+        bulkBtn.disabled = false;
+      }
+    }
+
+    async function runApplyMode(mode) {
+      const modeNorm = compactText(mode).toUpperCase() === "R1" ? "R1" : "R0";
+      const runR0Btn = document.getElementById("btn-apply-r0-now");
+      const runR1Btn = document.getElementById("btn-apply-r1-now");
+      const resultEl = document.getElementById("approvals-run-result");
+      runR0Btn.disabled = true;
+      if (runR1Btn) runR1Btn.disabled = true;
+      resultEl.textContent = `Applying approved ${modeNorm} changes and running smoke test...`;
+      approvalsUiState.explainMode = modeNorm;
+
+      try {
+        const data = await fetchJson("/api/approvals/run", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mode: modeNorm })
+        });
+        setApprovalsRunResult(data);
+        await refreshApprovals();
+        await refreshNotifications();
+      } catch (e) {
+        console.error(e);
+        resultEl.textContent = '{ "ok": false, "smoke_pass": false, "log_path": "" }\nmessage: ' + String(e);
+      } finally {
+        runR0Btn.disabled = false;
+        if (runR1Btn) runR1Btn.disabled = false;
+      }
+    }
+
+    async function generateCodexWorkOrder() {
+      const workBtn = document.getElementById("btn-generate-workorder");
+      const resultEl = document.getElementById("approvals-workorder-result");
+      workBtn.disabled = true;
+      resultEl.textContent = "Generating Codex work order from approved R1 items...";
+
+      try {
+        const data = await fetchJson("/api/approvals/workorder", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ max_items: 50 })
+        });
+        setWorkOrderResult(data);
+        await refreshNotifications();
+      } catch (e) {
+        console.error(e);
+        resultEl.textContent = '{ "ok": false, "count": 0, "workorder_path": "", "log_path": "" }\nmessage: ' + String(e);
+      } finally {
+        workBtn.disabled = false;
+      }
+    }
+
+    async function handleDecision(id, decision) {
+      const note = window.prompt(`Why are you choosing to ${decision} '${id}'? (optional)`, "");
+      try {
+        const resp = await fetch("/api/approvals/decision", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id, decision, note: note || null })
+        });
+        const data = await resp.json();
+        if (!data.ok) {
+          alert("Decision failed: " + (data.message || data.error || "unknown error"));
+          return;
+        }
+        // After a decision, refresh the approvals list so the status is re-read from the server
+        await refreshApprovals();
+        await refreshNotifications();
+      } catch (e) {
+        console.error(e);
+        alert("Error sending decision: " + e);
+      }
+    }
+
+    bindApprovalsFilters();
+    document.getElementById("btn-bulk-approve-r0").addEventListener("click", bulkApproveR0);
+    document.getElementById("btn-apply-r0-now").addEventListener("click", () => runApplyMode("R0"));
+    document.getElementById("btn-apply-r1-now").addEventListener("click", () => runApplyMode("R1"));
+    document.getElementById("btn-generate-workorder").addEventListener("click", generateCodexWorkOrder);
+    document.getElementById("btn-refresh-approvals").addEventListener("click", refreshApprovals);
+
+    // Notifications
+    function formatNotificationTimestamp(rawTs) {
+      if (!rawTs) return "";
+      const dt = new Date(rawTs);
+      if (Number.isNaN(dt.getTime())) return String(rawTs);
+      return dt.toLocaleString();
+    }
+
+    async function refreshNotifications() {
+      const listEl = document.getElementById("notifications-list");
+      const countBadge = document.getElementById("notifications-count-badge");
+      listEl.innerHTML = "";
+
+      try {
+        const data = await fetchJson("/api/notifications?limit=200");
+        const items = Array.isArray(data)
+          ? data
+          : (Array.isArray(data.items) ? data.items : []);
+
+        countBadge.textContent = String(items.length);
+        if (items.length === 0) {
+          listEl.innerHTML = "<div class='empty-state'>No notifications yet.</div>";
+          return;
+        }
+
+        for (const item of items) {
+          const row = document.createElement("div");
+          row.className = "notification-item";
+
+          const header = document.createElement("div");
+          header.className = "notification-header";
+
+          const title = document.createElement("div");
+          title.className = "notification-title";
+
+          const level = document.createElement("span");
+          level.className = "notification-level";
+          level.textContent = String(item.level || "info");
+
+          const component = document.createElement("span");
+          component.textContent = "Component: " + String(item.component || "unknown");
+
+          title.appendChild(level);
+          title.appendChild(component);
+
+          const when = document.createElement("div");
+          when.className = "notification-title";
+          when.textContent = formatNotificationTimestamp(item.timestamp);
+
+          header.appendChild(title);
+          header.appendChild(when);
+
+          const message = document.createElement("div");
+          message.className = "notification-message";
+          message.textContent = String(item.message || "");
+
+          row.appendChild(header);
+          row.appendChild(message);
+
+          if (item.context && typeof item.context === "object" && Object.keys(item.context).length > 0) {
+            const context = document.createElement("pre");
+            context.className = "notification-context";
+            context.textContent = JSON.stringify(item.context, null, 2);
+            row.appendChild(context);
+          }
+
+          listEl.appendChild(row);
+        }
+      } catch (e) {
+        console.error(e);
+        countBadge.textContent = "0";
+        listEl.innerHTML = "<div class='empty-state'>Failed to load notifications: " + e + "</div>";
+      }
+    }
+
+    document.getElementById("btn-refresh-notifications").addEventListener("click", refreshNotifications);
+
+    // Chat
+    const chatUiState = {
+      initialized: false,
+      sending: false,
+      typingRow: null,
+      historyRequestToken: 0,
+      messages: []
+    };
+
+    const chatEls = {
+      messages: document.getElementById("chat-messages"),
+      input: document.getElementById("chat-input"),
+      sendBtn: document.getElementById("btn-send-chat"),
+      refreshBtn: document.getElementById("btn-refresh-chat"),
+      title: document.getElementById("chat-active-title")
+    };
+
+    function formatChatTimestamp(rawTs) {
+      if (!rawTs) return "";
+      const dt = new Date(rawTs);
+      if (Number.isNaN(dt.getTime())) return String(rawTs);
+      return dt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    }
+
+    function setChatTitle() {
+      if (!chatEls.title) return;
+      chatEls.title.textContent = "Mason Chat";
+    }
+
+    function scrollChatToBottom() {
+      if (!chatEls.messages) return;
+      chatEls.messages.scrollTop = chatEls.messages.scrollHeight;
+    }
+
+    function setChatEmptyState(text) {
+      chatEls.messages.innerHTML = "";
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+      empty.textContent = text;
+      chatEls.messages.appendChild(empty);
+    }
+
+    function renderTextBlock(container, text) {
+      if (!text) return;
+      const block = document.createElement("div");
+      block.className = "chat-text-block";
+      block.textContent = text;
+      container.appendChild(block);
+    }
+
+    function renderMessageContent(container, text) {
+      const source = String(text || "");
+      const codePattern = /```([a-zA-Z0-9_-]+)?\n?([\s\S]*?)```/g;
+      let cursor = 0;
+      let matchedCode = false;
+      let match;
+
+      while ((match = codePattern.exec(source)) !== null) {
+        const plainChunk = source.slice(cursor, match.index);
+        renderTextBlock(container, plainChunk);
+
+        const codeWrap = document.createElement("pre");
+        codeWrap.className = "chat-code-block";
+        const codeEl = document.createElement("code");
+        const codeText = String(match[2] || "").replace(/\n$/, "");
+        codeEl.textContent = codeText;
+        if (match[1]) {
+          codeEl.dataset.lang = match[1];
+        }
+        codeWrap.appendChild(codeEl);
+        container.appendChild(codeWrap);
+
+        cursor = codePattern.lastIndex;
+        matchedCode = true;
+      }
+
+      const trailing = source.slice(cursor);
+      if (trailing || !matchedCode) {
+        renderTextBlock(container, trailing || source);
+      }
+    }
+
+    async function copyChatText(text, buttonEl) {
+      const source = String(text || "");
+      if (!source) return;
+
+      let copied = false;
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(source);
+          copied = true;
+        }
+      } catch (e) {
+        copied = false;
+      }
+
+      if (!copied) {
+        const fallback = document.createElement("textarea");
+        fallback.value = source;
+        fallback.style.position = "fixed";
+        fallback.style.opacity = "0";
+        fallback.style.pointerEvents = "none";
+        document.body.appendChild(fallback);
+        fallback.select();
+        try {
+          copied = document.execCommand("copy");
+        } catch (e) {
+          copied = false;
+        }
+        document.body.removeChild(fallback);
+      }
+
+      const originalText = buttonEl.textContent;
+      buttonEl.textContent = copied ? "Copied" : "Copy failed";
+      setTimeout(() => {
+        buttonEl.textContent = originalText;
+      }, 1200);
+    }
+
+    function createMessageBubble(item) {
+      const role = String(item && item.role || "assistant").toLowerCase() === "user" ? "user" : "assistant";
+      const createdAt = item && item.created_at ? String(item.created_at) : "";
+      const contentText = String(item && item.content || "");
+
+      const row = document.createElement("div");
+      row.className = "chat-message-row " + role;
+
+      const bubble = document.createElement("div");
+      bubble.className = "chat-bubble " + role;
+
+      const header = document.createElement("div");
+      header.className = "chat-message-head";
+
+      const roleLabel = document.createElement("span");
+      roleLabel.className = "chat-message-role";
+      roleLabel.textContent = role === "user" ? "You" : "Mason";
+
+      const right = document.createElement("div");
+      right.style.display = "inline-flex";
+      right.style.alignItems = "center";
+      right.style.gap = "6px";
+
+      const timeEl = document.createElement("span");
+      timeEl.className = "chat-message-time";
+      timeEl.textContent = formatChatTimestamp(createdAt);
+      right.appendChild(timeEl);
+
+      if (role === "assistant") {
+        const copyBtn = document.createElement("button");
+        copyBtn.className = "chat-copy-btn";
+        copyBtn.type = "button";
+        copyBtn.textContent = "Copy";
+        copyBtn.addEventListener("click", () => {
+          copyChatText(contentText, copyBtn);
+        });
+        right.appendChild(copyBtn);
+      }
+
+      header.appendChild(roleLabel);
+      header.appendChild(right);
+
+      const content = document.createElement("div");
+      content.className = "chat-content";
+      renderMessageContent(content, contentText || "(empty message)");
+
+      bubble.appendChild(header);
+      bubble.appendChild(content);
+      row.appendChild(bubble);
+      return row;
+    }
+
+    function showTypingIndicator() {
+      if (chatUiState.typingRow) return;
+      const row = document.createElement("div");
+      row.className = "chat-message-row assistant";
+
+      const bubble = document.createElement("div");
+      bubble.className = "chat-bubble assistant";
+
+      const typing = document.createElement("div");
+      typing.className = "chat-typing";
+      typing.textContent = "Mason is typing...";
+
+      bubble.appendChild(typing);
+      row.appendChild(bubble);
+      chatUiState.typingRow = row;
+      chatEls.messages.appendChild(row);
+      scrollChatToBottom();
+    }
+
+    function hideTypingIndicator() {
+      if (!chatUiState.typingRow) return;
+      chatUiState.typingRow.remove();
+      chatUiState.typingRow = null;
+    }
+
+    function normalizeHistoryRows(data) {
+      const rows = Array.isArray(data)
+        ? data
+        : (data && Array.isArray(data.items) ? data.items : []);
+      const out = [];
+      for (const row of rows) {
+        const role = String(row && row.role || "").toLowerCase();
+        if (role !== "user" && role !== "assistant") continue;
+        const content = String(row && row.content || "").trim();
+        if (!content) continue;
+        out.push({
+          id: Number(row && row.id || 0),
+          role,
+          content,
+          created_at: String(row && row.created_at || "")
+        });
+      }
+      return out;
+    }
+
+    function renderMessages(items) {
+      chatEls.messages.innerHTML = "";
+      const rows = Array.isArray(items) ? items : [];
+      if (rows.length === 0) {
+        setChatEmptyState("Send a message to start talking with Mason.");
+        return;
+      }
+      for (const item of rows) {
+        chatEls.messages.appendChild(createMessageBubble(item));
+      }
+      scrollChatToBottom();
+    }
+
+    function updateChatSendButton() {
+      const hasText = String(chatEls.input.value || "").trim().length > 0;
+      chatEls.sendBtn.disabled = chatUiState.sending || !hasText;
+    }
+
+    async function loadChatHistory(limit = 200) {
+      const requestToken = ++chatUiState.historyRequestToken;
+      if (chatUiState.messages.length === 0) {
+        setChatEmptyState("Loading chat history...");
+      }
+      try {
+        const data = await fetchJson("/api/chat/history?limit=" + encodeURIComponent(String(limit)));
+        if (requestToken !== chatUiState.historyRequestToken) return;
+        chatUiState.messages = normalizeHistoryRows(data);
+        renderMessages(chatUiState.messages);
+      } catch (e) {
+        console.error(e);
+        if (requestToken !== chatUiState.historyRequestToken) return;
+        setChatEmptyState("Failed to load chat history: " + e);
+      }
+    }
+
+    async function sendChatMessage() {
+      if (chatUiState.sending) return;
+      const msg = String(chatEls.input.value || "").trim();
+      if (!msg) return;
+
+      chatUiState.sending = true;
+      updateChatSendButton();
+      chatEls.input.value = "";
+
+      if (chatEls.messages.querySelector(".empty-state")) {
+        chatEls.messages.innerHTML = "";
+      }
+      chatEls.messages.appendChild(
+        createMessageBubble({
+          role: "user",
+          content: msg,
+          created_at: new Date().toISOString()
+        })
+      );
+      showTypingIndicator();
+
+      try {
+        const data = await fetchJson("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: msg })
+        });
+
+        hideTypingIndicator();
+        const replyText = String(
+          data && data.reply
+            ? data.reply
+            : (data && data.message ? data.message : "(no reply text)")
+        );
+        chatEls.messages.appendChild(
+          createMessageBubble({
+            role: "assistant",
+            content: replyText,
+            created_at: new Date().toISOString()
+          })
+        );
+        scrollChatToBottom();
+        await loadChatHistory(200);
+      } catch (e) {
+        console.error(e);
+        hideTypingIndicator();
+        chatEls.messages.appendChild(
+          createMessageBubble({
+            role: "assistant",
+            content: "Error sending message: " + e,
+            created_at: new Date().toISOString()
+          })
+        );
+        scrollChatToBottom();
+      } finally {
+        chatUiState.sending = false;
+        updateChatSendButton();
+        chatEls.input.focus();
+      }
+    }
+
+    async function initChat() {
+      if (chatUiState.initialized) return;
+      chatUiState.initialized = true;
+      setChatTitle();
+      await loadChatHistory(200);
+    }
+
+    chatEls.refreshBtn.addEventListener("click", () => loadChatHistory(200));
+    chatEls.sendBtn.addEventListener("click", sendChatMessage);
+    chatEls.input.addEventListener("input", updateChatSendButton);
+    chatEls.input.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter" && !ev.shiftKey) {
+        ev.preventDefault();
+        sendChatMessage();
+      }
+    });
+
+    // Initial load
+    (async function init() {
+      setActiveTab("status");
+      updateChatSendButton();
+      await refreshStatus();
+      await refreshTrust();
+      await refreshApprovals();
+      await refreshNotifications();
+      await initChat();
+      setInterval(refreshTrust, 10000);
+      setInterval(refreshNotifications, 5000);
+    })();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "budget": {
+    "weekly_usd_cap": 50,
+    "min_ratio_for_learn": 0.15
+  },
+  "components": {
+    "mason": {
+      "label": "Mason Core",
+      "max_auto_risk": "R1",
+      "allow_code_edits": true,
+      "allow_schedule_edits": true,
+      "allow_pc_maintenance": true
+    },
+    "athena": {
+      "label": "Athena Console",
+      "max_auto_risk": "R1",
+      "allow_code_edits": true,
+      "allow_schedule_edits": false,
+      "allow_pc_maintenance": false
+    },
+    "onyx": {
+      "label": "Onyx App",
+      "max_auto_risk": "R0",
+      "allow_code_edits": false,
+      "allow_schedule_edits": false,
+      "allow_pc_maintenance": false
+    }
+  },
+  "defaults": {
+    "max_auto_risk": "R0",
+    "allow_code_edits": false,
+    "allow_schedule_edits": false,
+    "allow_pc_maintenance": false
+  }
+}

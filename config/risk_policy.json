@@ -1,0 +1,97 @@
+﻿{
+    "$schema":  "mason2-risk-policy-v1",
+    "version":  1,
+    "notes":  "Risk levels: 0=observe-only, 1=low-risk internal, 2=medium behavior changes, 3=high-risk (schemas/money/external APIs). High-risk is NEVER auto-applied.",
+    "risk_levels":  {
+                        "0":  {
+                                  "name":  "observe_only",
+                                  "description":  "Logging, metrics, read-only checks. No code or config changes."
+                              },
+                        "1":  {
+                                  "name":  "low",
+                                  "description":  "Small internal tweaks: logs, copy text, visual UI tweaks, safe refactors, extra health checks."
+                              },
+                        "2":  {
+                                  "name":  "medium",
+                                  "description":  "Behavior changes inside Mason/PC/Onyx/Athena that do NOT touch schemas, money, or external accounts."
+                              },
+                        "3":  {
+                                  "name":  "high",
+                                  "description":  "Schemas, data model, migrations, money flows, external APIs, security-critical changes. Never auto-run."
+                              }
+                    },
+    "areas":  {
+                  "mason":  {
+                                "description":  "Mason core brain, scripts, and internal logic.",
+                                "start_risk":  1,
+                                "max_auto_risk":  2,
+                                "health_source":  "reports/mason_state_summary.json",
+                                "promotion_rules":  [
+                                                        {
+                                                            "from":  1,
+                                                            "to":  2,
+                                                            "min_successful_tasks":  30,
+                                                            "max_rollbacks":  0,
+                                                            "min_hours_health_green":  24
+                                                        }
+                                                    ]
+                            },
+                  "pc":  {
+                             "description":  "Chris\u0027s Windows PC: cleanup, monitoring, stability tasks.",
+                             "start_risk":  1,
+                             "max_auto_risk":  2,
+                             "health_source":  "reports/pc_health_summary.json",
+                             "promotion_rules":  [
+                                                     {
+                                                         "from":  1,
+                                                         "to":  2,
+                                                         "min_successful_tasks":  30,
+                                                         "max_rollbacks":  0,
+                                                         "min_hours_health_green":  24
+                                                     }
+                                                 ]
+                         },
+                  "onyx":  {
+                               "description":  "Onyx business manager app (Flutter founder preview + future backend).",
+                               "start_risk":  1,
+                               "max_auto_risk":  2,
+                               "health_source":  "reports/onyx_health_summary.json",
+                               "promotion_rules":  [
+                                                       {
+                                                           "from":  0,
+                                                           "to":  1,
+                                                           "min_successful_tasks":  10,
+                                                           "max_rollbacks":  0,
+                                                           "min_hours_health_green":  2
+                                                       },
+                                                       {
+                                                           "from":  1,
+                                                           "to":  2,
+                                                           "min_successful_tasks":  30,
+                                                           "max_rollbacks":  0,
+                                                           "min_hours_health_green":  8
+                                                       }
+                                                   ]
+                           },
+                  "athena":  {
+                                 "description":  "Athena console UI + status panels and dashboards.",
+                                 "start_risk":  1,
+                                 "max_auto_risk":  2,
+                                 "health_source":  "reports/athena_health_summary.json",
+                                 "promotion_rules":  [
+                                                         {
+                                                             "from":  1,
+                                                             "to":  2,
+                                                             "min_successful_tasks":  20,
+                                                             "max_rollbacks":  0,
+                                                             "min_hours_health_green":  12
+                                                         }
+                                                     ]
+                             }
+              },
+    "global":  {
+                   "money_loop_enabled":  false,
+                   "high_risk_auto_apply":  false,
+                   "notes":  "Even if money loop is turned on in future, risk 3 tasks still require explicit approval + PIN."
+               }
+}
