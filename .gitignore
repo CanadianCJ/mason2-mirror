@@ -1,9 +1,11 @@
-﻿# secrets
+# Mirror Guardrails: secrets + runtime noise + dependency/vendor trees
+
+# Secrets
 .env*
 config/secrets_mason.json
 **/secrets*.json
 
-# runtime state / logs / reports
+# Runtime state / logs / reports
 state/
 logs/
 reports/
@@ -11,7 +13,7 @@ knowledge/ingest/raw/
 **/*log*
 **/*.pid
 
-# environments / deps
+# Dependency and generated trees
 **/.venv/
 **/venv/
 **/__pycache__/
@@ -21,7 +23,7 @@ knowledge/ingest/raw/
 **/dist/
 **/.pytest_cache/
 
-# OS/editor
+# OS / editor
 .DS_Store
 Thumbs.db
 .vscode/
