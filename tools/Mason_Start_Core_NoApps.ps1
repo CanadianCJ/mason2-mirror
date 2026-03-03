@@ -3,6 +3,7 @@ param(
     [switch]$NoWatcher
 )
 
+Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 function Write-CoreStartLog {
@@ -14,7 +15,9 @@ function Write-CoreStartLog {
 function Start-CoreScript {
     param(
         [Parameter(Mandatory = $true)][string]$ToolsDir,
-        [Parameter(Mandatory = $true)][string]$ScriptName
+        [Parameter(Mandatory = $true)][string]$ScriptName,
+        [Parameter(Mandatory = $true)][string]$StartReportsDir,
+        [Parameter(Mandatory = $true)][string]$StartRunId
     )
 
     $path = Join-Path $ToolsDir $ScriptName
@@ -23,14 +26,19 @@ function Start-CoreScript {
         return $null
     }
 
+    $stamp = Get-Date -Format "yyyyMMdd_HHmmss"
+    $safeName = [regex]::Replace($ScriptName.ToLowerInvariant(), "[^a-z0-9._-]+", "_")
+    $stdoutLog = Join-Path $StartReportsDir ("{0}_{1}_{2}_stdout.log" -f $StartRunId, $safeName, $stamp)
+    $stderrLog = Join-Path $StartReportsDir ("{0}_{1}_{2}_stderr.log" -f $StartRunId, $safeName, $stamp)
+
     $proc = Start-Process powershell.exe -ArgumentList @(
         "-NoLogo",
         "-NoProfile",
         "-ExecutionPolicy", "Bypass",
         "-File", $path
-    ) -WorkingDirectory $ToolsDir -WindowStyle Minimized -PassThru
+    ) -WorkingDirectory $ToolsDir -WindowStyle Minimized -RedirectStandardOutput $stdoutLog -RedirectStandardError $stderrLog -PassThru
 
-    Write-CoreStartLog ("Started {0} (PID {1})" -f $ScriptName, $proc.Id)
+    Write-CoreStartLog ("Started {0} (PID {1}) -> stdout={2}; stderr={3}" -f $ScriptName, $proc.Id, $stdoutLog, $stderrLog)
     return $proc
 }
 
@@ -38,8 +46,12 @@ $toolsDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $base = Split-Path -Parent $toolsDir
 $stateDir = Join-Path $base "state\knowledge"
 $stackPidPath = Join-Path $stateDir "stack_pids.json"
+$reportsDir = Join-Path $base "reports"
+$startReportsDir = Join-Path $reportsDir "start"
+$startRunId = if ($env:MASON_START_RUN_ID) { [string]$env:MASON_START_RUN_ID } else { (Get-Date).ToUniversalTime().ToString("yyyyMMdd_HHmmss_fff") }
 
 New-Item -ItemType Directory -Path $stateDir -Force | Out-Null
+New-Item -ItemType Directory -Path $startReportsDir -Force | Out-Null
 
 Write-CoreStartLog "Starting core loops (no Athena/Onyx app launch)."
 
@@ -60,7 +72,7 @@ if (-not $NoWatcher) {
 
 $started = New-Object System.Collections.Generic.List[object]
 foreach ($scriptName in $coreScripts) {
-    $proc = Start-CoreScript -ToolsDir $toolsDir -ScriptName $scriptName
+    $proc = Start-CoreScript -ToolsDir $toolsDir -ScriptName $scriptName -StartReportsDir $startReportsDir -StartRunId $startRunId
     if ($proc) {
         $started.Add([pscustomobject]@{
             script = $scriptName
@@ -69,23 +81,44 @@ foreach ($scriptName in $coreScripts) {
     }
 }
 
-$existing = @{}
+$startedState = @(
+    $started | ForEach-Object {
+        [ordered]@{
+            script = [string]$_.script
+            pid    = [int]$_.pid
+        }
+    }
+)
+
+$existing = [ordered]@{}
 if (Test-Path -LiteralPath $stackPidPath) {
     try {
         $parsed = Get-Content -LiteralPath $stackPidPath -Raw -Encoding UTF8 | ConvertFrom-Json
-        foreach ($p in $parsed.PSObject.Properties) {
-            $existing[$p.Name] = $p.Value
+        if ($parsed -is [System.Collections.IDictionary]) {
+            foreach ($entry in $parsed.GetEnumerator()) {
+                $existing[[string]$entry.Key] = $entry.Value
+            }
+        }
+        elseif ($parsed) {
+            foreach ($p in @($parsed.PSObject.Properties)) {
+                $existing[$p.Name] = $p.Value
+            }
         }
     }
     catch {
-        $existing = @{}
+        $existing = [ordered]@{}
     }
 }
 
 $existing["core_noapps_launched_at"] = (Get-Date).ToUniversalTime().ToString("o")
-$existing["core_noapps_processes"] = @($started)
+$existing["core_noapps_processes"] = @($startedState)
 
-$existing | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $stackPidPath -Encoding UTF8
+try {
+    $existing | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $stackPidPath -Encoding UTF8
+    Write-CoreStartLog "Updated PID state: $stackPidPath"
+}
+catch {
+    Write-CoreStartLog "WARN: Could not update PID state at $stackPidPath : $($_.Exception.Message)"
+}
 
 Write-CoreStartLog "Core launch complete."
-Write-CoreStartLog "Updated PID state: $stackPidPath"

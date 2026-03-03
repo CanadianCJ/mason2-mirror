@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": "business_type",
+      "prompt": "What type of business are you running?",
+      "type": "string",
+      "required": true
+    },
+    {
+      "id": "goal",
+      "prompt": "What is your main business goal for the next 90 days?",
+      "type": "string",
+      "required": true
+    },
+    {
+      "id": "current_issues",
+      "prompt": "What are your top current issues?",
+      "type": "array",
+      "required": true
+    },
+    {
+      "id": "budget",
+      "prompt": "What budget range are you comfortable with right now?",
+      "type": "string",
+      "required": false
+    },
+    {
+      "id": "staff_size",
+      "prompt": "How many staff are currently active?",
+      "type": "string",
+      "required": false
+    },
+    {
+      "id": "marketing_status",
+      "prompt": "How would you describe your current marketing status?",
+      "type": "string",
+      "required": false
+    },
+    {
+      "id": "sales_pipeline_status",
+      "prompt": "How would you describe your current sales pipeline status?",
+      "type": "string",
+      "required": false
+    }
+  ]
+}

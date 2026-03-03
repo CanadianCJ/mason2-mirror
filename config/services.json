@@ -1,8 +1,29 @@
-﻿{
-  "expect": [
-    { "name": "Schedule",  "status": "Running" },
-    { "name": "W32Time",   "status": "Running" },
-    { "name": "EventLog",  "status": "Running" },
-    { "name": "WinDefend", "status": "Running", "optional": true }
+{
+  "readiness": [
+    {
+      "name": "mason_api_health",
+      "url": "http://127.0.0.1:8383/health",
+      "required": false
+    },
+    {
+      "name": "seed_api_health",
+      "url": "http://127.0.0.1:8109/health",
+      "required": false
+    },
+    {
+      "name": "bridge_health",
+      "url": "http://127.0.0.1:8484/health",
+      "required": true
+    },
+    {
+      "name": "athena_health",
+      "url": "http://127.0.0.1:8000/api/health",
+      "required": true
+    },
+    {
+      "name": "onyx_main_dart_js",
+      "url": "http://127.0.0.1:5353/main.dart.js",
+      "required": true
+    }
   ]
 }

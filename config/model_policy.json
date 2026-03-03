@@ -1,0 +1,29 @@
+{
+  "enabled": true,
+  "tier_ladder": [
+    {
+      "tier": "PRIMARY",
+      "model_env": "MASON_MODEL_PRIMARY",
+      "default": "gpt-5.1"
+    },
+    {
+      "tier": "SECONDARY",
+      "model_env": "MASON_MODEL_SECONDARY",
+      "default": "gpt-5.1"
+    },
+    {
+      "tier": "TERTIARY",
+      "model_env": "MASON_MODEL_TERTIARY",
+      "default": "gpt-5.1"
+    }
+  ],
+  "degrade_thresholds": {
+    "weekly_remaining_cad_to_use_secondary": 10.0,
+    "weekly_remaining_cad_to_use_tertiary": 3.0,
+    "weekly_remaining_cad_to_stop_paid_calls": 0.0,
+    "weekly_remaining_usd_to_use_secondary": 10.0,
+    "weekly_remaining_usd_to_use_tertiary": 3.0,
+    "weekly_remaining_usd_to_stop_paid_calls": 0.0
+  },
+  "when_budget_exhausted": "storage_only"
+}

@@ -20,7 +20,7 @@ $logPath = Join-Path $logsDir ("keepalive_{0}.log" -f $runStamp)
 $smokeScript = Join-Path $PSScriptRoot 'SmokeTest_Mason2.ps1'
 $stopHardScript = Join-Path $repoRoot 'Stop_Stack_Hard.ps1'
 $stopFallbackScript = Join-Path $repoRoot 'Stop_Stack.ps1'
-$startStackScript = Join-Path $repoRoot 'Start_Mason_Onyx_Stack.ps1'
+$startStackScript = Join-Path $repoRoot 'tools\launch\Start_Mason_FullStack.ps1'
 $notifyUrl = 'http://127.0.0.1:8000/api/notify'
 
 function Get-UtcNowIso {
@@ -176,6 +176,7 @@ function Invoke-KeepAliveCycle {
             }
         }
 
+        Write-KeepAliveLog -Level 'WARN' -Message 'Attempting stack restart via tools\launch\Start_Mason_FullStack.ps1.'
         $startResult = Invoke-PowerShellFile -ScriptPath $startStackScript
         $finalSmoke = Invoke-PowerShellFile -ScriptPath $smokeScript
         $finalPass = ($finalSmoke.exit_code -eq 0)
@@ -241,7 +242,7 @@ if (-not (Test-Path -LiteralPath $smokeScript)) {
     exit 1
 }
 if (-not (Test-Path -LiteralPath $startStackScript)) {
-    Write-KeepAliveLog -Level 'ERROR' -Message ("Start stack script missing: {0}" -f $startStackScript)
+    Write-KeepAliveLog -Level 'ERROR' -Message ("Start stack wrapper missing: {0}" -f $startStackScript)
     exit 1
 }
 

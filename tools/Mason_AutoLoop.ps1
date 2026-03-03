@@ -36,7 +36,8 @@ $ueSnapshotScript   = Join-Path $Tools "Mason_UE_Snapshot.ps1"
 $selfHealScript     = Join-Path $Tools "Mason_SelfHeal_From_Analyzer.ps1"
 $riskGovernorScript = Join-Path $Tools "Mason_Risk_Governor.ps1"
 $dailyReportScript  = Join-Path $Tools "Mason_Daily_Report.ps1"
-$statusScript       = Join-Path $Tools "Mason_Write_Status_Snapshot.ps1"  # your newer status script
+$statusCanonicalScript = Join-Path $Tools "Mason_Status_Snapshot.ps1"
+$statusWriterScript    = Join-Path $Tools "Mason_Write_Status_Snapshot.ps1"
 
 while ($true) {
     $now = Get-Date
@@ -101,15 +102,35 @@ while ($true) {
         Write-Host "[AutoLoop] WARN: Mason_Daily_Report.ps1 not found at $dailyReportScript" -ForegroundColor Yellow
     }
 
-    # 7) Status snapshot (this writes Mason_Status_Latest.txt)
-    if (Test-Path $statusScript) {
-        $statusText = & $statusScript 2>&1 | Out-String
-        $statusFile = Join-Path $Reports "Mason_Status_Latest.txt"
-        $statusText | Set-Content $statusFile -Encoding UTF8
-        Write-Host "[AutoLoop] Updated status file: $statusFile"
+    # 7) Status snapshot (prefer canonical; never let failure break loop)
+    $statusFile = Join-Path $Reports "Mason_Status_Latest.txt"
+    if (Test-Path $statusCanonicalScript) {
+        try {
+            & powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File $statusCanonicalScript -BaseDir $Base | Out-Null
+            if ($LASTEXITCODE -ne 0) {
+                Write-Host "[AutoLoop] WARN: Mason_Status_Snapshot.ps1 exited with code $LASTEXITCODE" -ForegroundColor Yellow
+            }
+            elseif (Test-Path $statusFile) {
+                Write-Host "[AutoLoop] Updated status file: $statusFile"
+            }
+        }
+        catch {
+            Write-Host "[AutoLoop] WARN: Mason_Status_Snapshot.ps1 failed: $($_.Exception.Message)" -ForegroundColor Yellow
+        }
+    }
+    elseif (Test-Path $statusWriterScript) {
+        try {
+            & $statusWriterScript | Out-Null
+            if (Test-Path $statusFile) {
+                Write-Host "[AutoLoop] Updated status file: $statusFile"
+            }
+        }
+        catch {
+            Write-Host "[AutoLoop] WARN: Mason_Write_Status_Snapshot.ps1 failed: $($_.Exception.Message)" -ForegroundColor Yellow
+        }
     }
     else {
-        Write-Host "[AutoLoop] WARN: Mason_Write_Status_Snapshot.ps1 not found at $statusScript" -ForegroundColor Yellow
+        Write-Host "[AutoLoop] WARN: No status snapshot script found (checked canonical + writer)." -ForegroundColor Yellow
     }
 
     Write-Host "[AutoLoop] Sleep $IntervalSeconds seconds..."

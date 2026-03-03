@@ -55,7 +55,7 @@ if ($risk -and $risk.areas) {
         $rb     = $area.metrics.rollbacks
         $hrs    = $area.metrics.hours_health_green
 
-        $lines += "- $name: allowed_risk=$ar, start_risk=$sr, max_auto_risk=$max"
+        $lines += "- ${name}: allowed_risk=$ar, start_risk=$sr, max_auto_risk=$max"
         $lines += "    metrics: successful=$succ, failed=$fail, rollbacks=$rb, hours_health_green=$hrs"
     }
 } else {
@@ -84,7 +84,7 @@ $lines += "=== Mason UE activity (mason area) ==="
 if (Test-Path $knowledgeDir) {
     $files = Get-ChildItem $knowledgeDir -File -ErrorAction SilentlyContinue
     if ($files -and $files.Count -gt 0) {
-        $lines += "Knowledge files in $knowledgeDir: $($files.Count)"
+        $lines += "Knowledge files in ${knowledgeDir}: $($files.Count)"
 
         # Group by logical topic prefix
         $topicGroups = $files |
@@ -102,7 +102,7 @@ if (Test-Path $knowledgeDir) {
             $topic = $g.Name
             $count = $g.Count
             $latest = ($g.Group | Sort-Object LastWriteTime -Descending | Select-Object -First 1)
-            $lines += "- $topic: $count snapshots (latest: $($latest.LastWriteTime.ToString('u')))"
+            $lines += "- ${topic}: $count snapshots (latest: $($latest.LastWriteTime.ToString('u')))"
         }
     } else {
         $lines += "No knowledge files found yet in $knowledgeDir."

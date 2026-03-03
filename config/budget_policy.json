@@ -1,0 +1,29 @@
+{
+  "enabled": true,
+  "weekly_budget_cad": 50.0,
+  "weekly_budget_currency": "CAD",
+  "cost_source_currency": "USD",
+  "reset_timezone": "America/Toronto",
+  "reset_weekday": "MONDAY",
+  "reset_hour_local": 0,
+  "reset_minute_local": 0,
+  "ledger_path": "C:\\Users\\Chris\\Desktop\\Mason2\\state\\knowledge\\budget_ledger.jsonl",
+  "budget_state_path": "C:\\Users\\Chris\\Desktop\\Mason2\\state\\knowledge\\budget_state.json",
+  "spend_estimation": {
+    "enabled": true,
+    "model_costs_usd_per_1m_tokens": {
+      "PRIMARY": {
+        "input": 0.0,
+        "output": 0.0
+      },
+      "SECONDARY": {
+        "input": 0.0,
+        "output": 0.0
+      },
+      "TERTIARY": {
+        "input": 0.0,
+        "output": 0.0
+      }
+    }
+  }
+}

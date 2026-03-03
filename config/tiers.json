@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "default_tier": "starter",
+  "tiers": [
+    {
+      "tier_id": "free",
+      "name": "Free",
+      "included_tools": [
+        "rescue_plan_v1"
+      ],
+      "limits": {
+        "tool_runs_per_week": 3,
+        "workspace_count": 1
+      },
+      "notes": "Entry tier for diagnostics and basic action plans."
+    },
+    {
+      "tier_id": "starter",
+      "name": "Starter",
+      "included_tools": [
+        "rescue_plan_v1",
+        "sales_followup_v1"
+      ],
+      "limits": {
+        "tool_runs_per_week": 20,
+        "workspace_count": 3
+      },
+      "notes": "Balanced tier for early-stage operations."
+    },
+    {
+      "tier_id": "pro",
+      "name": "Pro",
+      "included_tools": [
+        "rescue_plan_v1",
+        "marketing_pack_v1",
+        "sales_followup_v1"
+      ],
+      "limits": {
+        "tool_runs_per_week": 100,
+        "workspace_count": 20
+      },
+      "notes": "Full toolset with higher throughput."
+    }
+  ]
+}

@@ -43,9 +43,11 @@ BRIDGE_SERVER_SCRIPT = BASE / "bridge" / "mason_bridge_server.py"
 APPLY_APPROVED_SCRIPT = TOOLS / "Mason_Apply_ApprovedChanges.ps1"
 SMOKE_TEST_SCRIPT = TOOLS / "SmokeTest_Mason2.ps1"
 CODEX_WORKORDER_SCRIPT = TOOLS / "Codex_WorkOrder_From_Approvals.ps1"
+TASKGEN_SCRIPT = TOOLS / "Mason_TaskGen_Run.ps1"
 CODEX_WORKORDER_PATH = REPORTS_DIR / "codex_workorder_latest.txt"
 APPROVALS_EXPLAIN_PATH = REPORTS_DIR / "approvals_explain_latest.json"
 APPROVALS_APPLY_SUMMARY_PATH = REPORTS_DIR / "approvals_apply_latest.json"
+TASKGEN_LAST_PATH = REPORTS_DIR / "taskgen_last.json"
 
 # --- App setup -----------------------------------------------------
 
@@ -1918,6 +1920,148 @@ def post_approvals_workorder(payload: dict[str, Any] | None = None):
         "workorder_path": workorder_path_rel,
         "log_path": log_path_rel,
         "run_in_codex": run_in_codex,
+    }
+    if message:
+        response["message"] = message
+    return response
+
+
+@app.post("/api/taskgen/run")
+def post_taskgen_run(payload: dict[str, Any] | None = None):
+    dry_run = False
+    max_items = 200
+    since_hours = 24
+
+    if isinstance(payload, dict):
+        dry_run = bool(payload.get("dry_run", False))
+        try:
+            maybe_max = int(payload.get("max_items", max_items))
+            if 1 <= maybe_max <= 2000:
+                max_items = maybe_max
+        except Exception:
+            pass
+        try:
+            maybe_since = int(payload.get("since_hours", since_hours))
+            if 1 <= maybe_since <= 720:
+                since_hours = maybe_since
+        except Exception:
+            pass
+
+    LOGS.mkdir(parents=True, exist_ok=True)
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_path = LOGS / f"taskgen_run_{stamp}.log"
+    log_path_rel = f"logs\\{log_path.name}"
+    report_path_rel = f"reports\\{TASKGEN_LAST_PATH.name}"
+    message = ""
+    queued_count = 0
+    quarantined_count = 0
+    command_hint = (
+        "powershell -ExecutionPolicy Bypass -File .\\tools\\Mason_TaskGen_Run.ps1"
+        + (" -DryRun" if dry_run else "")
+        + f" -MaxItems {max_items} -SinceHours {since_hours}"
+    )
+
+    if not TASKGEN_SCRIPT.exists():
+        message = f"Missing TaskGen script: {TASKGEN_SCRIPT}"
+        append_notification(
+            level="error",
+            component="taskgen",
+            message="Task generation failed to start (script missing).",
+            context={
+                "ok": False,
+                "dry_run": dry_run,
+                "max_items": max_items,
+                "since_hours": since_hours,
+                "log_path": log_path_rel,
+                "report_path": report_path_rel,
+                "run_in_powershell": command_hint,
+                "message": message,
+            },
+        )
+        return {
+            "ok": False,
+            "message": message,
+            "dry_run": dry_run,
+            "max_items": max_items,
+            "since_hours": since_hours,
+            "log_path": log_path_rel,
+            "report_path": report_path_rel,
+            "run_in_powershell": command_hint,
+        }
+
+    cmd = [
+        "powershell",
+        "-NoLogo",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        str(TASKGEN_SCRIPT),
+        "-MaxItems",
+        str(max_items),
+        "-SinceHours",
+        str(since_hours),
+    ]
+    if dry_run:
+        cmd.append("-DryRun")
+
+    exit_code, output = run_powershell_capture(cmd)
+    with log_path.open("w", encoding="utf-8") as handle:
+        handle.write(f"[{utc_now_iso()}] /api/taskgen/run invoked\n")
+        handle.write("Command:\n")
+        handle.write(" ".join(cmd) + "\n\n")
+        handle.write(output or "")
+        handle.write(f"\nExit code: {exit_code}\n")
+
+    report_payload = read_json(TASKGEN_LAST_PATH, default={})
+    if isinstance(report_payload, dict):
+        counts = report_payload.get("counts")
+        if isinstance(counts, dict):
+            try:
+                queued_count = int(counts.get("generated_queued_visible", 0))
+            except Exception:
+                queued_count = 0
+            try:
+                quarantined_count = int(counts.get("generated_quarantined", 0))
+            except Exception:
+                quarantined_count = 0
+
+    ok = exit_code == 0
+    if not ok:
+        message = f"TaskGen command failed with exit code {exit_code}."
+        tail_lines = [line.strip() for line in output.splitlines() if line.strip()]
+        if tail_lines:
+            message += f" Last output: {tail_lines[-1]}"
+
+    append_notification(
+        level="info" if ok else "error",
+        component="taskgen",
+        message="Task generation run completed." if ok else "Task generation run failed.",
+        context={
+            "ok": ok,
+            "dry_run": dry_run,
+            "max_items": max_items,
+            "since_hours": since_hours,
+            "queued_generated": queued_count,
+            "quarantined_generated": quarantined_count,
+            "log_path": log_path_rel,
+            "report_path": report_path_rel,
+            "run_in_powershell": command_hint,
+            "message": message,
+        },
+    )
+
+    response = {
+        "ok": ok,
+        "dry_run": dry_run,
+        "max_items": max_items,
+        "since_hours": since_hours,
+        "queued_generated": queued_count,
+        "quarantined_generated": quarantined_count,
+        "exit_code": int(exit_code),
+        "log_path": log_path_rel,
+        "report_path": report_path_rel,
+        "run_in_powershell": command_hint,
     }
     if message:
         response["message"] = message

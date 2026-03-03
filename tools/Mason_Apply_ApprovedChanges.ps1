@@ -677,6 +677,7 @@ $changed   = $false
 $processed = 0
 $skipped   = 0
 $approvedCandidates = 0
+$mirrorUpdateInvoked = $false
 $maxRiskInt = Get-RiskInt $MaxRiskLevel
 $explainRows = New-Object System.Collections.Generic.List[object]
 
@@ -856,6 +857,23 @@ if ($processed -eq 0) {
 }
 else {
     Write-ExecLog ("Processed {0} approved item(s). Skipped {1} approved item(s)." -f $processed, $skipped)
+}
+
+if (-not $DryRun -and $processed -gt 0 -and -not $mirrorUpdateInvoked) {
+    $mirrorUpdateScript = Join-Path $Base "tools\sync\Mason_Mirror_Update.ps1"
+    if (Test-Path -LiteralPath $mirrorUpdateScript) {
+        try {
+            & $mirrorUpdateScript -RootPath $Base -Reason "post-apply" | Out-Null
+            $mirrorUpdateInvoked = $true
+            Write-ExecLog "Mirror update triggered (reason=post-apply)."
+        }
+        catch {
+            Write-ExecLog ("Mirror update failed after apply: {0}" -f $_.Exception.Message) "WARN"
+        }
+    }
+    else {
+        Write-ExecLog "Mirror update script not found; skipping post-apply mirror trigger." "WARN"
+    }
 }
 
 Write-ExecLog "Mason_Apply_ApprovedChanges.ps1 finished."

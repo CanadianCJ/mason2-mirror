@@ -1,0 +1,29 @@
+{
+  "enabled": true,
+  "allow_loopback": true,
+  "allow_tailnet_cidr": "100.64.0.0/10",
+  "allow_additional_cidrs": [],
+  "require_signed_requests": true,
+  "signed_exempt_paths": [
+    "/api/health",
+    "/api/version",
+    "/api/ingest_chunk",
+    "/api/ingest_index",
+    "/api/knowledge/append",
+    "/api/approvals",
+    "/api/approvals/summary",
+    "/api/suggestions",
+    "/api/tools/catalog",
+    "/api/tiers",
+    "/api/addons",
+    "/api/tools/recommend",
+    "/api/tools/run",
+    "/api/tools/runs/latest",
+    "/api/auth/pair/start",
+    "/api/auth/pair/complete"
+  ],
+  "timestamp_skew_seconds": 300,
+  "nonce_ttl_seconds": 300,
+  "rate_limit_per_minute": 120,
+  "pairing_flag_path": "state/allow_pairing.flag"
+}

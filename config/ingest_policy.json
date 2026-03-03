@@ -1,0 +1,34 @@
+﻿{
+    "enabled":  true,
+    "inbox_paths":  [
+                        "C:\\Users\\Chris\\Desktop\\Chat GPT old chats",
+                        "C:\\Users\\Chris\\Desktop\\Chat GPT old chats.txt"
+                    ],
+    "use_flattened_inbox":  true,
+    "flatten_source_dir":  "C:\\Users\\Chris\\Desktop\\Chat GPT old chats",
+    "flatten_target_dir":  "C:\\Users\\Chris\\Desktop\\Mason2\\knowledge\\inbox_flat",
+    "drop_dir":  "C:\\Users\\Chris\\Desktop\\Mason2\\drop\\ingest",
+    "processed_dir":  "C:\\Users\\Chris\\Desktop\\Mason2\\drop\\processed",
+    "allowed_ext":  [
+                        ".txt",
+                        ".md",
+                        ".log",
+                        ".json"
+                    ],
+    "max_chars_per_chunk":  6000,
+    "max_chunks_per_file":  200,
+    "max_files_per_run":  20,
+    "debounce_seconds":  5,
+    "ingest_url":  "http://127.0.0.1:8000/api/ingest_chunk",
+    "mode":  "storage_only",
+    "redact_secrets":  true,
+    "auto_install_task":  true,
+    "auto_run_on_boot":  true,
+    "web_learning_enabled":  false,
+    "web_topic_allowlist":  [
+
+                            ]
+}
+
+
+

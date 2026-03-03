@@ -164,6 +164,54 @@ function Get-RiskCounts {
     return $counts
 }
 
+function Get-StatusCounts {
+    param($Items)
+
+    $counts = @{}
+    foreach ($item in @($Items)) {
+        $status = "pending"
+        if ($item.Contains("status") -and ([string]$item["status"]).Trim()) {
+            $status = ([string]$item["status"]).Trim().ToLowerInvariant()
+        }
+        if (-not $counts.ContainsKey($status)) {
+            $counts[$status] = 0
+        }
+        $counts[$status] = [int]$counts[$status] + 1
+    }
+    return [ordered]@{} + $counts
+}
+
+function Get-TopCategoryCounts {
+    param(
+        $Items,
+        [int]$Limit = 10
+    )
+
+    $bucket = @{}
+    foreach ($item in @($Items)) {
+        $parts = @()
+        foreach ($field in @("component_id", "area", "domain", "source")) {
+            if ($item.Contains($field) -and ([string]$item[$field]).Trim()) {
+                $parts += ([string]$item[$field]).Trim().ToLowerInvariant()
+            }
+        }
+        $category = if ($parts.Count -gt 0) { ($parts -join "/") } else { "uncategorized" }
+        if (-not $bucket.ContainsKey($category)) {
+            $bucket[$category] = 0
+        }
+        $bucket[$category] = [int]$bucket[$category] + 1
+    }
+
+    $rows = @()
+    foreach ($k in $bucket.Keys) {
+        $rows += [pscustomobject]@{
+            category = $k
+            count    = [int]$bucket[$k]
+        }
+    }
+    return @($rows | Sort-Object -Property @{Expression = "count"; Descending = $true}, @{Expression = "category"; Descending = $false} | Select-Object -First $Limit)
+}
+
 function Get-OldestAgeHours {
     param($Items)
     $arr = @($Items)
@@ -378,6 +426,8 @@ $posture = [ordered]@{
         quarantine_total = $finalQuarantine.Count
         eligible_by_risk = $riskCountsEligible
         quarantine_by_risk = $riskCountsQuarantine
+        eligible_by_status = Get-StatusCounts -Items $eligibleOrdered
+        quarantine_by_status = Get-StatusCounts -Items $finalQuarantine
     }
     age_hours = [ordered]@{
         oldest_eligible = $oldestEligibleHours
@@ -390,9 +440,23 @@ $posture = [ordered]@{
         quarantine_merge = $dedupRemovedQuarantine
     }
     throttle_removals_count = $throttleRemoved
+    top_categories = [ordered]@{
+        eligible = Get-TopCategoryCounts -Items $eligibleOrdered -Limit 10
+        quarantine = Get-TopCategoryCounts -Items $finalQuarantine -Limit 10
+    }
 }
 
 $posture | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath $posturePath -Encoding UTF8
+
+$postureScript = Join-Path (Join-Path $RootPath "tools") "Mason_Approvals_Posture.ps1"
+if (Test-Path -LiteralPath $postureScript) {
+    try {
+        & $postureScript -RootPath $RootPath -PendingPath $PendingPath -QuarantinePath $quarantinePath -OutputPath $posturePath | Out-Null
+    }
+    catch {
+        Write-FloodLog ("Approvals posture refresh script failed; keeping local posture output: {0}" -f $_.Exception.Message) "WARN"
+    }
+}
 
 Write-FloodLog ("Eligible queue count: {0}" -f $eligibleOrdered.Count)
 Write-FloodLog ("Quarantine queue count: {0}" -f $finalQuarantine.Count)

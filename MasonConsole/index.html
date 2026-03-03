@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Athena – Mason Console</title>
+  <style>
+    :root {
+      --bg: #05070b;
+      --bg-card: #101320;
+      --bg-card-soft: #15192a;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.15);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2937;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --warning: #eab308;
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --shadow-soft: 0 14px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 60%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1200px;
+      margin: 16px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(15,23,42,0.96), rgba(17,24,39,0.98));
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,0.2);
+    }
+
+    .header {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top left, rgba(59,130,246,0.15), transparent 50%);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #60a5fa, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: #0b1120;
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.8), 0 12px 30px rgba(37,99,235,0.7);
+    }
+
+    .header-title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .header-title-main {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .header-title-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .status-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(22,163,74,0.08);
+      border: 1px solid rgba(34,197,94,0.4);
+      color: #bbf7d0;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.3);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      padding: 8px 16px 0 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top right, rgba(15,118,110,0.12), transparent 45%);
+    }
+
+    .tab-button {
+      border: none;
+      background: transparent;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease-out;
+    }
+
+    .tab-button span.badge {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.18);
+      color: var(--text-muted);
+    }
+
+    .tab-button.active {
+      background: var(--accent-soft);
+      color: #dbeafe;
+    }
+
+    .tab-button.active span.badge {
+      background: rgba(59,130,246,0.4);
+      color: #eff6ff;
+    }
+
+    .main-body {
+      display: flex;
+      flex: 1;
+      padding: 12px 16px 16px 16px;
+      gap: 12px;
+    }
+
+    .panel {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.95), rgba(15,23,42,0.96));
+      border: 1px solid var(--border-subtle);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .panel-title {
+      font-weight: 500;
+    }
+
+    .panel-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .panel-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+      color: var(--text-main);
+      padding: 5px 10px;
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.12s ease-out;
+    }
+
+    .btn:hover {
+      border-color: rgba(191,219,254,0.9);
+      background: rgba(30,64,175,0.8);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      border-color: rgba(129,140,248,0.9);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1d4ed8, #4338ca);
+    }
+
+    .btn-danger {
+      border-color: rgba(248,113,113,0.9);
+      color: #fecaca;
+    }
+
+    .btn-danger:hover {
+      background: rgba(127,29,29,0.9);
+    }
+
+    .btn-xs {
+      padding: 3px 7px;
+      font-size: 11px;
+    }
+
+    .btn-soft {
+      background: rgba(15,23,42,0.8);
+    }
+
+    .content-scroll {
+      flex: 1;
+      overflow: auto;
+      border-radius: var(--radius-md);
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(2,6,23,0.98));
+      padding: 8px;
+      border: 1px solid rgba(31,41,55,0.9);
+    }
+
+    /* Tabs content */
+
+    .tab-content {
+      display: none;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .tab-content.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Status text area */
+
+    .status-text {
+      white-space: pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      line-height: 1.4;
+      color: #e5e7eb;
+    }
+
+    /* Approvals cards */
+
+    .approvals-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .approval-card {
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,1));
+      border: 1px solid rgba(55,65,81,0.9);
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    .approval-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .approval-title {
+      font-weight: 500;
+    }
+
+    .approval-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      border: 1px solid rgba(75,85,99,0.9);
+      background: rgba(15,23,42,0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pill-risk {
+      border-color: rgba(248,250,252,0.15);
+      background: rgba(15,23,42,0.95);
+    }
+
+    .pill-component {
+      border-color: rgba(59,130,246,0.7);
+      background: rgba(30,64,175,0.35);
+      color: #e0f2fe;
+    }
+
+    .pill-status {
+      border-color: rgba(148,163,184,0.8);
+      background: rgba(15,23,42,0.85);
+    }
+
+    .pill-status-approved {
+      border-color: rgba(34,197,94,0.8);
+      color: #bbf7d0;
+    }
+
+    .pill-status-pending {
+      border-color: rgba(234,179,8,0.8);
+      color: #facc15;
+    }
+
+    .pill-status-rejected {
+      border-color: rgba(248,113,113,0.9);
+      color: #fecaca;
+    }
+
+    .approval-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .helper-text {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Chat */
+
+    .chat-log {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      color: #e5e7eb;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chat-input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(75,85,99,0.9);
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      padding: 6px 10px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .chat-input:focus {
+      border-color: rgba(59,130,246,0.9);
+    }
+
+    .empty-state {
+      font-size: 12px;
+      color: var(--text-muted);
+      padding: 4px 2px;
+    }
+
+    @media (max-width: 900px) {
+      .main-body {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="header">
+      <div class="header-left">
+        <div class="brand-badge">A</div>
+        <div class="header-title">
+          <div class="header-title-main">Athena – Mason Console</div>
+          <div class="header-title-sub">Your control surface for Mason, Onyx, and approvals</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="status-pill">
+          <div class="status-dot"></div>
+          <span id="status-pill-text">Online</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-button active" data-tab="status">
+        Status
+      </button>
+      <button class="tab-button" data-tab="approvals">
+        Approvals <span class="badge" id="approvals-count-badge">0</span>
+      </button>
+      <button class="tab-button" data-tab="chat">
+        Chat
+      </button>
+    </div>
+
+    <div class="main-body">
+      <!-- Left side: Status / Approvals -->
+      <div class="panel" style="flex: 2;">
+        <!-- Status tab -->
+        <div id="tab-status" class="tab-content active">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Mason status</div>
+              <div class="panel-sub">Aggregated health, risk state, and resource summary</div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn btn-soft btn-xs" id="btn-refresh-status">Refresh status</button>
+            </div>
+          </div>
+          <div class="content-scroll">
+            <div id="status-text" class="status-text">
+              Loading Mason status...
+            </div>
+          </div>
+        </div>
+
+        <!-- Approvals tab -->
+        <div id="tab-approvals" class="tab-content">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Approvals</div>
+              <div class="panel-sub">
+                Review and approve/reject Mason proposals. Executed/rejected items drop out of this list.
+              </div>
+            </div>
+            <div class="panel-actions">
+              <button class="btn btn-soft btn-xs" id="btn-refresh-approvals">Refresh approvals</button>
+            </div>
+          </div>
+          <div class="content-scroll">
+            <div id="approvals-list" class="approvals-list">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+          <div class="helper-text">
+            For each approval, Athena will:
+            1) save your decision and reason,
+            2) let the executor handle backups + status,
+            3) hide the item once it is executed or rejected.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side: Chat -->
+      <div class="panel" style="flex: 1.4;">
+        <div id="tab-chat" class="tab-content active">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Chat with Mason</div>
+              <div class="panel-sub">Send direct instructions or ask for status explanations.</div>
+            </div>
+          </div>
+          <div class="content-scroll">
+            <div id="chat-log" class="chat-log"></div>
+          </div>
+          <div class="chat-input-row">
+            <input id="chat-input" class="chat-input" type="text" placeholder="Type a message for Mason and press Enter..." />
+            <button class="btn btn-primary btn-xs" id="btn-send-chat">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple fetch helper
+    async function fetchJson(url, options) {
+      const resp = await fetch(url, options || {});
+      const text = await resp.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        console.error("Failed to parse JSON from", url, text);
+        throw e;
+      }
+      return data;
+    }
+
+    // Tabs
+    function setActiveTab(tabId) {
+      document.querySelectorAll(".tab-button").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === tabId);
+      });
+      document.querySelectorAll(".tab-content").forEach(el => {
+        el.classList.toggle("active", el.id === "tab-" + tabId);
+      });
+    }
+
+    document.querySelectorAll(".tab-button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const tabId = btn.dataset.tab;
+        setActiveTab(tabId);
+      });
+    });
+
+    // Status
+    async function refreshStatus() {
+      const statusEl = document.getElementById("status-text");
+      statusEl.textContent = "Loading Mason status...";
+      try {
+        const data = await fetchJson("/api/mason_status");
+        if (!data.ok) {
+          statusEl.textContent = "Status error: " + (data.message || "unknown error");
+          return;
+        }
+        statusEl.textContent = data.status || "No status text returned.";
+        const pillText = document.getElementById("status-pill-text");
+        pillText.textContent = data.severity === "error" ? "Error" :
+                               data.severity === "warn" ? "Warning" : "Online";
+      } catch (e) {
+        console.error(e);
+        statusEl.textContent = "Failed to load Mason status: " + e;
+      }
+    }
+
+    document.getElementById("btn-refresh-status").addEventListener("click", refreshStatus);
+
+    // Approvals
+    function makeStatusClass(status) {
+      const s = String(status || "").toLowerCase();
+      if (s === "pending") return "pill-status pill-status-pending";
+      if (s === "approve" || s === "approved") return "pill-status pill-status-approved";
+      if (s === "reject" || s === "rejected") return "pill-status pill-status-rejected";
+      return "pill-status";
+    }
+
+    async function refreshApprovals() {
+      const listEl = document.getElementById("approvals-list");
+      const countBadge = document.getElementById("approvals-count-badge");
+      listEl.innerHTML = "";
+      try {
+        const data = await fetchJson("/api/approvals");
+        if (!data.ok) {
+          listEl.innerHTML = "<div class='empty-state'>Approvals not available: " +
+            (data.error || data.message || "unknown error") + "</div>";
+          countBadge.textContent = "0";
+          return;
+        }
+
+        const items = data.items || [];
+        countBadge.textContent = items.length;
+
+        if (items.length === 0) {
+          listEl.innerHTML = "<div class='empty-state'>No pending approvals. Mason has nothing waiting for your decision.</div>";
+          return;
+        }
+
+        for (const item of items) {
+          const card = document.createElement("div");
+          card.className = "approval-card";
+
+          const rowTop = document.createElement("div");
+          rowTop.className = "approval-row";
+
+          const titleDiv = document.createElement("div");
+          titleDiv.className = "approval-title";
+          titleDiv.textContent = item.title || item.id || "Approval item";
+
+          const metaDiv = document.createElement("div");
+          metaDiv.className = "approval-meta";
+
+          const compSpan = document.createElement("span");
+          compSpan.className = "pill pill-component";
+          compSpan.textContent = "Component: " + (item.component_id || item.area || "unknown");
+          metaDiv.appendChild(compSpan);
+
+          const riskSpan = document.createElement("span");
+          riskSpan.className = "pill pill-risk";
+          riskSpan.textContent = "Risk: " + (item.risk_level || "R0");
+          metaDiv.appendChild(riskSpan);
+
+          const statusSpan = document.createElement("span");
+          const rawStatus = item.status || "pending";
+          statusSpan.className = makeStatusClass(rawStatus);
+          statusSpan.textContent = "Status: " + rawStatus;
+          metaDiv.appendChild(statusSpan);
+
+          rowTop.appendChild(titleDiv);
+          rowTop.appendChild(metaDiv);
+          card.appendChild(rowTop);
+
+          if (item.id || item.kind) {
+            const rowMid = document.createElement("div");
+            rowMid.className = "approval-row";
+            const idText = document.createElement("div");
+            idText.className = "approval-meta";
+            idText.textContent = "ID: " + item.id + " • Kind: " + (item.kind || "patch_run");
+            rowMid.appendChild(idText);
+            card.appendChild(rowMid);
+          }
+
+          const rowBottom = document.createElement("div");
+          rowBottom.className = "approval-actions";
+
+          const approveBtn = document.createElement("button");
+          approveBtn.className = "btn btn-primary btn-xs";
+          approveBtn.textContent = "Approve";
+          approveBtn.addEventListener("click", () => {
+            handleDecision(item.id, "approve");
+          });
+
+          const rejectBtn = document.createElement("button");
+          rejectBtn.className = "btn btn-danger btn-xs";
+          rejectBtn.textContent = "Reject";
+          rejectBtn.addEventListener("click", () => {
+            handleDecision(item.id, "reject");
+          });
+
+          rowBottom.appendChild(approveBtn);
+          rowBottom.appendChild(rejectBtn);
+          card.appendChild(rowBottom);
+
+          listEl.appendChild(card);
+        }
+      } catch (e) {
+        console.error(e);
+        listEl.innerHTML = "<div class='empty-state'>Failed to load approvals: " + e + "</div>";
+        countBadge.textContent = "0";
+      }
+    }
+
+    async function handleDecision(id, decision) {
+      const reason = window.prompt(`Why are you choosing to ${decision} '${id}'? (optional)`, "");
+      try {
+        const resp = await fetch("/api/approvals/decision", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id, decision, reason: reason || null })
+        });
+        const data = await resp.json();
+        if (!data.ok) {
+          alert("Decision failed: " + (data.message || data.error || "unknown error"));
+          return;
+        }
+        // After a decision, refresh the approvals list so the status is re-read from the server
+        await refreshApprovals();
+      } catch (e) {
+        console.error(e);
+        alert("Error sending decision: " + e);
+      }
+    }
+
+    document.getElementById("btn-refresh-approvals").addEventListener("click", refreshApprovals);
+
+    // Chat
+    const chatLog = document.getElementById("chat-log");
+    const chatInput = document.getElementById("chat-input");
+
+    function appendChat(role, text) {
+      const prefix = role === "user" ? "You: " : "Mason: ";
+      const line = document.createElement("div");
+      line.textContent = prefix + text;
+      chatLog.appendChild(line);
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    async function sendChat() {
+      const msg = chatInput.value.trim();
+      if (!msg) return;
+      appendChat("user", msg);
+      chatInput.value = "";
+      try {
+        const data = await fetchJson("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: msg })
+        });
+        if (!data.ok) {
+          appendChat("assistant", "Bridge error: " + (data.message || "unknown error"));
+          return;
+        }
+        appendChat("assistant", data.reply || "(no reply text)");
+      } catch (e) {
+        console.error(e);
+        appendChat("assistant", "Error: " + e);
+      }
+    }
+
+    document.getElementById("btn-send-chat").addEventListener("click", sendChat);
+    chatInput.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+        sendChat();
+      }
+    });
+
+    // Initial load
+    (async function init() {
+      await refreshStatus();
+      await refreshApprovals();
+    })();
+  </script>
+</body>
+</html>

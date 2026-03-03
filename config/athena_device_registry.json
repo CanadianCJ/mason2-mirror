@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "devices": [
+    {
+      "device_id": "iPhone-chris",
+      "device_label": "iPhone",
+      "hmac_secret": "kEL1nEtrz_Q2nGtg-9uL-tBlC3QYAz6edSp6R2xEmEvaWDumQ4IOQI0xEY8yAPTU",
+      "created_at": "2026-02-28T20:56:19.109058Z",
+      "updated_at": "2026-02-28T21:31:24.398771Z",
+      "last_seen_at": "2026-02-28T22:39:31.405523Z",
+      "enabled": true
+    },
+    {
+      "device_id": "iPhone-Chris",
+      "device_label": "iPhone",
+      "hmac_secret": "IrqmxE45j_TyWsGRwuzNMy2ZMaZxqSmNYJvFa0v94KQWZsZQPAZ55VOejvFAfVar",
+      "created_at": "2026-02-28T21:00:53.328713Z",
+      "updated_at": "2026-02-28T21:00:53.328713Z",
+      "last_seen_at": "2026-02-28T22:06:13.031298Z",
+      "enabled": true
+    },
+    {
+      "device_id": "Iphone-chris",
+      "device_label": "iPhone",
+      "hmac_secret": "yx63QloVIkvdOJDw2_VJqNBgLi0oRINadHPyZQEoHI_h08zmKpPliGj9P5g89bYl",
+      "created_at": "2026-02-28T21:01:56.217225Z",
+      "updated_at": "2026-02-28T21:01:56.217225Z",
+      "last_seen_at": "2026-02-28T21:03:28.810772Z",
+      "enabled": true
+    },
+    {
+      "device_id": "iphone-chris",
+      "device_label": "iPhone",
+      "hmac_secret": "gF5sQI_HmyHySH2kpDXJAhAFJxDos_hhaKBhajOfl1cwJhEk8jbBjra3gXYA4bSU",
+      "created_at": "2026-02-28T21:06:28.121453Z",
+      "updated_at": "2026-02-28T21:06:28.121453Z",
+      "last_seen_at": "2026-02-28T21:28:13.491299Z",
+      "enabled": true
+    },
+    {
+      "device_id": "pc-chris",
+      "device_label": "iPhone",
+      "hmac_secret": "hpDnouD-WT_jJ7tdAZFp239oOy-MzVPw6Ahzh1AoKMZJIImTLu8rGZrV7Xm12USv",
+      "created_at": "2026-02-28T21:44:41.579993Z",
+      "updated_at": "2026-02-28T21:44:41.579993Z",
+      "last_seen_at": "2026-02-28T22:06:49.921667Z",
+      "enabled": true
+    }
+  ]
+}

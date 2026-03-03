@@ -1,0 +1,7 @@
+{
+  "base_currency": "CAD",
+  "locale": "en-CA",
+  "usd_to_cad_rate": 1.35,
+  "rate_source": "manual",
+  "updated_at_utc": "2026-02-28T21:30:00Z"
+}

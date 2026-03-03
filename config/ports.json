@@ -1,0 +1,10 @@
+{
+  "ports": {
+    "mason_api": 8383,
+    "seed_api": 8109,
+    "bridge": 8484,
+    "athena": 8000,
+    "onyx": 5353
+  },
+  "bind_host": "127.0.0.1"
+}

@@ -21,7 +21,7 @@ if ($MaxCycles -lt 0) {
 $RepoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
 $LogsDir = Join-Path $RepoRoot "logs"
 $SmokeScript = Join-Path $PSScriptRoot "SmokeTest_Mason2.ps1"
-$StartStackScript = Join-Path $RepoRoot "Start_Mason_Onyx_Stack.ps1"
+$StartStackScript = Join-Path $RepoRoot "tools\launch\Start_Mason_FullStack.ps1"
 $LogPath = Join-Path $LogsDir ("stack_watchdog_{0}.log" -f (Get-Date -Format "yyyyMMdd"))
 $RestartWindow = New-TimeSpan -Hours 1
 
@@ -179,7 +179,7 @@ while ($true) {
             $nextAllowedAt = Get-NextRestartAllowedAt -History $restartHistory
             Write-WatchdogLog -Level "ERROR" -Message ("Restart suppressed by hard backoff. Max {0} restart(s)/hour reached. Next allowed after {1}." -f $MaxRestartsPerHour, $nextAllowedAt.ToString("o"))
         } else {
-            Write-WatchdogLog -Level "WARN" -Message "Attempting stack restart via Start_Mason_Onyx_Stack.ps1."
+            Write-WatchdogLog -Level "WARN" -Message "Attempting stack restart via tools\launch\Start_Mason_FullStack.ps1."
             $startRun = Invoke-PowerShellFileNoProfile -ScriptPath $StartStackScript
             $restartHistory.Add((Get-Date))
             Write-OutputTail -Prefix "StartStack> " -Output $startRun.output

@@ -79,29 +79,28 @@ function Get-ListeningSocketsForPort {
 }
 
 function Get-MasonPortsFromConfig {
-    param([string]$ServicesPath)
+    param([string]$PortsPath)
 
     $ports = New-Object System.Collections.Generic.List[int]
 
-    if (-not (Test-Path -LiteralPath $ServicesPath)) {
+    if (-not (Test-Path -LiteralPath $PortsPath)) {
         return @()
     }
 
     try {
-        $cfg = Get-Content -LiteralPath $ServicesPath -Raw -Encoding UTF8 | ConvertFrom-Json -ErrorAction Stop
+        $cfg = Get-Content -LiteralPath $PortsPath -Raw -Encoding UTF8 | ConvertFrom-Json -ErrorAction Stop
     }
     catch {
         return @()
     }
 
-    if ($cfg -and ($cfg.PSObject.Properties.Name -contains "ports")) {
-        foreach ($p in @($cfg.ports)) {
-            if ($p -and ($p.PSObject.Properties.Name -contains "port")) {
-                $val = 0
-                if ([int]::TryParse([string]$p.port, [ref]$val)) {
-                    if (-not $ports.Contains($val)) {
-                        $ports.Add($val)
-                    }
+    if ($cfg -and ($cfg.PSObject.Properties.Name -contains "ports") -and $cfg.ports) {
+        foreach ($prop in @($cfg.ports.PSObject.Properties)) {
+            if (-not $prop) { continue }
+            $val = 0
+            if ([int]::TryParse([string]$prop.Value, [ref]$val)) {
+                if (-not $ports.Contains($val)) {
+                    $ports.Add($val)
                 }
             }
         }
@@ -300,7 +299,7 @@ $stateDir = Join-Path $RootPath "state\knowledge"
 $configDir = Join-Path $RootPath "config"
 New-Item -ItemType Directory -Path $reportsDir -Force | Out-Null
 
-$servicesPath = Join-Path $configDir "services.json"
+$portsPath = Join-Path $configDir "ports.json"
 $pendingPath = Join-Path $stateDir "pending_patch_runs.json"
 $trustPath = Join-Path $stateDir "trust_index.json"
 $riskPolicyPath = Join-Path $configDir "risk_policy.json"
@@ -325,9 +324,9 @@ $regexPatterns = @(
 $scan = Collect-SecretHits -Root $RootPath -RegexPatterns $regexPatterns -AllowedFiles $allowedSecretFiles
 $violations = @($scan.violations)
 
-$portList = Get-MasonPortsFromConfig -ServicesPath $servicesPath
+$portList = Get-MasonPortsFromConfig -PortsPath $portsPath
 if ($portList.Count -eq 0) {
-    $portList = @(7001, 5353, 8000, 8484)
+    $portList = @(8383, 8109, 8484, 8000, 5353)
 }
 
 $portChecks = @()

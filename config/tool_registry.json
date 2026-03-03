@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "tools": [
+    {
+      "tool_id": "rescue_plan_v1",
+      "version": "1.0.0",
+      "title": "Rescue Plan",
+      "risk_level": "R1",
+      "budget_class": "LOW",
+      "tags": [
+        "stability",
+        "operations",
+        "triage"
+      ],
+      "supported_business_types": [
+        "agency",
+        "retail",
+        "service",
+        "consulting",
+        "saas",
+        "other"
+      ],
+      "input_schema": {
+        "required": [
+          "business_type",
+          "goal",
+          "current_issues"
+        ],
+        "properties": {
+          "business_type": {
+            "type": "string"
+          },
+          "goal": {
+            "type": "string"
+          },
+          "current_issues": {
+            "type": "array",
+            "items": "string"
+          },
+          "budget": {
+            "type": "string"
+          },
+          "staff_size": {
+            "type": "string"
+          }
+        }
+      },
+      "output_schema": {
+        "properties": {
+          "summary": {
+            "type": "string"
+          },
+          "top_risks": {
+            "type": "array",
+            "items": "string"
+          },
+          "recommended_actions": {
+            "type": "array",
+            "items": "string"
+          },
+          "tasks": {
+            "type": "array",
+            "items": "object"
+          }
+        }
+      }
+    },
+    {
+      "tool_id": "marketing_pack_v1",
+      "version": "1.0.0",
+      "title": "Marketing Pack",
+      "risk_level": "R1",
+      "budget_class": "LOW",
+      "tags": [
+        "marketing",
+        "content",
+        "campaigns"
+      ],
+      "supported_business_types": [
+        "agency",
+        "retail",
+        "service",
+        "consulting",
+        "saas",
+        "other"
+      ],
+      "input_schema": {
+        "required": [
+          "business_type",
+          "goal",
+          "marketing_status"
+        ],
+        "properties": {
+          "business_type": {
+            "type": "string"
+          },
+          "goal": {
+            "type": "string"
+          },
+          "marketing_status": {
+            "type": "string"
+          },
+          "audience": {
+            "type": "string"
+          },
+          "offers": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      },
+      "output_schema": {
+        "properties": {
+          "summary": {
+            "type": "string"
+          },
+          "message_pillars": {
+            "type": "array",
+            "items": "string"
+          },
+          "drafts": {
+            "type": "array",
+            "items": "object"
+          },
+          "tasks": {
+            "type": "array",
+            "items": "object"
+          }
+        }
+      }
+    },
+    {
+      "tool_id": "sales_followup_v1",
+      "version": "1.0.0",
+      "title": "Sales Follow-up",
+      "risk_level": "R1",
+      "budget_class": "LOW",
+      "tags": [
+        "sales",
+        "pipeline",
+        "followup"
+      ],
+      "supported_business_types": [
+        "agency",
+        "retail",
+        "service",
+        "consulting",
+        "saas",
+        "other"
+      ],
+      "input_schema": {
+        "required": [
+          "business_type",
+          "goal",
+          "sales_pipeline_status"
+        ],
+        "properties": {
+          "business_type": {
+            "type": "string"
+          },
+          "goal": {
+            "type": "string"
+          },
+          "sales_pipeline_status": {
+            "type": "string"
+          },
+          "lead_sources": {
+            "type": "array",
+            "items": "string"
+          },
+          "objections": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      },
+      "output_schema": {
+        "properties": {
+          "summary": {
+            "type": "string"
+          },
+          "followup_sequences": {
+            "type": "array",
+            "items": "object"
+          },
+          "tasks": {
+            "type": "array",
+            "items": "object"
+          }
+        }
+      }
+    }
+  ]
+}

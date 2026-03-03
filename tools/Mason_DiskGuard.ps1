@@ -30,24 +30,45 @@ if ([string]::IsNullOrWhiteSpace($envValMachine) -and
     }
 }
 
-# Get disk info for C:
-$disk = Get-CimInstance Win32_LogicalDisk -Filter "DeviceID='C:'"
+# Get disk info for C: with permission-safe CIM handling
+$disk = $null
+$permissionError = $false
+$permissionErrorMessage = $null
+$cimErrorMessage = $null
 
-if (-not $disk) {
-    Write-Warning "Mason DiskGuard: Could not read C: disk info."
-    return
+try {
+    $disk = Get-CimInstance Win32_LogicalDisk -Filter "DeviceID='C:'" -ErrorAction Stop
+}
+catch {
+    $msg = $_.Exception.Message
+    if ($msg -match "Access denied|Access is denied|AccessDenied|0x80070005") {
+        $permissionError = $true
+        $permissionErrorMessage = $msg
+        Write-Warning "Mason DiskGuard: CIM access denied; continuing with permission_error=true."
+    }
+    else {
+        $cimErrorMessage = $msg
+        Write-Warning "Mason DiskGuard: Could not read C: disk info. $msg"
+    }
 }
 
-$totalGB = [math]::Round(($disk.Size / 1GB), 2)
-$freeGB  = [math]::Round(($disk.FreeSpace / 1GB), 2)
+$totalGB = $null
+$freeGB  = $null
+$freePct = $null
+$below   = $null
 
-if ($totalGB -le 0) {
-    Write-Warning "Mason DiskGuard: Total disk size is zero or invalid."
-    return
+if ($disk) {
+    $totalGB = [math]::Round(($disk.Size / 1GB), 2)
+    $freeGB  = [math]::Round(($disk.FreeSpace / 1GB), 2)
+
+    if ($totalGB -le 0) {
+        Write-Warning "Mason DiskGuard: Total disk size is zero or invalid."
+    }
+    else {
+        $freePct = [math]::Round(($freeGB / $totalGB) * 100, 2)
+        $below   = $freePct -lt $minPct
+    }
 }
-
-$freePct = [math]::Round(($freeGB / $totalGB) * 100, 2)
-$below   = $freePct -lt $minPct
 
 $report = [pscustomobject]@{
     generated_at_utc   = (Get-Date).ToUniversalTime().ToString("o")
@@ -57,6 +78,9 @@ $report = [pscustomobject]@{
     free_pct           = $freePct
     min_required_pct   = $minPct
     below_threshold    = $below
+    permission_error   = $permissionError
+    permission_message = $permissionErrorMessage
+    cim_error_message  = $cimErrorMessage
 }
 
 $reportPath = Join-Path $reportsDir "mason_diskguard_report.json"
@@ -64,6 +88,6 @@ $report | ConvertTo-Json -Depth 5 | Set-Content -Path $reportPath -Encoding UTF8
 
 Write-Host "Mason DiskGuard report written to $reportPath"
 
-if ($below) {
+if ($below -eq $true) {
     Write-Warning "Mason DiskGuard: Free disk space is below threshold ($freePct% < $minPct%)."
 }

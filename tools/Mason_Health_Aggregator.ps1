@@ -55,12 +55,40 @@ function Get-JsonSafe {
 # ---------------------------
 # 3. Collect basic system info
 # ---------------------------
+$osVersion = $null
+$totalMemoryMB = $null
+$permissionError = $false
+$permissionErrorMessage = $null
+$cimErrorMessage = $null
+
+try {
+    $osInfo = Get-CimInstance Win32_OperatingSystem -ErrorAction Stop
+    $csInfo = Get-CimInstance Win32_ComputerSystem -ErrorAction Stop
+    $osVersion = $osInfo.Version
+    $totalMemoryMB = [int]($csInfo.TotalPhysicalMemory / 1MB)
+}
+catch {
+    $msg = $_.Exception.Message
+    if ($msg -match "Access denied|Access is denied|AccessDenied|0x80070005") {
+        $permissionError = $true
+        $permissionErrorMessage = $msg
+        Write-Warning "Mason Health Aggregator: CIM access denied; continuing with permission_error=true."
+    }
+    else {
+        $cimErrorMessage = $msg
+        Write-Warning "Mason Health Aggregator: Failed to collect CIM system info. $msg"
+    }
+}
+
 $sysInfo = [pscustomobject]@{
-    machineName   = $env:COMPUTERNAME
-    userName      = $env:USERNAME
-    osVersion     = (Get-CimInstance Win32_OperatingSystem).Version
-    totalMemoryMB = [int]((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1MB)
-    freeSpace     = @()
+    machineName        = $env:COMPUTERNAME
+    userName           = $env:USERNAME
+    osVersion          = $osVersion
+    totalMemoryMB      = $totalMemoryMB
+    permission_error   = $permissionError
+    permission_message = $permissionErrorMessage
+    cim_error_message  = $cimErrorMessage
+    freeSpace          = @()
 }
 
 # Collect free space for main drives

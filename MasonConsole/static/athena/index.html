@@ -1,0 +1,1487 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Athena Cockpit</title>
+  <link rel="manifest" href="/athena/manifest.webmanifest" />
+  <style>
+    :root {
+      --bg: #060b16;
+      --card: #121a2a;
+      --card-soft: #182236;
+      --line: #2b3a57;
+      --text: #eaf0ff;
+      --muted: #95a8cc;
+      --accent: #3dd7cc;
+      --accent-2: #4f8cff;
+      --danger: #ff5d6e;
+      --ok: #3bcf8e;
+      --warn: #f8c861;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "SF Pro Text", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 500px at 0% 0%, #0f2345 0%, transparent 65%),
+        radial-gradient(900px 400px at 100% 0%, #0f3637 0%, transparent 60%),
+        var(--bg);
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .app {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 12px 30px;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .head {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(10px);
+      background: rgba(6, 11, 22, 0.85);
+      border-bottom: 1px solid var(--line);
+      margin: -12px -12px 12px;
+      padding: 12px;
+    }
+
+    .title {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: .4px;
+      margin: 0;
+    }
+
+    .subtitle {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .status-pill {
+      margin-top: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(61, 215, 204, .12);
+      border: 1px solid rgba(61, 215, 204, .45);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ok);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+      position: sticky;
+      top: 84px;
+      z-index: 4;
+      background: rgba(6, 11, 22, 0.85);
+      padding-top: 4px;
+    }
+
+    .tab {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--muted);
+      padding: 7px 12px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .tab.active {
+      color: var(--text);
+      border-color: rgba(79, 140, 255, .7);
+      background: linear-gradient(120deg, rgba(79, 140, 255, .22), rgba(61, 215, 204, .2));
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(160deg, rgba(18, 26, 42, .95), rgba(24, 34, 54, .95));
+      padding: 12px;
+      margin-bottom: 10px;
+      min-height: 0;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+
+    .muted { color: var(--muted); font-size: 12px; }
+
+    .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+
+    input, textarea, select, button {
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #0f1727;
+      color: var(--text);
+      padding: 9px 10px;
+      font-size: 13px;
+    }
+
+    input, textarea { width: 100%; }
+    textarea { min-height: 90px; resize: vertical; }
+
+    button {
+      cursor: pointer;
+      background: linear-gradient(120deg, rgba(79, 140, 255, .3), rgba(61, 215, 204, .28));
+      border-color: rgba(79, 140, 255, .7);
+    }
+
+    button.warn { border-color: rgba(248, 200, 97, .8); background: rgba(248, 200, 97, .15); }
+    button.danger { border-color: rgba(255, 93, 110, .8); background: rgba(255, 93, 110, .12); }
+
+    pre {
+      margin: 0;
+      font-size: 12px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0c1322;
+      border: 1px solid #22324e;
+      border-radius: 10px;
+      padding: 10px;
+      max-height: none;
+      overflow: auto;
+    }
+
+    .hidden { display: none; }
+
+    .tab-body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding-bottom: 8px;
+    }
+
+    .tab-body.hidden {
+      display: none;
+    }
+
+    .fill-card {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .fill-pre {
+      flex: 1;
+      min-height: 220px;
+      overflow: auto;
+    }
+
+    .output-card {
+      margin-bottom: 0;
+    }
+
+    .kpi {
+      min-width: 120px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      background: rgba(17, 28, 46, .8);
+    }
+
+    .kpi .label { color: var(--muted); font-size: 11px; }
+    .kpi .val { font-size: 17px; margin-top: 4px; }
+    .kpi .sub { color: var(--muted); font-size: 11px; margin-top: 4px; }
+
+    .palette {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .palette input { flex: 1; }
+
+    .toast {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 14px;
+      z-index: 20;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 12px;
+      background: #0e1730;
+      color: var(--text);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+    }
+
+    .toast.ok { border-color: rgba(59, 207, 142, .8); }
+    .toast.error { border-color: rgba(255, 93, 110, .85); }
+
+    .timeline-filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--line);
+      background: #0f1727;
+      color: var(--muted);
+    }
+
+    .filter-btn.active {
+      color: var(--text);
+      border-color: rgba(79, 140, 255, .7);
+      background: linear-gradient(120deg, rgba(79, 140, 255, .22), rgba(61, 215, 204, .2));
+    }
+
+    details.security-panel {
+      border: 1px solid #33466a;
+      border-radius: 10px;
+      background: rgba(12, 19, 34, .9);
+      padding: 8px;
+      margin-top: 8px;
+    }
+
+    details.security-panel > summary {
+      cursor: pointer;
+      color: var(--warn);
+      font-size: 12px;
+      user-select: none;
+      outline: none;
+    }
+
+    @media (min-width: 760px) {
+      .grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="head">
+      <h1 class="title">Athena Cockpit</h1>
+      <p class="subtitle">Private controls over Tailscale with signed requests.</p>
+      <div class="status-pill"><span class="dot"></span><span id="pillText">Ready</span></div>
+      <div id="secureBanner" class="muted hidden" style="margin-top:8px;color:#f8c861;">
+        Open Athena over HTTPS (.ts.net) for signed requests.
+      </div>
+    </div>
+
+    <div class="tabs" id="tabs"></div>
+
+    <section id="tab-status" class="tab-body">
+      <div class="grid">
+        <div class="card">
+          <h3>Pair Device</h3>
+          <div class="muted">Pair once to receive the HMAC secret for signed API calls.</div>
+          <div class="row">
+            <input id="pairDeviceId" placeholder="device id (example: iphone-chris)" />
+            <input id="pairDeviceLabel" placeholder="device label" value="Chris iPhone" />
+          </div>
+          <div class="row">
+            <button id="pairStartBtn">Start Pairing</button>
+            <button id="pairCompleteBtn">Complete Pairing</button>
+            <button id="pairClearBtn" class="warn">Clear Pairing</button>
+          </div>
+          <div class="muted">Pair token</div>
+          <input id="pairToken" placeholder="pair token" />
+          <pre id="pairInfoBox">Pairing not started.</pre>
+        </div>
+
+        <div class="card">
+          <h3>Quick Controls</h3>
+          <div class="row">
+            <select id="doctorModeSelect" title="Doctor mode">
+              <option value="quick">Doctor Quick</option>
+              <option value="full">Doctor Full</option>
+            </select>
+            <button id="runDoctorBtn" data-action="/api/control/run_doctor" class="ctl">Run Doctor</button>
+            <button id="runE2EBtn" data-action="/api/control/run_e2e_verify" class="ctl">Run E2E Verify</button>
+            <button data-action="/api/control/ingest/run" class="ctl">Run Ingest</button>
+            <button data-action="/api/control/mirror/run" class="ctl">Run Mirror</button>
+          </div>
+          <div class="row">
+            <button data-action="/api/control/stack/start" class="ctl">Start Stack</button>
+            <button data-action="/api/control/stack/stop" class="ctl warn">Stop Stack</button>
+            <button data-action="/api/control/onyx/restart" class="ctl">Restart Onyx</button>
+          </div>
+          <div class="row">
+            <button data-action="/api/control/freeze" class="ctl danger">Freeze</button>
+            <button data-action="/api/control/unfreeze" class="ctl">Unfreeze</button>
+            <button data-action="/api/control/onyx/smoketest" class="ctl">Onyx Smoke</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Setup</h3>
+        <div class="muted">iPhone setup, pairing flow, and signed-request posture.</div>
+        <pre id="setupBox">Loading setup...</pre>
+      </div>
+
+      <div class="card">
+        <h3>Last Doctor Run</h3>
+        <pre id="doctorRunBox">No doctor run found yet.</pre>
+        <div class="row">
+          <select id="doctorLogStreamSelect" title="Doctor log stream">
+            <option value="stdout">stdout</option>
+            <option value="stderr">stderr</option>
+          </select>
+          <button id="viewDoctorLogsBtn" class="ctl">View Logs</button>
+        </div>
+        <pre id="doctorLogBox">No logs loaded.</pre>
+      </div>
+
+      <div class="card">
+        <h3>E2E Status</h3>
+        <pre id="e2eBox">No E2E run found yet.</pre>
+      </div>
+
+      <div class="card">
+        <h3>Pinned Cards</h3>
+        <div class="row" id="kpis"></div>
+      </div>
+
+      <div class="card">
+        <h3>Timeline</h3>
+        <div class="timeline-filters">
+          <button id="timelineFilterOperational" class="filter-btn">Operational</button>
+          <button id="timelineFilterAll" class="filter-btn">All</button>
+          <button id="timelineFilterSecurity" class="filter-btn">Security</button>
+        </div>
+        <pre id="timelineBox" class="fill-pre">Loading events...</pre>
+        <details id="securityPanel" class="security-panel hidden">
+          <summary id="securitySummary">Security Events: 0</summary>
+          <pre id="securityBox">No recent auth rejects.</pre>
+        </details>
+      </div>
+    </section>
+
+    <section id="tab-approvals" class="tab-body hidden">
+      <div class="card fill-card">
+        <h3>Approvals</h3>
+        <pre id="approvalsBox" class="fill-pre">Loading approvals...</pre>
+      </div>
+    </section>
+
+    <section id="tab-components" class="tab-body hidden">
+      <div class="card fill-card">
+        <h3>Components</h3>
+        <div class="row" id="componentButtons"></div>
+        <pre id="componentsBox" class="fill-pre">Loading components...</pre>
+      </div>
+    </section>
+
+    <section id="tab-uploads" class="tab-body hidden">
+      <div class="card">
+        <h3>Upload Text</h3>
+        <textarea id="uploadText" placeholder="Paste notes or source text"></textarea>
+        <div class="row">
+          <button id="uploadTextBtn">Save Text</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Upload ZIP (base64)</h3>
+        <input id="zipFilename" placeholder="archive.zip" value="archive.zip" />
+        <textarea id="zipBase64" placeholder="Paste base64 zip payload"></textarea>
+        <div class="row">
+          <button id="uploadZipBtn">Save ZIP</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-chat" class="tab-body hidden">
+      <div class="card">
+        <h3>Chat Capture</h3>
+        <textarea id="chatText" placeholder="Capture intent, task notes, or decisions"></textarea>
+        <div class="row">
+          <button id="chatSendBtn">Append to Knowledge</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-timeline" class="tab-body hidden">
+      <div class="card fill-card">
+        <h3>Command Palette</h3>
+        <div class="palette">
+          <input id="paletteInput" placeholder="Search command: doctor, ingest, mirror, start, stop" />
+          <button id="paletteRunBtn">Run</button>
+        </div>
+        <pre id="paletteBox" class="fill-pre">Enter a command and run.</pre>
+      </div>
+    </section>
+
+    <div class="card output-card">
+      <h3>API Output</h3>
+      <pre id="outBox">Ready.</pre>
+    </div>
+
+    <div id="toast" class="toast hidden" aria-live="polite"></div>
+  </div>
+
+  <script>
+    const STORE_KEY = "athena_pairing_v1";
+    const DEVICE_ID_KEY = "athena_device_id";
+    const DEVICE_SECRET_KEY = "athena_device_secret";
+    const SIGNING_AVAILABLE = Boolean(window.isSecureContext && window.crypto && window.crypto.subtle);
+    const state = {
+      tabs: ["status", "approvals", "components", "uploads", "chat", "timeline"],
+      activeTab: "status",
+      components: [],
+      statusPollTimer: null,
+      timelinePollTimer: null,
+      doctorJobPollTimer: null,
+      e2eJobPollTimer: null,
+      doctorJobRunning: false,
+      e2eJobRunning: false,
+      awaitDoctorCompletion: false,
+      awaitE2ECompletion: false,
+      latestDoctorJobId: "",
+      latestE2EJobId: "",
+      timelineFilter: "operational",
+      toastTimer: null
+    };
+
+    function getCreds() {
+      try {
+        const legacy = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+        const device_id = localStorage.getItem(DEVICE_ID_KEY) || legacy.device_id || "";
+        const hmac_secret = localStorage.getItem(DEVICE_SECRET_KEY) || legacy.hmac_secret || "";
+        const device_label = legacy.device_label || "";
+        return { device_id, hmac_secret, device_label };
+      } catch {
+        return {};
+      }
+    }
+
+    function setCreds(data) {
+      const payload = data || {};
+      const device_id = payload.device_id || "";
+      const hmac_secret = payload.hmac_secret || payload.device_secret || "";
+      localStorage.setItem(DEVICE_ID_KEY, device_id);
+      localStorage.setItem(DEVICE_SECRET_KEY, hmac_secret);
+      localStorage.setItem(
+        STORE_KEY,
+        JSON.stringify({
+          device_id,
+          hmac_secret,
+          device_label: payload.device_label || ""
+        })
+      );
+    }
+
+    function clearCreds() {
+      localStorage.removeItem(DEVICE_ID_KEY);
+      localStorage.removeItem(DEVICE_SECRET_KEY);
+      localStorage.removeItem(STORE_KEY);
+    }
+
+    function setOut(value) {
+      const box = document.getElementById("outBox");
+      box.textContent = typeof value === "string" ? value : JSON.stringify(value, null, 2);
+    }
+
+    function setPill(text, ok = true) {
+      document.getElementById("pillText").textContent = text;
+      document.querySelector(".dot").style.background = ok ? "#3bcf8e" : "#ff5d6e";
+    }
+
+    function setPairInfo(text) {
+      const box = document.getElementById("pairInfoBox");
+      box.textContent = text || "Pairing not started.";
+    }
+
+    function formatCad(value) {
+      const num = Number(value);
+      if (!Number.isFinite(num)) {
+        return "n/a";
+      }
+      const formatted = new Intl.NumberFormat("en-CA", {
+        style: "currency",
+        currency: "CAD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(num);
+      return `${formatted} CAD`;
+    }
+
+    function showToast(text, kind = "ok") {
+      const toast = document.getElementById("toast");
+      if (!toast) return;
+      toast.textContent = text || "";
+      toast.classList.remove("hidden", "ok", "error");
+      toast.classList.add(kind === "error" ? "error" : "ok");
+      if (state.toastTimer) {
+        clearTimeout(state.toastTimer);
+      }
+      state.toastTimer = setTimeout(() => {
+        toast.classList.add("hidden");
+      }, 3200);
+    }
+
+    function renderDoctorRun(job) {
+      const box = document.getElementById("doctorRunBox");
+      const runBtn = document.getElementById("runDoctorBtn");
+      const modeSelect = document.getElementById("doctorModeSelect");
+      if (!job || typeof job !== "object") {
+        box.textContent = "No doctor run found yet.";
+        state.doctorJobRunning = false;
+        state.latestDoctorJobId = "";
+        if (runBtn) {
+          runBtn.disabled = !SIGNING_AVAILABLE;
+          runBtn.textContent = "Run Doctor";
+        }
+        if (modeSelect) {
+          modeSelect.disabled = false;
+        }
+        return;
+      }
+
+      state.latestDoctorJobId = String(job.job_id || "");
+      const started = job.started_at_utc || "unknown";
+      const ended = job.ended_at_utc || "(running)";
+      const mode = job.mode || "full";
+      const status = job.ended_at_utc ? (job.ok ? "success" : "failed") : "running";
+      const reportPath = (job.artifacts && (job.artifacts.doctor_report || job.artifacts.doctor_quick_report)) || "reports/mason2_doctor_report.json";
+      const stdoutLog = (job.artifacts && job.artifacts.stdout_log) || "";
+      const stderrLog = (job.artifacts && job.artifacts.stderr_log) || "";
+      const errorText = job.error || "none";
+      box.textContent = [
+        `job_id: ${job.job_id || "unknown"}`,
+        `action: ${job.action || "run_doctor"}`,
+        `mode: ${mode}`,
+        `requested_by_device: ${job.requested_by_device || "unknown"}`,
+        `started_at_utc: ${started}`,
+        `ended_at_utc: ${ended}`,
+        `status: ${status}`,
+        `error: ${errorText}`,
+        `doctor_report: ${reportPath}`,
+        `stdout_log: ${stdoutLog || "n/a"}`,
+        `stderr_log: ${stderrLog || "n/a"}`
+      ].join("\n");
+
+      state.doctorJobRunning = !job.ended_at_utc;
+      if (runBtn) {
+        runBtn.disabled = state.doctorJobRunning || !SIGNING_AVAILABLE;
+        runBtn.textContent = state.doctorJobRunning ? "Run Doctor (running...)" : "Run Doctor";
+      }
+      if (modeSelect) {
+        modeSelect.disabled = state.doctorJobRunning;
+        if (job.mode && (job.mode === "quick" || job.mode === "full")) {
+          modeSelect.value = job.mode;
+        }
+      }
+    }
+
+    function renderE2ERun(job) {
+      const box = document.getElementById("e2eBox");
+      const runBtn = document.getElementById("runE2EBtn");
+      if (!job || typeof job !== "object") {
+        box.textContent = "No E2E run found yet.";
+        state.e2eJobRunning = false;
+        state.latestE2EJobId = "";
+        if (runBtn) {
+          runBtn.disabled = !SIGNING_AVAILABLE;
+          runBtn.textContent = "Run E2E Verify";
+        }
+        return;
+      }
+
+      state.latestE2EJobId = String(job.job_id || "");
+      const started = job.started_at_utc || "unknown";
+      const ended = job.ended_at_utc || "(running)";
+      const status = job.ended_at_utc ? (job.ok ? "PASS" : "FAIL") : "RUNNING";
+      const resultStatus = job.result_status || "unknown";
+      const reportPath = (job.artifacts && job.artifacts.e2e_report) || "reports/mason2_e2e_verify.json";
+      const errorText = job.error || "none";
+      box.textContent = [
+        `job_id: ${job.job_id || "unknown"}`,
+        `started_at_utc: ${started}`,
+        `ended_at_utc: ${ended}`,
+        `status: ${status}`,
+        `overall_status: ${resultStatus}`,
+        `error: ${errorText}`,
+        `report: ${reportPath}`
+      ].join("\n");
+
+      state.e2eJobRunning = !job.ended_at_utc;
+      if (runBtn) {
+        runBtn.disabled = state.e2eJobRunning || !SIGNING_AVAILABLE;
+        runBtn.textContent = state.e2eJobRunning ? "Run E2E Verify (running...)" : "Run E2E Verify";
+      }
+    }
+
+    function parseApiError(err) {
+      const status = (err && typeof err === "object" && Number(err.status)) || 0;
+      const payload = err && typeof err === "object" ? err.payload : null;
+      const apiError = payload && typeof payload.error === "string" ? payload.error : "";
+      const hint = payload && typeof payload.hint === "string" ? payload.hint : "";
+      const message = (err && typeof err === "object" && err.message) ? String(err.message) : String(err);
+      return { status, apiError, hint, message };
+    }
+
+    function mapApiError(err) {
+      const parsed = parseApiError(err);
+      if (parsed.apiError === "signature_mismatch") {
+        return parsed.hint ? `Signature mismatch. ${parsed.hint}` : "Signature mismatch";
+      }
+      if (parsed.apiError === "missing_signature_headers") {
+        return "Not signed / not paired";
+      }
+      if (parsed.apiError === "device_not_paired" || parsed.apiError === "unknown_device") {
+        return "Not paired";
+      }
+      return parsed.message;
+    }
+
+    function stopDoctorJobPolling() {
+      if (state.doctorJobPollTimer) {
+        clearInterval(state.doctorJobPollTimer);
+        state.doctorJobPollTimer = null;
+      }
+    }
+
+    function stopE2EJobPolling() {
+      if (state.e2eJobPollTimer) {
+        clearInterval(state.e2eJobPollTimer);
+        state.e2eJobPollTimer = null;
+      }
+    }
+
+    function stopVisibilityPolling() {
+      if (state.timelinePollTimer) {
+        clearInterval(state.timelinePollTimer);
+        state.timelinePollTimer = null;
+      }
+      if (state.statusPollTimer) {
+        clearInterval(state.statusPollTimer);
+        state.statusPollTimer = null;
+      }
+      stopDoctorJobPolling();
+      stopE2EJobPolling();
+    }
+
+    function startVisibilityPolling() {
+      if (!SIGNING_AVAILABLE || document.hidden) {
+        return;
+      }
+      if (!state.timelinePollTimer) {
+        state.timelinePollTimer = setInterval(() => {
+          if (!document.hidden) {
+            refreshTimeline();
+          }
+        }, 3000);
+      }
+      if (!state.statusPollTimer) {
+        state.statusPollTimer = setInterval(() => {
+          if (!document.hidden) {
+            refreshStatus();
+          }
+        }, 5000);
+      }
+      if (state.awaitDoctorCompletion && !state.doctorJobPollTimer) {
+        state.doctorJobPollTimer = setInterval(() => {
+          if (!document.hidden) {
+            refreshDoctorLatest(true);
+          }
+        }, 2000);
+      }
+      if (state.awaitE2ECompletion && !state.e2eJobPollTimer) {
+        state.e2eJobPollTimer = setInterval(() => {
+          if (!document.hidden) {
+            refreshE2ELatest(true);
+          }
+        }, 2000);
+      }
+    }
+
+    function applySecureContextState() {
+      const banner = document.getElementById("secureBanner");
+      const needsHttps = !SIGNING_AVAILABLE;
+      banner.classList.toggle("hidden", !needsHttps);
+
+      const signedButtons = [
+        ...document.querySelectorAll(".ctl"),
+        document.getElementById("uploadTextBtn"),
+        document.getElementById("uploadZipBtn"),
+        document.getElementById("chatSendBtn"),
+        document.getElementById("paletteRunBtn")
+      ].filter(Boolean);
+
+      signedButtons.forEach((btn) => {
+        btn.disabled = needsHttps;
+        if (needsHttps) {
+          btn.title = "Open Athena over HTTPS (.ts.net) for signed requests.";
+        } else {
+          btn.title = "";
+        }
+      });
+    }
+
+    function isSecurityEvent(event) {
+      if (!event || typeof event !== "object") {
+        return false;
+      }
+      const kind = String(event.kind || "").toLowerCase();
+      const status = String(event.status || "").toLowerCase();
+      const details = event.details && typeof event.details === "object" ? event.details : {};
+      const reason = String(details.reason || details.error || "").toLowerCase();
+      if (kind === "auth" || kind.startsWith("auth_")) {
+        return true;
+      }
+      if (status === "rejected" && reason) {
+        return true;
+      }
+      return false;
+    }
+
+    function formatEventList(events) {
+      const rows = Array.isArray(events) ? events : [];
+      if (!rows.length) {
+        return "No events.";
+      }
+      return JSON.stringify(rows, null, 2);
+    }
+
+    function setTimelineFilter(mode) {
+      const next = String(mode || "").toLowerCase();
+      if (!["all", "operational", "security"].includes(next)) {
+        return;
+      }
+      state.timelineFilter = next;
+      const map = {
+        all: document.getElementById("timelineFilterAll"),
+        operational: document.getElementById("timelineFilterOperational"),
+        security: document.getElementById("timelineFilterSecurity")
+      };
+      Object.entries(map).forEach(([key, btn]) => {
+        if (!btn) return;
+        btn.classList.toggle("active", key === next);
+      });
+    }
+
+    function renderTimelineEvents(eventsPayload) {
+      const timelineBox = document.getElementById("timelineBox");
+      const securitySummary = document.getElementById("securitySummary");
+      const securityBox = document.getElementById("securityBox");
+      const securityPanel = document.getElementById("securityPanel");
+      const events = Array.isArray(eventsPayload) ? eventsPayload : [];
+      const securityEvents = events.filter((evt) => isSecurityEvent(evt));
+      const operationalEvents = events.filter((evt) => !isSecurityEvent(evt));
+
+      let visible = operationalEvents;
+      if (state.timelineFilter === "all") {
+        visible = events;
+      } else if (state.timelineFilter === "security") {
+        visible = securityEvents;
+      }
+      timelineBox.textContent = formatEventList(visible);
+
+      const securityCount = securityEvents.length;
+      const recentSecurity = securityEvents.slice(-5);
+      if (securitySummary) {
+        securitySummary.textContent = `Security Events: ${securityCount} (showing last 5)`;
+      }
+      if (securityBox) {
+        securityBox.textContent = formatEventList(recentSecurity);
+      }
+      if (securityPanel) {
+        securityPanel.classList.toggle("hidden", securityCount === 0);
+      }
+    }
+
+    function tabButton(name) {
+      const btn = document.createElement("button");
+      btn.className = "tab" + (state.activeTab === name ? " active" : "");
+      btn.textContent = name[0].toUpperCase() + name.slice(1);
+      btn.onclick = () => switchTab(name);
+      return btn;
+    }
+
+    function renderTabs() {
+      const host = document.getElementById("tabs");
+      host.innerHTML = "";
+      state.tabs.forEach((tab) => host.appendChild(tabButton(tab)));
+    }
+
+    function switchTab(tab) {
+      state.activeTab = tab;
+      renderTabs();
+      document.querySelectorAll(".tab-body").forEach((el) => el.classList.add("hidden"));
+      const body = document.getElementById(`tab-${tab}`);
+      if (body) body.classList.remove("hidden");
+    }
+
+    async function sha256Hex(text) {
+      const data = new TextEncoder().encode(text);
+      const hash = await crypto.subtle.digest("SHA-256", data);
+      return [...new Uint8Array(hash)].map((b) => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function hmacHex(secret, payload) {
+      const keyData = new TextEncoder().encode(secret);
+      const key = await crypto.subtle.importKey(
+        "raw",
+        keyData,
+        { name: "HMAC", hash: "SHA-256" },
+        false,
+        ["sign"]
+      );
+      const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(payload));
+      return [...new Uint8Array(sig)].map((b) => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function signedFetch(url, options = {}, requireSign = true) {
+      const opts = { method: "GET", ...options };
+      const bodyString = typeof opts.body === "string" ? opts.body : (opts.body ? JSON.stringify(opts.body) : "");
+      const headers = new Headers(opts.headers || {});
+      const requestUrl = new URL(url, window.location.origin);
+      const pathWithQuery = requestUrl.pathname + requestUrl.search;
+      if (bodyString && !headers.get("content-type")) {
+        headers.set("content-type", "application/json");
+      }
+
+      if (requireSign) {
+        if (!SIGNING_AVAILABLE) {
+          throw new Error("Open Athena over HTTPS (.ts.net) for signed requests.");
+        }
+        const creds = getCreds();
+        if (!creds.device_id || !creds.hmac_secret) {
+          throw new Error("Device is not paired. Complete pairing first.");
+        }
+        const ts = Math.floor(Date.now() / 1000).toString();
+        const nonce = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+        const bodyHash = await sha256Hex(bodyString || "");
+        const payload = [opts.method.toUpperCase(), pathWithQuery, ts, nonce, bodyHash].join("\n");
+        const sig = await hmacHex(creds.hmac_secret, payload);
+        headers.set("x-mason-device", creds.device_id);
+        headers.set("x-mason-timestamp", ts);
+        headers.set("x-mason-nonce", nonce);
+        headers.set("x-mason-signature", sig);
+      }
+
+      const resp = await fetch(requestUrl.toString(), {
+        method: opts.method,
+        headers,
+        body: bodyString || undefined
+      });
+      const text = await resp.text();
+      let json;
+      try { json = text ? JSON.parse(text) : {}; } catch { json = { ok: false, raw: text }; }
+      if (!resp.ok) {
+        const error = new Error(`${resp.status} ${JSON.stringify(json)}`);
+        error.status = resp.status;
+        error.payload = json;
+        error.pathWithQuery = pathWithQuery;
+        throw error;
+      }
+      return json;
+    }
+
+    async function refreshStatus() {
+      if (!SIGNING_AVAILABLE) {
+        setPill("HTTPS required", false);
+        setOut("Open Athena over HTTPS (.ts.net) for signed requests.");
+        return;
+      }
+      try {
+        const status = await signedFetch("/api/status");
+        const queue = await signedFetch("/api/queues");
+        const budget = await signedFetch("/api/budget");
+        const creds = getCreds();
+        setPill(creds.device_id && creds.hmac_secret ? "Paired" : "Online", true);
+
+        const kpis = document.getElementById("kpis");
+        const remainingCad = budget.budget_remaining_cad
+          ?? (budget.budget && (budget.budget.weekly_remaining_cad ?? budget.budget.remaining_cad))
+          ?? null;
+        const budgetLeftCad = formatCad(remainingCad);
+        const values = [
+          { label: "Killswitch", val: status.killswitch_enabled ? "ON" : "OFF" },
+          { label: "Pending LLM", val: queue.pending_llm_chunks ?? 0 },
+          { label: "Approvals", val: queue.approvals_total ?? 0 },
+          { label: "Budget Left", val: budgetLeftCad, sub: "USD ledger tracked internally" }
+        ];
+        kpis.innerHTML = "";
+        values.forEach((item) => {
+          const div = document.createElement("div");
+          div.className = "kpi";
+          const label = item.label ?? "";
+          const val = item.val ?? "n/a";
+          const sub = item.sub ? `<div class=\"sub\">${item.sub}</div>` : "";
+          div.innerHTML = `<div class=\"label\">${label}</div><div class=\"val\">${val}</div>${sub}`;
+          kpis.appendChild(div);
+        });
+
+        setOut({ status, queue, budget });
+        await refreshDoctorLatest(false);
+        await refreshE2ELatest(false);
+      } catch (err) {
+        setPill("Auth required", false);
+        setOut(mapApiError(err));
+      }
+    }
+
+    async function refreshDoctorLatest(notify = false) {
+      if (!SIGNING_AVAILABLE) {
+        renderDoctorRun(null);
+        return null;
+      }
+      try {
+        const data = await signedFetch("/api/jobs/latest?action=run_doctor");
+        const job = data && data.job ? data.job : null;
+        renderDoctorRun(job);
+        if (job && job.ended_at_utc) {
+          stopDoctorJobPolling();
+          if (state.awaitDoctorCompletion) {
+            if (job.ok) {
+              showToast(`Doctor run completed (${job.job_id || "job"})`, "ok");
+            } else {
+              showToast(`Doctor run failed (${job.error || "unknown_error"})`, "error");
+            }
+            state.awaitDoctorCompletion = false;
+            if (notify) {
+              setOut({ ok: Boolean(job.ok), job });
+            }
+          }
+        } else if (job && !job.ended_at_utc) {
+          state.awaitDoctorCompletion = true;
+        }
+        return job;
+      } catch (err) {
+        if (notify) {
+          showToast(mapApiError(err), "error");
+        }
+        return null;
+      }
+    }
+
+    async function refreshE2ELatest(notify = false) {
+      if (!SIGNING_AVAILABLE) {
+        renderE2ERun(null);
+        return null;
+      }
+      try {
+        const data = await signedFetch("/api/jobs/latest?action=run_e2e_verify");
+        const job = data && data.job ? data.job : null;
+        renderE2ERun(job);
+        if (job && job.ended_at_utc) {
+          stopE2EJobPolling();
+          if (state.awaitE2ECompletion) {
+            if (job.ok) {
+              showToast(`E2E verify completed (${job.job_id || "job"})`, "ok");
+            } else {
+              showToast(`E2E verify failed (${job.error || "unknown_error"})`, "error");
+            }
+            state.awaitE2ECompletion = false;
+            if (notify) {
+              setOut({ ok: Boolean(job.ok), job });
+            }
+          }
+        } else if (job && !job.ended_at_utc) {
+          state.awaitE2ECompletion = true;
+        }
+        return job;
+      } catch (err) {
+        if (notify) {
+          showToast(mapApiError(err), "error");
+        }
+        return null;
+      }
+    }
+
+    async function loadDoctorLogs() {
+      if (!SIGNING_AVAILABLE) {
+        return;
+      }
+      const logBox = document.getElementById("doctorLogBox");
+      const streamSelect = document.getElementById("doctorLogStreamSelect");
+      const stream = streamSelect ? streamSelect.value : "stdout";
+      const jobId = state.latestDoctorJobId || "";
+      if (!jobId) {
+        logBox.textContent = "No doctor job selected.";
+        return;
+      }
+      try {
+        const data = await signedFetch(`/api/jobs/logs/${encodeURIComponent(jobId)}?stream=${encodeURIComponent(stream)}&tail=2000`);
+        logBox.textContent = data.content || "(empty log)";
+      } catch (err) {
+        logBox.textContent = mapApiError(err);
+      }
+    }
+
+    async function refreshSetup() {
+      const setupBox = document.getElementById("setupBox");
+      try {
+        const version = await signedFetch("/api/version", {}, false);
+        const origin = window.location.origin || "";
+        const httpsFromOrigin = origin.startsWith("https://") && origin.includes(".ts.net")
+          ? `${origin}/athena/`
+          : "";
+        const httpsUrl = httpsFromOrigin || version.athena_https_url || "not detected";
+        const lines = [
+          `Build UTC: ${version.build_timestamp_utc || "unknown"}`,
+          `Git Commit: ${version.git_commit_short || "unknown"}`,
+          `Signed Requests: ${version.signed_requests_required ? "ENABLED" : "DISABLED"}`,
+          `HTTPS URL: ${httpsUrl}`,
+          `Tailnet URL: ${version.tailnet_url || "not detected yet"}`,
+          `Local URL: ${version.local_url || "http://127.0.0.1:8000/athena/"}`,
+          "",
+          "Pairing steps:",
+          "1) Start Pairing",
+          "2) Complete Pairing",
+          "3) Add to Home Screen in Safari"
+        ];
+        setupBox.textContent = lines.join("\n");
+      } catch (err) {
+        setupBox.textContent = mapApiError(err);
+      }
+    }
+
+    async function refreshApprovals() {
+      if (!SIGNING_AVAILABLE) {
+        document.getElementById("approvalsBox").textContent = "HTTPS required for signed calls.";
+        return;
+      }
+      try {
+        const data = await signedFetch("/api/approvals");
+        document.getElementById("approvalsBox").textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        document.getElementById("approvalsBox").textContent = mapApiError(err);
+      }
+    }
+
+    async function refreshComponents() {
+      if (!SIGNING_AVAILABLE) {
+        document.getElementById("componentsBox").textContent = "HTTPS required for signed calls.";
+        return;
+      }
+      try {
+        const tabs = await signedFetch("/api/athena/tabs");
+        state.components = tabs.components || [];
+        const buttonHost = document.getElementById("componentButtons");
+        buttonHost.innerHTML = "";
+        state.components.forEach((c) => {
+          const b = document.createElement("button");
+          b.textContent = c.label || c.component_id;
+          b.onclick = async () => {
+            const data = await signedFetch(`/api/athena/status/${encodeURIComponent(c.component_id)}`);
+            document.getElementById("componentsBox").textContent = JSON.stringify(data, null, 2);
+          };
+          buttonHost.appendChild(b);
+        });
+        document.getElementById("componentsBox").textContent = JSON.stringify(tabs, null, 2);
+      } catch (err) {
+        document.getElementById("componentsBox").textContent = mapApiError(err);
+      }
+    }
+
+    async function refreshTimeline() {
+      if (!SIGNING_AVAILABLE) {
+        document.getElementById("timelineBox").textContent = "HTTPS required for signed calls.";
+        const panel = document.getElementById("securityPanel");
+        if (panel) panel.classList.add("hidden");
+        return;
+      }
+      try {
+        const data = await signedFetch("/api/events?limit=50");
+        renderTimelineEvents(data && Array.isArray(data.events) ? data.events : []);
+      } catch (err) {
+        document.getElementById("timelineBox").textContent = mapApiError(err);
+        const panel = document.getElementById("securityPanel");
+        if (panel) panel.classList.add("hidden");
+      }
+    }
+
+    async function runDoctorNow() {
+      const runBtn = document.getElementById("runDoctorBtn");
+      const modeSelect = document.getElementById("doctorModeSelect");
+      const modeValue = modeSelect ? (modeSelect.value || "quick") : "quick";
+      if (runBtn) {
+        runBtn.disabled = true;
+        runBtn.textContent = "Run Doctor (running...)";
+      }
+      if (modeSelect) {
+        modeSelect.disabled = true;
+      }
+      try {
+        const data = await signedFetch(`/api/control/run_doctor?mode=${encodeURIComponent(modeValue)}`, { method: "POST" });
+        setOut(data);
+        if (!data.ok) {
+          const message = data.error ? `Run Doctor failed to start: ${data.error}` : "Run Doctor failed to start.";
+          showToast(message, "error");
+          renderDoctorRun({
+            job_id: data.job_id || "",
+            action: "run_doctor",
+            mode: modeValue,
+            requested_by_device: "unknown",
+            started_at_utc: new Date().toISOString(),
+            ended_at_utc: new Date().toISOString(),
+            ok: false,
+            error: data.error || "start_failed",
+            artifacts: data.artifacts || { doctor_report: "reports/mason2_doctor_report.json" }
+          });
+          return;
+        }
+        state.awaitDoctorCompletion = true;
+        showToast(`Doctor started: ${data.job_id || "job queued"}`, "ok");
+        renderDoctorRun({
+          job_id: data.job_id || "",
+          action: "run_doctor",
+          mode: modeValue,
+          requested_by_device: "this_device",
+          started_at_utc: new Date().toISOString(),
+          ended_at_utc: null,
+          ok: null,
+          error: null,
+          artifacts: data.artifacts || { doctor_report: "reports/mason2_doctor_report.json" }
+        });
+        await refreshDoctorLatest(false);
+        await refreshTimeline();
+        if (!state.doctorJobPollTimer) {
+          state.doctorJobPollTimer = setInterval(() => {
+            if (!document.hidden) {
+              refreshDoctorLatest(true);
+            }
+          }, 2000);
+        }
+      } catch (err) {
+        const message = mapApiError(err);
+        showToast(message, "error");
+        setOut(message);
+        if (runBtn) {
+          runBtn.disabled = !SIGNING_AVAILABLE;
+          runBtn.textContent = "Run Doctor";
+        }
+        if (modeSelect) {
+          modeSelect.disabled = false;
+        }
+      }
+    }
+
+    async function runE2ENow() {
+      const runBtn = document.getElementById("runE2EBtn");
+      if (runBtn) {
+        runBtn.disabled = true;
+        runBtn.textContent = "Run E2E Verify (running...)";
+      }
+      try {
+        const data = await signedFetch("/api/control/run_e2e_verify", { method: "POST" });
+        setOut(data);
+        if (!data.ok) {
+          const message = data.error ? `Run E2E failed to start: ${data.error}` : "Run E2E failed to start.";
+          showToast(message, "error");
+          renderE2ERun({
+            job_id: data.job_id || "",
+            action: "run_e2e_verify",
+            requested_by_device: "unknown",
+            started_at_utc: new Date().toISOString(),
+            ended_at_utc: new Date().toISOString(),
+            ok: false,
+            error: data.error || "start_failed",
+            artifacts: data.artifacts || { e2e_report: "reports/mason2_e2e_verify.json" }
+          });
+          return;
+        }
+        state.awaitE2ECompletion = true;
+        showToast(`E2E verify started: ${data.job_id || "job queued"}`, "ok");
+        renderE2ERun({
+          job_id: data.job_id || "",
+          action: "run_e2e_verify",
+          requested_by_device: "this_device",
+          started_at_utc: new Date().toISOString(),
+          ended_at_utc: null,
+          ok: null,
+          error: null,
+          artifacts: data.artifacts || { e2e_report: "reports/mason2_e2e_verify.json" }
+        });
+        await refreshE2ELatest(false);
+        await refreshTimeline();
+        if (!state.e2eJobPollTimer) {
+          state.e2eJobPollTimer = setInterval(() => {
+            if (!document.hidden) {
+              refreshE2ELatest(true);
+            }
+          }, 2000);
+        }
+      } catch (err) {
+        const message = mapApiError(err);
+        showToast(message, "error");
+        setOut(message);
+        if (runBtn) {
+          runBtn.disabled = !SIGNING_AVAILABLE;
+          runBtn.textContent = "Run E2E Verify";
+        }
+      }
+    }
+
+    async function runControl(path, payload = null) {
+      try {
+        const data = await signedFetch(path, { method: "POST", body: payload ? JSON.stringify(payload) : "" });
+        setOut(data);
+        await refreshStatus();
+        await refreshTimeline();
+      } catch (err) {
+        setOut(mapApiError(err));
+      }
+    }
+
+    async function doPairStart() {
+      try {
+        const device_id = document.getElementById("pairDeviceId").value.trim();
+        const label = document.getElementById("pairDeviceLabel").value || "iPhone";
+        if (device_id.length < 3) {
+          throw new Error("Device ID must be at least 3 characters.");
+        }
+        const data = await signedFetch(
+          "/api/auth/pair/start",
+          { method: "POST", body: JSON.stringify({ device_id, device_label: label }) },
+          false
+        );
+        document.getElementById("pairToken").value = data.token || "";
+        setPairInfo(
+          `Pair code: ${data.pair_code || "n/a"}\nExpires: ${data.expires_at_utc || "n/a"}\nDevice: ${device_id}`
+        );
+        setOut({ ok: true, token_received: Boolean(data.token), pair_code: data.pair_code, expires_at_utc: data.expires_at_utc });
+      } catch (err) {
+        setOut(mapApiError(err));
+      }
+    }
+
+    async function doPairComplete() {
+      try {
+        const device_id = document.getElementById("pairDeviceId").value.trim();
+        const token = document.getElementById("pairToken").value.trim();
+        if (device_id.length < 3) {
+          throw new Error("Device ID must be at least 3 characters.");
+        }
+        if (!token) {
+          throw new Error("Pair token is required.");
+        }
+        const data = await signedFetch(
+          "/api/auth/pair/complete",
+          { method: "POST", body: JSON.stringify({ device_id, token }) },
+          false
+        );
+        const secretValue = data.device_secret || data.hmac_secret || "";
+        if (!secretValue) {
+          throw new Error("Pairing response missing device secret.");
+        }
+        setCreds({
+          device_id: data.device_id || device_id,
+          hmac_secret: secretValue,
+          device_label: document.getElementById("pairDeviceLabel").value.trim() || "iPhone"
+        });
+        setPairInfo(`Paired device: ${data.device_id || device_id}`);
+
+        if (!SIGNING_AVAILABLE) {
+          setPill("HTTPS required", false);
+          setOut({
+            ok: true,
+            paired: true,
+            device_id: data.device_id || device_id,
+            note: "Pairing saved. Open Athena over HTTPS (.ts.net) to run signed calls."
+          });
+          return;
+        }
+
+        setPill("Paired", true);
+
+        const signedStatus = await signedFetch("/api/status", {}, true);
+        setOut({
+          ok: true,
+          paired: true,
+          device_id: data.device_id || device_id,
+          signed_status_ok: Boolean(signedStatus && signedStatus.ok)
+        });
+        await refreshStatus();
+      } catch (err) {
+        setPill("Auth required", false);
+        setOut(mapApiError(err));
+      }
+    }
+
+    function doPairClear() {
+      clearCreds();
+      document.getElementById("pairToken").value = "";
+      setPairInfo("Pairing cleared.");
+      setPill("Auth required", false);
+      setOut({ ok: true, pairing_cleared: true });
+    }
+
+    async function saveUploadText() {
+      const text = document.getElementById("uploadText").value;
+      await runControl("/api/upload_text", { source: "athena_upload", kind: "upload_text", text, tags: ["athena"] });
+    }
+
+    async function saveUploadZip() {
+      const filename = document.getElementById("zipFilename").value || "archive.zip";
+      const zip_base64 = document.getElementById("zipBase64").value.trim();
+      await runControl("/api/upload_zip", { filename, zip_base64, tags: ["athena"] });
+    }
+
+    async function saveChat() {
+      const text = document.getElementById("chatText").value;
+      await runControl("/api/chat", { text, tags: ["athena", "chat"] });
+    }
+
+    async function runPalette() {
+      const q = (document.getElementById("paletteInput").value || "").toLowerCase();
+      const map = {
+        doctor: "/api/control/run_doctor",
+        e2e: "/api/control/run_e2e_verify",
+        ingest: "/api/control/ingest/run",
+        mirror: "/api/control/mirror/run",
+        start: "/api/control/stack/start",
+        stop: "/api/control/stack/stop",
+        freeze: "/api/control/freeze",
+        unfreeze: "/api/control/unfreeze"
+      };
+      let target = "";
+      Object.keys(map).forEach((k) => { if (!target && q.includes(k)) target = map[k]; });
+      if (!target) {
+        document.getElementById("paletteBox").textContent = "No matching command.";
+        return;
+      }
+      try {
+        if (target === "/api/control/run_doctor") {
+          const modeSelect = document.getElementById("doctorModeSelect");
+          if (modeSelect && q.includes("full")) {
+            modeSelect.value = "full";
+          } else if (modeSelect) {
+            modeSelect.value = "quick";
+          }
+          await runDoctorNow();
+          document.getElementById("paletteBox").textContent = "Doctor job queued.";
+          return;
+        }
+        if (target === "/api/control/run_e2e_verify") {
+          await runE2ENow();
+          document.getElementById("paletteBox").textContent = "E2E verify job queued.";
+          return;
+        }
+        const data = await signedFetch(target, { method: "POST" });
+        document.getElementById("paletteBox").textContent = JSON.stringify(data, null, 2);
+        await refreshTimeline();
+      } catch (err) {
+        document.getElementById("paletteBox").textContent = mapApiError(err);
+      }
+    }
+
+    function wire() {
+      applySecureContextState();
+      setTimelineFilter("operational");
+      renderTabs();
+      switchTab("status");
+      document.getElementById("pairStartBtn").onclick = doPairStart;
+      document.getElementById("pairCompleteBtn").onclick = doPairComplete;
+      document.getElementById("pairClearBtn").onclick = doPairClear;
+      document.getElementById("uploadTextBtn").onclick = saveUploadText;
+      document.getElementById("uploadZipBtn").onclick = saveUploadZip;
+      document.getElementById("chatSendBtn").onclick = saveChat;
+      document.getElementById("paletteRunBtn").onclick = runPalette;
+      document.getElementById("viewDoctorLogsBtn").onclick = loadDoctorLogs;
+      document.getElementById("timelineFilterAll").onclick = () => {
+        setTimelineFilter("all");
+        refreshTimeline();
+      };
+      document.getElementById("timelineFilterOperational").onclick = () => {
+        setTimelineFilter("operational");
+        refreshTimeline();
+      };
+      document.getElementById("timelineFilterSecurity").onclick = () => {
+        setTimelineFilter("security");
+        refreshTimeline();
+      };
+
+      document.querySelectorAll(".ctl").forEach((btn) => {
+        btn.onclick = () => {
+          const path = btn.getAttribute("data-action");
+          if (!path) return;
+          if (path === "/api/control/run_doctor") {
+            runDoctorNow();
+            return;
+          }
+          if (path === "/api/control/run_e2e_verify") {
+            runE2ENow();
+            return;
+          }
+          if (path === "/api/control/mirror/run") {
+            runControl(path, { reason: "manual" });
+          } else {
+            runControl(path);
+          }
+        };
+      });
+
+      const creds = getCreds();
+      if (creds.device_id) {
+        document.getElementById("pairDeviceId").value = creds.device_id;
+        setPill("Paired", true);
+        setPairInfo(`Stored pairing for device: ${creds.device_id}`);
+      }
+      if (creds.device_label) {
+        document.getElementById("pairDeviceLabel").value = creds.device_label;
+      }
+
+      refreshStatus();
+      refreshSetup();
+      refreshApprovals();
+      refreshComponents();
+      refreshTimeline();
+      refreshDoctorLatest(false);
+      refreshE2ELatest(false);
+      startVisibilityPolling();
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          stopVisibilityPolling();
+          return;
+        }
+        refreshStatus();
+        refreshTimeline();
+        refreshDoctorLatest(false);
+        refreshE2ELatest(false);
+        startVisibilityPolling();
+      });
+    }
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/athena/sw.js?v=4").catch(() => {});
+    }
+
+    wire();
+  </script>
+</body>
+</html>

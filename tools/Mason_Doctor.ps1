@@ -128,27 +128,60 @@ function Get-PortListeners {
     return $out
 }
 
+function Test-LoopbackAddress {
+    param([string]$Address)
+
+    if ([string]::IsNullOrWhiteSpace($Address)) {
+        return $false
+    }
+
+    $trimmed = $Address.Trim()
+    if ($trimmed -in @("127.0.0.1", "::1", "localhost")) {
+        return $true
+    }
+
+    if ($trimmed -match "^127\.") {
+        return $true
+    }
+
+    return $false
+}
+
 function Get-PortDefinitions {
-    param($ServicesConfig)
+    param($PortsConfig)
 
     $defs = @()
-    if (-not $ServicesConfig) {
+    if (-not $PortsConfig) {
         return $defs
     }
 
-    if ($ServicesConfig.PSObject.Properties.Name -contains "ports") {
-        foreach ($entry in @($ServicesConfig.ports)) {
-            if (-not $entry) { continue }
-            if (-not ($entry.PSObject.Properties.Name -contains "port")) { continue }
-            $defs += $entry
-        }
+    if (-not ($PortsConfig.PSObject.Properties.Name -contains "ports") -or -not $PortsConfig.ports) {
+        return $defs
     }
 
-    if (($defs.Count -eq 0) -and ($ServicesConfig.PSObject.Properties.Name -contains "services")) {
-        foreach ($entry in @($ServicesConfig.services)) {
-            if (-not $entry) { continue }
-            if (-not ($entry.PSObject.Properties.Name -contains "port")) { continue }
-            $defs += $entry
+    $componentMap = @{
+        "mason_api" = "mason"
+        "seed_api"  = "mason"
+        "bridge"    = "bridge"
+        "athena"    = "athena"
+        "onyx"      = "onyx"
+    }
+    $expectedPidMap = @{
+        "mason_api" = "core_launcher_pid"
+        "seed_api"  = "core_launcher_pid"
+        "bridge"    = "bridge_launcher_pid"
+        "athena"    = "athena_pid"
+        "onyx"      = "onyx_pid"
+    }
+
+    foreach ($prop in @($PortsConfig.ports.PSObject.Properties)) {
+        if (-not $prop) { continue }
+        $name = [string]$prop.Name
+        $defs += [pscustomobject]@{
+            name             = $name
+            port             = $prop.Value
+            component_id     = if ($componentMap.ContainsKey($name)) { $componentMap[$name] } else { "mason" }
+            expected_pid_key = if ($expectedPidMap.ContainsKey($name)) { $expectedPidMap[$name] } else { $null }
         }
     }
 
@@ -216,6 +249,94 @@ function Resolve-ExpectedPortPid {
     return $null
 }
 
+function Get-WindowsServiceFindings {
+    param($WindowsServicesConfig)
+
+    $findings = @()
+    if (-not $WindowsServicesConfig) {
+        return @(
+            [pscustomobject]@{
+                name     = "windows_service_expectations"
+                pass     = $false
+                optional = $false
+                detail   = "config/windows_services.json is missing or invalid."
+                expected = $null
+                actual   = $null
+            }
+        )
+    }
+
+    $expectList = @()
+    if ($WindowsServicesConfig.PSObject.Properties.Name -contains "expect") {
+        $expectList = @(To-Array $WindowsServicesConfig.expect)
+    }
+
+    if ($expectList.Count -eq 0) {
+        return @(
+            [pscustomobject]@{
+                name     = "windows_service_expectations"
+                pass     = $false
+                optional = $false
+                detail   = "No service expectations found in config/windows_services.json."
+                expected = $null
+                actual   = $null
+            }
+        )
+    }
+
+    foreach ($entry in $expectList) {
+        if (-not $entry) { continue }
+        $name = ""
+        $expected = ""
+        $optional = $false
+        if ($entry.PSObject.Properties.Name -contains "name") { $name = [string]$entry.name }
+        if ($entry.PSObject.Properties.Name -contains "status") { $expected = [string]$entry.status }
+        if ($entry.PSObject.Properties.Name -contains "optional") { $optional = [bool]$entry.optional }
+
+        if (-not $name.Trim()) {
+            $findings += [pscustomobject]@{
+                name     = "invalid_service_entry"
+                pass     = $false
+                optional = $optional
+                detail   = "Service expectation entry is missing 'name'."
+                expected = $expected
+                actual   = $null
+            }
+            continue
+        }
+
+        $svc = Get-Service -Name $name -ErrorAction SilentlyContinue
+        if (-not $svc) {
+            $findings += [pscustomobject]@{
+                name     = $name
+                pass     = [bool]$optional
+                optional = [bool]$optional
+                detail   = if ($optional) { "Optional service not found." } else { "Service not found." }
+                expected = $expected
+                actual   = $null
+            }
+            continue
+        }
+
+        $actual = [string]$svc.Status
+        $pass = $true
+        if ($expected.Trim()) {
+            $pass = ($actual -eq $expected)
+        }
+
+        $findings += [pscustomobject]@{
+            name     = $name
+            pass     = [bool]$pass
+            optional = [bool]$optional
+            detail   = if ($pass) { "Service status matches expectation." } else { "Service status differs from expectation." }
+            expected = $expected
+            actual   = $actual
+        }
+    }
+
+    return $findings
+}
+
 $scriptRoot = $PSScriptRoot
 if (-not $scriptRoot) {
     $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -233,12 +354,30 @@ New-Item -ItemType Directory -Path $reportsDir -Force | Out-Null
 
 $reportPath = Join-Path $reportsDir "mason2_doctor_report.json"
 
+$servicesPath = Join-Path $configDir "services.json"
+$windowsServicesPath = Join-Path $configDir "windows_services.json"
+$portsPath = Join-Path $configDir "ports.json"
+$componentRegistryPath = Join-Path $configDir "component_registry.json"
+$riskPolicyPath = Join-Path $configDir "risk_policy.json"
+$backupPolicyPath = Join-Path $configDir "backup_policy.json"
+$secretsPath = Join-Path $configDir "secrets_mason.json"
+
+$servicesConfigStatus = Read-JsonStatus -Path $servicesPath
+$windowsServicesStatus = Read-JsonStatus -Path $windowsServicesPath
+$portsConfigStatus = Read-JsonStatus -Path $portsPath
+$componentRegistryStatus = Read-JsonStatus -Path $componentRegistryPath
+$riskPolicyStatus = Read-JsonStatus -Path $riskPolicyPath
+$backupPolicyStatus = Read-JsonStatus -Path $backupPolicyPath
+$secretsStatus = Read-JsonStatus -Path $secretsPath
+
 $configChecks = @(
-    Read-JsonStatus -Path (Join-Path $configDir "services.json")
-    Read-JsonStatus -Path (Join-Path $configDir "component_registry.json")
-    Read-JsonStatus -Path (Join-Path $configDir "risk_policy.json")
-    Read-JsonStatus -Path (Join-Path $configDir "backup_policy.json")
-    Read-JsonStatus -Path (Join-Path $configDir "secrets_mason.json")
+    $servicesConfigStatus
+    $windowsServicesStatus
+    $portsConfigStatus
+    $componentRegistryStatus
+    $riskPolicyStatus
+    $backupPolicyStatus
+    $secretsStatus
 )
 
 $approvalsChecks = @(
@@ -247,8 +386,16 @@ $approvalsChecks = @(
 )
 
 $servicesConfig = $null
-if ($configChecks[0].valid) {
-    $servicesConfig = Get-Content -LiteralPath $configChecks[0].path -Raw -Encoding UTF8 | ConvertFrom-Json
+if ($servicesConfigStatus.valid) {
+    $servicesConfig = Get-Content -LiteralPath $servicesConfigStatus.path -Raw -Encoding UTF8 | ConvertFrom-Json
+}
+$windowsServicesConfig = $null
+if ($windowsServicesStatus.valid) {
+    $windowsServicesConfig = Get-Content -LiteralPath $windowsServicesStatus.path -Raw -Encoding UTF8 | ConvertFrom-Json
+}
+$portsConfig = $null
+if ($portsConfigStatus.valid) {
+    $portsConfig = Get-Content -LiteralPath $portsConfigStatus.path -Raw -Encoding UTF8 | ConvertFrom-Json
 }
 
 $stackPidPath = Join-Path $stateDir "stack_pids.json"
@@ -309,14 +456,33 @@ $runtimeChecks = @(
     }
 )
 
+$windowsServiceFindings = @(Get-WindowsServiceFindings -WindowsServicesConfig $windowsServicesConfig)
+
 $portFindings = @()
-$portDefs = Get-PortDefinitions -ServicesConfig $servicesConfig
+$portDefs = Get-PortDefinitions -PortsConfig $portsConfig
+
+$bindHostValue = ""
+if ($portsConfig -and ($portsConfig.PSObject.Properties.Name -contains "bind_host") -and $portsConfig.bind_host) {
+    $bindHostValue = [string]$portsConfig.bind_host
+}
+if (-not $bindHostValue) {
+    $bindHostValue = "127.0.0.1"
+}
+$bindHostPass = ($bindHostValue -eq "127.0.0.1")
+$portFindings += [pscustomobject]@{
+    name         = "bind_host_loopback"
+    pass         = [bool]$bindHostPass
+    detail       = if ($bindHostPass) { "bind_host is loopback." } else { "bind_host must be 127.0.0.1." }
+    port         = $null
+    expected_pid = $null
+    listeners    = @()
+}
 
 if ($portDefs.Count -eq 0) {
     $portFindings += [pscustomobject]@{
-        name        = "ports_from_services_json"
+        name        = "ports_contract_present"
         pass        = $false
-        detail      = "No 'ports' definitions found in config/services.json."
+        detail      = "No ports definitions found in config/ports.json."
         port        = $null
         expected_pid = $null
         listeners   = @()
@@ -356,8 +522,14 @@ else {
                 }
             }
             else {
+                $pass = $true
+                $detail = "Port is occupied; expected PID mapping not available."
+            }
+
+            $nonLoopback = @($listeners | Where-Object { -not (Test-LoopbackAddress -Address ([string]$_.local_address)) })
+            if ($nonLoopback.Count -gt 0) {
                 $pass = $false
-                $detail = "Port is occupied and no expected PID mapping exists."
+                $detail = "Port has non-loopback listener(s)."
             }
         }
 
@@ -376,6 +548,14 @@ $securityScript = Join-Path $toolsDir "Mason_Secrets_Scan.ps1"
 $securityReportPath = Join-Path $reportsDir "security_posture.json"
 $securityPass = $true
 $securitySummary = $null
+$inventoryScriptPath = Join-Path $toolsDir "Mason_Component_Inventory.ps1"
+$inventoryReportPath = Join-Path $reportsDir "component_inventory.json"
+$inventoryPass = $false
+$inventorySummary = $null
+$driftScriptPath = Join-Path $toolsDir "Mason_Drift_Manifest.ps1"
+$driftReportPath = Join-Path $reportsDir "drift_manifest.json"
+$driftPass = $false
+$driftSummary = $null
 
 if (Test-Path -LiteralPath $securityScript) {
     try {
@@ -399,6 +579,50 @@ else {
     $securityPass = $false
 }
 
+if (Test-Path -LiteralPath $inventoryScriptPath) {
+    try {
+        & $inventoryScriptPath -RootPath $RootPath | Out-Null
+    }
+    catch {
+        Write-DoctorLog "Component inventory invocation failed: $($_.Exception.Message)" "WARN"
+    }
+}
+
+if (Test-Path -LiteralPath $inventoryReportPath) {
+    try {
+        $inventorySummary = Get-Content -LiteralPath $inventoryReportPath -Raw -Encoding UTF8 | ConvertFrom-Json -ErrorAction Stop
+        $inventoryPass = $true
+    }
+    catch {
+        $inventoryPass = $false
+    }
+}
+else {
+    $inventoryPass = $false
+}
+
+if (Test-Path -LiteralPath $driftScriptPath) {
+    try {
+        & $driftScriptPath -RootPath $RootPath | Out-Null
+    }
+    catch {
+        Write-DoctorLog "Drift manifest invocation failed: $($_.Exception.Message)" "WARN"
+    }
+}
+
+if (Test-Path -LiteralPath $driftReportPath) {
+    try {
+        $driftSummary = Get-Content -LiteralPath $driftReportPath -Raw -Encoding UTF8 | ConvertFrom-Json -ErrorAction Stop
+        $driftPass = $true
+    }
+    catch {
+        $driftPass = $false
+    }
+}
+else {
+    $driftPass = $false
+}
+
 $riskPolicyPath = Join-Path $configDir "risk_policy.json"
 $riskPolicyGuardrailsPass = $false
 if (Test-Path -LiteralPath $riskPolicyPath) {
@@ -414,9 +638,10 @@ if (Test-Path -LiteralPath $riskPolicyPath) {
 $configPass = (@($configChecks | Where-Object { -not $_.valid }).Count -eq 0)
 $approvalsPass = (@($approvalsChecks | Where-Object { -not $_.valid }).Count -eq 0)
 $runtimePass = (@($runtimeChecks | Where-Object { -not $_.pass }).Count -eq 0)
+$windowsServicesPass = (@($windowsServiceFindings | Where-Object { -not $_.pass -and -not $_.optional }).Count -eq 0)
 $portsPass = (@($portFindings | Where-Object { -not $_.pass }).Count -eq 0)
 
-$overallPass = ($configPass -and $approvalsPass -and $runtimePass -and $portsPass -and $securityPass -and $riskPolicyGuardrailsPass)
+$overallPass = ($configPass -and $approvalsPass -and $runtimePass -and $windowsServicesPass -and $portsPass -and $securityPass -and $riskPolicyGuardrailsPass -and $inventoryPass -and $driftPass)
 
 $nextSteps = New-Object System.Collections.Generic.List[string]
 if (-not $configPass) {
@@ -428,14 +653,23 @@ if (-not $approvalsPass) {
 if (-not $runtimePass) {
     $nextSteps.Add("Start core stack: powershell -ExecutionPolicy Bypass -File .\\Start_Mason2.ps1 -CoreOnly")
 }
+if (-not $windowsServicesPass) {
+    $nextSteps.Add("Review service expectations in .\\config\\windows_services.json and ensure required services are present/running.")
+}
 if (-not $portsPass) {
-    $nextSteps.Add("Add/repair port mappings in .\\config\\services.json under a 'ports' array.")
+    $nextSteps.Add("Repair contract values in .\\config\\ports.json (ports + bind_host=127.0.0.1).")
 }
 if (-not $securityPass) {
     $nextSteps.Add("Run security posture check: powershell -ExecutionPolicy Bypass -File .\\tools\\Mason_Secrets_Scan.ps1 -FailOnViolation")
 }
 if (-not $riskPolicyGuardrailsPass) {
     $nextSteps.Add("Set risk guardrails in .\\config\\risk_policy.json: high_risk_auto_apply=false, money_loop_enabled=false.")
+}
+if (-not $inventoryPass) {
+    $nextSteps.Add("Build component inventory: powershell -ExecutionPolicy Bypass -File .\\tools\\Mason_Component_Inventory.ps1")
+}
+if (-not $driftPass) {
+    $nextSteps.Add("Build drift manifest: powershell -ExecutionPolicy Bypass -File .\\tools\\Mason_Drift_Manifest.ps1")
 }
 if ($nextSteps.Count -eq 0) {
     $nextSteps.Add("No action required.")
@@ -449,9 +683,20 @@ $doctorReport = [ordered]@{
         config_files        = $configChecks
         approvals_files     = $approvalsChecks
         runtime             = $runtimeChecks
+        windows_services    = $windowsServiceFindings
         ports               = $portFindings
         security_posture_ok = $securityPass
         risk_guardrails_ok  = $riskPolicyGuardrailsPass
+        component_inventory = [ordered]@{
+            pass          = [bool]$inventoryPass
+            summary       = if ($inventorySummary) { $inventorySummary.summary } else { $null }
+            report_path   = $inventoryReportPath
+        }
+        drift_manifest     = [ordered]@{
+            pass        = [bool]$driftPass
+            drift_count = if ($driftSummary) { $driftSummary.drift_count } else { $null }
+            report_path = $driftReportPath
+        }
     }
     stack             = [ordered]@{
         stack_running       = $stackRunning
@@ -462,8 +707,12 @@ $doctorReport = [ordered]@{
     }
     next_steps         = @($nextSteps)
     report_paths       = [ordered]@{
-        doctor_report   = $reportPath
-        security_posture = $securityReportPath
+        doctor_report        = $reportPath
+        security_posture     = $securityReportPath
+        ports_contract       = $portsPath
+        windows_services_cfg = $windowsServicesPath
+        component_inventory  = $inventoryReportPath
+        drift_manifest       = $driftReportPath
     }
 }
 
