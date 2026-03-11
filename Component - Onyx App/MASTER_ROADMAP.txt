@@ -1,0 +1,25 @@
+enabled: true
+name: "AssistantBridge"
+model: "gpt-5-thinking"
+privacy:
+  redact:
+    - email
+    - phone
+    - ssn
+    - bank_account
+  hash_fields: ["customer_id"]
+budget:
+  daily_tokens: 200000
+  per_call_tokens: 8000
+  hard_stop: true
+sources:
+  allowed: ["official_docs","standards_bodies","vendor_docs"]
+  disallowed: ["user_private_data","unvetted_forums"]
+actions:
+  allowed: ["summarize","plan","generate_code_suggestion","security_checklist","marketing_copy"]
+  forbidden: ["apply_change","run_shell","exfiltrate_data"]
+review:
+  required_for: ["code_suggestion","policy_change"]
+audit:
+  log_file: "./logs/bridge_audit.jsonl"
+<<PASTE THE BEGIN→END BLOCK FROM MY MESSAGE HERE>>

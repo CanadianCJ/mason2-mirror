@@ -1,0 +1,147 @@
+﻿$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+New-Item -ItemType Directory -Force -Path $Arc | Out-Null
+$limit = 5MB
+Get-ChildItem $Rep -File -Filter *.jsonl -ErrorAction SilentlyContinue | ForEach-Object {
+  if ($_.Length -ge $limit) {
+    $stamp = (Get-Date).ToString('yyyyMMdd_HHmmss')
+    $rot   = Join-Path $Rep ("..jsonl")
+    Move-Item $_.FullName $rot -Force
+    $zip = Join-Path $Arc ("..zip")
+    Compress-Archive -Path $rot -DestinationPath $zip -Force
+    Remove-Item $rot -Force
+    Out-MasonJsonl -Kind 'rotate' -Event 'rotated' -Level 'INFO' -Data @{ file=$_.Name; zip=(Split-Path $zip -Leaf); size=$_.Length }
+  }
+}
+# keep last 30 archives
+Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime -Descending | Select-Object -Skip 30 | Remove-Item -Force_tryRoot = $PSScriptRoot
+if ([string]::$null
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+New-Item -ItemType Directory -Force -Path $Arc | Out-Null
+$limit = 5MB
+Get-ChildItem $Rep -File -Filter *.jsonl -ErrorAction SilentlyContinue | ForEach-Object {
+  if ($_.Length -ge $limit) {
+    $stamp = (Get-Date).ToString('yyyyMMdd_HHmmss')
+    $rot   = Join-Path $Rep ("..jsonl")
+    Move-Item $_.FullName $rot -Force
+    $zip = Join-Path $Arc ("..zip")
+    Compress-Archive -Path $rot -DestinationPath $zip -Force
+    Remove-Item $rot -Force
+    Out-MasonJsonl -Kind 'rotate' -Event 'rotated' -Level 'INFO' -Data @{ file=$_.Name; zip=(Split-Path $zip -Leaf); size=$_.Length }
+  }
+}
+# keep last 30 archives
+Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime -Descending | Select-Object -Skip 30 | Remove-Item -Force_tryRoot)) {
+  try { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+New-Item -ItemType Directory -Force -Path $Arc | Out-Null
+$limit = 5MB
+Get-ChildItem $Rep -File -Filter *.jsonl -ErrorAction SilentlyContinue | ForEach-Object {
+  if ($_.Length -ge $limit) {
+    $stamp = (Get-Date).ToString('yyyyMMdd_HHmmss')
+    $rot   = Join-Path $Rep ("..jsonl")
+    Move-Item $_.FullName $rot -Force
+    $zip = Join-Path $Arc ("..zip")
+    Compress-Archive -Path $rot -DestinationPath $zip -Force
+    Remove-Item $rot -Force
+    Out-MasonJsonl -Kind 'rotate' -Event 'rotated' -Level 'INFO' -Data @{ file=$_.Name; zip=(Split-Path $zip -Leaf); size=$_.Length }
+  }
+}
+# keep last 30 archives
+Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime -Descending | Select-Object -Skip 30 | Remove-Item -Force_tryRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent } catch { Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+New-Item -ItemType Directory -Force -Path $Arc | Out-Null
+$limit = 5MB
+Get-ChildItem $Rep -File -Filter *.jsonl -ErrorAction SilentlyContinue | ForEach-Object {
+  if ($_.Length -ge $limit) {
+    $stamp = (Get-Date).ToString('yyyyMMdd_HHmmss')
+    $rot   = Join-Path $Rep ("..jsonl")
+    Move-Item $_.FullName $rot -Force
+    $zip = Join-Path $Arc ("..zip")
+    Compress-Archive -Path $rot -DestinationPath $zip -Force
+    Remove-Item $rot -Force
+    Out-MasonJsonl -Kind 'rotate' -Event 'rotated' -Level 'INFO' -Data @{ file=$_.Name; zip=(Split-Path $zip -Leaf); size=$_.Length }
+  }
+}
+# keep last 30 archives
+Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime -Descending | Select-Object -Skip 30 | Remove-Item -Force_tryRoot = "$env:USERPROFILE\Desktop\Mason2\tools" }
+}
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+New-Item -ItemType Directory -Force -Path $Arc | Out-Null
+$limit = 5MB
+Get-ChildItem $Rep -File -Filter *.jsonl -ErrorAction SilentlyContinue | ForEach-Object {
+  if ($_.Length -ge $limit) {
+    $stamp = (Get-Date).ToString('yyyyMMdd_HHmmss')
+    $rot   = Join-Path $Rep ("..jsonl")
+    Move-Item $_.FullName $rot -Force
+    $zip = Join-Path $Arc ("..zip")
+    Compress-Archive -Path $rot -DestinationPath $zip -Force
+    Remove-Item $rot -Force
+    Out-MasonJsonl -Kind 'rotate' -Event 'rotated' -Level 'INFO' -Data @{ file=$_.Name; zip=(Split-Path $zip -Leaf); size=$_.Length }
+  }
+}
+# keep last 30 archives
+Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime -Descending | Select-Object -Skip 30 | Remove-Item -Force_lib = Join-Path (Split-Path Import-Module (Join-Path (Split-Path $PSScriptRoot -Parent) 'lib\Mason.Base.psm1') -Force
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+New-Item -ItemType Directory -Force -Path $Arc | Out-Null
+$limit = 5MB
+Get-ChildItem $Rep -File -Filter *.jsonl -ErrorAction SilentlyContinue | ForEach-Object {
+  if ($_.Length -ge $limit) {
+    $stamp = (Get-Date).ToString('yyyyMMdd_HHmmss')
+    $rot   = Join-Path $Rep ("..jsonl")
+    Move-Item $_.FullName $rot -Force
+    $zip = Join-Path $Arc ("..zip")
+    Compress-Archive -Path $rot -DestinationPath $zip -Force
+    Remove-Item $rot -Force
+    Out-MasonJsonl -Kind 'rotate' -Event 'rotated' -Level 'INFO' -Data @{ file=$_.Name; zip=(Split-Path $zip -Leaf); size=$_.Length }
+  }
+}
+# keep last 30 archives
+Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime -Descending | Select-Object -Skip 30 | Remove-Item -Force_tryRoot -Parent) 'lib\Mason.Base.psm1'
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+New-Item -ItemType Directory -Force -Path $Arc | Out-Null
+$limit = 5MB
+Get-ChildItem $Rep -File -Filter *.jsonl -ErrorAction SilentlyContinue | ForEach-Object {
+  if ($_.Length -ge $limit) {
+    $stamp = (Get-Date).ToString('yyyyMMdd_HHmmss')
+    $rot   = Join-Path $Rep ("..jsonl")
+    Move-Item $_.FullName $rot -Force
+    $zip = Join-Path $Arc ("..zip")
+    Compress-Archive -Path $rot -DestinationPath $zip -Force
+    Remove-Item $rot -Force
+    Out-MasonJsonl -Kind 'rotate' -Event 'rotated' -Level 'INFO' -Data @{ file=$_.Name; zip=(Split-Path $zip -Leaf); size=$_.Length }
+  }
+}
+# keep last 30 archives
+Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime -Descending | Select-Object -Skip 30 | Remove-Item -Force_lib -Force
+$Base = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent)
+$Rep  = Join-Path $Base 'reports'
+$Arc  = Join-Path $Rep  'archive'
+New-Item -ItemType Directory -Force -Path $Arc | Out-Null
+$limit = 5MB
+Get-ChildItem $Rep -File -Filter *.jsonl -ErrorAction SilentlyContinue | ForEach-Object {
+  if ($_.Length -ge $limit) {
+    $stamp = (Get-Date).ToString('yyyyMMdd_HHmmss')
+    $rot   = Join-Path $Rep ("..jsonl")
+    Move-Item $_.FullName $rot -Force
+    $zip = Join-Path $Arc ("..zip")
+    Compress-Archive -Path $rot -DestinationPath $zip -Force
+    Remove-Item $rot -Force
+    Out-MasonJsonl -Kind 'rotate' -Event 'rotated' -Level 'INFO' -Data @{ file=$_.Name; zip=(Split-Path $zip -Leaf); size=$_.Length }
+  }
+}
+# keep last 30 archives
+Get-ChildItem $Arc -File -Filter *.zip | Sort-Object LastWriteTime -Descending | Select-Object -Skip 30 | Remove-Item -Force

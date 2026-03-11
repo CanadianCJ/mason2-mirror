@@ -1,0 +1,12 @@
+﻿{
+  "enabled": true,
+  "max_auto_risk": {
+    "mason": "R1",
+    "athena": "R1",
+    "onyx": "R0"
+  },
+  "require_smoke_green_before_apply": true,
+  "cooldown_minutes": 30,
+  "max_auto_apply_per_cycle": 10,
+  "auto_apply_requires_actions_present": true
+}

@@ -1,0 +1,2636 @@
+﻿{
+    "phase":  1,
+    "source":  "PHASE 1.txt",
+    "sha256":  "62CC9A6DD2C560E748FB21B43ACE0D5D3908620AA26D6E60328C44DDF4C29B58",
+    "count":  292,
+    "items":  [
+                  {
+                      "id":  "system-structure-packaging-create-portable-manifest-paths-versio",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Create portable manifest (paths, versions, SHA256)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-bootstrap-script-validates-prerequisi",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Bootstrap script validates prerequisites (PS 5.1+, .NET, TLS)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-one-folder-install-with-relative-path",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "One-folder install with relative paths only",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-pack-unpack-commands-with-integrity-c",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Pack/Unpack commands with integrity check",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-environment-discovery-dev-prod-toggle",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Environment discovery (dev/prod) toggle",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-version-stamp-in-every-binary-script",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Version stamp in every binary/script header",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-self-update-channel-with-signed-bundl",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Self-update channel with signed bundles",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-atomic-deploy-stage-swap",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Atomic deploy (stage â†’ swap)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-rollback-cache-for-last-3-versions",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Rollback cache for last 3 versions",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-start-stop-scripts-for-all-services",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Start/Stop scripts for all services",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-cross-user-install-safety-non-admin-f",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Cross-user install safety (non-admin fallback)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-install-log-with-return-codes",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Install log with return codes",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-bootstrap-sanity-prompts-when-misconf",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Bootstrap sanity prompts when misconfigured",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-uninstall-script-with-residue-cleanup",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Uninstall script with residue cleanup",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-prereq-cache-downloads-once",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Prereq cache (downloads once)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-portable-license-notice-file-set",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Portable license/notice file set",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-config-sample-generator",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Config sample generator",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-first-run-wizard-writes-env",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "First-run wizard (writes .env)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-migration-runner-for-breaking-changes",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Migration runner for breaking changes",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-compatibility-check-for-os-build-loca",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Compatibility check for OS build \u0026 locale",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-desktop-ui-packaging-winui-wpf-single",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Desktop UI packaging (WinUI/WPF) single-exe â€œboxed appâ€; MSIX installer + portable fallback",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-self-install-bootstrapper-for-new-pc",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Self-install bootstrapper for new PC (import config, seeds, reports)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-pack-migrate-bundle-one-click-zip-wit",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Pack \u0026 Migrate bundle (one-click zip with SHA256 + version stamp)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-roadmap-directory-canonical-filenames",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Roadmap directory + canonical filenames (PHASE N.txt)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-roadmap-filename-normalizer-strip-tra",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Roadmap filename normalizer (strip trailing/leading spaces)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "system-structure-packaging-roadmap-integrity-hashing-sha256-sche",
+                      "section":  "System Structure \u0026 Packaging",
+                      "title":  "Roadmap integrity hashing (SHA256) \u0026 schema check",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-structured-log-format-json-lines",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Structured log format (JSON lines)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-log-levels-with-runtime-switches",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Log levels with runtime switches",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-per-component-log-files-with-rotation",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Per-component log files with rotation",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-high-volume-event-coalescing",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "High-volume event coalescing",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-pii-redaction-middleware",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "PII redaction middleware",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-correlation-ids-per-request-task",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Correlation IDs per request/task",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-span-timing-start-end-duration",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Span timing (start/end/duration)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-top-n-error-aggregator-daily",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Top-N error aggregator daily",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-slow-operation-profiler-thresholded",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Slow operation profiler (thresholded)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-heartbeat-event-every-minute",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Heartbeat event every minute",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-log-shipping-toggle-local-only-by-default",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Log shipping toggle (local only by default)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-log-sampling-for-chatty-components",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Log sampling for chatty components",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-crash-dump-capture-on-fatal",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Crash dump capture on fatal",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-breadcrumb-trail-for-user-actions",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Breadcrumb trail for user actions",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-metric-sink-csv-time-series",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Metric sink (CSV time-series)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-anomaly-detector-on-error-rate",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Anomaly detector on error rate",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-latency-buckets-p50-p95-p99",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Latency buckets (p50/p95/p99)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-disk-usage-timeline-metric",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Disk usage timeline metric",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-event-schema-versioning",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Event schema versioning",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-log-viewer-filters-in-dashboard",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Log viewer filters in dashboard",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-alert-on-missing-logs-silence",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Alert on missing logs (silence)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-audit-log-immutable-worm-preparation",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Audit log (immutable WORM) preparation",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-daily-telemetry-summary-exporter",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Daily telemetry summary exporter",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-clock-skew-detector",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Clock skew detector",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-health-index-scalar-0-100",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Health index scalar (0â€“100)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-status-changelog-writers-auto-update-reports-e",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Status \u0026 ChangeLog writers (auto-update reports each session)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "logging-telemetry-unified-message-event-schema-logs-seeds-incide",
+                      "section":  "Logging \u0026 Telemetry",
+                      "title":  "Unified message/event schema (logs, seeds, incident feed)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-process-liveness-check-with-restart-policy",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Process liveness check with restart policy",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-cpu-ram-handle-monitors-per-process",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "CPU/RAM/Handle monitors per process",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-port-listener-verification",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Port listener verification",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-http-healthz-probe-with-jitter",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "HTTP healthz probe with jitter",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-backoff-ladder-for-flapping-services",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Backoff ladder for flapping services",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-graceful-stop-with-timeout",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Graceful stop with timeout",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-dependency-ordering-on-restarts",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Dependency ordering on restarts",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-self-heal-action-catalog-restart-rotate-clear",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Self-heal action catalog (restart, rotate, clear-cache)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-quarantine-misbehaving-tasks",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Quarantine misbehaving tasks",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-governor-risk-budget-per-hour-day",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Governor risk budget (per hour/day)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-freeze-high-risk-when-health-green",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Freeze high-risk when health \u003c GREEN",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-queue-aging-metrics-drain-controls",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Queue aging metrics \u0026 drain controls",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-task-priority-weights-by-impact",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Task priority weights by impact",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-maintenance-window-enforcement",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Maintenance window enforcement",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-runbook-links-per-alert",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Runbook links per alert",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-auto-open-diagnostics-pack-on-repeated-faults",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Auto-open diagnostics pack on repeated faults",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-sticky-failures-detector-same-error-signature",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Sticky failures detector (same error signature)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-alert-suppression-for-noisy-repeats",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Alert suppression for noisy repeats",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-watchdog-configuration-linter",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Watchdog configuration linter",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-cross-check-seed-queue-vs-cpu-load",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Cross-check seed queue vs CPU load",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-network-connectivity-probe-dns-gateway",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Network connectivity probe (DNS, gateway)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-time-sync-status-check-ntp",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Time sync status check (NTP)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-battery-power-state-aware-throttling",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Battery/power state aware throttling",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-temp-folder-growth-watch",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Temp folder growth watch",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-orphan-process-reaper",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Orphan process reaper",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-drift-sniffer-rebuilder-detect-rogue-processes",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Drift sniffer \u0026 rebuilder (detect rogue processes/env/schedules; propose fix via seed)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "watchdog-governor-sidecar-7000-sentinel-alert-if-anything-binds",
+                      "section":  "Watchdog \u0026 Governor",
+                      "title":  "Sidecar-7000 sentinel (alert if anything binds to 7000; propose kill via approvals)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-seed-schema-metadata-source-trust",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Seed schema (metadata, source, trust)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-seed-linter-size-format-dup",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Seed linter (size/format/dup)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-queue-prioritization-novelty-recency",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Queue prioritization (novelty/recency)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-auto-summarize-long-seeds",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Auto-summarize long seeds",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-contradiction-high-risk-change-detector",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Contradiction/high-risk change detector",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-pin-critical-facts-never-forget",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Pin critical facts (never forget)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-decay-or-archive-stale-seeds",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Decay or archive stale seeds",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-topic-tags-routing-to-skills",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Topic tags \u0026 routing to skills",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-learning-rate-governor-budget-time",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Learning rate governor (budget/time)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-daily-digest-learned-planned-changes",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Daily digest: learned + planned changes",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-seed-to-test-generator-assertions",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Seed-to-test generator (assertions)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-seed-diff-view-what-s-new",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Seed diff view (whatâ€™s new)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-source-reputation-scoring",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Source reputation scoring",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-active-recall-tasks-flashcards",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Active recall tasks (flashcards)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-knowledge-freshness-checks-laws-apis",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Knowledge freshness checks (laws/APIs)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-auto-cite-sources-in-decisions",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Auto-cite sources in decisions",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-re-train-small-models-on-schedule",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Re-train small models on schedule",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-skill-competency-map-levels",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Skill competency map (levels)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-regression-watch-on-competency-trends",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Regression watch on competency trends",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-seed-backfill-during-idle-windows",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Seed backfill during idle windows",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-human-in-the-loop-prompts-for-ambiguous-seeds",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Human-in-the-loop prompts for ambiguous seeds",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-noise-filter-low-value-seed-drop",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Noise filter (low-value seed drop)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-learning-sandbox-no-prod-impact",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Learning sandbox (no prod impact)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-outcome-linked-reinforcement-success-tags",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Outcome-linked reinforcement (success tags)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-seed-export-import-pack",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Seed export/import pack",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-chat-to-seed-ingestor-convert-past-chats-notes-to",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Chat-to-Seed Ingestor (convert past chats/notes to seed stubs in queue)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-seed-states-inbox-in-review-canary-applied-rolled",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Seed states: inbox â†’ in-review â†’ canary â†’ applied â†’ rolled-back",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "learner-seeds-apply-gate-promote-only-if-tests-pass-sentinels-gr",
+                      "section":  "Learner \u0026 Seeds",
+                      "title":  "Apply gate: promote only if tests pass + sentinels green â‰¥ MASON_CANARY_THRESHOLD",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-env-schema-validation-with-errors",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  ".env schema validation with errors",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-fallback-defaults-when-missing",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Fallback defaults when missing",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-secrets-in-windows-credential-vault",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Secrets in Windows Credential Vault",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-key-rotation-helper",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Key rotation helper",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-config-diff-viewer",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Config diff viewer",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-runtime-config-reload-safe",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Runtime config reload (safe)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-config-scopes-global-environment-tenant",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Config scopes (global, environment, tenant)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-sensitive-field-masking-in-ui",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Sensitive field masking in UI",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-prohibit-secrets-in-logs",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Prohibit secrets in logs",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-checksum-on-config-files",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Checksum on config files",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-config-backups-n-versions",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Config backups (N versions)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-config-migration-scripts",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Config migration scripts",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-write-protect-critical-configs",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Write-protect critical configs",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-per-feature-toggles-feature-flags",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Per-feature toggles (feature flags)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-tenant-overrides-with-precedence",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Tenant overrides with precedence",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-encrypted-local-keystore",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Encrypted local keystore",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-fail-closed-on-invalid-config",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Fail closed on invalid config",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-secret-leak-scanner-files-seeds",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Secret leak scanner (files/seeds)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-env-var-precedence-rules-documented",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Env var precedence rules documented",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "config-secrets-config-unit-tests",
+                      "section":  "Config \u0026 Secrets",
+                      "title":  "Config unit tests",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-free-space-guard-at-n",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Free space guard at N%",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-large-file-finder-report",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Large file finder \u0026 report",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-temp-cache-ttl-sweeper",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Temp/cache TTL sweeper",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-log-rotation-policy-sizing",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Log rotation policy sizing",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-i-o-throttling-under-pressure",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "I/O throttling under pressure",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-fragmentation-check-advisory",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Fragmentation check advisory",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-concurrent-file-access-retries",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Concurrent file access retries",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-atomic-writes-temp-move",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Atomic writes (tempâ†’move)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-backup-compression-tuning",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Backup compression tuning",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-anti-corruption-validation-crc",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Anti-corruption validation (CRC)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-directory-watcher-for-hot-paths",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Directory watcher for hot paths",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-file-descriptor-leak-checks",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "File descriptor leak checks",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-memory-budget-per-service",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Memory budget per service",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-gc-heap-tuning-notes-runtime",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "GC/heap tuning notes (runtime)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-pagination-for-large-lists",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Pagination for large lists",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-cache-with-eviction-policy",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Cache with eviction policy",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-cold-start-pre-warming",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Cold start pre-warming",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-perf-baseline-capture-weekly",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Perf baseline capture weekly",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-micro-benchmark-harness",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Micro-benchmark harness",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-perf-regression-alerts",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Perf regression alerts",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "disk-filesystem-performance-safe-mode-trigger-banner-when-disk-f",
+                      "section":  "Disk/Filesystem \u0026 Performance",
+                      "title":  "Safe-mode trigger + banner when disk free% \u003c guard",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-health-endpoints-per-service",
+                      "section":  "API/Services Core",
+                      "title":  "Health endpoints per service",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-readiness-vs-liveness-split",
+                      "section":  "API/Services Core",
+                      "title":  "Readiness vs liveness split",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-request-timeouts-retries",
+                      "section":  "API/Services Core",
+                      "title":  "Request timeouts \u0026 retries",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-circuit-breaker-around-externals",
+                      "section":  "API/Services Core",
+                      "title":  "Circuit breaker around externals",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-uniform-error-model",
+                      "section":  "API/Services Core",
+                      "title":  "Uniform error model",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-idempotency-keys-for-mutating-calls",
+                      "section":  "API/Services Core",
+                      "title":  "Idempotency keys for mutating calls",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-input-validation-schemas",
+                      "section":  "API/Services Core",
+                      "title":  "Input validation (schemas)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-rate-limiting-per-ip-task",
+                      "section":  "API/Services Core",
+                      "title":  "Rate limiting (per IP/task)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-cors-auth-tokens-local-only",
+                      "section":  "API/Services Core",
+                      "title":  "CORS \u0026 auth tokens (local only)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-graceful-shutdown-hooks",
+                      "section":  "API/Services Core",
+                      "title":  "Graceful shutdown hooks",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-dependency-probes-on-start",
+                      "section":  "API/Services Core",
+                      "title":  "Dependency probes on start",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-thread-pool-async-tuning",
+                      "section":  "API/Services Core",
+                      "title":  "Thread pool/async tuning",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-static-file-caching-headers",
+                      "section":  "API/Services Core",
+                      "title":  "Static file caching headers",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-compression-for-json",
+                      "section":  "API/Services Core",
+                      "title":  "Compression for JSON",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-pagination-streaming-support",
+                      "section":  "API/Services Core",
+                      "title":  "Pagination \u0026 streaming support",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-openapi-spec-internal",
+                      "section":  "API/Services Core",
+                      "title":  "OpenAPI spec (internal)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-service-version-negotiation",
+                      "section":  "API/Services Core",
+                      "title":  "Service version negotiation",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-background-job-queue-health",
+                      "section":  "API/Services Core",
+                      "title":  "Background job queue health",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-back-pressure-signals",
+                      "section":  "API/Services Core",
+                      "title":  "Back-pressure signals",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-dead-letter-queue-for-failed-jobs",
+                      "section":  "API/Services Core",
+                      "title":  "Dead letter queue for failed jobs",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-local-only-json-status-endpoints-for-desktop-u",
+                      "section":  "API/Services Core",
+                      "title":  "Local-only JSON status endpoints for desktop UI (no web dependency)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-capability-device-registry-single-json-types-p",
+                      "section":  "API/Services Core",
+                      "title":  "Capability \u0026 device registry (single JSON, types/permissions/evidence)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-bus-adapter-interface-local-direct-default-pla",
+                      "section":  "API/Services Core",
+                      "title":  "Bus adapter interface: Local-Direct (default) + placeholder Distributed (disabled)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "api-services-core-device-adapter-interface-hal-placeholder-for-f",
+                      "section":  "API/Services Core",
+                      "title":  "Device adapter interface (HAL placeholder) for future home/cluster integrations",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-smoke-tests-for-boot-sequence",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Smoke tests for boot sequence",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-golden-functional-tests-core-paths",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Golden functional tests (core paths)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-performance-slo-tests",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Performance SLO tests",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-fuzz-tests-for-inputs",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Fuzz tests for inputs",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-chaos-lite-kill-process-drills",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Chaos-lite (kill process) drills",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-canary-percent-routing-internal",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Canary percent routing (internal)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-shadow-run-compare-reports",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Shadow run compare reports",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-auto-revert-on-kpi-breach",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Auto-revert on KPI breach",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-pre-deploy-checklist-generator",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Pre-deploy checklist generator",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-one-click-rollback",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "One-click rollback",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-rollback-validation-tests",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Rollback validation tests",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-artifacts-signed-with-hash",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Artifacts signed with hash",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-change-ticket-auto-filled",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Change ticket auto-filled",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-test-coverage-reporting",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Test coverage reporting",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-seed-based-scenario-tests",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Seed-based scenario tests",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-replay-last-24h-traffic-safe",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Replay last 24h traffic (safe)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-downtime-simulator-net-off",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Downtime simulator (net off)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-disk-full-simulator",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Disk full simulator",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-config-typo-simulator",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Config typo simulator",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-dependency-outage-simulator",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Dependency outage simulator",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-blue-green-switch-verification",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Blue/green switch verification",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-post-deploy-health-gate",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Post-deploy health gate",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-canary-soak-timer",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Canary soak timer",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-release-notes-auto-gen",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Release notes auto-gen",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-qa-snapshot-pack",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "QA snapshot pack",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "tests-canary-rollback-roadmap-auto-check-criteria-applied-only-i",
+                      "section":  "Tests, Canary \u0026 Rollback",
+                      "title":  "Roadmap auto-check criteria (Applied only if tests âœ… + canary âœ… + changelog entry)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-status-banner-green-amber-red-logic",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Status banner (GREEN/AMBER/RED) logic",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-tile-views-services-ports-queues-logs",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Tile views: services/ports/queues/logs",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-inline-tail-of-key-logs",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Inline tail of key logs",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-latency-p95-charts",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Latency p95 charts",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-error-trend-sparkline",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Error trend sparkline",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-buttons-heal-restart-rotate-snapshot",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Buttons: Heal/Restart/Rotate/Snapshot",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-copy-status-to-clipboard",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Copy status to clipboard",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-open-logs-folder-button",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Open logs folder button",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-open-frontend-button",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Open frontend button",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-self-test-modal",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Self-test modal",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-incident-timeline",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Incident timeline",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-queue-browser-peek-top-n",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Queue browser (peek top N)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-config-editor-with-validation",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Config editor with validation",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-feature-flag-toggles",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Feature flag toggles",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-approval-center-high-risk",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Approval center (high-risk)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-task-history-with-filters",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Task history with filters",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-download-diagnostics-pack",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Download diagnostics pack",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-dark-light-theme",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Dark/light theme",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-keyboard-shortcuts",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Keyboard shortcuts",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-mobile-friendly-layout",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Mobile-friendly layout",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-accessibility-labels-tab-order",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Accessibility labels \u0026 tab order",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-persist-ui-state-last-tab",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Persist UI state (last tab)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-session-banner-version-date",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Session banner (version/date)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-search-across-logs-seeds",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Search across logs/seeds",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-user-feedback-button",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "User feedback button",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-three-tabs-only-overview-work-compliance-minimal",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Three tabs only: Overview Â· Work Â· Compliance (minimal)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-hud-stability-light-money-loop-off-ports-disk-last",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "HUD: stability light + Money Loop OFF + ports + disk% + last incident",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-seed-mini-kanban-with-counts-expand-on-click-progre",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Seed mini-kanban with counts; expand on click (progressive disclosure)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-canary-card-with-sentinel-metrics-threshold-progres",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Canary card with sentinel metrics + threshold progress",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-focus-mode-show-only-current-canary-sentinels",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Focus Mode (show only current canary + sentinels)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-roadmap-tracker-view-auto-check-via-tests-canary-ch",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Roadmap tracker view (auto-check via tests/canary/changelog; OS-mode track)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-widget-registry-new-capabilities-add-tiles-automati",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Widget registry (new capabilities add tiles automatically)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-quiet-hours-toggle-for-notifications",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Quiet hours toggle for notifications",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-tray-icon-status-g-y-r-with-quick-menu-open-logs-qu",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Tray icon status (G/Y/R) with quick menu (Open, Logs, Quit)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-offline-help-panel-local-docs",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Offline Help panel (local docs)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-propose-change-flow-read-only-ui-drafts-a-seed-no-d",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "â€œPropose changeâ€ flow (read-only UI drafts a seed; no direct mutate)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-compliance-cards-pipeda-casl-cra-employment-privacy",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Compliance cards (PIPEDA, CASL, CRA, Employment, Privacy/DPA) with notes/evidence",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-phase-activation-explicit-phase-drawer-view-others",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Phase activation (explicit) + Phase drawer (view others on demand)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-roadmap-evidence-links-logs-tests-changelog-per-ite",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Roadmap evidence links (logs/tests/changelog) per item",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-roadmap-integrity-display-sha256-edited-warning",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Roadmap integrity display (SHA256, edited warning)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-phase-gating-block-next-phase-if-critical-items-not",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Phase gating: block next phase if critical items not Applied (PIN override)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-widget-manifest-contract-schema",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Widget manifest contract (schema)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-widget-auto-scan-hot-reload-local-only",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Widget auto-scan \u0026 hot-reload (local-only)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-seed-apply-writes-widget-manifest-apply-gate-integr",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Seed Apply writes widget manifest (Apply Gate integration)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-roadmap-widget-binder-map-items-to-tiles",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Roadmap â†” Widget binder (map items to tiles)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "dashboard-ux-manifest-linter-prevent-invalid-noisy-tiles",
+                      "section":  "Dashboard \u0026 UX",
+                      "title":  "Manifest linter (prevent invalid/noisy tiles)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-high-risk-window-time-based",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "High-risk window (time-based)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-risk-score-formula-size-blast-risk",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Risk score formula (size/blast/risk)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-two-key-approval-for-destructive-ops",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Two-key approval for destructive ops",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-money-loop-hard-off-when-unstable",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Money loop hard-off when unstable",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-sandbox-for-unknown-code",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Sandbox for unknown code",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-network-egress-denylist",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Network egress denylist",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-file-write-scoping-to-mason-root",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "File write scoping to Mason root",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-command-allowlist-for-scripts",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Command allowlist for scripts",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-outbound-request-budget-caps",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Outbound request budget caps",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-prompt-injection-heuristics",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Prompt injection heuristics",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-dangerous-pattern-detector-rm-rf-analogs",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Dangerous pattern detector (rm -rf analogs)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-sensitive-data-detector-in-outputs",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Sensitive data detector in outputs",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-legal-tos-compliance-banner",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Legal/ToS compliance banner",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-model-output-moderation-local-rules",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Model output moderation (local rules)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-kill-switch-hotkey",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Kill switch hotkey",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-emergency-rollback-script",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Emergency rollback script",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-incident-paging-throttle",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Incident paging throttle",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-safe-mode-read-only",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Safe mode (read-only)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-operator-pin-for-approvals",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Operator PIN for approvals",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-forensic-snapshot-on-breach",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Forensic snapshot on breach",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "safety-guardrails-policy-store-declarative-approvals-risk-budget",
+                      "section":  "Safety \u0026 Guardrails",
+                      "title":  "Policy store (declarative approvals, risk budgets, device limits)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "voice-text-shell-minimal-local-tts-stt-wiring-offline-capable",
+                      "section":  "Voice/Text Shell (Minimal)",
+                      "title":  "Local TTS/STT wiring (offline-capable)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "voice-text-shell-minimal-wake-word-barge-in",
+                      "section":  "Voice/Text Shell (Minimal)",
+                      "title":  "Wake word + barge-in",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "voice-text-shell-minimal-push-to-talk-fallback",
+                      "section":  "Voice/Text Shell (Minimal)",
+                      "title":  "Push-to-talk fallback",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "voice-text-shell-minimal-voice-confirmations-for-approvals",
+                      "section":  "Voice/Text Shell (Minimal)",
+                      "title":  "Voice confirmations for approvals",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "voice-text-shell-minimal-latency-target-under-800ms",
+                      "section":  "Voice/Text Shell (Minimal)",
+                      "title":  "Latency target under 800ms",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "voice-text-shell-minimal-session-memory-summary",
+                      "section":  "Voice/Text Shell (Minimal)",
+                      "title":  "Session memory summary",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "voice-text-shell-minimal-noise-robustness-checks",
+                      "section":  "Voice/Text Shell (Minimal)",
+                      "title":  "Noise robustness checks",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "voice-text-shell-minimal-mic-speaker-device-switcher",
+                      "section":  "Voice/Text Shell (Minimal)",
+                      "title":  "Mic/speaker device switcher",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "voice-text-shell-minimal-text-fallback-ui",
+                      "section":  "Voice/Text Shell (Minimal)",
+                      "title":  "Text fallback UI",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "voice-text-shell-minimal-audio-log-redaction",
+                      "section":  "Voice/Text Shell (Minimal)",
+                      "title":  "Audio log redaction",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-windows-task-scheduler-entries-verifier",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Windows Task Scheduler entries verifier",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-hourly-log-maintenance-job",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Hourly log maintenance job",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-daily-snapshot-at-03-30",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Daily snapshot at 03:30",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-weekly-restore-test",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Weekly restore test",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-learner-cadence-10m-enforcement",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Learner cadence (10m) enforcement",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-governor-cadence-2m-enforcement",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Governor cadence (2m) enforcement",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-watchdog-cadence-1m-enforcement",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Watchdog cadence (1m) enforcement",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-topicsync-1m-schedule",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "TopicSync (1m) schedule",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-autoadvance-3m-schedule",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "AutoAdvance (3m) schedule",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-diskhealth-daily-schedule",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "DiskHealth (daily) schedule",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-calendar-based-change-freeze",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Calendar-based change freeze",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-quiet-hours-for-heavy-tasks",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Quiet hours for heavy tasks",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-retry-queue-sweeper",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Retry queue sweeper",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-stuck-job-detector",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Stuck job detector",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-schedule-drift-alarms",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "Schedule drift alarms",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  },
+                  {
+                      "id":  "automation-schedules-ui-heartbeat-cadence-hud-refresh-3s-rest-ma",
+                      "section":  "Automation \u0026 Schedules",
+                      "title":  "UI heartbeat cadence (HUD refresh ~3s; rest manual)",
+                      "status":  "todo",
+                      "evidence":  [
+
+                                   ]
+                  }
+              ]
+}

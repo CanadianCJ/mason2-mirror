@@ -1,0 +1,24 @@
+﻿# Secrets safety
+*.env
+secrets/*.decrypted.*
+security/quarantine/
+security/reports/
+**/id_rsa
+# Secrets safety
+*.env
+secrets/*.decrypted.*
+security/quarantine/
+security/reports/
+**/id_rsa
+# Secrets safety
+*.env
+secrets/*.decrypted.*
+security/quarantine/
+security/reports/
+**/id_rsa
+# Secrets safety
+*.env
+secrets/*.decrypted.*
+security/quarantine/
+security/reports/
+**/id_rsa

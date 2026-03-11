@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "rules": {
+    "beh_6b9ebf3a1c8a": {
+      "id": "beh_6b9ebf3a1c8a",
+      "description": "Regenerate the governed improvement queue from local artifacts without external side effects.",
+      "source": "behavior_trust",
+      "area": "mason",
+      "risk_level": "low",
+      "state": "trusted",
+      "auto_apply_allowed": false,
+      "stats": {
+        "shadow_runs": 1,
+        "real_runs_successful": 3,
+        "real_runs_failed": 0,
+        "rollback_count": 0
+      },
+      "teacher_api": {
+        "approved": true,
+        "last_decision": "trusted",
+        "last_decision_at": "2026-03-08T03:49:56.938961Z",
+        "notes": "Low-risk local-only queue maintenance under policy."
+      },
+      "governor": {
+        "auto_apply_opt_in": false,
+        "last_decision_at": "2026-03-08T03:49:56.938961Z",
+        "notes": "If queue artifacts diverge from source artifacts or write failures occur, revert to trusted."
+      },
+      "created_at": "2026-03-08T03:48:52.185497Z",
+      "last_updated_at": "2026-03-08T03:49:56.938961Z"
+    },
+    "beh_c5a0c2ace160": {
+      "id": "beh_c5a0c2ace160",
+      "description": "Validate the trust ladder for a local-only refresh behavior with no external side effects.",
+      "source": "behavior_trust",
+      "area": "mason",
+      "risk_level": "low",
+      "state": "auto_allowed",
+      "auto_apply_allowed": true,
+      "stats": {
+        "shadow_runs": 1,
+        "real_runs_successful": 2,
+        "real_runs_failed": 0,
+        "rollback_count": 0
+      },
+      "teacher_api": {
+        "approved": true,
+        "last_decision": "auto_allowed",
+        "last_decision_at": "2026-03-08T03:50:26.372214Z",
+        "notes": "Promoted to auto_allowed during chunk validation."
+      },
+      "governor": {
+        "auto_apply_opt_in": true,
+        "last_decision_at": "2026-03-08T03:50:26.372214Z",
+        "notes": "If local outputs diverge from expected artifacts, revert to trusted."
+      },
+      "created_at": "2026-03-08T03:50:26.278552Z",
+      "last_updated_at": "2026-03-08T03:50:26.372214Z"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+﻿# SOPS config for ONYX
+creation_rules:
+  - path_regex: secrets/.*\.sops\.(ya?ml|json)$
+    key_groups:
+      - age:
+          - age1wucsymfav5ut4e4q87659d0avg8tqsumdhe5yudlx5reacmxsa6q26t79l

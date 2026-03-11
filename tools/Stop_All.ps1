@@ -167,16 +167,16 @@ function Get-ListeningPidsByPort {
         return @($conns | Select-Object -ExpandProperty OwningProcess -Unique)
     } catch {
         $pattern = "^\s*TCP\s+\S*:{0}\s+\S+\s+LISTENING\s+(\d+)\s*$" -f $Port
-        $matches = @()
+        $pidMatches = @()
         foreach ($line in (& netstat -ano -p tcp 2>$null)) {
             if ($line -match $pattern) {
                 $parsedPid = 0
                 if ([int]::TryParse([string]$Matches[1], [ref]$parsedPid) -and $parsedPid -gt 0) {
-                    $matches += $parsedPid
+                    $pidMatches += $parsedPid
                 }
             }
         }
-        return @($matches | Sort-Object -Unique)
+        return @($pidMatches | Sort-Object -Unique)
     }
 }
 

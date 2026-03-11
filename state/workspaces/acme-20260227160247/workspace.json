@@ -1,0 +1,12 @@
+﻿{
+    "workspace_id":  "acme-20260227160247",
+    "client_name":  "Acme",
+    "updated_at_utc":  "2026-02-27T21:02:47.9487432Z",
+    "paths":  {
+                  "root":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\workspaces\\acme-20260227160247",
+                  "uploads":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\workspaces\\acme-20260227160247\\uploads",
+                  "outputs":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\workspaces\\acme-20260227160247\\outputs",
+                  "reports":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\workspaces\\acme-20260227160247\\reports"
+              },
+    "created_at_utc":  "2026-02-27T21:02:47.9487432Z"
+}

@@ -1,0 +1,10 @@
+﻿{
+    "phase":  1,
+    "source_file":  "PHASE 1.txt",
+    "source_sha256":  "5CBDB63808F6D1F666BDB9F147CF88411CC5414AC3B488AB41BB21A44ED19E94",
+    "index_json_sha256":  "F543D45E4ADC06FEFD738EF2A31B601B42F32EA15098CD83489A848CB5320407",
+    "activated_at":  "2026-02-08 22:22:08",
+    "total_items":  292,
+    "done_items":  165,
+    "status":  "active"
+}

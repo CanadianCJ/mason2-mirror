@@ -1,45 +1,115 @@
 {
-  "version": 1,
-  "default_tier": "starter",
+  "version": 2,
+  "currency": "USD",
+  "default_plan_id": "starter_monthly",
+  "launch_wedge_plan_id": "growth_monthly",
   "tiers": [
     {
-      "tier_id": "free",
-      "name": "Free",
-      "included_tools": [
-        "rescue_plan_v1"
-      ],
-      "limits": {
-        "tool_runs_per_week": 3,
-        "workspace_count": 1
-      },
-      "notes": "Entry tier for diagnostics and basic action plans."
-    },
-    {
+      "plan_id": "starter_monthly",
       "tier_id": "starter",
       "name": "Starter",
-      "included_tools": [
-        "rescue_plan_v1",
-        "sales_followup_v1"
+      "description": "Core Onyx workspace plus Rescue Plan for solo operators getting organized.",
+      "price_usd": 29.0,
+      "billing_interval": "monthly",
+      "enabled_tools": [
+        "rescue_plan_v1"
+      ],
+      "enabled_features": [
+        "invoices",
+        "clients",
+        "tasks"
       ],
       "limits": {
-        "tool_runs_per_week": 20,
-        "workspace_count": 3
+        "tool_runs_per_month": 20,
+        "active_clients": 50,
+        "team_members": 2
       },
-      "notes": "Balanced tier for early-stage operations."
+      "addon_ids": [
+        "addon_sales_followup_v1",
+        "addon_marketing_pack_v1"
+      ],
+      "target_segment": "Solo service businesses and studios.",
+      "launch_wedge": false,
+      "recommended_business_types": [
+        "service",
+        "consulting",
+        "studio",
+        "other"
+      ],
+      "allow_without_subscription": false,
+      "status": "active"
     },
     {
-      "tier_id": "pro",
-      "name": "Pro",
-      "included_tools": [
+      "plan_id": "growth_monthly",
+      "tier_id": "growth",
+      "name": "Growth",
+      "description": "Onyx launch wedge for small service teams that need Rescue Plan plus Sales Follow-Up.",
+      "price_usd": 79.0,
+      "billing_interval": "monthly",
+      "enabled_tools": [
         "rescue_plan_v1",
-        "marketing_pack_v1",
         "sales_followup_v1"
       ],
+      "enabled_features": [
+        "invoices",
+        "clients",
+        "tasks",
+        "deals"
+      ],
       "limits": {
-        "tool_runs_per_week": 100,
-        "workspace_count": 20
+        "tool_runs_per_month": 80,
+        "active_clients": 250,
+        "team_members": 10
       },
-      "notes": "Full toolset with higher throughput."
+      "addon_ids": [
+        "addon_marketing_pack_v1"
+      ],
+      "target_segment": "Small service teams tightening pipeline execution.",
+      "launch_wedge": true,
+      "recommended_business_types": [
+        "service",
+        "consulting",
+        "agency",
+        "studio"
+      ],
+      "allow_without_subscription": false,
+      "status": "active"
+    },
+    {
+      "plan_id": "founder_monthly",
+      "tier_id": "founder",
+      "name": "Founder",
+      "description": "Full Onyx operator stack with Rescue Plan, Sales Follow-Up, and Marketing Pack.",
+      "price_usd": 149.0,
+      "billing_interval": "monthly",
+      "enabled_tools": [
+        "rescue_plan_v1",
+        "sales_followup_v1",
+        "marketing_pack_v1"
+      ],
+      "enabled_features": [
+        "invoices",
+        "clients",
+        "tasks",
+        "deals"
+      ],
+      "limits": {
+        "tool_runs_per_month": 200,
+        "active_clients": 1000,
+        "team_members": 25
+      },
+      "addon_ids": [],
+      "target_segment": "Businesses using Onyx as an operating system.",
+      "launch_wedge": false,
+      "recommended_business_types": [
+        "service",
+        "consulting",
+        "agency",
+        "saas",
+        "studio"
+      ],
+      "allow_without_subscription": false,
+      "status": "active"
     }
   ]
 }

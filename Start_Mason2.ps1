@@ -7,7 +7,8 @@ param(
     [switch]$FullStack,
     [switch]$NoWatcher,
     [switch]$EnableTaskGen,
-    [int]$ReadinessTimeoutSeconds = 90
+    [switch]$ShowWindows,
+    [int]$ReadinessTimeoutSeconds = 240
 )
 
 Set-StrictMode -Version Latest
@@ -153,6 +154,131 @@ function Write-JsonFile {
     Set-Content -LiteralPath $Path -Value $json -Encoding UTF8
 }
 
+function ConvertTo-WindowsCommandLineArgument {
+    param(
+        [AllowNull()]$Value
+    )
+
+    $text = if ($null -eq $Value) { "" } else { [string]$Value }
+    if ($text.Length -eq 0) {
+        return '""'
+    }
+
+    if ($text -notmatch '[\s"]') {
+        return $text
+    }
+
+    $sb = New-Object System.Text.StringBuilder
+    [void]$sb.Append('"')
+    $backslashCount = 0
+
+    foreach ($ch in $text.ToCharArray()) {
+        if ($ch -eq '\') {
+            $backslashCount += 1
+            continue
+        }
+
+        if ($ch -eq '"') {
+            if ($backslashCount -gt 0) {
+                [void]$sb.Append(('\' * ($backslashCount * 2)))
+                $backslashCount = 0
+            }
+            [void]$sb.Append('\"')
+            continue
+        }
+
+        if ($backslashCount -gt 0) {
+            [void]$sb.Append(('\' * $backslashCount))
+            $backslashCount = 0
+        }
+
+        [void]$sb.Append($ch)
+    }
+
+    if ($backslashCount -gt 0) {
+        [void]$sb.Append(('\' * ($backslashCount * 2)))
+    }
+    [void]$sb.Append('"')
+
+    return $sb.ToString()
+}
+
+function Join-WindowsCommandLine {
+    param(
+        [string[]]$Arguments = @()
+    )
+
+    if (-not $Arguments -or $Arguments.Count -eq 0) {
+        return ""
+    }
+
+    return (($Arguments | ForEach-Object { ConvertTo-WindowsCommandLineArgument -Value $_ }) -join " ")
+}
+
+function Ensure-LogFileHasContent {
+    param(
+        [string]$Path,
+        [string]$FallbackText,
+        [int]$RetryCount = 20,
+        [int]$RetryDelayMilliseconds = 250
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Path)) {
+        return $null
+    }
+
+    $attemptMax = if ($RetryCount -gt 0) { $RetryCount } else { 1 }
+    for ($attempt = 0; $attempt -lt $attemptMax; $attempt++) {
+        try {
+            $dir = Split-Path -Parent $Path
+            if ($dir -and -not (Test-Path -LiteralPath $dir)) {
+                New-Item -ItemType Directory -Path $dir -Force | Out-Null
+            }
+
+            if (Test-Path -LiteralPath $Path) {
+                $item = Get-Item -LiteralPath $Path -ErrorAction Stop
+                if ($item.Length -gt 0) {
+                    return $Path
+                }
+            }
+
+            $text = if ($FallbackText) { [string]$FallbackText } else { "No process output captured." }
+            Add-Content -LiteralPath $Path -Value $text -Encoding UTF8 -ErrorAction Stop
+            return $Path
+        }
+        catch {
+            if ($attempt -lt ($attemptMax - 1) -and $RetryDelayMilliseconds -gt 0) {
+                Start-Sleep -Milliseconds $RetryDelayMilliseconds
+            }
+        }
+    }
+
+    try {
+        $fallbackDir = Split-Path -Parent $Path
+        if (-not $fallbackDir) {
+            $fallbackDir = (Get-Location).Path
+        }
+        if (-not (Test-Path -LiteralPath $fallbackDir)) {
+            New-Item -ItemType Directory -Path $fallbackDir -Force | Out-Null
+        }
+        $leafBase = [System.IO.Path]::GetFileNameWithoutExtension($Path)
+        if (-not $leafBase) {
+            $leafBase = "process"
+        }
+        $leafExt = [System.IO.Path]::GetExtension($Path)
+        if (-not $leafExt) {
+            $leafExt = ".log"
+        }
+        $fallbackPath = Join-Path $fallbackDir ("{0}_fallback_{1}{2}" -f $leafBase, (Get-Date).ToUniversalTime().ToString("yyyyMMdd_HHmmss_fff"), $leafExt)
+        $text = if ($FallbackText) { [string]$FallbackText } else { "No process output captured." }
+        Set-Content -LiteralPath $fallbackPath -Value $text -Encoding UTF8
+        return $fallbackPath
+    }
+    catch {
+        return $Path
+    }
+}
+
 function Get-LogTailChars {
     param(
         [string]$Path,
@@ -175,6 +301,45 @@ function Get-LogTailChars {
     }
     catch {
         return $null
+    }
+}
+
+function Get-LaunchResultFromStartLogs {
+    param(
+        [Parameter(Mandatory = $true)][string]$LogsDirectory,
+        [Parameter(Mandatory = $true)][string]$RunId,
+        [Parameter(Mandatory = $true)][string]$Component,
+        [string]$ScriptPath,
+        [string]$CommandLine
+    )
+
+    if (-not $LogsDirectory -or -not (Test-Path -LiteralPath $LogsDirectory)) {
+        return $null
+    }
+
+    $safeComponent = [regex]::Replace($Component.ToLowerInvariant(), "[^a-z0-9._-]+", "_")
+    $stderrPattern = ("{0}_{1}_*_stderr.log" -f $RunId, $safeComponent)
+    $stdoutPattern = ("{0}_{1}_*_stdout.log" -f $RunId, $safeComponent)
+
+    $stderrMatch = @(Get-ChildItem -LiteralPath $LogsDirectory -File -Filter $stderrPattern -ErrorAction SilentlyContinue | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1)
+    $stdoutMatch = @(Get-ChildItem -LiteralPath $LogsDirectory -File -Filter $stdoutPattern -ErrorAction SilentlyContinue | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1)
+
+    if ($stderrMatch.Count -eq 0 -and $stdoutMatch.Count -eq 0) {
+        return $null
+    }
+
+    return [pscustomobject]@{
+        component    = [string]$Component
+        script       = if ($ScriptPath) { [string]$ScriptPath } else { $null }
+        started      = $true
+        reused       = $false
+        missing      = $false
+        pid          = $null
+        process_alive = $true
+        commandline  = if ($CommandLine) { [string]$CommandLine } else { $null }
+        stdout_log   = if ($stdoutMatch.Count -gt 0) { [string]$stdoutMatch[0].FullName } else { $null }
+        stderr_log   = if ($stderrMatch.Count -gt 0) { [string]$stderrMatch[0].FullName } else { $null }
+        message      = "inferred_from_start_logs"
     }
 }
 
@@ -279,8 +444,19 @@ function Write-LastFailureJson {
         return $true
     }
     catch {
-        Write-LaunchLog ("Could not write last failure JSON at {0}: {1}" -f $Path, $_.Exception.Message) "WARN"
-        return $false
+        try {
+            $parent = Split-Path -Parent $Path
+            if ($parent -and -not (Test-Path -LiteralPath $parent)) {
+                New-Item -ItemType Directory -Path $parent -Force | Out-Null
+            }
+            $json = $payload | ConvertTo-Json -Depth 8
+            Set-Content -LiteralPath $Path -Value $json -Encoding UTF8
+            return $true
+        }
+        catch {
+            Write-LaunchLog ("Could not write last failure JSON at {0}: {1}" -f $Path, $_.Exception.Message) "WARN"
+            return $false
+        }
     }
 }
 
@@ -423,7 +599,10 @@ function Start-ScriptWindow {
     $args = @()
     switch ($scriptExtension) {
         ".py" {
-            $pythonCmd = Get-Command python.exe -ErrorAction SilentlyContinue
+            $pythonCmd = Get-Command pythonw.exe -ErrorAction SilentlyContinue
+            if (-not $pythonCmd) {
+                $pythonCmd = Get-Command python.exe -ErrorAction SilentlyContinue
+            }
             if (-not $pythonCmd) {
                 $pythonCmd = Get-Command python -ErrorAction SilentlyContinue
             }
@@ -456,17 +635,23 @@ function Start-ScriptWindow {
     $safeComponent = [regex]::Replace($component.ToLowerInvariant(), "[^a-z0-9._-]+", "_")
     $stdoutLog = Join-Path $logRoot ("{0}_{1}_{2}_stdout.log" -f $runToken, $safeComponent, $stamp)
     $stderrLog = Join-Path $logRoot ("{0}_{1}_{2}_stderr.log" -f $runToken, $safeComponent, $stamp)
-    $argText = ($args | ForEach-Object { if ([string]$_ -match "\s") { '"' + [string]$_ + '"' } else { [string]$_ } }) -join " "
-    $commandline = "{0} {1}" -f $launcherExe, $argText
+    $quotedArgs = @($args | ForEach-Object { ConvertTo-WindowsCommandLineArgument -Value $_ })
+    $argText = ($quotedArgs -join " ")
+    $launcherText = ConvertTo-WindowsCommandLineArgument -Value $launcherExe
+    $commandline = if ($argText) { "{0} {1}" -f $launcherText, $argText } else { $launcherText }
 
     $startParams = @{
         FilePath         = $launcherExe
-        ArgumentList     = $args
+        ArgumentList     = $quotedArgs
         WorkingDirectory = $WorkingDirectory
         PassThru         = $true
         RedirectStandardOutput = $stdoutLog
         RedirectStandardError  = $stderrLog
-        WindowStyle      = if ($Minimized) { "Minimized" } else { "Normal" }
+        WindowStyle      = if ($ShowWindows) {
+            if ($Minimized) { "Minimized" } else { "Normal" }
+        } else {
+            "Hidden"
+        }
     }
 
     $proc = Start-Process @startParams
@@ -1021,12 +1206,34 @@ if ($ingestEnabled) {
     if ($ingestAutoRunOnBoot) {
         if (Test-Path -LiteralPath $ingestRunOncePath) {
             try {
-                & $ingestRunOncePath -RootPath $Base | Out-Null
-                $bootRunResult = "ok"
+                $bootRunLaunch = Start-ScriptWindow `
+                    -ScriptPath $ingestRunOncePath `
+                    -ArgumentList @("-RootPath", $Base) `
+                    -WorkingDirectory (Split-Path -Parent $ingestRunOncePath) `
+                    -ComponentId "ingest_autopilot_boot" `
+                    -LogsDirectory $StartReportsDir `
+                    -RunId $startRunId `
+                    -ReuseFragment "Mason_IngestDrop_Once.ps1" `
+                    -Minimized
+
+                if ($bootRunLaunch.missing) {
+                    $bootRunResult = "missing_script"
+                    $bootstrapWarnings.Add(("Boot ingest script missing: {0}" -f $ingestRunOncePath)) | Out-Null
+                }
+                elseif ($bootRunLaunch.reused) {
+                    $bootRunResult = "already_running"
+                }
+                elseif ($bootRunLaunch.started) {
+                    $bootRunResult = "started_async"
+                }
+                else {
+                    $bootRunResult = "start_failed"
+                    $bootstrapWarnings.Add(("Boot ingest run did not start cleanly for {0}" -f $ingestRunOncePath)) | Out-Null
+                }
             }
             catch {
-                $bootRunResult = "failed"
-                $bootstrapWarnings.Add(("Boot ingest run failed: {0}" -f $_.Exception.Message)) | Out-Null
+                $bootRunResult = "start_failed"
+                $bootstrapWarnings.Add(("Boot ingest run failed to launch: {0}" -f $_.Exception.Message)) | Out-Null
             }
         }
         else {
@@ -1121,6 +1328,8 @@ $driftManifestPath = Join-Path $ToolsDir "Mason_Drift_Manifest.ps1"
 $taskGenPath = Join-Path $ToolsDir "Mason_TaskGen_Run.ps1"
 $bridgeStartPath = Join-Path $ToolsDir "Start_Bridge.ps1"
 $athenaStartPath = Join-Path $Base "Start-Athena.ps1"
+$masonApiServicePath = Join-Path $Base "services\mason_api\serve_mason_api.py"
+$seedApiServicePath = Join-Path $Base "services\seed_api\serve_seed_api.py"
 $approvalsPosturePath = Join-Path $ReportsDir "approvals_posture.json"
 $bridgeStatusPath = Join-Path $ReportsDir "bridge_status.json"
 $watcherTriggerPath = Join-Path $ReportsDir "watcher_last_trigger.json"
@@ -1222,6 +1431,64 @@ $launchResults.Add($coreResult)
 if ($coreResult.pid) {
     $pidUpdates["core_launcher_pid"] = [int]$coreResult.pid
     $pidUpdates["core_launcher_script"] = $coreScript
+}
+
+$coreApiBootstrapEndpoints = @(
+    [pscustomobject]@{
+        name     = "mason_api_health"
+        url      = ("http://{0}:{1}/health" -f $bindHost, $masonApiPort)
+        required = $true
+        source   = "core_bootstrap"
+    }
+    [pscustomobject]@{
+        name     = "seed_api_health"
+        url      = ("http://{0}:{1}/health" -f $bindHost, $seedApiPort)
+        required = $true
+        source   = "core_bootstrap"
+    }
+)
+
+Write-LaunchLog "Ensuring mason_api and seed_api are online before core readiness gate."
+$coreApiBootstrapReadiness = @(Wait-ForEndpoints -Endpoints $coreApiBootstrapEndpoints -TimeoutSeconds 6 -PollSeconds 1)
+$coreApiMissing = @($coreApiBootstrapReadiness | Where-Object { $_.required -and -not $_.ready })
+foreach ($missing in $coreApiMissing) {
+    $component = Resolve-EndpointComponent -EndpointName $missing.name
+    $serviceScriptPath = $null
+    $reuseFragment = $null
+    $pidKey = $null
+    switch ($component) {
+        "mason_api" {
+            $serviceScriptPath = $masonApiServicePath
+            $reuseFragment = "serve_mason_api.py"
+            $pidKey = "mason_api_pid"
+        }
+        "seed_api" {
+            $serviceScriptPath = $seedApiServicePath
+            $reuseFragment = "serve_seed_api.py"
+            $pidKey = "seed_api_pid"
+        }
+        default {
+            continue
+        }
+    }
+
+    $serviceResult = Start-ScriptWindow `
+        -ScriptPath $serviceScriptPath `
+        -WorkingDirectory $Base `
+        -ComponentId $component `
+        -LogsDirectory $StartReportsDir `
+        -RunId $startRunId `
+        -ReuseFragment $reuseFragment `
+        -Minimized
+
+    $launchResults.Add($serviceResult)
+    if ($serviceResult.missing) {
+        throw ("Required service script missing for {0}: {1}" -f $component, $serviceScriptPath)
+    }
+    if ($pidKey -and $serviceResult.pid) {
+        $pidUpdates[$pidKey] = [int]$serviceResult.pid
+    }
+    Write-LaunchLog ("Bootstrap launch attempted for {0} (status={1})." -f $component, $serviceResult.message) "WARN"
 }
 
 $coreGateEndpoints = @(
@@ -1352,7 +1619,7 @@ else {
 $requiredFailures = @($readiness | Where-Object { $_.required -and -not $_.ready })
 $overallStatus = if ($requiredFailures.Count -eq 0) { "PASS" } else { "FAIL" }
 $openedBrowsers = @()
-if ($overallStatus -eq "PASS") {
+if ($overallStatus -eq "PASS" -and $ShowWindows) {
     $openedBrowsers = @(Open-ReadyBrowsers -Readiness $readiness -AthenaEnabled $athenaEnabled -OnyxEnabled $onyxEnabled)
 }
 
@@ -1383,6 +1650,28 @@ if ($launchResults) {
     }
     catch {
         $launchResultsArray = @($launchResults)
+    }
+}
+$serviceLaunchSpecs = @(
+    [ordered]@{
+        component = "mason_api"
+        script    = (Join-Path $Base "services\mason_api\serve_mason_api.py")
+    }
+    [ordered]@{
+        component = "seed_api"
+        script    = (Join-Path $Base "services\seed_api\serve_seed_api.py")
+    }
+)
+foreach ($spec in $serviceLaunchSpecs) {
+    $alreadyTracked = @($launchResultsArray | Where-Object { $_.component -eq $spec.component } | Select-Object -First 1)
+    if ($alreadyTracked.Count -gt 0) {
+        continue
+    }
+    $scriptPath = [string]$spec.script
+    $quotedScript = if ($scriptPath -match "\s") { '"' + $scriptPath + '"' } else { $scriptPath }
+    $inferred = Get-LaunchResultFromStartLogs -LogsDirectory $StartReportsDir -RunId $startRunId -Component $spec.component -ScriptPath $scriptPath -CommandLine ("python -u {0}" -f $quotedScript)
+    if ($inferred) {
+        $launchResultsArray += $inferred
     }
 }
 $readinessArray = @($readiness)
@@ -1428,6 +1717,27 @@ if ($overallStatus -eq "FAIL") {
     }
     if ($launchFailure.Count -gt 0) {
         $launchRow = $launchFailure[0]
+        $failureSeedLine = ("[Start_Mason2] readiness failure context component={0} timestamp_utc={1}" -f [string]$failureComponent, (Get-Date).ToUniversalTime().ToString("o"))
+        if (($launchRow.PSObject.Properties.Name -contains "pid") -and $launchRow.pid) {
+            try {
+                Wait-Process -Id ([int]$launchRow.pid) -Timeout 5 -ErrorAction SilentlyContinue
+            }
+            catch {
+                # Non-fatal: may still be running.
+            }
+        }
+        if ($launchRow.stdout_log) {
+            $resolvedStdoutLog = Ensure-LogFileHasContent -Path ([string]$launchRow.stdout_log) -FallbackText $failureSeedLine
+            if ($resolvedStdoutLog) {
+                $launchRow.stdout_log = [string]$resolvedStdoutLog
+            }
+        }
+        if ($launchRow.stderr_log) {
+            $resolvedStderrLog = Ensure-LogFileHasContent -Path ([string]$launchRow.stderr_log) -FallbackText $failureSeedLine
+            if ($resolvedStderrLog) {
+                $launchRow.stderr_log = [string]$resolvedStderrLog
+            }
+        }
         if ($launchRow.commandline) {
             $failureCommand = [string]$launchRow.commandline
         }
@@ -1446,6 +1756,25 @@ if ($overallStatus -eq "FAIL") {
     if ($lastFailureWritten) {
         $script:LastFailureTrapWritten = $true
         Write-LaunchLog ("Last failure artifact written: {0}" -f $lastFailurePath) "ERROR"
+    }
+    elseif (-not (Test-Path -LiteralPath $lastFailurePath)) {
+        try {
+            $fallbackPayload = [ordered]@{
+                component     = [string]$failureComponent
+                command       = [string]$failureCommand
+                exit_code     = [int]$failureExitCode
+                stderr_path   = if ($failureStderrPath) { [string]$failureStderrPath } else { $null }
+                hint          = if ($failureHint) { [string]$failureHint } else { "Startup readiness failed." }
+                timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
+            }
+            $fallbackJson = $fallbackPayload | ConvertTo-Json -Depth 8
+            Set-Content -LiteralPath $lastFailurePath -Value $fallbackJson -Encoding UTF8
+            $script:LastFailureTrapWritten = $true
+            Write-LaunchLog ("Last failure artifact written by fallback: {0}" -f $lastFailurePath) "ERROR"
+        }
+        catch {
+            Write-LaunchLog ("Could not write fallback last failure artifact at {0}: {1}" -f $lastFailurePath, $_.Exception.Message) "ERROR"
+        }
     }
 }
 if ($overallStatus -eq "FAIL") {

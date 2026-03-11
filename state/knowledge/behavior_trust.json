@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "updated_at_utc": "2026-03-08T03:50:26.372246Z",
+  "behaviors": [
+    {
+      "behavior_id": "beh_6b9ebf3a1c8a",
+      "behavior_name": "Refresh local improvement queue summary",
+      "domain": "mason",
+      "description": "Regenerate the governed improvement queue from local artifacts without external side effects.",
+      "risk_level": "low",
+      "required_evidence": [
+        "local_artifact_read",
+        "deterministic_summary_check",
+        "refresh_smoke_pass"
+      ],
+      "trust_state": "trusted",
+      "operator_gate": false,
+      "last_tested_at": "2026-03-08T03:48:52.273702Z",
+      "promotion_reason": "Low-risk local-only queue maintenance under policy.",
+      "rollback_condition": "If queue artifacts diverge from source artifacts or write failures occur, revert to trusted.",
+      "created_at": "2026-03-08T03:48:52.185497Z",
+      "updated_at": "2026-03-08T03:49:56.938961Z",
+      "history": [
+        {
+          "at_utc": "2026-03-08T03:48:52.185626Z",
+          "action": "created",
+          "trust_state": "discovered",
+          "note": "Refresh local improvement queue summary",
+          "promotion_reason": "Low-risk local-only queue maintenance under policy."
+        },
+        {
+          "at_utc": "2026-03-08T03:48:52.204152Z",
+          "action": "state_update",
+          "trust_state": "shadow",
+          "note": "Validation step shadow",
+          "promotion_reason": "Promoted to shadow during chunk validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:48:52.218823Z",
+          "action": "state_update",
+          "trust_state": "tested",
+          "note": "Validation step tested",
+          "promotion_reason": "Promoted to tested during chunk validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:48:52.234177Z",
+          "action": "state_update",
+          "trust_state": "candidate",
+          "note": "Validation step candidate",
+          "promotion_reason": "Promoted to candidate during chunk validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:48:52.247252Z",
+          "action": "state_update",
+          "trust_state": "approved",
+          "note": "Validation step approved",
+          "promotion_reason": "Promoted to approved during chunk validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:48:52.260157Z",
+          "action": "state_update",
+          "trust_state": "trusted",
+          "note": "Validation step trusted",
+          "promotion_reason": "Promoted to trusted during chunk validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:48:52.273760Z",
+          "action": "state_update",
+          "trust_state": "trusted",
+          "note": "Validation step auto_allowed",
+          "promotion_reason": "Promoted to auto_allowed during chunk validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:49:56.938975Z",
+          "action": "metadata_update",
+          "trust_state": "trusted",
+          "note": "Refresh local improvement queue summary",
+          "promotion_reason": "Low-risk local-only queue maintenance under policy."
+        }
+      ],
+      "hard_gated": false,
+      "policy_gate_reason": "",
+      "auto_action_eligible": false,
+      "approval_required": true
+    },
+    {
+      "behavior_id": "beh_c5a0c2ace160",
+      "behavior_name": "Promote chunk7 trust ladder local refresh behavior",
+      "domain": "mason",
+      "description": "Validate the trust ladder for a local-only refresh behavior with no external side effects.",
+      "risk_level": "low",
+      "required_evidence": [
+        "shadow_run",
+        "deterministic_validation",
+        "local_artifact_compare"
+      ],
+      "trust_state": "auto_allowed",
+      "operator_gate": false,
+      "last_tested_at": "2026-03-08T03:50:26.372166Z",
+      "promotion_reason": "Promoted to auto_allowed during chunk validation.",
+      "rollback_condition": "If local outputs diverge from expected artifacts, revert to trusted.",
+      "created_at": "2026-03-08T03:50:26.278552Z",
+      "updated_at": "2026-03-08T03:50:26.372214Z",
+      "history": [
+        {
+          "at_utc": "2026-03-08T03:50:26.278673Z",
+          "action": "created",
+          "trust_state": "discovered",
+          "note": "Promote chunk7 trust ladder local refresh behavior",
+          "promotion_reason": "Fresh low-risk sample behavior for chunk 7 validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:50:26.293980Z",
+          "action": "state_update",
+          "trust_state": "shadow",
+          "note": "Validation step shadow",
+          "promotion_reason": "Promoted to shadow during chunk validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:50:26.309707Z",
+          "action": "state_update",
+          "trust_state": "tested",
+          "note": "Validation step tested",
+          "promotion_reason": "Promoted to tested during chunk validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:50:26.325838Z",
+          "action": "state_update",
+          "trust_state": "candidate",
+          "note": "Validation step candidate",
+          "promotion_reason": "Promoted to candidate during chunk validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:50:26.341033Z",
+          "action": "state_update",
+          "trust_state": "approved",
+          "note": "Validation step approved",
+          "promotion_reason": "Promoted to approved during chunk validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:50:26.354829Z",
+          "action": "state_update",
+          "trust_state": "trusted",
+          "note": "Validation step trusted",
+          "promotion_reason": "Promoted to trusted during chunk validation."
+        },
+        {
+          "at_utc": "2026-03-08T03:50:26.372219Z",
+          "action": "state_update",
+          "trust_state": "auto_allowed",
+          "note": "Validation step auto_allowed",
+          "promotion_reason": "Promoted to auto_allowed during chunk validation."
+        }
+      ],
+      "hard_gated": false,
+      "policy_gate_reason": "",
+      "auto_action_eligible": true,
+      "approval_required": false
+    }
+  ]
+}

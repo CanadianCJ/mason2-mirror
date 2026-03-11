@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "updated_at_utc": "2026-03-08T05:26:52.571614Z",
+  "specs": [
+    {
+      "spec_id": "spec_84096e241a2d",
+      "title": "Factory spec for failure diagnostics automation",
+      "category": "operations",
+      "target_domain": "system",
+      "problem_statement": "Runtime and verify failures still rely on manual log inspection.",
+      "proposed_tool_name": "Failure Diagnostics Pack",
+      "why_needed": "Check core logs in reports/start and rerun tools\\\\ops\\\\Stack_Reset_And_Start.ps1.",
+      "expected_inputs": [
+        "failure_context",
+        "log_paths",
+        "recent_reports"
+      ],
+      "expected_outputs": [
+        "diagnostic_summary",
+        "root_cause_candidates",
+        "next_actions"
+      ],
+      "risk_level": "medium",
+      "tenant_scope": "global",
+      "source": "runtime",
+      "linked_improvement_id": "",
+      "linked_behavior_id": "",
+      "status": "new",
+      "created_at": "2026-03-08T05:26:29.069078Z",
+      "updated_at": "2026-03-08T05:26:29.069078Z",
+      "history": [
+        {
+          "at_utc": "2026-03-08T05:26:29.069241Z",
+          "action": "generated",
+          "status": "new",
+          "note": "Factory spec for failure diagnostics automation"
+        }
+      ],
+      "published_tool_id": "",
+      "matched_tool_id": "",
+      "registry_status": "",
+      "capability_state": "missing_capability"
+    },
+    {
+      "spec_id": "spec_a86422fabd59",
+      "title": "Factory spec for Execute the latest Rescue Plan checklist",
+      "category": "operations",
+      "target_domain": "business",
+      "problem_statement": "Review the pending Rescue Plan tasks and assign owners before starting more tooling work.",
+      "proposed_tool_name": "Workflow Capability Builder",
+      "why_needed": "The latest Rescue Plan artifact still has open tasks.",
+      "expected_inputs": [
+        "context_summary",
+        "goal",
+        "constraints"
+      ],
+      "expected_outputs": [
+        "tool_spec_outline",
+        "build_tasks",
+        "risk_notes"
+      ],
+      "risk_level": "low",
+      "tenant_scope": "tenant_http_check",
+      "source": "recommendation",
+      "linked_improvement_id": "",
+      "linked_behavior_id": "",
+      "status": "published",
+      "created_at": "2026-03-08T05:26:29.046057Z",
+      "updated_at": "2026-03-08T05:26:52.561785Z",
+      "history": [
+        {
+          "at_utc": "2026-03-08T05:26:29.046321Z",
+          "action": "generated",
+          "status": "new",
+          "note": "Factory spec for Execute the latest Rescue Plan checklist"
+        },
+        {
+          "at_utc": "2026-03-08T05:26:52.495743Z",
+          "action": "status_update",
+          "status": "spec_ready",
+          "note": "Validation transition to spec_ready"
+        },
+        {
+          "at_utc": "2026-03-08T05:26:52.511918Z",
+          "action": "status_update",
+          "status": "build_ready",
+          "note": "Validation transition to build_ready"
+        },
+        {
+          "at_utc": "2026-03-08T05:26:52.528117Z",
+          "action": "status_update",
+          "status": "built",
+          "note": "Validation transition to built"
+        },
+        {
+          "at_utc": "2026-03-08T05:26:52.543782Z",
+          "action": "status_update",
+          "status": "tested",
+          "note": "Validation transition to tested"
+        },
+        {
+          "at_utc": "2026-03-08T05:26:52.561809Z",
+          "action": "published",
+          "status": "published",
+          "note": "workflow_capability_builder_v1"
+        }
+      ],
+      "published_tool_id": "workflow_capability_builder_v1",
+      "matched_tool_id": "workflow_capability_builder_v1",
+      "registry_status": "disabled",
+      "capability_state": "existing_tool_needs_improvement"
+    }
+  ]
+}

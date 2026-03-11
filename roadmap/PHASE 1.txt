@@ -1,0 +1,305 @@
+﻿Phase 1 â€” full list
+
+- [x] [System Structure & Packaging] Create portable manifest (paths, versions, SHA256)
+- [x] [System Structure & Packaging] Bootstrap script validates prerequisites (PS 5.1+, .NET, TLS)
+- [x] [System Structure & Packaging] One-folder install with relative paths only
+[System Structure & Packaging] Pack/Unpack commands with integrity check
+[System Structure & Packaging] Environment discovery (dev/prod) toggle
+[System Structure & Packaging] Version stamp in every binary/script header
+[System Structure & Packaging] Self-update channel with signed bundles
+[System Structure & Packaging] Atomic deploy (stage â†’ swap)
+[System Structure & Packaging] Rollback cache for last 3 versions
+[System Structure & Packaging] Start/Stop scripts for all services
+[System Structure & Packaging] Cross-user install safety (non-admin fallback)
+[System Structure & Packaging] Install log with return codes
+[System Structure & Packaging] Bootstrap sanity prompts when misconfigured
+[System Structure & Packaging] Uninstall script with residue cleanup
+[System Structure & Packaging] Prereq cache (downloads once)
+[System Structure & Packaging] Portable license/notice file set
+[System Structure & Packaging] Config sample generator
+[System Structure & Packaging] First-run wizard (writes .env)
+[System Structure & Packaging] Migration runner for breaking changes
+[System Structure & Packaging] Compatibility check for OS build & locale
+[System Structure & Packaging] Desktop UI packaging (WinUI/WPF) single-exe â€œboxed appâ€; MSIX installer + portable fallback
+[System Structure & Packaging] Self-install bootstrapper for new PC (import config, seeds, reports)
+[System Structure & Packaging] Pack & Migrate bundle (one-click zip with SHA256 + version stamp)
+[System Structure & Packaging] Roadmap directory + canonical filenames (PHASE N.txt)
+[System Structure & Packaging] Roadmap filename normalizer (strip trailing/leading spaces)
+[System Structure & Packaging] Roadmap integrity hashing (SHA256) & schema check
+
+[Logging & Telemetry] Structured log format (JSON lines)
+[Logging & Telemetry] Log levels with runtime switches
+[Logging & Telemetry] Per-component log files with rotation
+[Logging & Telemetry] High-volume event coalescing
+[Logging & Telemetry] PII redaction middleware
+[Logging & Telemetry] Correlation IDs per request/task
+[Logging & Telemetry] Span timing (start/end/duration)
+[Logging & Telemetry] Top-N error aggregator daily
+[Logging & Telemetry] Slow operation profiler (thresholded)
+[Logging & Telemetry] Heartbeat event every minute
+[Logging & Telemetry] Log shipping toggle (local only by default)
+[Logging & Telemetry] Log sampling for chatty components
+[Logging & Telemetry] Crash dump capture on fatal
+[Logging & Telemetry] Breadcrumb trail for user actions
+[Logging & Telemetry] Metric sink (CSV time-series)
+[Logging & Telemetry] Anomaly detector on error rate
+[Logging & Telemetry] Latency buckets (p50/p95/p99)
+[Logging & Telemetry] Disk usage timeline metric
+[Logging & Telemetry] Event schema versioning
+[Logging & Telemetry] Log viewer filters in dashboard
+[Logging & Telemetry] Alert on missing logs (silence)
+[Logging & Telemetry] Audit log (immutable WORM) preparation
+[Logging & Telemetry] Daily telemetry summary exporter
+[Logging & Telemetry] Clock skew detector
+[Logging & Telemetry] Health index scalar (0â€“100)
+[Logging & Telemetry] Status & ChangeLog writers (auto-update reports each session)
+[Logging & Telemetry] Unified message/event schema (logs, seeds, incident feed)
+
+[Watchdog & Governor] Process liveness check with restart policy
+[Watchdog & Governor] CPU/RAM/Handle monitors per process
+[Watchdog & Governor] Port listener verification
+[Watchdog & Governor] HTTP healthz probe with jitter
+[Watchdog & Governor] Backoff ladder for flapping services
+[Watchdog & Governor] Graceful stop with timeout
+[Watchdog & Governor] Dependency ordering on restarts
+[Watchdog & Governor] Self-heal action catalog (restart, rotate, clear-cache)
+[Watchdog & Governor] Quarantine misbehaving tasks
+[Watchdog & Governor] Governor risk budget (per hour/day)
+[Watchdog & Governor] Freeze high-risk when health < GREEN
+[Watchdog & Governor] Queue aging metrics & drain controls
+[Watchdog & Governor] Task priority weights by impact
+[Watchdog & Governor] Maintenance window enforcement
+[Watchdog & Governor] Runbook links per alert
+[Watchdog & Governor] Auto-open diagnostics pack on repeated faults
+[Watchdog & Governor] Sticky failures detector (same error signature)
+[Watchdog & Governor] Alert suppression for noisy repeats
+[Watchdog & Governor] Watchdog configuration linter
+[Watchdog & Governor] Cross-check seed queue vs CPU load
+[Watchdog & Governor] Network connectivity probe (DNS, gateway)
+[Watchdog & Governor] Time sync status check (NTP)
+[Watchdog & Governor] Battery/power state aware throttling
+[Watchdog & Governor] Temp folder growth watch
+[Watchdog & Governor] Orphan process reaper
+[Watchdog & Governor] Drift sniffer & rebuilder (detect rogue processes/env/schedules; propose fix via seed)
+[Watchdog & Governor] Sidecar-7000 sentinel (alert if anything binds to 7000; propose kill via approvals)
+
+[Learner & Seeds] Seed schema (metadata, source, trust)
+[Learner & Seeds] Seed linter (size/format/dup)
+[Learner & Seeds] Queue prioritization (novelty/recency)
+[Learner & Seeds] Auto-summarize long seeds
+[Learner & Seeds] Contradiction/high-risk change detector
+[Learner & Seeds] Pin critical facts (never forget)
+[Learner & Seeds] Decay or archive stale seeds
+[Learner & Seeds] Topic tags & routing to skills
+[Learner & Seeds] Learning rate governor (budget/time)
+[Learner & Seeds] Daily digest: learned + planned changes
+[Learner & Seeds] Seed-to-test generator (assertions)
+[Learner & Seeds] Seed diff view (whatâ€™s new)
+[Learner & Seeds] Source reputation scoring
+[Learner & Seeds] Active recall tasks (flashcards)
+[Learner & Seeds] Knowledge freshness checks (laws/APIs)
+[Learner & Seeds] Auto-cite sources in decisions
+[Learner & Seeds] Re-train small models on schedule
+[Learner & Seeds] Skill competency map (levels)
+[Learner & Seeds] Regression watch on competency trends
+[Learner & Seeds] Seed backfill during idle windows
+[Learner & Seeds] Human-in-the-loop prompts for ambiguous seeds
+[Learner & Seeds] Noise filter (low-value seed drop)
+[Learner & Seeds] Learning sandbox (no prod impact)
+[Learner & Seeds] Outcome-linked reinforcement (success tags)
+[Learner & Seeds] Seed export/import pack
+[Learner & Seeds] Chat-to-Seed Ingestor (convert past chats/notes to seed stubs in queue)
+[Learner & Seeds] Seed states: inbox â†’ in-review â†’ canary â†’ applied â†’ rolled-back
+[Learner & Seeds] Apply gate: promote only if tests pass + sentinels green â‰¥ MASON_CANARY_THRESHOLD
+
+[Config & Secrets] .env schema validation with errors
+[Config & Secrets] Fallback defaults when missing
+[Config & Secrets] Secrets in Windows Credential Vault
+[Config & Secrets] Key rotation helper
+[Config & Secrets] Config diff viewer
+[Config & Secrets] Runtime config reload (safe)
+[Config & Secrets] Config scopes (global, environment, tenant)
+[Config & Secrets] Sensitive field masking in UI
+[Config & Secrets] Prohibit secrets in logs
+[Config & Secrets] Checksum on config files
+[Config & Secrets] Config backups (N versions)
+[Config & Secrets] Config migration scripts
+[Config & Secrets] Write-protect critical configs
+[Config & Secrets] Per-feature toggles (feature flags)
+[Config & Secrets] Tenant overrides with precedence
+[Config & Secrets] Encrypted local keystore
+[Config & Secrets] Fail closed on invalid config
+[Config & Secrets] Secret leak scanner (files/seeds)
+[Config & Secrets] Env var precedence rules documented
+[Config & Secrets] Config unit tests
+
+[Disk/Filesystem & Performance] Free space guard at N%
+[Disk/Filesystem & Performance] Large file finder & report
+[Disk/Filesystem & Performance] Temp/cache TTL sweeper
+[Disk/Filesystem & Performance] Log rotation policy sizing
+[Disk/Filesystem & Performance] I/O throttling under pressure
+[Disk/Filesystem & Performance] Fragmentation check advisory
+[Disk/Filesystem & Performance] Concurrent file access retries
+[Disk/Filesystem & Performance] Atomic writes (tempâ†’move)
+[Disk/Filesystem & Performance] Backup compression tuning
+[Disk/Filesystem & Performance] Anti-corruption validation (CRC)
+[Disk/Filesystem & Performance] Directory watcher for hot paths
+[Disk/Filesystem & Performance] File descriptor leak checks
+[Disk/Filesystem & Performance] Memory budget per service
+[Disk/Filesystem & Performance] GC/heap tuning notes (runtime)
+[Disk/Filesystem & Performance] Pagination for large lists
+[Disk/Filesystem & Performance] Cache with eviction policy
+[Disk/Filesystem & Performance] Cold start pre-warming
+[Disk/Filesystem & Performance] Perf baseline capture weekly
+[Disk/Filesystem & Performance] Micro-benchmark harness
+[Disk/Filesystem & Performance] Perf regression alerts
+[Disk/Filesystem & Performance] Safe-mode trigger + banner when disk free% < guard
+
+[API/Services Core] Health endpoints per service
+[API/Services Core] Readiness vs liveness split
+[API/Services Core] Request timeouts & retries
+[API/Services Core] Circuit breaker around externals
+[API/Services Core] Uniform error model
+[API/Services Core] Idempotency keys for mutating calls
+[API/Services Core] Input validation (schemas)
+[API/Services Core] Rate limiting (per IP/task)
+[API/Services Core] CORS & auth tokens (local only)
+[API/Services Core] Graceful shutdown hooks
+[API/Services Core] Dependency probes on start
+[API/Services Core] Thread pool/async tuning
+[API/Services Core] Static file caching headers
+[API/Services Core] Compression for JSON
+[API/Services Core] Pagination & streaming support
+[API/Services Core] OpenAPI spec (internal)
+[API/Services Core] Service version negotiation
+[API/Services Core] Background job queue health
+[API/Services Core] Back-pressure signals
+[API/Services Core] Dead letter queue for failed jobs
+[API/Services Core] Local-only JSON status endpoints for desktop UI (no web dependency)
+[API/Services Core] Capability & device registry (single JSON, types/permissions/evidence)
+[API/Services Core] Bus adapter interface: Local-Direct (default) + placeholder Distributed (disabled)
+[API/Services Core] Device adapter interface (HAL placeholder) for future home/cluster integrations
+
+[Tests, Canary & Rollback] Smoke tests for boot sequence
+[Tests, Canary & Rollback] Golden functional tests (core paths)
+[Tests, Canary & Rollback] Performance SLO tests
+[Tests, Canary & Rollback] Fuzz tests for inputs
+[Tests, Canary & Rollback] Chaos-lite (kill process) drills
+[Tests, Canary & Rollback] Canary percent routing (internal)
+[Tests, Canary & Rollback] Shadow run compare reports
+[Tests, Canary & Rollback] Auto-revert on KPI breach
+[Tests, Canary & Rollback] Pre-deploy checklist generator
+[Tests, Canary & Rollback] One-click rollback
+[Tests, Canary & Rollback] Rollback validation tests
+[Tests, Canary & Rollback] Artifacts signed with hash
+[Tests, Canary & Rollback] Change ticket auto-filled
+[Tests, Canary & Rollback] Test coverage reporting
+[Tests, Canary & Rollback] Seed-based scenario tests
+[Tests, Canary & Rollback] Replay last 24h traffic (safe)
+[Tests, Canary & Rollback] Downtime simulator (net off)
+[Tests, Canary & Rollback] Disk full simulator
+[Tests, Canary & Rollback] Config typo simulator
+[Tests, Canary & Rollback] Dependency outage simulator
+[Tests, Canary & Rollback] Blue/green switch verification
+[Tests, Canary & Rollback] Post-deploy health gate
+[Tests, Canary & Rollback] Canary soak timer
+[Tests, Canary & Rollback] Release notes auto-gen
+[Tests, Canary & Rollback] QA snapshot pack
+[Tests, Canary & Rollback] Roadmap auto-check criteria (Applied only if tests âœ… + canary âœ… + changelog entry)
+
+[Dashboard & UX] Status banner (GREEN/AMBER/RED) logic
+[Dashboard & UX] Tile views: services/ports/queues/logs
+[Dashboard & UX] Inline tail of key logs
+[Dashboard & UX] Latency p95 charts
+[Dashboard & UX] Error trend sparkline
+[Dashboard & UX] Buttons: Heal/Restart/Rotate/Snapshot
+[Dashboard & UX] Copy status to clipboard
+[Dashboard & UX] Open logs folder button
+[Dashboard & UX] Open frontend button
+[Dashboard & UX] Self-test modal
+[Dashboard & UX] Incident timeline
+[Dashboard & UX] Queue browser (peek top N)
+[Dashboard & UX] Config editor with validation
+[Dashboard & UX] Feature flag toggles
+[Dashboard & UX] Approval center (high-risk)
+[Dashboard & UX] Task history with filters
+[Dashboard & UX] Download diagnostics pack
+[Dashboard & UX] Dark/light theme
+[Dashboard & UX] Keyboard shortcuts
+[Dashboard & UX] Mobile-friendly layout
+[Dashboard & UX] Accessibility labels & tab order
+[Dashboard & UX] Persist UI state (last tab)
+[Dashboard & UX] Session banner (version/date)
+[Dashboard & UX] Search across logs/seeds
+[Dashboard & UX] User feedback button
+[Dashboard & UX] Three tabs only: Overview Â· Work Â· Compliance (minimal)
+[Dashboard & UX] HUD: stability light + Money Loop OFF + ports + disk% + last incident
+[Dashboard & UX] Seed mini-kanban with counts; expand on click (progressive disclosure)
+[Dashboard & UX] Canary card with sentinel metrics + threshold progress
+[Dashboard & UX] Focus Mode (show only current canary + sentinels)
+[Dashboard & UX] Roadmap tracker view (auto-check via tests/canary/changelog; OS-mode track)
+[Dashboard & UX] Widget registry (new capabilities add tiles automatically)
+[Dashboard & UX] Quiet hours toggle for notifications
+[Dashboard & UX] Tray icon status (G/Y/R) with quick menu (Open, Logs, Quit)
+[Dashboard & UX] Offline Help panel (local docs)
+[Dashboard & UX] â€œPropose changeâ€ flow (read-only UI drafts a seed; no direct mutate)
+[Dashboard & UX] Compliance cards (PIPEDA, CASL, CRA, Employment, Privacy/DPA) with notes/evidence
+[Dashboard & UX] Phase activation (explicit) + Phase drawer (view others on demand)
+[Dashboard & UX] Roadmap evidence links (logs/tests/changelog) per item
+[Dashboard & UX] Roadmap integrity display (SHA256, edited warning)
+[Dashboard & UX] Phase gating: block next phase if critical items not Applied (PIN override)
+[Dashboard & UX] Widget manifest contract (schema)
+[Dashboard & UX] Widget auto-scan & hot-reload (local-only)
+[Dashboard & UX] Seed Apply writes widget manifest (Apply Gate integration)
+[Dashboard & UX] Roadmap â†” Widget binder (map items to tiles)
+[Dashboard & UX] Manifest linter (prevent invalid/noisy tiles)
+
+[Safety & Guardrails] High-risk window (time-based)
+[Safety & Guardrails] Risk score formula (size/blast/risk)
+[Safety & Guardrails] Two-key approval for destructive ops
+[Safety & Guardrails] Money loop hard-off when unstable
+[Safety & Guardrails] Sandbox for unknown code
+[Safety & Guardrails] Network egress denylist
+[Safety & Guardrails] File write scoping to Mason root
+[Safety & Guardrails] Command allowlist for scripts
+[Safety & Guardrails] Outbound request budget caps
+[Safety & Guardrails] Prompt injection heuristics
+[Safety & Guardrails] Dangerous pattern detector (rm -rf analogs)
+[Safety & Guardrails] Sensitive data detector in outputs
+[Safety & Guardrails] Legal/ToS compliance banner
+[Safety & Guardrails] Model output moderation (local rules)
+[Safety & Guardrails] Kill switch hotkey
+[Safety & Guardrails] Emergency rollback script
+[Safety & Guardrails] Incident paging throttle
+[Safety & Guardrails] Safe mode (read-only)
+[Safety & Guardrails] Operator PIN for approvals
+[Safety & Guardrails] Forensic snapshot on breach
+[Safety & Guardrails] Policy store (declarative approvals, risk budgets, device limits)
+
+[Voice/Text Shell (Minimal)] Local TTS/STT wiring (offline-capable)
+[Voice/Text Shell (Minimal)] Wake word + barge-in
+[Voice/Text Shell (Minimal)] Push-to-talk fallback
+[Voice/Text Shell (Minimal)] Voice confirmations for approvals
+[Voice/Text Shell (Minimal)] Latency target under 800ms
+[Voice/Text Shell (Minimal)] Session memory summary
+[Voice/Text Shell (Minimal)] Noise robustness checks
+[Voice/Text Shell (Minimal)] Mic/speaker device switcher
+[Voice/Text Shell (Minimal)] Text fallback UI
+[Voice/Text Shell (Minimal)] Audio log redaction
+
+[Automation & Schedules] Windows Task Scheduler entries verifier
+[Automation & Schedules] Hourly log maintenance job
+[Automation & Schedules] Daily snapshot at 03:30
+[Automation & Schedules] Weekly restore test
+[Automation & Schedules] Learner cadence (10m) enforcement
+[Automation & Schedules] Governor cadence (2m) enforcement
+[Automation & Schedules] Watchdog cadence (1m) enforcement
+[Automation & Schedules] TopicSync (1m) schedule
+[Automation & Schedules] AutoAdvance (3m) schedule
+[Automation & Schedules] DiskHealth (daily) schedule
+[Automation & Schedules] Calendar-based change freeze
+[Automation & Schedules] Quiet hours for heavy tasks
+[Automation & Schedules] Retry queue sweeper
+[Automation & Schedules] Stuck job detector
+[Automation & Schedules] Schedule drift alarms
+[Automation & Schedules] UI heartbeat cadence (HUD refresh ~3s; rest manual)

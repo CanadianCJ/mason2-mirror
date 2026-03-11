@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "tenant_id": "tenant_acme_local",
+  "tenant": {
+    "tenant_id": "tenant_acme_local",
+    "owner": "Chris",
+    "created_at_utc": "2026-03-07T22:45:00Z",
+    "status": "active",
+    "plan_tier": "Founder",
+    "last_updated_at_utc": "2026-03-07T22:45:00Z"
+  },
+  "business_profile": {
+    "tenant_id": "tenant_acme_local",
+    "business_name": "Acme Advisory",
+    "business_type": "Consulting",
+    "team_size": "2-5",
+    "currency": "CAD",
+    "country_region": "CA",
+    "main_goal": "Turn onboarding into a repeatable system",
+    "services_products": [
+      "Advisory",
+      "Fractional operations"
+    ],
+    "locations": [
+      "Toronto"
+    ],
+    "operating_area": "Canada + remote",
+    "current_tools": [
+      "Google Workspace",
+      "Notion"
+    ],
+    "goals": [
+      "Standardize delivery",
+      "Reduce admin work"
+    ],
+    "pain_points": [
+      "Fragmented client intake"
+    ],
+    "growth_priorities": [
+      "Higher-margin retainers"
+    ],
+    "risk_tolerance": "Balanced",
+    "automation_tolerance": "Supervised automation",
+    "budget_sensitivity": "Balanced",
+    "notes": "Sample acceptance tenant",
+    "upload_references": [
+      "intake-checklist.pdf"
+    ],
+    "last_updated_at_utc": "2026-03-07T22:45:00Z"
+  },
+  "plan": {
+    "current_tier": "Founder",
+    "enabled_features": [
+      "invoices",
+      "clients",
+      "tasks"
+    ],
+    "addon_features": [],
+    "beta_opt_in": true,
+    "last_updated_at_utc": "2026-03-07T22:45:00Z"
+  },
+  "onboarding": {
+    "current_step_index": 3,
+    "completed_step_ids": [
+      "tenant",
+      "operations",
+      "goals",
+      "preferences"
+    ],
+    "is_completed": true,
+    "completion_percent": 100,
+    "last_updated_at_utc": "2026-03-07T22:45:00Z"
+  },
+  "last_updated_at_utc": "2026-03-07T22:45:00Z"
+}

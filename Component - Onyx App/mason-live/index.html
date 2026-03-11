@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mason Live</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:18px}
+  h1{font-size:22px;margin:0 0 8px}
+  .card{border:1px solid #ddd;border-radius:12px;padding:14px;margin:10px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  button{padding:10px 14px;border-radius:10px;border:1px solid #ccc;background:#f8f8f8}
+  button:active{transform:scale(.98)}
+  .pill{display:inline-block;padding:3px 8px;border-radius:999px;border:1px solid #ddd;font-size:12px}
+  #status strong{font-weight:600}
+  .ok{color:#137a1a}.down{color:#b00020}
+</style>
+<div class="card"><h1>🤖 Mason Live</h1><div>Private (Tailscale) phone console</div></div>
+<div class="card" id="status">Loading…</div>
+<div class="card">
+  <div class="row">
+    <button onclick="act('start')">Start</button>
+    <button onclick="act('stop')">Stop</button>
+    <button onclick="act('scan')">Scan now</button>
+    <button onclick="refresh()">Refresh</button>
+  </div>
+</div>
+<script>
+const TOKEN = "3186ef511b8d441ebbb2c20eab31ec52";
+async function refresh(){
+  try{
+    const r = await fetch('/api/status',{headers:{'x-auth':TOKEN}});
+    const j = await r.json();
+    const s = (j.sidecar==='ok')?'<span class="pill ok">sidecar: OK</span>':'<span class="pill down">sidecar: DOWN</span>';
+    const p = (j.proposals==null)?'—':j.proposals;
+    document.getElementById('status').innerHTML =
+      <strong>Status</strong><br> &nbsp; <span class="pill">proposals: </span>;
+  }catch(e){
+    document.getElementById('status').innerHTML = '<span class="pill down">unreachable</span>';
+  }
+}
+async function act(which){
+  const map={start:'start',stop:'stop',scan:'scan'};
+  try{
+    await fetch('/api/actions/'+map[which],{method:'POST',headers:{'x-auth':TOKEN}});
+  }catch(e){}
+  setTimeout(refresh,800);
+}
+refresh(); setInterval(refresh,4000);
+</script>

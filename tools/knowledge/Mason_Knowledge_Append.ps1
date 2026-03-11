@@ -68,9 +68,31 @@ $latestPath = Join-Path $inboxDir "knowledge_inbox_latest.jsonl"
 Append-JsonLine -Path $dailyPath -Object $record
 Append-JsonLine -Path $latestPath -Object $record
 
+$memoryIngest = $null
+$memoryIngestPath = Join-Path $repoRoot "tools\ingest\Mason_Memory_Ingest.ps1"
+if (Test-Path -LiteralPath $memoryIngestPath) {
+    try {
+        $memoryIngestRaw = & $memoryIngestPath `
+            -RootPath $repoRoot `
+            -Text $record.text `
+            -SourceLabel ("knowledge_inbox:{0}" -f $Source) `
+            -Label "knowledge_append" `
+            -Tier hot `
+            -Tags @($record.tags + @("knowledge_inbox", $Kind))
+        $memoryIngest = ($memoryIngestRaw | ConvertFrom-Json -ErrorAction Stop)
+    }
+    catch {
+        $memoryIngest = [ordered]@{
+            ok    = $false
+            error = $_.Exception.Message
+        }
+    }
+}
+
 [pscustomobject]@{
-    ok          = $true
-    inbox_daily = $dailyPath
-    inbox_latest = $latestPath
-    appended_at = $record.ts
+    ok            = $true
+    inbox_daily   = $dailyPath
+    inbox_latest  = $latestPath
+    appended_at   = $record.ts
+    memory_ingest = $memoryIngest
 } | ConvertTo-Json -Depth 6

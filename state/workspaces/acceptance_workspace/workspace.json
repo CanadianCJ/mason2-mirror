@@ -1,0 +1,12 @@
+﻿{
+    "workspace_id":  "acceptance_workspace",
+    "client_name":  "Acme",
+    "updated_at_utc":  "2026-02-27T15:43:15.4524398Z",
+    "paths":  {
+                  "root":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\workspaces\\acceptance_workspace",
+                  "uploads":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\workspaces\\acceptance_workspace\\uploads",
+                  "outputs":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\workspaces\\acceptance_workspace\\outputs",
+                  "reports":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\workspaces\\acceptance_workspace\\reports"
+              },
+    "created_at_utc":  "2026-02-27T15:07:45.2073351Z"
+}

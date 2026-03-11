@@ -1,0 +1,638 @@
+﻿[
+    {
+        "path":  "app.config.js",
+        "bytes":  450,
+        "sha256":  "B0A1682F4053B0A8A8A235B0E9B58304B90859B9FDA0670EA892528B172A9005",
+        "mtime":  "2025-09-30T22:17:33"
+    },
+    {
+        "path":  "app.js",
+        "bytes":  1574,
+        "sha256":  "62D1A5BCB293358F80CAC4ABBD1397559CDAF74EE05BE1BC2471B098B9970C38",
+        "mtime":  "2025-10-01T19:32:55"
+    },
+    {
+        "path":  "icon.png",
+        "bytes":  11752,
+        "sha256":  "0F115519E51AF0CC3B7A0847D6166D258CCCA40AAC84E7635D3A731A3EC4DE0B",
+        "mtime":  "2025-09-30T22:15:40"
+    },
+    {
+        "path":  "manifest.json",
+        "bytes":  22637,
+        "sha256":  "EC35FCC21F6953EA56D793BBC56B076899CB3FBF1964012EAFFE186FB4121142",
+        "mtime":  "2025-10-06T21:56:28"
+    },
+    {
+        "path":  "mason-ctl.ps1",
+        "bytes":  7344,
+        "sha256":  "5E8500694EC7A32308F92C8C33978C46433DB4A800A8BBFFF95B5D2858F77E4D",
+        "mtime":  "2025-10-06T04:54:59"
+    },
+    {
+        "path":  "Mason-Onyx-Bridge.ps1",
+        "bytes":  727,
+        "sha256":  "4A74068C8ED61A3D87D322E737A3A443101530A3B006ED0D43831D5F071C3900",
+        "mtime":  "2025-10-01T00:16:16"
+    },
+    {
+        "path":  "MASTER_ROADMAP.txt",
+        "bytes":  714,
+        "sha256":  "3FD4FB53E22D70B849F7C10834D6821905855C82A228E8B9D9CB25E366DBE320",
+        "mtime":  "2025-10-05T04:34:18"
+    },
+    {
+        "path":  "package.json",
+        "bytes":  662,
+        "sha256":  "2DFDA7905CAE4C5216C127D82F0FA00AE112BF9BE0A36F5683DFF43C13CF0044",
+        "mtime":  "2025-10-01T19:32:26"
+    },
+    {
+        "path":  "signal_link.png",
+        "bytes":  707,
+        "sha256":  "7198EBD7971EDCAFCB94143115AB5F83FE0B00DA084923347885376F052AE063",
+        "mtime":  "2025-10-06T05:22:37"
+    },
+    {
+        "path":  "signal_link_debug.log",
+        "bytes":  313,
+        "sha256":  "575E8E3825A8083409EBEA094A3A4BD41D8D6F8E66F8C134A9640788FB02942D",
+        "mtime":  "2025-10-06T18:17:16"
+    },
+    {
+        "path":  "splash.png",
+        "bytes":  20798,
+        "sha256":  "E0789FD69910021D55C2CBDBFAA373CB6BC2EE8A25759CD569282782240A8A74",
+        "mtime":  "2025-09-30T22:15:48"
+    },
+    {
+        "path":  "start-all.ps1",
+        "bytes":  1571,
+        "sha256":  "A09357DAED097067B6F33F3FF6682753CC17C8DCC8F9D251B78153E4DC3C0FE6",
+        "mtime":  "2025-10-06T04:54:59"
+    },
+    {
+        "path":  "Start-ONYX-Global.ps1",
+        "bytes":  515,
+        "sha256":  "1A10C9338F22D53FD534E9A18B7A4EFD5004A6AB15084F7B0DAFA9F2FA780E02",
+        "mtime":  "2025-10-01T01:11:32"
+    },
+    {
+        "path":  "Start-ONYX-One.ps1",
+        "bytes":  5553,
+        "sha256":  "709C470D84EDBA464B9C61667B38568AFDD9412B22999D1E8B25219B2386410D",
+        "mtime":  "2025-10-01T06:31:38"
+    },
+    {
+        "path":  "Start-ONYX.ps1",
+        "bytes":  467,
+        "sha256":  "A817C177DB1C25EA8D63AAC9DDAB27AD9FF9607ACCA6E166B2D1F4AF11141ED3",
+        "mtime":  "2025-09-30T23:05:07"
+    },
+    {
+        "path":  "stop-all.ps1",
+        "bytes":  348,
+        "sha256":  "4724919D6BAC2FBFF348EBBEC8F83451565D48C9BAFD838BEF03299BA6F4E2BE",
+        "mtime":  "2025-10-06T04:54:59"
+    },
+    {
+        "path":  "tree.txt",
+        "bytes":  554,
+        "sha256":  "21CC476CE0C98B2D25868CC4638A240094E9E8C3814150DF4E3C6CB52721491B",
+        "mtime":  "2025-10-06T22:00:25"
+    },
+    {
+        "path":  "api\\api.py",
+        "bytes":  383,
+        "sha256":  "DFA522A9ADBD7206E595666B13B58F4E7BD966BF03D90630C962C3E447AC41E3",
+        "mtime":  "2025-09-19T16:32:58"
+    },
+    {
+        "path":  "backend\\api.py",
+        "bytes":  6306,
+        "sha256":  "4F85866684DEA63896EF15125E08BCE78D6DD002F5F74B495272C38B065F709B",
+        "mtime":  "2025-10-01T04:07:25"
+    },
+    {
+        "path":  "backend\\backend.err.log",
+        "bytes":  202,
+        "sha256":  "EA93B1918FF54528B8EDE52FA3D3270C101754E2AC56DE6CCDEC0884CB459BA6",
+        "mtime":  "2025-10-01T06:31:49"
+    },
+    {
+        "path":  "backend\\backend.log",
+        "bytes":  0,
+        "sha256":  "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+        "mtime":  "2025-10-01T04:39:28"
+    },
+    {
+        "path":  "backend\\backend.out.log",
+        "bytes":  896,
+        "sha256":  "B288E5778506E21CD1BAC1EFD368352B9E68235276FD48FD39F052603CB631CC",
+        "mtime":  "2025-10-02T21:04:43"
+    },
+    {
+        "path":  "backend\\backend.pid",
+        "bytes":  7,
+        "sha256":  "6A5989247E7633ECC8F48028912096A54F23140DB1705EBCB4DC49C97597CAC1",
+        "mtime":  "2025-10-01T06:31:49"
+    },
+    {
+        "path":  "backend\\report_generator.py",
+        "bytes":  965,
+        "sha256":  "8F3DF0498A431B1963F3505E77D0C3E5AB70D7AB9888D1CCEA84BCC81C5324F1",
+        "mtime":  "2025-09-30T22:39:30"
+    },
+    {
+        "path":  "backend\\requirements.txt",
+        "bytes":  64,
+        "sha256":  "7A568C0632C216A895ADFF6E64230A75588696A831B1F96E19552F597234904A",
+        "mtime":  "2025-09-30T22:39:30"
+    },
+    {
+        "path":  "backend\\Start-Backend-Global.ps1",
+        "bytes":  641,
+        "sha256":  "E3F3C0CC842761E5B3E6FACD9B0886FC453DEEFA2BF27A2B5C952E026FB59D2E",
+        "mtime":  "2025-10-01T04:07:25"
+    },
+    {
+        "path":  "backend\\Start-Backend.ps1",
+        "bytes":  3491,
+        "sha256":  "984733C8CDD288115A44914457470D6D3AE12E2EDE8FAE73C8E75BFD01F913AB",
+        "mtime":  "2025-10-01T00:32:33"
+    },
+    {
+        "path":  "backend\\storage.py",
+        "bytes":  865,
+        "sha256":  "631740F7CE7863341496F1BDB5CE23EF08340966C7BE2C293072D54C606D7ABD",
+        "mtime":  "2025-10-01T04:07:25"
+    },
+    {
+        "path":  "backend\\.expo\\README.md",
+        "bytes":  891,
+        "sha256":  "99F33DE6F1FF3C941B568D5591F5F945C69EA01CFDA1845F474D5AB48600EC2A",
+        "mtime":  "2025-09-30T22:59:58"
+    },
+    {
+        "path":  "backend\\.expo\\settings.json",
+        "bytes":  120,
+        "sha256":  "CAADED3AA0006E068119C2695E6319C4BE3065568CE30012B13DB477AB5C5304",
+        "mtime":  "2025-09-30T22:59:58"
+    },
+    {
+        "path":  "backend\\__pycache__\\api.cpython-313.pyc",
+        "bytes":  11650,
+        "sha256":  "D692CF175BF4C20DB9157D904DD53FBA07EAB4E22F76715503D507AFE716CD1A",
+        "mtime":  "2025-10-01T04:07:25"
+    },
+    {
+        "path":  "backend\\__pycache__\\report_generator.cpython-313.pyc",
+        "bytes":  1222,
+        "sha256":  "2A9DB6F83E8B96DCEEA1975A6FE7A5AA3356FB71C2888B588508642F885221FA",
+        "mtime":  "2025-10-01T04:00:50"
+    },
+    {
+        "path":  "backend\\__pycache__\\storage.cpython-313.pyc",
+        "bytes":  2360,
+        "sha256":  "B08F30D4C0C3F610FF82129C45C256856A1F1B75AFD1E42465BA83C65EE55BD1",
+        "mtime":  "2025-10-01T04:07:26"
+    },
+    {
+        "path":  "frontend\\dashboard.jsx",
+        "bytes":  0,
+        "sha256":  "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+        "mtime":  "2025-09-19T16:29:00"
+    },
+    {
+        "path":  "manifests\\manifest_20251006_175806.json",
+        "bytes":  22637,
+        "sha256":  "EC35FCC21F6953EA56D793BBC56B076899CB3FBF1964012EAFFE186FB4121142",
+        "mtime":  "2025-10-06T21:56:28"
+    },
+    {
+        "path":  "mason-sidecar\\bridge.yaml",
+        "bytes":  640,
+        "sha256":  "E45A30BD02BBCB2E8D76B10ECBB4F670A1C9075C465EE096F63EA95A5B702447",
+        "mtime":  "2025-10-05T04:34:24"
+    },
+    {
+        "path":  "mason-sidecar\\bridge_config.yaml",
+        "bytes":  260,
+        "sha256":  "C8C02DDF23D1292CCD49A576A1248BBBF68E38BE434B67718BE9461814EAF983",
+        "mtime":  "2025-10-05T05:33:21"
+    },
+    {
+        "path":  "mason-sidecar\\mason-bridge.yml",
+        "bytes":  242,
+        "sha256":  "4FCB1E1193C841710CA1CC7C559628CAF42D2E72A336F3942C597D770DA671BD",
+        "mtime":  "2025-10-05T17:20:37"
+    },
+    {
+        "path":  "mason-sidecar\\sidecar.py",
+        "bytes":  14690,
+        "sha256":  "B271AD07785D35DA05209FA6A8F9BEC6D962E802F044A79E25CC99803932FB6B",
+        "mtime":  "2025-10-06T00:08:23"
+    },
+    {
+        "path":  "mason-sidecar\\logs\\bridge_audit.jsonl",
+        "bytes":  2554,
+        "sha256":  "BB71EA9BEDA5EF17B2094B9D0A8B3C3C924C70F783A64535B2B63AFE23276573",
+        "mtime":  "2025-10-05T14:21:58"
+    },
+    {
+        "path":  "mason-sidecar\\__pycache__\\sidecar.cpython-313.pyc",
+        "bytes":  23782,
+        "sha256":  "2A381F68B1C4BCCF3479BCE106210B8C5522DD318668AA230D54CAEB4B4D2586",
+        "mtime":  "2025-10-06T00:08:42"
+    },
+    {
+        "path":  "mobile\\.gitignore",
+        "bytes":  453,
+        "sha256":  "ADF9EBA69E0E560F18CF1F83FC8A5070D18E2E7806CBB57C21BF52A95F9D88C7",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\app.config.js",
+        "bytes":  283,
+        "sha256":  "593D17D855213AAD3A43DF457796EED2215EB27625D758B64BB77964D98767B9",
+        "mtime":  "2025-10-01T22:25:22"
+    },
+    {
+        "path":  "mobile\\App.js",
+        "bytes":  412,
+        "sha256":  "280B77A8880372A7824125642BC744E163CA409473FE81E3A8FB2F422D819618",
+        "mtime":  "2025-10-02T04:36:32"
+    },
+    {
+        "path":  "mobile\\app.json",
+        "bytes":  1209,
+        "sha256":  "577C70B3967940EF7AFC7FC266C982EF519AFAAC3B95CE5342B91682643E522E",
+        "mtime":  "2025-09-30T22:53:21"
+    },
+    {
+        "path":  "mobile\\app_layout.jsx",
+        "bytes":  833,
+        "sha256":  "9527D17C28126A168334BDCC2D31CDAD9FE26BFEF365979DC01727BE27B50053",
+        "mtime":  "2025-10-01T19:48:22"
+    },
+    {
+        "path":  "mobile\\babel.config.js",
+        "bytes":  102,
+        "sha256":  "3E9470471C2F7D2E8A26C7E71E7D74568704B998686F2AF8898EF5E89790D870",
+        "mtime":  "2025-10-01T23:57:28"
+    },
+    {
+        "path":  "mobile\\eas.json",
+        "bytes":  185,
+        "sha256":  "6D5FFBD75C6F05CE626856AC500811F240F14B20C05927A783C8E7C589B04D4C",
+        "mtime":  "2025-10-01T04:09:51"
+    },
+    {
+        "path":  "mobile\\eslint.config.js",
+        "bytes":  237,
+        "sha256":  "3B0C823FD936F964905DB962E66E92E24773B7085C0C82750A4D4F0B1808C41C",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\index.js",
+        "bytes":  100,
+        "sha256":  "57ECBB3951F0CA20508711A913AB3BCC492DA802F58F2D72D7EA4696D85BEACB",
+        "mtime":  "2025-10-02T00:05:19"
+    },
+    {
+        "path":  "mobile\\package-lock.json",
+        "bytes":  530712,
+        "sha256":  "2E47F0C5F519B3FFB33FDEF9B32B7BDBBEF2C9A68714FBD21BB826A54372F7FD",
+        "mtime":  "2025-10-01T23:22:23"
+    },
+    {
+        "path":  "mobile\\package.json",
+        "bytes":  1109,
+        "sha256":  "E18FA22C9FAB3DA90978ED7BCADAAE59C1742C73992F54A8F98793F553A5C1DE",
+        "mtime":  "2025-10-02T03:32:13"
+    },
+    {
+        "path":  "mobile\\README.md",
+        "bytes":  1741,
+        "sha256":  "724011847F042C61CA1DDF8BC00A3FE723672734B00F37348E4E7DDEF1965091",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\Start-Mobile.ps1",
+        "bytes":  784,
+        "sha256":  "12191AE1D3CF76125A7C7FB52887E11C1937C5A79F2E6C64D38ADAD588EF2D41",
+        "mtime":  "2025-09-30T23:05:07"
+    },
+    {
+        "path":  "mobile\\.vscode\\extensions.json",
+        "bytes":  50,
+        "sha256":  "F54CD822DCE0AF53953015F71CE04F91D4FCEC4AC02ECB28658D636004C4BBCE",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\.vscode\\settings.json",
+        "bytes":  152,
+        "sha256":  "C9D2A3300E5453B399D9A092A29AABB67ADFC59623ABD5B03B1143557386C39C",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\assets\\images\\android-icon-background.png",
+        "bytes":  17549,
+        "sha256":  "FB139C2DEE362EBF2070E23B96DA6FC0D43F8492DE38B8AF1FD7223E19B5861D",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\assets\\images\\android-icon-foreground.png",
+        "bytes":  78796,
+        "sha256":  "9E3D0315A33C6799DE601DD34CD8BF8CC3A8D16F3BF75592BAEC2CEB7240B391",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\assets\\images\\android-icon-monochrome.png",
+        "bytes":  4140,
+        "sha256":  "6371FC2C12E33AD2215A86C281DB3D682A81BEBE7C957A842C13B8BF00CCEB83",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\assets\\images\\favicon.png",
+        "bytes":  1129,
+        "sha256":  "A4E030697A7571B3E95D31860E4DA55D2F98E5E861E2B55E414F45A8556828BA",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\assets\\images\\icon.png",
+        "bytes":  393493,
+        "sha256":  "119462BB78EB240A65C869FC067EE599639B3CB5A41953F25C07B17D2A8C7E0F",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\assets\\images\\partial-react-logo.png",
+        "bytes":  5075,
+        "sha256":  "015A72AEB24C1166243EBC185355C9488CC892FBF3AA82F9AE66819A10F3451C",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\assets\\images\\react-logo.png",
+        "bytes":  6341,
+        "sha256":  "224B7636B15E672801579B5B418077CBC2CA42F0146389062364356B0ECB5C5C",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\assets\\images\\react-logo@2x.png",
+        "bytes":  14225,
+        "sha256":  "FA600BE9AD2F869C7A8DBAFFC78BB15AF741123E1319C948F0BE51753A153CDE",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\assets\\images\\react-logo@3x.png",
+        "bytes":  21252,
+        "sha256":  "CD84E02A5D542A3E71B7FA10A685C1B9FB51DB4AFF92ACA6C0DA6461CE17BE16",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\assets\\images\\splash-icon.png",
+        "bytes":  17547,
+        "sha256":  "5F4C0A732B6325BF4071D9124D2AE67E037CB24FCC9C482EF82BEA742109A3B8",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "mobile\\lib\\api.js",
+        "bytes":  311,
+        "sha256":  "6D40CC5CFC625F97FAEF256C00E896967AA6BBBB2B048DC3F9ED77A229F9F0B7",
+        "mtime":  "2025-10-01T04:08:03"
+    },
+    {
+        "path":  "mobile\\lib\\settingsStore.js",
+        "bytes":  557,
+        "sha256":  "D404855EC8837CA078D5EA6BBA50B63CB31AE177C10D52FE6E476DC4BAE87CBC",
+        "mtime":  "2025-10-01T04:08:03"
+    },
+    {
+        "path":  "mobile\\scripts\\reset-project.js",
+        "bytes":  3608,
+        "sha256":  "CDB729CFC560944BFC199C18C638153C6537E507E3E86F50CBA0AC6BE8543C26",
+        "mtime":  "1985-10-26T08:15:00"
+    },
+    {
+        "path":  "onyx-backend\\main.py",
+        "bytes":  9918,
+        "sha256":  "B2D31CC78CA3631A150E6A646320A5F3E89DAF2CAABF8CA0DD103F9931755780",
+        "mtime":  "2025-10-04T17:26:06"
+    },
+    {
+        "path":  "onyx-backend\\start-api.cmd",
+        "bytes":  136,
+        "sha256":  "1658C998B061712841AA843744F9ACC7C77F8B9D38C2E5896D9ED38633366123",
+        "mtime":  "2025-10-04T17:01:40"
+    },
+    {
+        "path":  "onyx-backend\\Start_Onyx_Backend.bat",
+        "bytes":  109,
+        "sha256":  "4BC7450BEE3E8B4C4220CEC8D606F703EE13599923739F0E6BF28E789F9BC41A",
+        "mtime":  "2025-10-04T06:04:56"
+    },
+    {
+        "path":  "onyx-backend\\__pycache__\\main.cpython-313.pyc",
+        "bytes":  16128,
+        "sha256":  "837F9F1B1813C072128AB5BE054A540763C98A1CED643BC5AFBB31DA8E5F4426",
+        "mtime":  "2025-10-04T17:26:06"
+    },
+    {
+        "path":  "onyx-web\\.env.local",
+        "bytes":  38,
+        "sha256":  "08D0AE75652A33DE791455F1507A8CCA0154225F358AF8EAFBAD099E53D7E367",
+        "mtime":  "2025-10-05T02:25:16"
+    },
+    {
+        "path":  "onyx-web\\.env.local.example",
+        "bytes":  154,
+        "sha256":  "AB3D4BEED608EDFB90FAEDC88E2D8AB866E0D84A1B254E42CEC9BB237AB9C4A1",
+        "mtime":  "2025-10-05T05:47:10"
+    },
+    {
+        "path":  "onyx-web\\.gitignore",
+        "bytes":  72,
+        "sha256":  "4BAF938D9582BA294E71D9A9C47321D9E1522D4A475936B3E210AD04596478DC",
+        "mtime":  "2025-10-05T15:00:39"
+    },
+    {
+        "path":  "onyx-web\\index.html",
+        "bytes":  1493,
+        "sha256":  "D21958962B57C029A42587C8CE05C390B6758AA688CBB1761D03165798DF3031",
+        "mtime":  "2025-10-04T18:03:18"
+    },
+    {
+        "path":  "onyx-web\\manifest.webmanifest",
+        "bytes":  328,
+        "sha256":  "3AAC5B3CAA42A710184FC6D773103B489F4D8085ED2AA38DC1F18F72D9EB87CC",
+        "mtime":  "2025-10-04T00:32:44"
+    },
+    {
+        "path":  "onyx-web\\package-lock.json",
+        "bytes":  53631,
+        "sha256":  "5C8F43BA996010B20A121BBD7CEEF1B12E9C68D36050710488968E276EEBE278",
+        "mtime":  "2025-10-02T03:48:32"
+    },
+    {
+        "path":  "onyx-web\\package.json",
+        "bytes":  483,
+        "sha256":  "CD9FC98E97E9F32A3C864ACD751CEE7BD37593ADF65A3EDFB8D330581AABAA0B",
+        "mtime":  "2025-10-02T03:48:20"
+    },
+    {
+        "path":  "onyx-web\\start-web.cmd",
+        "bytes":  122,
+        "sha256":  "CC90E9743249F90172C4E0B0D25086C207871A4359524EA1E1F6C09DFAEAF843",
+        "mtime":  "2025-10-04T05:04:35"
+    },
+    {
+        "path":  "onyx-web\\sw.js",
+        "bytes":  751,
+        "sha256":  "7001162DFCFA0DE8AF9F0BC43D2B050ED0100752B896D8D516B6A0E3796F950B",
+        "mtime":  "2025-10-04T00:34:06"
+    },
+    {
+        "path":  "onyx-web\\tsconfig.json",
+        "bytes":  438,
+        "sha256":  "71C8379F3FC3305D44314C922482594A1E27377CC8277FB19F54DF2322C0E5BD",
+        "mtime":  "2025-10-02T03:48:20"
+    },
+    {
+        "path":  "onyx-web\\vite.config.ts",
+        "bytes":  178,
+        "sha256":  "7F0503577B81DDD13C55AEB287A85E9B241147CB781965633185F28F75BDD05D",
+        "mtime":  "2025-10-02T03:48:20"
+    },
+    {
+        "path":  "onyx-web\\src\\agent.ts",
+        "bytes":  2607,
+        "sha256":  "084A6EBD6DA2AD801C84A3E9F1DE0B2BC052451DB64F715ACB7C923178EE5392",
+        "mtime":  "2025-10-04T18:02:40"
+    },
+    {
+        "path":  "onyx-web\\src\\App.tsx",
+        "bytes":  4613,
+        "sha256":  "99F585F8FE2859F9A84CDDD072BFE713282153DB544C947C16BDA989A246F44A",
+        "mtime":  "2025-10-03T06:03:38"
+    },
+    {
+        "path":  "onyx-web\\src\\bus.ts",
+        "bytes":  660,
+        "sha256":  "FE87E8886AEDBE76D05C92A0557EF6BC6EE6E2C09A715D3C5E5E23A6AD33852B",
+        "mtime":  "2025-10-02T03:48:21"
+    },
+    {
+        "path":  "onyx-web\\src\\main.tsx",
+        "bytes":  474,
+        "sha256":  "3603CF09A99FB1E8F41810D08462AA3F603CFEAE2C637DA19922F088126B6341",
+        "mtime":  "2025-10-04T00:34:39"
+    },
+    {
+        "path":  "onyx-web\\src\\mason.ts",
+        "bytes":  1379,
+        "sha256":  "EB23567F8117E696EFAC69EFC0372EC88332A050A6638EBA613C614C634FD9BE",
+        "mtime":  "2025-10-02T03:48:21"
+    },
+    {
+        "path":  "onyx-web\\src\\state.ts",
+        "bytes":  892,
+        "sha256":  "8CB75FC89EAE3E3F6B722B0C8D9D24FC1ABFF1331EF4A514AB6900E335C584F4",
+        "mtime":  "2025-10-02T03:48:21"
+    },
+    {
+        "path":  "onyx-web\\src\\types.ts",
+        "bytes":  877,
+        "sha256":  "55B3BA03CB9874711D644FD74E2B0C96534CDFA82A5ECA2D5E3B3BEB26853E41",
+        "mtime":  "2025-10-02T03:48:21"
+    },
+    {
+        "path":  "onyx-web\\src\\components\\EventLog.tsx",
+        "bytes":  1003,
+        "sha256":  "704E2B9F0FD24DBB1E9825E741F95135AFF973088CE6E8A21BE396F7FE7329B0",
+        "mtime":  "2025-10-02T03:48:22"
+    },
+    {
+        "path":  "onyx-web\\src\\components\\Sidebar.tsx",
+        "bytes":  671,
+        "sha256":  "BC6212A1D3CD2BD413DF6428B5E332B7B5011767B5A91C34A8250A0A3272CF27",
+        "mtime":  "2025-10-02T03:48:21"
+    },
+    {
+        "path":  "onyx-web\\src\\components\\TopBar.tsx",
+        "bytes":  423,
+        "sha256":  "4642B4458472A715E9B999C638257FB9426DB5C57C869ADF631CAEBE299A7127",
+        "mtime":  "2025-10-02T03:48:21"
+    },
+    {
+        "path":  "onyx-web\\src\\views\\AutomationsView.tsx",
+        "bytes":  443,
+        "sha256":  "CD96F501AB19BE096B0EBCBF139CFF40F5738CAD086B3C7E110CC411267529F6",
+        "mtime":  "2025-10-02T03:48:22"
+    },
+    {
+        "path":  "onyx-web\\src\\views\\ContactsView.tsx",
+        "bytes":  1524,
+        "sha256":  "47BB1FD5361C4F61902D8353B330D18048B02161233D2D647F39773C4DBF256D",
+        "mtime":  "2025-10-02T21:02:13"
+    },
+    {
+        "path":  "onyx-web\\src\\views\\crawlerview.tsx",
+        "bytes":  4066,
+        "sha256":  "0B4C89A6AEF8A914FF0602ADB778CBEA0AD96D1D1A729F7FD0FFCADBF58A1051",
+        "mtime":  "2025-10-03T05:42:58"
+    },
+    {
+        "path":  "onyx-web\\src\\views\\DealsView.tsx",
+        "bytes":  1650,
+        "sha256":  "CA750160C7C1BD81CD7A3769EA53D24B6325E4EB9F3DE99FD2513EB85D59BAF2",
+        "mtime":  "2025-10-02T21:02:39"
+    },
+    {
+        "path":  "onyx-web\\src\\views\\InvoicesView.tsx",
+        "bytes":  1806,
+        "sha256":  "C22BFEF0E9373D942835C651B91979CBEA146AF23CF336D3CBAD37CB468C9D60",
+        "mtime":  "2025-10-02T21:02:58"
+    },
+    {
+        "path":  "onyx-web\\src\\views\\OverviewView.tsx",
+        "bytes":  1075,
+        "sha256":  "E0C5AC8BAC3BBA9778DEF6E0ADDCDDB2AF0643391B03B436413C00AE8AEC84F4",
+        "mtime":  "2025-10-02T03:48:22"
+    },
+    {
+        "path":  "onyx-web\\src\\views\\reportsview.tsx",
+        "bytes":  2045,
+        "sha256":  "26F53B4CE7E02A85BCB27589F24AF2E5BE60799CCE811C9F0FD115614F27B004",
+        "mtime":  "2025-10-03T05:09:50"
+    },
+    {
+        "path":  "onyx-web\\src\\views\\TasksView.tsx",
+        "bytes":  1240,
+        "sha256":  "F201DB255E43C7EACA0D783BA741A6C91867C1E14A68E3C16BBD00CE45D6A34C",
+        "mtime":  "2025-10-02T21:00:52"
+    },
+    {
+        "path":  "signal-store\\data\\accounts.json",
+        "bytes":  42,
+        "sha256":  "768B6F0B30EDE394A50991F69DDF41514CA147D138251BAC6E199FD8C1FD4220",
+        "mtime":  "2025-10-06T21:41:36"
+    },
+    {
+        "path":  "signal-store.bak_20251006_010721\\data\\accounts.json",
+        "bytes":  42,
+        "sha256":  "768B6F0B30EDE394A50991F69DDF41514CA147D138251BAC6E199FD8C1FD4220",
+        "mtime":  "2025-10-06T02:38:15"
+    },
+    {
+        "path":  "user_dashboard\\dashboard_logic.py",
+        "bytes":  0,
+        "sha256":  "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+        "mtime":  "2025-09-19T16:29:53"
+    },
+    {
+        "path":  "user_dashboard\\report_generator.py",
+        "bytes":  761,
+        "sha256":  "0595CA840AFE041A69CE419D86162A5CDA329310F8210E5FEDADBCA473CCA1BA",
+        "mtime":  "2025-09-19T21:39:44"
+    }
+]

@@ -1,0 +1,10 @@
+dashboard-ux-copy-status-to-clipboard
+dashboard-ux-open-logs-folder-button
+dashboard-ux-queue-browser-peek-top-n
+dashboard-ux-status-banner-green-amber-red-logic
+dashboard-ux
+logging-telemetry-structured-log-format-json-lines
+logging-telemetry
+safety-guardrails-kill-switch-hotkey
+safety-guardrails-money-loop-hard-off-when-unstable
+safety-guardrails

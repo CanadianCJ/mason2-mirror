@@ -46,6 +46,32 @@ function Write-JsonFile {
     $Object | ConvertTo-Json -Depth 35 | Set-Content -LiteralPath $Path -Encoding UTF8
 }
 
+function Get-ObjectStringProperty {
+    param(
+        $Object,
+        [Parameter(Mandatory = $true)][string]$Name
+    )
+    if ($null -eq $Object) {
+        return $null
+    }
+    try {
+        $prop = $Object.PSObject.Properties[$Name]
+        if ($prop) {
+            $value = $prop.Value
+            if ($null -ne $value) {
+                $text = [string]$value
+                if ($text.Trim()) {
+                    return $text
+                }
+            }
+        }
+    }
+    catch {
+        return $null
+    }
+    return $null
+}
+
 function Get-PortListeners {
     param([int]$Port)
     $rowsOut = @()
@@ -194,6 +220,214 @@ function Get-TopErrorLine {
         return $null
     }
     return $null
+}
+
+function Get-VerifyComponentLabel {
+    param([string]$ComponentId)
+    switch ($ComponentId) {
+        "core" { return "Mason Core" }
+        "mason_api" { return "Mason API" }
+        "seed_api" { return "Seed API" }
+        "bridge" { return "Bridge" }
+        "athena" { return "Athena" }
+        "onyx" { return "Onyx" }
+        "launcher" { return "Launcher" }
+        default {
+            if (-not $ComponentId) {
+                return "Unknown"
+            }
+            return ($ComponentId -replace "_", " ")
+        }
+    }
+}
+
+function Get-VerifyIssueContext {
+    param([Parameter(Mandatory = $true)][string]$CheckName)
+    $name = $CheckName.ToLowerInvariant()
+    if ($name.StartsWith("listener_")) {
+        $componentId = $name.Substring("listener_".Length)
+        return [pscustomobject]@{
+            component_id    = $componentId
+            component_label = Get-VerifyComponentLabel -ComponentId $componentId
+        }
+    }
+    if ($name.StartsWith("endpoint_")) {
+        $componentId = $name.Substring("endpoint_".Length)
+        foreach ($suffix in @("_health", "_smoke", "_main_dart_js")) {
+            if ($componentId.EndsWith($suffix)) {
+                $componentId = $componentId.Substring(0, $componentId.Length - $suffix.Length)
+                break
+            }
+        }
+        return [pscustomobject]@{
+            component_id    = $componentId
+            component_label = Get-VerifyComponentLabel -ComponentId $componentId
+        }
+    }
+    switch ($name) {
+        "scheduled_tasks" {
+            return [pscustomobject]@{
+                component_id    = "launcher"
+                component_label = "Scheduled Tasks"
+            }
+        }
+        "onyx_launcher" {
+            return [pscustomobject]@{
+                component_id    = "onyx"
+                component_label = "Onyx"
+            }
+        }
+        "ports_contract" {
+            return [pscustomobject]@{
+                component_id    = ""
+                component_label = "Ports Contract"
+            }
+        }
+        "mirror_status" {
+            return [pscustomobject]@{
+                component_id    = ""
+                component_label = "Mirror Status"
+            }
+        }
+        "ingest_status" {
+            return [pscustomobject]@{
+                component_id    = ""
+                component_label = "Ingest Status"
+            }
+        }
+        "approvals_posture" {
+            return [pscustomobject]@{
+                component_id    = ""
+                component_label = "Approvals Posture"
+            }
+        }
+        "pending_llm_queue" {
+            return [pscustomobject]@{
+                component_id    = ""
+                component_label = "Pending LLM Queue"
+            }
+        }
+        "currency_cad_audit" {
+            return [pscustomobject]@{
+                component_id    = ""
+                component_label = "Currency CAD Audit"
+            }
+        }
+        default {
+            return [pscustomobject]@{
+                component_id    = ""
+                component_label = ($CheckName -replace "_", " ")
+            }
+        }
+    }
+}
+
+function Select-VerifyIssue {
+    param($Checks)
+    foreach ($severity in @("FAIL", "WARN")) {
+        foreach ($check in @($Checks)) {
+            if (-not $check) {
+                continue
+            }
+            $status = [string](Get-ObjectStringProperty -Object $check -Name "status")
+            if ($status -ne $severity) {
+                continue
+            }
+            $name = [string](Get-ObjectStringProperty -Object $check -Name "name")
+            $detail = [string](Get-ObjectStringProperty -Object $check -Name "detail")
+            $data = $null
+            try { $data = $check.data } catch { $data = $null }
+            $context = Get-VerifyIssueContext -CheckName $name
+            return [pscustomobject]@{
+                name            = $name
+                status          = $status
+                detail          = $detail
+                data            = $data
+                component_id    = [string]$context.component_id
+                component_label = [string]$context.component_label
+            }
+        }
+    }
+    return $null
+}
+
+function Get-VerifyIssueLogPath {
+    param(
+        [Parameter(Mandatory = $true)]$Issue,
+        [Parameter(Mandatory = $true)][string]$ReportsDir,
+        [Parameter(Mandatory = $true)][string]$RawReportPath
+    )
+    $candidates = New-Object System.Collections.Generic.List[string]
+    $data = $null
+    try { $data = $Issue.data } catch { $data = $null }
+    foreach ($name in @("stderr_log", "stdout_log", "log_path")) {
+        $candidate = Get-ObjectStringProperty -Object $data -Name $name
+        if ($candidate) {
+            $candidates.Add($candidate)
+        }
+    }
+    $componentId = [string](Get-ObjectStringProperty -Object $Issue -Name "component_id")
+    if ($componentId) {
+        $latestComponentLog = Find-LatestComponentStderrLog -ReportsDir $ReportsDir -ComponentId $componentId
+        if ($latestComponentLog) {
+            $candidates.Add($latestComponentLog)
+        }
+    }
+    foreach ($name in @("path", "posture_path", "start_run_report", "mirror_delta_path", "mirror_manifest_path", "currency_policy_path", "budget_state_path")) {
+        $candidate = Get-ObjectStringProperty -Object $data -Name $name
+        if ($candidate) {
+            $candidates.Add($candidate)
+        }
+    }
+    if ($RawReportPath) {
+        $candidates.Add($RawReportPath)
+    }
+    foreach ($candidate in $candidates) {
+        if ($candidate) {
+            return [string]$candidate
+        }
+    }
+    return ""
+}
+
+function Get-VerifyIssueNextAction {
+    param(
+        [Parameter(Mandatory = $true)]$Issue,
+        [string]$FailingLogPath = "",
+        [string]$RawReportPath = ""
+    )
+    $data = $null
+    try { $data = $Issue.data } catch { $data = $null }
+    $hint = Get-ObjectStringProperty -Object $data -Name "remediation_hint"
+    if ($hint) {
+        return [string]$hint
+    }
+    $name = [string](Get-ObjectStringProperty -Object $Issue -Name "name")
+    $detail = [string](Get-ObjectStringProperty -Object $Issue -Name "detail")
+    switch ($name.ToLowerInvariant()) {
+        "ports_contract" { return "Restore config/ports.json and rerun Verify Stack." }
+        "scheduled_tasks" { return "Create or repair the missing Mason2 scheduled tasks and rerun Verify Stack." }
+        "mirror_status" { return "Generate the mirror status files under docs and rerun Verify Stack." }
+        "ingest_status" { return "Refresh reports/ingest_autopilot_status.json and rerun Verify Stack." }
+        "approvals_posture" { return "Refresh reports/approvals_posture.json and rerun Verify Stack." }
+        "onyx_launcher" { return "Restore the Onyx launcher script and rerun Verify Stack." }
+        "currency_cad_audit" {
+            if ($detail) {
+                return [string]$detail
+            }
+            return "Run WO-CURRENCY-CAD-0001 and rerun Verify Stack."
+        }
+    }
+    if ($FailingLogPath) {
+        return "Inspect $FailingLogPath and rerun Verify Stack."
+    }
+    if ($detail) {
+        return [string]$detail
+    }
+    if ($RawReportPath) {
+        return "Inspect $RawReportPath and rerun Verify Stack."
+    }
+    return "Rerun Verify Stack and inspect the latest report."
 }
 
 $repoRoot = Resolve-RepoRoot -CandidateRoot $RootPath
@@ -424,5 +658,33 @@ $report = [pscustomobject]@{
 }
 
 Write-JsonFile -Path $reportPath -Object $report
+
+$commandRun = 'powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\tools\Mason_E2E_Verify.ps1 -RootPath "{0}"' -f $repoRoot
+$verifyIssue = Select-VerifyIssue -Checks $checks
+$failingComponent = ""
+$failingComponentId = ""
+$failingLogPath = ""
+$recommendedNextAction = if ($overall -eq "PASS") { "No action required." } else { "Inspect $reportPath and rerun Verify Stack." }
+if ($verifyIssue) {
+    $failingComponent = [string](Get-ObjectStringProperty -Object $verifyIssue -Name "component_label")
+    $failingComponentId = [string](Get-ObjectStringProperty -Object $verifyIssue -Name "component_id")
+    $failingLogPath = Get-VerifyIssueLogPath -Issue $verifyIssue -ReportsDir $reportsDir -RawReportPath $reportPath
+    $recommendedNextAction = Get-VerifyIssueNextAction -Issue $verifyIssue -FailingLogPath $failingLogPath -RawReportPath $reportPath
+}
+
+$verifyLastPath = Join-Path $reportsDir "verify_last.json"
+$verifyLast = [ordered]@{
+    timestamp_utc           = [string]$report.generated_at_utc
+    ok                      = ($overall -eq "PASS")
+    status                  = $overall
+    failing_component       = $failingComponent
+    failing_component_id    = $failingComponentId
+    failing_log_path        = $failingLogPath
+    recommended_next_action = $recommendedNextAction
+    raw_report_path         = $reportPath
+    command_run             = $commandRun
+}
+
+Write-JsonFile -Path $verifyLastPath -Object $verifyLast
 $report | ConvertTo-Json -Depth 35
 exit 0

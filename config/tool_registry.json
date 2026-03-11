@@ -1,12 +1,41 @@
 {
-  "version": 1,
+  "version": 2,
   "tools": [
     {
       "tool_id": "rescue_plan_v1",
-      "version": "1.0.0",
+      "name": "Rescue Plan",
       "title": "Rescue Plan",
+      "version": "1.0.0",
+      "category": "operations",
+      "description": "Builds a first-pass tenant rescue plan with immediate stabilization actions and checkpoint tasks.",
       "risk_level": "R1",
       "budget_class": "LOW",
+      "status": "enabled",
+      "enabled": true,
+      "required_integrations": [],
+      "created_at": "2026-03-07T00:00:00Z",
+      "updated_at": "2026-03-07T00:00:00Z",
+      "tenant_eligibility": {
+        "allowed_statuses": [
+          "active",
+          "pilot"
+        ],
+        "allowed_plan_tiers": [
+          "Starter",
+          "Growth",
+          "Founder"
+        ],
+        "business_types": [
+          "agency",
+          "retail",
+          "service",
+          "consulting",
+          "saas",
+          "other"
+        ],
+        "minimum_onboarding_completion_percent": 0,
+        "require_onboarding_completed": false
+      },
       "tags": [
         "stability",
         "operations",
@@ -67,10 +96,38 @@
     },
     {
       "tool_id": "marketing_pack_v1",
-      "version": "1.0.0",
+      "name": "Marketing Pack",
       "title": "Marketing Pack",
+      "version": "1.0.0",
+      "category": "marketing",
+      "description": "Generates a tenant-scoped marketing starter pack with message pillars, campaign outline, and launch tasks.",
       "risk_level": "R1",
       "budget_class": "LOW",
+      "status": "enabled",
+      "enabled": true,
+      "required_integrations": [],
+      "created_at": "2026-03-07T00:00:00Z",
+      "updated_at": "2026-03-07T00:00:00Z",
+      "tenant_eligibility": {
+        "allowed_statuses": [
+          "active",
+          "pilot"
+        ],
+        "allowed_plan_tiers": [
+          "Growth",
+          "Founder"
+        ],
+        "business_types": [
+          "agency",
+          "retail",
+          "service",
+          "consulting",
+          "saas",
+          "other"
+        ],
+        "minimum_onboarding_completion_percent": 0,
+        "require_onboarding_completed": false
+      },
       "tags": [
         "marketing",
         "content",
@@ -131,10 +188,37 @@
     },
     {
       "tool_id": "sales_followup_v1",
+      "name": "Sales Follow-Up",
+      "title": "Sales Follow-Up",
       "version": "1.0.0",
-      "title": "Sales Follow-up",
+      "category": "sales",
+      "description": "Creates a tenant-linked sales follow-up sequence with objection handling tasks and artifact output.",
       "risk_level": "R1",
       "budget_class": "LOW",
+      "status": "enabled",
+      "enabled": true,
+      "required_integrations": [],
+      "created_at": "2026-03-07T00:00:00Z",
+      "updated_at": "2026-03-07T00:00:00Z",
+      "tenant_eligibility": {
+        "allowed_statuses": [
+          "active",
+          "pilot"
+        ],
+        "allowed_plan_tiers": [
+          "Founder"
+        ],
+        "business_types": [
+          "agency",
+          "retail",
+          "service",
+          "consulting",
+          "saas",
+          "other"
+        ],
+        "minimum_onboarding_completion_percent": 0,
+        "require_onboarding_completed": false
+      },
       "tags": [
         "sales",
         "pipeline",
@@ -189,6 +273,90 @@
           }
         }
       }
+    },
+    {
+      "tool_id": "workflow_capability_builder_v1",
+      "name": "Workflow Capability Builder",
+      "version": "0.1.0",
+      "category": "operations",
+      "description": "Review the pending Rescue Plan tasks and assign owners before starting more tooling work.",
+      "risk_level": "R1",
+      "budget_class": "LOW",
+      "status": "disabled",
+      "enabled": false,
+      "required_integrations": [],
+      "created_at": "2026-03-08T05:26:52.560776Z",
+      "updated_at": "2026-03-08T05:26:52.560787Z",
+      "tenant_eligibility": {
+        "allowed_statuses": [
+          "active",
+          "pilot"
+        ],
+        "allowed_plan_tiers": [],
+        "business_types": [
+          "agency",
+          "retail",
+          "service",
+          "consulting",
+          "saas",
+          "other"
+        ],
+        "allowed_tenant_ids": [
+          "tenant_http_check"
+        ],
+        "minimum_onboarding_completion_percent": 0,
+        "require_onboarding_completed": false
+      },
+      "tags": [
+        "factory",
+        "staged",
+        "recommendation"
+      ],
+      "supported_business_types": [
+        "agency",
+        "retail",
+        "service",
+        "consulting",
+        "saas",
+        "other"
+      ],
+      "input_schema": {
+        "required": [
+          "context_summary",
+          "goal"
+        ],
+        "properties": {
+          "context_summary": {
+            "type": "string",
+            "title": "context_summary"
+          },
+          "goal": {
+            "type": "string",
+            "title": "goal"
+          },
+          "constraints": {
+            "type": "string",
+            "title": "constraints"
+          }
+        }
+      },
+      "output_schema": {
+        "properties": {
+          "tool_spec_outline": {
+            "type": "string",
+            "title": "tool_spec_outline"
+          },
+          "build_tasks": {
+            "type": "string",
+            "title": "build_tasks"
+          },
+          "risk_notes": {
+            "type": "string",
+            "title": "risk_notes"
+          }
+        }
+      },
+      "factory_spec_id": "spec_a86422fabd59"
     }
   ]
 }

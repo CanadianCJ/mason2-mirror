@@ -1,7 +1,8 @@
 [CmdletBinding()]
 param(
     [string]$RootPath = "",
-    [int]$ReadinessTimeoutSeconds = 90
+    [int]$ReadinessTimeoutSeconds = 240,
+    [int]$HardTimeoutSeconds = 900
 )
 
 Set-StrictMode -Version Latest
@@ -47,6 +48,32 @@ function Write-JsonFile {
         New-Item -ItemType Directory -Path $parent -Force | Out-Null
     }
     $Object | ConvertTo-Json -Depth $Depth | Set-Content -LiteralPath $Path -Encoding UTF8
+}
+
+function Write-LastFailureJson {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][string]$Component,
+        [string]$Command,
+        [int]$ExitCode = 1,
+        [string]$StderrPath,
+        [string]$Hint
+    )
+
+    $payload = [ordered]@{
+        component     = [string]$Component
+        command       = if ($Command) { [string]$Command } else { $null }
+        exit_code     = [int]$ExitCode
+        stderr_path   = if ($StderrPath) { [string]$StderrPath } else { $null }
+        hint          = if ($Hint) { [string]$Hint } else { "Stack reset/start failed." }
+        timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
+    }
+    try {
+        Write-JsonFile -Path $Path -Object $payload -Depth 8
+    }
+    catch {
+        # Best effort only.
+    }
 }
 
 function Get-ContractPorts {
@@ -136,14 +163,88 @@ function Get-ContractPorts {
     return $stableResult
 }
 
+function Get-PortFromEndpoint {
+    param([string]$Endpoint)
+
+    if (-not $Endpoint) {
+        return $null
+    }
+
+    $match = [regex]::Match([string]$Endpoint, ":(\d+)$")
+    if (-not $match.Success) {
+        return $null
+    }
+
+    $parsedPort = 0
+    if ([int]::TryParse([string]$match.Groups[1].Value, [ref]$parsedPort)) {
+        return [int]$parsedPort
+    }
+
+    return $null
+}
+
+function Get-NetstatListenerRows {
+    param([int[]]$Ports)
+
+    $portSet = [System.Collections.Generic.HashSet[int]]::new()
+    foreach ($portValue in @($Ports | Sort-Object -Unique)) {
+        if ($portValue -gt 0) {
+            [void]$portSet.Add([int]$portValue)
+        }
+    }
+
+    $rows = @()
+    $lines = @(& netstat -ano -p tcp 2>$null)
+    foreach ($line in $lines) {
+        $trimmed = ([string]$line).Trim()
+        if (-not $trimmed) {
+            continue
+        }
+        if ($trimmed -notmatch '^\s*TCP\s+(\S+)\s+\S+\s+LISTENING\s+(\d+)\s*$') {
+            continue
+        }
+
+        $endpoint = [string]$Matches[1]
+        $ownerPid = 0
+        if (-not [int]::TryParse([string]$Matches[2], [ref]$ownerPid)) {
+            continue
+        }
+        if ($ownerPid -le 0) {
+            continue
+        }
+
+        $portParsed = Get-PortFromEndpoint -Endpoint $endpoint
+        if ($null -eq $portParsed -or -not $portSet.Contains([int]$portParsed)) {
+            continue
+        }
+
+        $localAddress = [string]$endpoint
+        $splitMatch = [regex]::Match([string]$endpoint, '^(.*):(\d+)$')
+        if ($splitMatch.Success) {
+            $localAddress = [string]$splitMatch.Groups[1].Value
+        }
+
+        $rows += [pscustomobject]@{
+            local_address = $localAddress
+            local_port    = [int]$portParsed
+            owning_pid    = [int]$ownerPid
+        }
+    }
+
+    return @($rows)
+}
+
 function Get-PortSnapshot {
     param([int[]]$Ports)
+
+    $netstatRows = @()
+    $netstatLoaded = $false
 
     $rows = @()
     foreach ($port in @($Ports | Sort-Object -Unique)) {
         $listeners = @()
         try {
-            $netRows = Get-NetTCPConnection -State Listen -LocalPort $port -ErrorAction SilentlyContinue
+            $netRows = Get-NetTCPConnection -State Listen -LocalPort $port -ErrorAction Stop
             foreach ($row in @($netRows)) {
                 $listeners += [pscustomobject]@{
                     local_address = [string]$row.LocalAddress
@@ -154,6 +255,20 @@ function Get-PortSnapshot {
         }
         catch {
             $listeners = @()
+        }
+
+        if (@($listeners).Count -eq 0) {
+            if (-not $netstatLoaded) {
+                $netstatRows = @(Get-NetstatListenerRows -Ports $Ports)
+                $netstatLoaded = $true
+            }
+            foreach ($row in @($netstatRows | Where-Object { [int]$_.local_port -eq [int]$port })) {
+                $listeners += [pscustomobject]@{
+                    local_address = [string]$row.local_address
+                    local_port    = [int]$row.local_port
+                    owning_pid    = [int]$row.owning_pid
+                }
+            }
         }
 
         $rows += [pscustomobject]@{
@@ -175,7 +290,9 @@ function Get-KnownRepoProcessCandidates {
         "Start-Athena.ps1",
         "Start-Onyx5353.ps1",
         "mason_bridge_server.py",
-        "MasonConsole\\server.py"
+        "MasonConsole\\server.py",
+        "services\\mason_api\\serve_mason_api.py",
+        "services\\seed_api\\serve_seed_api.py"
     )
     $result = @()
     try {
@@ -279,6 +396,18 @@ function Wait-EndpointsReady {
     return $false
 }
 
+function Test-EndpointsReadyOnce {
+    param(
+        [Parameter(Mandatory = $true)][string[]]$Urls
+    )
+    foreach ($url in $Urls) {
+        if (-not (Test-HttpEndpoint -Url $url -TimeoutSec 3)) {
+            return $false
+        }
+    }
+    return $true
+}
+
 if (-not $RootPath) {
     $RootPath = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 }
@@ -286,6 +415,24 @@ $repoRoot = [System.IO.Path]::GetFullPath($RootPath)
 $reportsDir = Join-Path $repoRoot "reports"
 New-Item -ItemType Directory -Path $reportsDir -Force | Out-Null
 $stackResetLastPath = Join-Path $reportsDir "stack_reset_last.json"
+$script:StackResetLastPathContext = $stackResetLastPath
+
+trap {
+    if ($script:StackResetLastPathContext) {
+        try {
+            Write-JsonFile -Path $script:StackResetLastPathContext -Object ([ordered]@{
+                ok            = $false
+                phase         = "exception"
+                error         = [string]$_.Exception.Message
+                timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
+            }) -Depth 8
+        }
+        catch {
+            # Best effort only.
+        }
+    }
+    throw
+}
 
 $runId = (Get-Date).ToUniversalTime().ToString("yyyyMMdd_HHmmss_fff")
 $reportPath = Join-Path $reportsDir ("stack_reset_{0}.json" -f $runId)
@@ -313,6 +460,41 @@ $targetPorts = @(
     [int]$contractPorts.athena,
     [int]$contractPorts.onyx
 )
+$coreUrls = @(
+    "http://127.0.0.1:$($contractPorts.mason_api)/health",
+    "http://127.0.0.1:$($contractPorts.seed_api)/health",
+    "http://127.0.0.1:$($contractPorts.bridge)/health",
+    "http://127.0.0.1:$($contractPorts.athena)/api/health",
+    "http://127.0.0.1:$($contractPorts.onyx)/main.dart.js"
+)
+
+$alreadyGreen = Wait-EndpointsReady -Urls $coreUrls -TimeoutSeconds ([Math]::Min([Math]::Max(5, $ReadinessTimeoutSeconds), 12))
+if ($alreadyGreen) {
+    $shortSnapshot = Get-PortSnapshot -Ports $targetPorts
+    $shortReport = [ordered]@{
+        generated_at_utc = (Get-Date).ToUniversalTime().ToString("o")
+        run_id           = $runId
+        root_path        = $repoRoot
+        target_ports     = $targetPorts
+        ok               = $true
+        phase            = "already_green_short_circuit"
+        summary          = "All required endpoints were already healthy. Relaunch skipped."
+        ports_before     = $shortSnapshot
+        ports_after      = $shortSnapshot
+        stop_phase       = [ordered]@{
+            skipped = $true
+            reason  = "already_green"
+        }
+        start_phase      = [ordered]@{
+            skipped = $true
+            reason  = "already_green"
+        }
+    }
+    Write-JsonFile -Path $reportPath -Object $shortReport -Depth 16
+    Write-JsonFile -Path $stackResetLastPath -Object $shortReport -Depth 16
+    Write-ResetLog "All required endpoints are already healthy; short-circuiting without relaunch."
+    exit 0
+}
 
 $beforeSnapshot = Get-PortSnapshot -Ports $targetPorts
 $listenerPids = New-Object System.Collections.Generic.List[int]
@@ -352,10 +534,66 @@ if (-not (Test-Path -LiteralPath $startScript)) {
 Write-ResetLog "Starting stack in deterministic order (Core -> Bridge -> Athena -> Onyx) via Start_Mason2.ps1 -FullStack"
 $startExit = 0
 $startException = $null
+$startTimedOut = $false
+$startStdoutPath = Join-Path $reportsDir "stack_reset_start_stdout.log"
+$startStderrPath = Join-Path $reportsDir "stack_reset_start_stderr.log"
 try {
-    & $startScript -FullStack -ReadinessTimeoutSeconds $ReadinessTimeoutSeconds
-    if ($null -ne $LASTEXITCODE) {
-        $startExit = [int]$LASTEXITCODE
+    if (Test-Path -LiteralPath $startStdoutPath) {
+        Remove-Item -LiteralPath $startStdoutPath -Force -ErrorAction SilentlyContinue
+    }
+    if (Test-Path -LiteralPath $startStderrPath) {
+        Remove-Item -LiteralPath $startStderrPath -Force -ErrorAction SilentlyContinue
+    }
+
+    $startArgs = @(
+        "-NoLogo",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        ('"' + $startScript + '"'),
+        "-FullStack",
+        "-ReadinessTimeoutSeconds",
+        [string]$ReadinessTimeoutSeconds
+    )
+
+    $startProc = Start-Process -FilePath "powershell.exe" `
+        -ArgumentList $startArgs `
+        -WorkingDirectory $repoRoot `
+        -PassThru `
+        -RedirectStandardOutput $startStdoutPath `
+        -RedirectStandardError $startStderrPath
+
+    $startDeadline = (Get-Date).AddSeconds([Math]::Max(30, $HardTimeoutSeconds))
+    $procStillRunning = $true
+    while ((Get-Date) -lt $startDeadline) {
+        if (Test-EndpointsReadyOnce -Urls $coreUrls) {
+            $startExit = 0
+            break
+        }
+
+        $procStillRunning = [bool](Get-Process -Id $startProc.Id -ErrorAction SilentlyContinue)
+        if (-not $procStillRunning) {
+            $startProc.Refresh()
+            $startExit = [int]$startProc.ExitCode
+            break
+        }
+
+        Start-Sleep -Seconds 2
+    }
+
+    if ((Get-Date) -ge $startDeadline -and $startExit -eq 0 -and -not (Test-EndpointsReadyOnce -Urls $coreUrls)) {
+        $startTimedOut = $true
+    }
+
+    if ($startTimedOut) {
+        try {
+            Stop-Process -Id $startProc.Id -Force -ErrorAction SilentlyContinue
+        }
+        catch {
+            # Best effort kill.
+        }
+        $startExit = 124
     }
 }
 catch {
@@ -363,6 +601,16 @@ catch {
     if ($startExit -eq 0) {
         $startExit = 1
     }
+}
+
+if ($startTimedOut) {
+    $timeoutHint = "Stack reset/start timed out after $HardTimeoutSeconds second(s)."
+    if (-not $startException) {
+        $startException = $timeoutHint
+    }
+    $lastFailurePath = Join-Path (Join-Path $repoRoot "reports\start") "last_failure.json"
+    $startCommand = "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\\tools\\ops\\Stack_Reset_And_Start.ps1 -RootPath `"$repoRoot`""
+    Write-LastFailureJson -Path $lastFailurePath -Component "launcher" -Command $startCommand -ExitCode 124 -StderrPath $startStderrPath -Hint $timeoutHint
 }
 
 $afterSnapshot = Get-PortSnapshot -Ports $targetPorts
@@ -385,13 +633,6 @@ if ($failureArtifact -and ($failureArtifact.PSObject.Properties.Name -contains "
     }
 }
 
-$coreUrls = @(
-    "http://127.0.0.1:$($contractPorts.mason_api)/health",
-    "http://127.0.0.1:$($contractPorts.seed_api)/health",
-    "http://127.0.0.1:$($contractPorts.bridge)/health",
-    "http://127.0.0.1:$($contractPorts.athena)/api/health",
-    "http://127.0.0.1:$($contractPorts.onyx)/main.dart.js"
-)
 $allReady = Wait-EndpointsReady -Urls $coreUrls -TimeoutSeconds $ReadinessTimeoutSeconds
 
 $ok = ($startExit -eq 0 -and -not $startException -and $allReady)
@@ -422,7 +663,11 @@ $report = [ordered]@{
     start_phase      = [ordered]@{
         script_path             = $startScript
         exit_code               = [int]$startExit
+        timed_out               = [bool]$startTimedOut
+        hard_timeout_seconds    = [int]$HardTimeoutSeconds
         exception               = $startException
+        stdout_log              = $startStdoutPath
+        stderr_log              = $startStderrPath
         start_run_last          = $startRunLastPath
         start_failure_artifact  = $failureArtifactPath
         first_failure_component = $firstFailureComponent
@@ -437,6 +682,7 @@ $report = [ordered]@{
 }
 
 Write-JsonFile -Path $reportPath -Object $report -Depth 16
+Write-JsonFile -Path $stackResetLastPath -Object $report -Depth 16
 Write-ResetLog ("Report written: {0}" -f $reportPath)
 
 if (-not $ok) {

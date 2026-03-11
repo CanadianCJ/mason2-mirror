@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "updated_at_utc": "2026-03-08T00:00:00Z",
+  "roles": [
+    {
+      "role_id": "owner",
+      "label": "Owner",
+      "description": "Platform owner with approval, export, delete, and governance authority.",
+      "permissions": [
+        "tenant:read_all",
+        "tenant:write_all",
+        "tool:run_all",
+        "recommendation:review_all",
+        "queue:triage",
+        "trust:promote",
+        "audit:read",
+        "data:export",
+        "data:delete",
+        "security:review"
+      ],
+      "tenant_scope": "global",
+      "approval_override": true
+    },
+    {
+      "role_id": "tenant_admin",
+      "label": "Tenant Admin",
+      "description": "Admin for one tenant with profile, recommendation, and tool execution control.",
+      "permissions": [
+        "tenant:read",
+        "tenant:write",
+        "tool:catalog",
+        "tool:run",
+        "recommendation:read",
+        "recommendation:act",
+        "data:export_request",
+        "data:delete_request"
+      ],
+      "tenant_scope": "single_tenant",
+      "approval_override": false
+    },
+    {
+      "role_id": "tenant_member",
+      "label": "Tenant Member",
+      "description": "Read-mostly tenant access with limited recommendation and tool visibility.",
+      "permissions": [
+        "tenant:read",
+        "tool:catalog",
+        "recommendation:read"
+      ],
+      "tenant_scope": "single_tenant",
+      "approval_override": false
+    },
+    {
+      "role_id": "mason_internal",
+      "label": "System/Mason Internal",
+      "description": "Internal service role for governed automation and background maintenance.",
+      "permissions": [
+        "tenant:read_all",
+        "recommendation:generate",
+        "queue:refresh",
+        "trust:read",
+        "tool_factory:read",
+        "audit:write",
+        "security:write_posture"
+      ],
+      "tenant_scope": "system",
+      "approval_override": false
+    }
+  ],
+  "default_bindings": {
+    "owner_actor": "owner",
+    "tenant_admin_actor": "tenant_admin",
+    "tenant_member_actor": "tenant_member",
+    "system_actor": "mason_internal"
+  }
+}

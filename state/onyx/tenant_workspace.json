@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "activeTenantId": "tenant_http_check",
+  "contexts": [
+    {
+      "tenant": {
+        "id": "tenant_http_check",
+        "owner": "Chris",
+        "createdAtUtc": "2026-03-07T23:05:00Z",
+        "status": "active",
+        "planTier": "Growth",
+        "lastUpdatedAtUtc": "2026-03-08T06:10:00Z"
+      },
+      "profile": {
+        "tenantId": "tenant_http_check",
+        "businessName": "HTTP Tenant Check",
+        "businessType": "Studio",
+        "size": "Solo",
+        "currency": "CAD",
+        "countryRegion": "CA",
+        "mainGoal": "Verify public Onyx sync route",
+        "servicesProducts": [
+          "Testing"
+        ],
+        "locations": [
+          "Toronto"
+        ],
+        "operatingArea": "Remote",
+        "currentTools": [
+          "Onyx"
+        ],
+        "goals": [
+          "Confirm endpoint"
+        ],
+        "painPoints": [
+          "None"
+        ],
+        "growthPriorities": [
+          "Ship"
+        ],
+        "riskTolerance": "Balanced",
+        "automationTolerance": "Assist only",
+        "budgetSensitivity": "Balanced",
+        "notes": "HTTP route smoke test",
+        "uploadReferences": [],
+        "lastUpdatedAtUtc": "2026-03-07T23:05:00Z"
+      },
+      "plan": {
+        "currentTier": "Growth",
+        "enabledFeatures": [
+          "invoices",
+          "clients",
+          "tasks",
+          "deals"
+        ],
+        "addonFeatures": [],
+        "betaOptIn": true,
+        "lastUpdatedAtUtc": "2026-03-08T06:10:00Z"
+      },
+      "onboarding": {
+        "currentStepIndex": 3,
+        "completedStepIds": [
+          "tenant",
+          "operations",
+          "goals",
+          "preferences"
+        ],
+        "isCompleted": true,
+        "completionPercent": 100,
+        "lastUpdatedAtUtc": "2026-03-07T23:05:00Z"
+      },
+      "lastUpdatedAtUtc": "2026-03-08T06:10:00Z"
+    }
+  ],
+  "lastUpdatedAtUtc": "2026-03-08T06:10:00Z"
+}

@@ -1,0 +1,37 @@
+﻿{
+    "schema":  "mason-memory-record-v1",
+    "content_sha256":  "ba71934c72680d8a70d4a9faff570738686c419c7a4af8e21f996f35284815d2",
+    "content_hash_basis":  "normalized_text",
+    "source_kind":  "file",
+    "source_type":  "csv",
+    "content_type":  "csv",
+    "tier":  "hot",
+    "summary":  "name,port athena,8000 onyx,5353",
+    "normalized_text_excerpt":  "name,port athena,8000 onyx,5353",
+    "normalized_text_length":  31,
+    "text_truncated":  false,
+    "input_tags":  "smoke-clean",
+    "tags":  [
+                 "smoke-clean",
+                 "csv",
+                 "tier-hot"
+             ],
+    "source_refs":  [
+                        {
+                            "source_kind":  "file",
+                            "source_type":  "csv",
+                            "source_path":  "C:\\Users\\Chris\\AppData\\Local\\Temp\\mason_memory_smoke\\ports.csv",
+                            "source_path_relative":  "C:\\Users\\Chris\\AppData\\Local\\Temp\\mason_memory_smoke\\ports.csv",
+                            "source_label":  "",
+                            "source_modified_utc":  "2026-03-07T21:06:53.0633095Z",
+                            "source_size_bytes":  36,
+                            "first_ingested_utc":  "2026-03-07T21:07:49.9417374Z",
+                            "last_ingested_utc":  "2026-03-07T21:09:56.3807843Z",
+                            "seen_count":  4
+                        }
+                    ],
+    "first_seen_utc":  "2026-03-07T21:07:49.9417374Z",
+    "last_seen_utc":  "2026-03-07T21:09:56.3807843Z",
+    "created_at_utc":  "2026-03-07T21:07:49.9417374Z",
+    "updated_at_utc":  "2026-03-07T21:09:56.3807843Z"
+}

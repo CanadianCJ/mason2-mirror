@@ -1,0 +1,354 @@
+[
+  {
+    "id": "onyx-feature-index-bootstrap-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2025-12-23T07:54:57.334423Z"
+  },
+  {
+    "id": "onyx-feature-index-bootstrap-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": "Reason: Approving this as a safe R1 prelaunch analysis-only task so Mason can fully map Onyx’s current navigation, hamburger menu, and features before proposing any real code or menu/tier changes.",
+    "decided_at": "2025-12-23T07:57:12.462981Z"
+  },
+  {
+    "id": "athena-approvals-pipeline-001",
+    "component_id": "athena",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": "Reason: Approving this to let Mason use a low-risk executor that backs up components and logs actions when I approve items in Athena, without changing any behavior yet.",
+    "decided_at": "2025-12-23T07:57:35.679317Z"
+  },
+  {
+    "id": "test-approval-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": "Pipeline test OK – ready for real Onyx tasks.",
+    "decided_at": "2025-12-30T18:56:35.142956Z"
+  },
+  {
+    "id": "test-approval-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": "Pipeline test OK – ready for real Onyx tasks.",
+    "decided_at": "2025-12-30T18:56:48.592634Z"
+  },
+  {
+    "id": "onyx-prelaunch-healthcheck-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": "Prelaunch: safe R0 health / structure report for Onyx. No code changes.",
+    "decided_at": "2025-12-30T19:23:26.702765Z"
+  },
+  {
+    "id": "onyx-feature-index-bootstrap-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": "R1 analysis-only: let Mason map features and menu to design monetization and tiers.",
+    "decided_at": "2025-12-30T19:23:54.572470Z"
+  },
+  {
+    "id": "athena-approvals-pipeline-001",
+    "component_id": "athena",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": "Approving the approvals + backup pipeline so Mason can safely request and log changes.",
+    "decided_at": "2025-12-30T19:24:25.086967Z"
+  },
+  {
+    "id": "onyx-prelaunch-healthcheck-002",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": "",
+    "decided_at": "2025-12-31T03:31:20.209701Z"
+  },
+  {
+    "id": "onyx-feature-index-bootstrap-002",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": "",
+    "decided_at": "2025-12-31T03:31:23.318935Z"
+  },
+  {
+    "id": "athena-approvals-pipeline-002",
+    "component_id": "athena",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": "",
+    "decided_at": "2025-12-31T03:31:25.043240Z"
+  },
+  {
+    "id": "athena-approvals-pipeline-002",
+    "component_id": "athena",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": "",
+    "decided_at": "2025-12-31T03:31:44.216638Z"
+  },
+  {
+    "id": "onyx-prelaunch-healthcheck-002",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2025-12-31T03:45:56.842411Z"
+  },
+  {
+    "id": "onyx-feature-index-bootstrap-002",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2025-12-31T03:46:02.574581Z"
+  },
+  {
+    "id": "athena-approvals-pipeline-002",
+    "component_id": "athena",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2025-12-31T03:46:04.535741Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-prefer-const-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-01-05T00:17:31.954219Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-unused-variable-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-01-05T00:17:34.189533Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-use-build-context-sync-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-01-05T00:17:37.414065Z"
+  },
+  {
+    "id": "onyx-prelaunch-healthcheck-002",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-01-17T23:23:53.000776Z"
+  },
+  {
+    "id": "onyx-feature-index-bootstrap-002",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-01-17T23:23:55.796200Z"
+  },
+  {
+    "id": "athena-approvals-pipeline-002",
+    "component_id": "athena",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-01-17T23:23:57.962279Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-prefer-const-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-01-17T23:24:01.716328Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-unused-variable-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-01-17T23:24:03.995394Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-use-build-context-sync-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-01-17T23:24:06.329413Z"
+  },
+  {
+    "id": "onyx-prelaunch-healthcheck-002",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-01-18T00:05:27.966193Z"
+  },
+  {
+    "id": "teacher-mason-plan-005",
+    "component_id": "mason",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T06:16:44.147687Z"
+  },
+  {
+    "id": "teacher-mason-plan-004",
+    "component_id": "mason",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T06:17:41.547033Z"
+  },
+  {
+    "id": "teacher-mason-plan-003",
+    "component_id": "mason",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T06:17:43.253223Z"
+  },
+  {
+    "id": "teacher-mason-plan-002",
+    "component_id": "mason",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T06:17:44.951484Z"
+  },
+  {
+    "id": "teacher-mason-plan-005",
+    "component_id": "mason",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T06:55:31.273211Z"
+  },
+  {
+    "id": "teacher-mason-plan-004",
+    "component_id": "mason",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T06:55:33.179618Z"
+  },
+  {
+    "id": "teacher-mason-plan-003",
+    "component_id": "mason",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T06:55:34.842846Z"
+  },
+  {
+    "id": "teacher-mason-plan-002",
+    "component_id": "mason",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T06:55:36.483199Z"
+  },
+  {
+    "id": "teacher-mason-plan-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T06:55:37.869404Z"
+  },
+  {
+    "id": "teacher-mason-plan-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T07:02:00.292820Z"
+  },
+  {
+    "id": "teacher-mason-plan-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T07:05:32.355081Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-unused-variable-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T07:16:07.380834Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-use-build-context-sync-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T07:16:13.528768Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-prefer-const-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T07:16:17.346021Z"
+  },
+  {
+    "id": "teacher-mason-plan-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T21:10:44.264699Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-prefer-const-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T21:10:45.801716Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-unused-variable-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T21:10:47.493380Z"
+  },
+  {
+    "id": "onyx-task-onyx-fix-use-build-context-sync-001",
+    "component_id": "onyx",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T21:10:49.112356Z"
+  },
+  {
+    "id": "teacher-mason-plan-006",
+    "component_id": "mason",
+    "kind": "patch_run",
+    "decision": "approve",
+    "owner_reason": null,
+    "decided_at": "2026-02-02T21:16:47.501483Z"
+  }
+]

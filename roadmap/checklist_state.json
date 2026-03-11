@@ -1,0 +1,1736 @@
+﻿[
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Pack/Unpack commands with integrity check",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Environment discovery (dev/prod) toggle",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Version stamp in every binary/script header",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Self-update channel with signed bundles",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Atomic deploy (stage â†’ swap)",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Rollback cache for last 3 versions",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Start/Stop scripts for all services",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Cross-user install safety (non-admin fallback)",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Install log with return codes",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Bootstrap sanity prompts when misconfigured",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Uninstall script with residue cleanup",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Prereq cache (downloads once)",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Portable license/notice file set",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Config sample generator",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "First-run wizard (writes .env)",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Migration runner for breaking changes",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Compatibility check for OS build \u0026 locale",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Desktop UI packaging (WinUI/WPF) single-exe â€œboxed appâ€; MSIX installer + portable fallback",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Self-install bootstrapper for new PC (import config, seeds, reports)",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Pack \u0026 Migrate bundle (one-click zip with SHA256 + version stamp)",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Roadmap directory + canonical filenames (PHASE N.txt)",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Roadmap filename normalizer (strip trailing/leading spaces)",
+        "Done":  false
+    },
+    {
+        "Id":  "system-structure-packaging",
+        "Category":  "System Structure \u0026 Packaging",
+        "Title":  "Roadmap integrity hashing (SHA256) \u0026 schema check",
+        "Done":  false
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Structured log format (JSON lines)",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Log levels with runtime switches",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Per-component log files with rotation",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "High-volume event coalescing",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "PII redaction middleware",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Correlation IDs per request/task",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Span timing (start/end/duration)",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Top-N error aggregator daily",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Slow operation profiler (thresholded)",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Heartbeat event every minute",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Log shipping toggle (local only by default)",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Log sampling for chatty components",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Crash dump capture on fatal",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Breadcrumb trail for user actions",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Metric sink (CSV time-series)",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Anomaly detector on error rate",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Latency buckets (p50/p95/p99)",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Disk usage timeline metric",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Event schema versioning",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Log viewer filters in dashboard",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Alert on missing logs (silence)",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Audit log (immutable WORM) preparation",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Daily telemetry summary exporter",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Clock skew detector",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Health index scalar (0â€“100)",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Status \u0026 ChangeLog writers (auto-update reports each session)",
+        "Done":  true
+    },
+    {
+        "Id":  "logging-telemetry",
+        "Category":  "Logging \u0026 Telemetry",
+        "Title":  "Unified message/event schema (logs, seeds, incident feed)",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Process liveness check with restart policy",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "CPU/RAM/Handle monitors per process",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Port listener verification",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "HTTP healthz probe with jitter",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Backoff ladder for flapping services",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Graceful stop with timeout",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Dependency ordering on restarts",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Self-heal action catalog (restart, rotate, clear-cache)",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Quarantine misbehaving tasks",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Governor risk budget (per hour/day)",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Freeze high-risk when health \u003c GREEN",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Queue aging metrics \u0026 drain controls",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Task priority weights by impact",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Maintenance window enforcement",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Runbook links per alert",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Auto-open diagnostics pack on repeated faults",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Sticky failures detector (same error signature)",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Alert suppression for noisy repeats",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Watchdog configuration linter",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Cross-check seed queue vs CPU load",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Network connectivity probe (DNS, gateway)",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Time sync status check (NTP)",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Battery/power state aware throttling",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Temp folder growth watch",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Orphan process reaper",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Drift sniffer \u0026 rebuilder (detect rogue processes/env/schedules; propose fix via seed)",
+        "Done":  true
+    },
+    {
+        "Id":  "watchdog-governor",
+        "Category":  "Watchdog \u0026 Governor",
+        "Title":  "Sidecar-7000 sentinel (alert if anything binds to 7000; propose kill via approvals)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Seed schema (metadata, source, trust)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Seed linter (size/format/dup)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Queue prioritization (novelty/recency)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Auto-summarize long seeds",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Contradiction/high-risk change detector",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Pin critical facts (never forget)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Decay or archive stale seeds",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Topic tags \u0026 routing to skills",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Learning rate governor (budget/time)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Daily digest: learned + planned changes",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Seed-to-test generator (assertions)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Seed diff view (whatâ€™s new)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Source reputation scoring",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Active recall tasks (flashcards)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Knowledge freshness checks (laws/APIs)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Auto-cite sources in decisions",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Re-train small models on schedule",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Skill competency map (levels)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Regression watch on competency trends",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Seed backfill during idle windows",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Human-in-the-loop prompts for ambiguous seeds",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Noise filter (low-value seed drop)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Learning sandbox (no prod impact)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Outcome-linked reinforcement (success tags)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Seed export/import pack",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Chat-to-Seed Ingestor (convert past chats/notes to seed stubs in queue)",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Seed states: inbox â†’ in-review â†’ canary â†’ applied â†’ rolled-back",
+        "Done":  true
+    },
+    {
+        "Id":  "learner-seeds",
+        "Category":  "Learner \u0026 Seeds",
+        "Title":  "Apply gate: promote only if tests pass + sentinels green â‰¥ MASON_CANARY_THRESHOLD",
+        "Done":  true
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  ".env schema validation with errors",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Fallback defaults when missing",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Secrets in Windows Credential Vault",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Key rotation helper",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Config diff viewer",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Runtime config reload (safe)",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Config scopes (global, environment, tenant)",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Sensitive field masking in UI",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Prohibit secrets in logs",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Checksum on config files",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Config backups (N versions)",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Config migration scripts",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Write-protect critical configs",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Per-feature toggles (feature flags)",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Tenant overrides with precedence",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Encrypted local keystore",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Fail closed on invalid config",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Secret leak scanner (files/seeds)",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Env var precedence rules documented",
+        "Done":  false
+    },
+    {
+        "Id":  "config-secrets",
+        "Category":  "Config \u0026 Secrets",
+        "Title":  "Config unit tests",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Free space guard at N%",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Large file finder \u0026 report",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Temp/cache TTL sweeper",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Log rotation policy sizing",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "I/O throttling under pressure",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Fragmentation check advisory",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Concurrent file access retries",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Atomic writes (tempâ†’move)",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Backup compression tuning",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Anti-corruption validation (CRC)",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Directory watcher for hot paths",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "File descriptor leak checks",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Memory budget per service",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "GC/heap tuning notes (runtime)",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Pagination for large lists",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Cache with eviction policy",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Cold start pre-warming",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Perf baseline capture weekly",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Micro-benchmark harness",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Perf regression alerts",
+        "Done":  false
+    },
+    {
+        "Id":  "disk-filesystem-performance",
+        "Category":  "Disk/Filesystem \u0026 Performance",
+        "Title":  "Safe-mode trigger + banner when disk free% \u003c guard",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Health endpoints per service",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Readiness vs liveness split",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Request timeouts \u0026 retries",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Circuit breaker around externals",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Uniform error model",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Idempotency keys for mutating calls",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Input validation (schemas)",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Rate limiting (per IP/task)",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "CORS \u0026 auth tokens (local only)",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Graceful shutdown hooks",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Dependency probes on start",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Thread pool/async tuning",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Static file caching headers",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Compression for JSON",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Pagination \u0026 streaming support",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "OpenAPI spec (internal)",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Service version negotiation",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Background job queue health",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Back-pressure signals",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Dead letter queue for failed jobs",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Local-only JSON status endpoints for desktop UI (no web dependency)",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Capability \u0026 device registry (single JSON, types/permissions/evidence)",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Bus adapter interface: Local-Direct (default) + placeholder Distributed (disabled)",
+        "Done":  false
+    },
+    {
+        "Id":  "api-services-core",
+        "Category":  "API/Services Core",
+        "Title":  "Device adapter interface (HAL placeholder) for future home/cluster integrations",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Smoke tests for boot sequence",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Golden functional tests (core paths)",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Performance SLO tests",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Fuzz tests for inputs",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Chaos-lite (kill process) drills",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Canary percent routing (internal)",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Shadow run compare reports",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Auto-revert on KPI breach",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Pre-deploy checklist generator",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "One-click rollback",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Rollback validation tests",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Artifacts signed with hash",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Change ticket auto-filled",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Test coverage reporting",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Seed-based scenario tests",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Replay last 24h traffic (safe)",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Downtime simulator (net off)",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Disk full simulator",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Config typo simulator",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Dependency outage simulator",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Blue/green switch verification",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Post-deploy health gate",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Canary soak timer",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Release notes auto-gen",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "QA snapshot pack",
+        "Done":  false
+    },
+    {
+        "Id":  "tests-canary-rollback",
+        "Category":  "Tests, Canary \u0026 Rollback",
+        "Title":  "Roadmap auto-check criteria (Applied only if tests âœ… + canary âœ… + changelog entry)",
+        "Done":  false
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Status banner (GREEN/AMBER/RED) logic",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Tile views: services/ports/queues/logs",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Inline tail of key logs",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Latency p95 charts",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Error trend sparkline",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Buttons: Heal/Restart/Rotate/Snapshot",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Copy status to clipboard",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Open logs folder button",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Open frontend button",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Self-test modal",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Incident timeline",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Queue browser (peek top N)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Config editor with validation",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Feature flag toggles",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Approval center (high-risk)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Task history with filters",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Download diagnostics pack",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Dark/light theme",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Keyboard shortcuts",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Mobile-friendly layout",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Accessibility labels \u0026 tab order",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Persist UI state (last tab)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Session banner (version/date)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Search across logs/seeds",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "User feedback button",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Three tabs only: Overview Â· Work Â· Compliance (minimal)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "HUD: stability light + Money Loop OFF + ports + disk% + last incident",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Seed mini-kanban with counts; expand on click (progressive disclosure)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Canary card with sentinel metrics + threshold progress",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Focus Mode (show only current canary + sentinels)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Roadmap tracker view (auto-check via tests/canary/changelog; OS-mode track)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Widget registry (new capabilities add tiles automatically)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Quiet hours toggle for notifications",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Tray icon status (G/Y/R) with quick menu (Open, Logs, Quit)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Offline Help panel (local docs)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "â€œPropose changeâ€ flow (read-only UI drafts a seed; no direct mutate)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Compliance cards (PIPEDA, CASL, CRA, Employment, Privacy/DPA) with notes/evidence",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Phase activation (explicit) + Phase drawer (view others on demand)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Roadmap evidence links (logs/tests/changelog) per item",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Roadmap integrity display (SHA256, edited warning)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Phase gating: block next phase if critical items not Applied (PIN override)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Widget manifest contract (schema)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Widget auto-scan \u0026 hot-reload (local-only)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Seed Apply writes widget manifest (Apply Gate integration)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Roadmap â†” Widget binder (map items to tiles)",
+        "Done":  true
+    },
+    {
+        "Id":  "dashboard-ux",
+        "Category":  "Dashboard \u0026 UX",
+        "Title":  "Manifest linter (prevent invalid/noisy tiles)",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "High-risk window (time-based)",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Risk score formula (size/blast/risk)",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Two-key approval for destructive ops",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Money loop hard-off when unstable",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Sandbox for unknown code",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Network egress denylist",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "File write scoping to Mason root",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Command allowlist for scripts",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Outbound request budget caps",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Prompt injection heuristics",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Dangerous pattern detector (rm -rf analogs)",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Sensitive data detector in outputs",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Legal/ToS compliance banner",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Model output moderation (local rules)",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Kill switch hotkey",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Emergency rollback script",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Incident paging throttle",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Safe mode (read-only)",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Operator PIN for approvals",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Forensic snapshot on breach",
+        "Done":  true
+    },
+    {
+        "Id":  "safety-guardrails",
+        "Category":  "Safety \u0026 Guardrails",
+        "Title":  "Policy store (declarative approvals, risk budgets, device limits)",
+        "Done":  true
+    },
+    {
+        "Id":  "voice-text-shell-minimal",
+        "Category":  "Voice/Text Shell (Minimal)",
+        "Title":  "Local TTS/STT wiring (offline-capable)",
+        "Done":  false
+    },
+    {
+        "Id":  "voice-text-shell-minimal",
+        "Category":  "Voice/Text Shell (Minimal)",
+        "Title":  "Wake word + barge-in",
+        "Done":  false
+    },
+    {
+        "Id":  "voice-text-shell-minimal",
+        "Category":  "Voice/Text Shell (Minimal)",
+        "Title":  "Push-to-talk fallback",
+        "Done":  false
+    },
+    {
+        "Id":  "voice-text-shell-minimal",
+        "Category":  "Voice/Text Shell (Minimal)",
+        "Title":  "Voice confirmations for approvals",
+        "Done":  false
+    },
+    {
+        "Id":  "voice-text-shell-minimal",
+        "Category":  "Voice/Text Shell (Minimal)",
+        "Title":  "Latency target under 800ms",
+        "Done":  false
+    },
+    {
+        "Id":  "voice-text-shell-minimal",
+        "Category":  "Voice/Text Shell (Minimal)",
+        "Title":  "Session memory summary",
+        "Done":  false
+    },
+    {
+        "Id":  "voice-text-shell-minimal",
+        "Category":  "Voice/Text Shell (Minimal)",
+        "Title":  "Noise robustness checks",
+        "Done":  false
+    },
+    {
+        "Id":  "voice-text-shell-minimal",
+        "Category":  "Voice/Text Shell (Minimal)",
+        "Title":  "Mic/speaker device switcher",
+        "Done":  false
+    },
+    {
+        "Id":  "voice-text-shell-minimal",
+        "Category":  "Voice/Text Shell (Minimal)",
+        "Title":  "Text fallback UI",
+        "Done":  false
+    },
+    {
+        "Id":  "voice-text-shell-minimal",
+        "Category":  "Voice/Text Shell (Minimal)",
+        "Title":  "Audio log redaction",
+        "Done":  false
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Windows Task Scheduler entries verifier",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Hourly log maintenance job",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Daily snapshot at 03:30",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Weekly restore test",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Learner cadence (10m) enforcement",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Governor cadence (2m) enforcement",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Watchdog cadence (1m) enforcement",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "TopicSync (1m) schedule",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "AutoAdvance (3m) schedule",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "DiskHealth (daily) schedule",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Calendar-based change freeze",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Quiet hours for heavy tasks",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Retry queue sweeper",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Stuck job detector",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "Schedule drift alarms",
+        "Done":  true
+    },
+    {
+        "Id":  "automation-schedules",
+        "Category":  "Automation \u0026 Schedules",
+        "Title":  "UI heartbeat cadence (HUD refresh ~3s; rest manual)",
+        "Done":  true
+    }
+]

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "updated_at_utc": "2026-03-08T00:00:00Z",
+  "retention": {
+    "knowledge_records_days": 3650,
+    "tenant_profiles_days": 3650,
+    "tool_artifacts_days": 730,
+    "audit_log_days": 3650,
+    "reports_days": 365
+  },
+  "export": {
+    "enabled": true,
+    "approval_required_roles": [
+      "owner"
+    ],
+    "supported_formats": [
+      "json",
+      "zip"
+    ],
+    "target_sla_hours": 72
+  },
+  "delete": {
+    "enabled": true,
+    "approval_required_roles": [
+      "owner"
+    ],
+    "hard_delete_requires_owner": true,
+    "target_sla_hours": 72
+  },
+  "legal": {
+    "tenant_isolation_required": true,
+    "audit_required_for_sensitive_actions": true,
+    "billing_sensitive_actions_require_approval": true
+  }
+}

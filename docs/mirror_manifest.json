@@ -1,42 +1,155 @@
 ﻿{
-    "generated_at_utc":  "2026-03-03T07:39:53.1195487Z",
+    "generated_at_utc":  "2026-03-11T05:07:53.6224060Z",
     "source_root":  "C:\\Users\\Chris\\Desktop\\Mason2",
-    "mirror_root":  "C:\\Users\\Chris\\Desktop\\Mason2_MIRROR",
+    "mirror_root":  "C:\\Mason2_MIRROR",
     "policy_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\mirror_policy.json",
     "allowlist":  [
+                      ".gitignore",
+                      "AGENTS.md",
                       "Start_Mason2.ps1",
                       "Start-Athena.ps1",
+                      "Start_FullStack_OneClick.ps1",
+                      "Stop_Stack.ps1",
+                      "Stop_Stack_Deep.ps1",
                       "tools",
                       "config",
                       "docs",
+                      "roadmap",
+                      "services",
                       "MasonConsole",
                       "bridge",
+                      "state/config",
+                      "state/knowledge",
+                      "state/onyx",
+                      "state/workspaces",
+                      "Component - Onyx App/api",
+                      "Component - Onyx App/backend",
+                      "Component - Onyx App/frontend",
+                      "Component - Onyx App/manifests",
+                      "Component - Onyx App/mason-live",
+                      "Component - Onyx App/mason-sidecar",
+                      "Component - Onyx App/Onyx",
+                      "Component - Onyx App/onyx-backend",
+                      "Component - Onyx App/onyx-web",
+                      "Component - Onyx App/onyx_business_manager",
+                      "Component - Onyx App/queue",
+                      "Component - Onyx App/security",
+                      "Component - Onyx App/tools",
+                      "Component - Onyx App/user_dashboard",
+                      "Component - Onyx App/.gitignore",
+                      "Component - Onyx App/.package-lock.json",
+                      "Component - Onyx App/.sops.yaml",
+                      "Component - Onyx App/api.py",
+                      "Component - Onyx App/app.config.js",
+                      "Component - Onyx App/app.js",
+                      "Component - Onyx App/app.json",
+                      "Component - Onyx App/app_layout.jsx",
+                      "Component - Onyx App/babel.config.js",
+                      "Component - Onyx App/eas.json",
+                      "Component - Onyx App/eslint.config.js",
+                      "Component - Onyx App/icon.png",
+                      "Component - Onyx App/index.js",
+                      "Component - Onyx App/manifest.json",
+                      "Component - Onyx App/mason-ctl.ps1",
+                      "Component - Onyx App/Mason-Onyx-Bridge.ps1",
+                      "Component - Onyx App/mason_local_api.py",
+                      "Component - Onyx App/MASTER_ROADMAP.txt",
+                      "Component - Onyx App/onyx_api.py",
+                      "Component - Onyx App/package-lock.json",
+                      "Component - Onyx App/package.json",
+                      "Component - Onyx App/README.md",
+                      "Component - Onyx App/Run-MasonBridge.ps1",
+                      "Component - Onyx App/run_api.py",
+                      "Component - Onyx App/run_onyx_web.ps1",
+                      "Component - Onyx App/signal_link.png",
+                      "Component - Onyx App/splash.png",
+                      "Component - Onyx App/start-all.ps1",
+                      "Component - Onyx App/Start-Mobile.ps1",
+                      "Component - Onyx App/Start-ONYX-Global.ps1",
+                      "Component - Onyx App/Start-ONYX-One.ps1",
+                      "Component - Onyx App/Start-ONYX.ps1",
+                      "Component - Onyx App/stop-all.ps1",
                       "reports"
                   ],
+    "allowlisted_top_level_names":  [
+                                        ".gitignore",
+                                        "AGENTS.md",
+                                        "bridge",
+                                        "Component - Onyx App",
+                                        "config",
+                                        "docs",
+                                        "MasonConsole",
+                                        "reports",
+                                        "roadmap",
+                                        "services",
+                                        "Start_FullStack_OneClick.ps1",
+                                        "Start_Mason2.ps1",
+                                        "Start-Athena.ps1",
+                                        "state",
+                                        "Stop_Stack.ps1",
+                                        "Stop_Stack_Deep.ps1",
+                                        "tools"
+                                    ],
     "denylist":  [
                      ".git",
                      ".env",
                      ".env.*",
+                     "**/.env*",
                      ".venv",
+                     "**/.venv/**",
+                     "**/__pycache__/**",
+                     "**/node_modules/**",
+                     "**/.dart_tool/**",
+                     "**/build/**",
+                     "**/dist/**",
+                     "**/artifacts/**",
+                     "**/bundles/**",
+                     "**/drop/**",
+                     "**/dumps/**",
+                     "**/forensics/**",
+                     "**/logs/**",
+                     "**/mason-sessions/**",
+                     "**/metrics/**",
+                     "**/quarantine/**",
                      "archives",
+                     "archives/**",
+                     "archive",
+                     "archive/**",
                      "artifacts",
+                     "artifacts/**",
                      "backups",
+                     "backups/**",
                      "bundles",
+                     "bundles/**",
                      "drop",
+                     "drop/**",
                      "dumps",
+                     "dumps/**",
                      "forensics",
+                     "forensics/**",
                      "ingest",
+                     "ingest/**",
                      "knowledge",
+                     "knowledge/**",
                      "logs",
+                     "logs/**",
                      "mason-sessions",
+                     "mason-sessions/**",
                      "metrics",
+                     "metrics/**",
                      "quarantine",
+                     "quarantine/**",
                      "secrets",
-                     "secrets*",
+                     "secrets/**",
+                     "**/secrets*.json",
                      "snapshots",
-                     "state",
+                     "snapshots/**",
                      "uploads",
+                     "uploads/**",
                      "config/athena_device_registry.json",
+                     "state/forensic.mark",
+                     "state/nodeagent_pids.json",
+                     "state/stuck.json",
                      "reports/**/*.log",
                      "reports/**/*.txt",
                      "reports/start/**/*.log",
@@ -45,21 +158,56 @@
                      "reports/ingest_autopilot_stderr.log",
                      "reports/masonconsole_stdout.log",
                      "reports/masonconsole_stderr.log",
+                     "Component - Onyx App/.bin/**",
+                     "Component - Onyx App/reviews/**",
+                     "Component - Onyx App/secrets/**",
+                     "Component - Onyx App/logs/**",
                      "Component - Onyx App/onyx_business_manager/build",
+                     "Component - Onyx App/onyx_business_manager/build/**",
                      "Component - Onyx App/onyx_business_manager/.dart_tool",
+                     "Component - Onyx App/onyx_business_manager/.dart_tool/**",
                      "Component - Onyx App/onyx_business_manager/android",
+                     "Component - Onyx App/onyx_business_manager/android/**",
                      "Component - Onyx App/onyx_business_manager/windows",
+                     "Component - Onyx App/onyx_business_manager/windows/**",
                      "Component - Onyx App/onyx_business_manager/node_modules",
-                     "Component - Onyx App/onyx_business_manager/caches"
+                     "Component - Onyx App/onyx_business_manager/node_modules/**",
+                     "Component - Onyx App/onyx_business_manager/caches",
+                     "Component - Onyx App/onyx_business_manager/caches/**",
+                     "Component - Onyx App/onyx-web/.next",
+                     "Component - Onyx App/onyx-web/.next/**",
+                     "Component - Onyx App/onyx-web/build",
+                     "Component - Onyx App/onyx-web/build/**",
+                     "Component - Onyx App/onyx-web/dist",
+                     "Component - Onyx App/onyx-web/dist/**",
+                     "Component - Onyx App/onyx-web/node_modules",
+                     "Component - Onyx App/onyx-web/node_modules/**",
+                     "Component - Onyx App/mason-live/.venv",
+                     "Component - Onyx App/mason-live/.venv/**",
+                     "Component - Onyx App/mason-live/__pycache__/**"
                  ],
-    "last_sync_timestamp_utc":  "2026-03-03T07:39:53.1245479Z",
+    "last_sync_timestamp_utc":  "2026-03-11T05:07:53.6279192Z",
     "counts_per_folder":  [
+                              {
+                                  "name":  ".gitignore",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  1043
+                              },
+                              {
+                                  "name":  "AGENTS.md",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  1651
+                              },
                               {
                                   "name":  "Start_Mason2.ps1",
                                   "exists":  true,
                                   "type":  "file",
                                   "file_count":  1,
-                                  "total_bytes":  56812
+                                  "total_bytes":  69343
                               },
                               {
                                   "name":  "Start-Athena.ps1",
@@ -69,32 +217,67 @@
                                   "total_bytes":  5693
                               },
                               {
+                                  "name":  "Start_FullStack_OneClick.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  688
+                              },
+                              {
+                                  "name":  "Stop_Stack.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  5910
+                              },
+                              {
+                                  "name":  "Stop_Stack_Deep.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  14022
+                              },
+                              {
                                   "name":  "tools",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  557,
-                                  "total_bytes":  5505721
+                                  "file_count":  565,
+                                  "total_bytes":  5794531
                               },
                               {
                                   "name":  "config",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  149,
-                                  "total_bytes":  835115
+                                  "file_count":  152,
+                                  "total_bytes":  850611
                               },
                               {
                                   "name":  "docs",
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  17,
-                                  "total_bytes":  98904580
+                                  "total_bytes":  128365668
+                              },
+                              {
+                                  "name":  "roadmap",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  9,
+                                  "total_bytes":  332566
+                              },
+                              {
+                                  "name":  "services",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  5,
+                                  "total_bytes":  16870
                               },
                               {
                                   "name":  "MasonConsole",
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  4335,
-                                  "total_bytes":  48538290
+                                  "total_bytes":  49226161
                               },
                               {
                                   "name":  "bridge",
@@ -104,27 +287,508 @@
                                   "total_bytes":  37661480
                               },
                               {
+                                  "name":  "state/config",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  3,
+                                  "total_bytes":  456
+                              },
+                              {
+                                  "name":  "state/knowledge",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  66,
+                                  "total_bytes":  8350341
+                              },
+                              {
+                                  "name":  "state/onyx",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  6,
+                                  "total_bytes":  11113
+                              },
+                              {
+                                  "name":  "state/workspaces",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  3,
+                                  "total_bytes":  2060
+                              },
+                              {
+                                  "name":  "Component - Onyx App/api",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  1,
+                                  "total_bytes":  383
+                              },
+                              {
+                                  "name":  "Component - Onyx App/backend",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  19,
+                                  "total_bytes":  537049
+                              },
+                              {
+                                  "name":  "Component - Onyx App/frontend",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  1,
+                                  "total_bytes":  0
+                              },
+                              {
+                                  "name":  "Component - Onyx App/manifests",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  2,
+                                  "total_bytes":  45711
+                              },
+                              {
+                                  "name":  "Component - Onyx App/mason-live",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  1978,
+                                  "total_bytes":  31441733
+                              },
+                              {
+                                  "name":  "Component - Onyx App/mason-sidecar",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  2044,
+                                  "total_bytes":  32121058
+                              },
+                              {
+                                  "name":  "Component - Onyx App/Onyx",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  6,
+                                  "total_bytes":  6598424
+                              },
+                              {
+                                  "name":  "Component - Onyx App/onyx-backend",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  2071,
+                                  "total_bytes":  33025585
+                              },
+                              {
+                                  "name":  "Component - Onyx App/onyx-web",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  2438,
+                                  "total_bytes":  75562284
+                              },
+                              {
+                                  "name":  "Component - Onyx App/onyx_business_manager",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  2531,
+                                  "total_bytes":  1020853117
+                              },
+                              {
+                                  "name":  "Component - Onyx App/queue",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  4,
+                                  "total_bytes":  12869
+                              },
+                              {
+                                  "name":  "Component - Onyx App/security",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  9,
+                                  "total_bytes":  4645499
+                              },
+                              {
+                                  "name":  "Component - Onyx App/tools",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  8,
+                                  "total_bytes":  30174
+                              },
+                              {
+                                  "name":  "Component - Onyx App/user_dashboard",
+                                  "exists":  true,
+                                  "type":  "directory",
+                                  "file_count":  2,
+                                  "total_bytes":  761
+                              },
+                              {
+                                  "name":  "Component - Onyx App/.gitignore",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  398
+                              },
+                              {
+                                  "name":  "Component - Onyx App/.package-lock.json",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  521810
+                              },
+                              {
+                                  "name":  "Component - Onyx App/.sops.yaml",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  200
+                              },
+                              {
+                                  "name":  "Component - Onyx App/api.py",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  2308
+                              },
+                              {
+                                  "name":  "Component - Onyx App/app.config.js",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  450
+                              },
+                              {
+                                  "name":  "Component - Onyx App/app.js",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  1574
+                              },
+                              {
+                                  "name":  "Component - Onyx App/app.json",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  1209
+                              },
+                              {
+                                  "name":  "Component - Onyx App/app_layout.jsx",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  833
+                              },
+                              {
+                                  "name":  "Component - Onyx App/babel.config.js",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  102
+                              },
+                              {
+                                  "name":  "Component - Onyx App/eas.json",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  185
+                              },
+                              {
+                                  "name":  "Component - Onyx App/eslint.config.js",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  237
+                              },
+                              {
+                                  "name":  "Component - Onyx App/icon.png",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  11752
+                              },
+                              {
+                                  "name":  "Component - Onyx App/index.js",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  100
+                              },
+                              {
+                                  "name":  "Component - Onyx App/manifest.json",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  23074
+                              },
+                              {
+                                  "name":  "Component - Onyx App/mason-ctl.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  7344
+                              },
+                              {
+                                  "name":  "Component - Onyx App/Mason-Onyx-Bridge.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  727
+                              },
+                              {
+                                  "name":  "Component - Onyx App/mason_local_api.py",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  2191
+                              },
+                              {
+                                  "name":  "Component - Onyx App/MASTER_ROADMAP.txt",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  714
+                              },
+                              {
+                                  "name":  "Component - Onyx App/onyx_api.py",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  2313
+                              },
+                              {
+                                  "name":  "Component - Onyx App/package-lock.json",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  530712
+                              },
+                              {
+                                  "name":  "Component - Onyx App/package.json",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  662
+                              },
+                              {
+                                  "name":  "Component - Onyx App/README.md",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  1741
+                              },
+                              {
+                                  "name":  "Component - Onyx App/Run-MasonBridge.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  3038
+                              },
+                              {
+                                  "name":  "Component - Onyx App/run_api.py",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  888
+                              },
+                              {
+                                  "name":  "Component - Onyx App/run_onyx_web.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  481
+                              },
+                              {
+                                  "name":  "Component - Onyx App/signal_link.png",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  707
+                              },
+                              {
+                                  "name":  "Component - Onyx App/splash.png",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  20798
+                              },
+                              {
+                                  "name":  "Component - Onyx App/start-all.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  2435
+                              },
+                              {
+                                  "name":  "Component - Onyx App/Start-Mobile.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  784
+                              },
+                              {
+                                  "name":  "Component - Onyx App/Start-ONYX-Global.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  515
+                              },
+                              {
+                                  "name":  "Component - Onyx App/Start-ONYX-One.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  5553
+                              },
+                              {
+                                  "name":  "Component - Onyx App/Start-ONYX.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  467
+                              },
+                              {
+                                  "name":  "Component - Onyx App/stop-all.ps1",
+                                  "exists":  true,
+                                  "type":  "file",
+                                  "file_count":  1,
+                                  "total_bytes":  348
+                              },
+                              {
                                   "name":  "reports",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  29328,
-                                  "total_bytes":  828288869
+                                  "file_count":  38848,
+                                  "total_bytes":  1378182374
                               }
                           ],
+    "policy_summary":  {
+                           "allowlist_count":  66,
+                           "denylist_count":  94,
+                           "top_level_allowlist_count":  17,
+                           "source_top_level_review_count":  110,
+                           "source_top_level_review_items":  [
+                                                                 ".env",
+                                                                 ".env.sample",
+                                                                 ".git",
+                                                                 ".git_backup_20260209_100930",
+                                                                 "__pycache__",
+                                                                 "ActivateAndOpenDashboard.ps1",
+                                                                 "ActivateAndOpenDashboard.ps1.bak-20251103-190053",
+                                                                 "ActivateAndOpenDashboard.ps1.bak-20251103-190233",
+                                                                 "ActivatePhase1.ps1",
+                                                                 "archive",
+                                                                 "archives",
+                                                                 "artifacts",
+                                                                 "athena",
+                                                                 "Athena_Launcher.ps1",
+                                                                 "Athena_spec.txt",
+                                                                 "backup_before_full_reset.zip",
+                                                                 "backups",
+                                                                 "Bootstrap_PrereqCheck.ps1",
+                                                                 "Bootstrap_Prereqs.ps1",
+                                                                 "brain",
+                                                                 "Build_ChecklistReadonly.ps1",
+                                                                 "Build_PortableManifest.ps1",
+                                                                 "Build_PortableZip.ps1",
+                                                                 "BuildRoadmapIndex.ps1",
+                                                                 "bundles",
+                                                                 "cd",
+                                                                 "Checklist_TickBySignals.ps1",
+                                                                 "Checklist_TickBySignals_v3.ps1",
+                                                                 "control",
+                                                                 "Dash_QuickView.ps1",
+                                                                 "desktop.ini",
+                                                                 "dist",
+                                                                 "drop",
+                                                                 "dumps",
+                                                                 "Enforce_OneFolder.ps1",
+                                                                 "forensics",
+                                                                 "Generate_PortableManifest.ps1",
+                                                                 "Get-Content",
+                                                                 "ind.html",
+                                                                 "index.html.20251211_140805.bak"
+                                                             ]
+                       },
     "reports_json_policy":  {
                                 "allowlist_patterns":  [
-                                                           "reports/*.json",
-                                                           "reports/**/*.json"
+                                                           "reports/mirror_update_last.json",
+                                                           "reports/mason2_core_status.json",
+                                                           "reports/bridge_status.json",
+                                                           "reports/component_inventory.json",
+                                                           "reports/drift_manifest.json",
+                                                           "reports/risk_normalize_report.json",
+                                                           "reports/approvals_posture.json",
+                                                           "reports/ingest_autopilot_status.json",
+                                                           "reports/stack_reset_last.json",
+                                                           "reports/start/start_run_last.json",
+                                                           "reports/start/last_failure.json",
+                                                           "reports/launcher/last_fullstack.json",
+                                                           "reports/launcher/last_coreonly.json",
+                                                           "reports/launcher/oneclick_last.json",
+                                                           "reports/verify_last.json",
+                                                           "reports/context_pack.json",
+                                                           "reports/memory_ingest_last.json",
+                                                           "reports/memory_retrieve_last.json",
+                                                           "reports/system_validation_last.json",
+                                                           "reports/codebase_inventory_last.json",
+                                                           "reports/codebase_salvage_queue.json",
+                                                           "reports/codebase_cleanup_plan.json",
+                                                           "reports/tenant_safety_report.json",
+                                                           "reports/security_posture.json",
+                                                           "reports/billing_summary.json",
+                                                           "reports/queue/improvement_queue_last.json",
+                                                           "reports/queue/behavior_trust_last.json",
+                                                           "reports/queue/tool_factory_last.json"
                                                        ],
-                                "max_file_bytes":  2097152,
-                                "candidate_count":  13144,
-                                "eligible_count":  13140,
-                                "excluded_large_count":  4,
+                                "max_file_bytes":  67108864,
+                                "candidate_count":  17609,
+                                "matched_allowlist_count":  27,
+                                "excluded_pattern_count":  17582,
+                                "eligible_count":  27,
+                                "excluded_large_count":  0,
+                                "eligible_files":  [
+                                                       "reports\\codebase_inventory_last.json",
+                                                       "reports\\codebase_salvage_queue.json",
+                                                       "reports\\queue\\improvement_queue_last.json",
+                                                       "reports\\codebase_cleanup_plan.json",
+                                                       "reports\\mirror_update_last.json",
+                                                       "reports\\system_validation_last.json",
+                                                       "reports\\context_pack.json",
+                                                       "reports\\component_inventory.json",
+                                                       "reports\\mason2_core_status.json",
+                                                       "reports\\start\\start_run_last.json",
+                                                       "reports\\drift_manifest.json",
+                                                       "reports\\memory_retrieve_last.json",
+                                                       "reports\\billing_summary.json",
+                                                       "reports\\approvals_posture.json",
+                                                       "reports\\ingest_autopilot_status.json",
+                                                       "reports\\stack_reset_last.json",
+                                                       "reports\\queue\\behavior_trust_last.json",
+                                                       "reports\\security_posture.json",
+                                                       "reports\\queue\\tool_factory_last.json",
+                                                       "reports\\memory_ingest_last.json",
+                                                       "reports\\tenant_safety_report.json",
+                                                       "reports\\bridge_status.json",
+                                                       "reports\\launcher\\oneclick_last.json",
+                                                       "reports\\verify_last.json",
+                                                       "reports\\risk_normalize_report.json",
+                                                       "reports\\launcher\\last_fullstack.json",
+                                                       "reports\\launcher\\last_coreonly.json"
+                                                   ],
+                                "excluded_pattern_files":  [
+                                                               "reports\\onyx_health_investigation.json",
+                                                               "reports\\mason_legacy_index.json",
+                                                               "reports\\ingest_index_20260227_022603.json",
+                                                               "reports\\self_index.json",
+                                                               "reports\\ingest_index_20260227_103104.json",
+                                                               "reports\\ingest_index_20260227_100103.json",
+                                                               "reports\\ingest_index_20260227_071604.json",
+                                                               "reports\\ingest_index_20260227_085104.json",
+                                                               "reports\\ingest_index_20260227_092604.json",
+                                                               "reports\\ingest_index_20260227_075104.json",
+                                                               "reports\\ingest_index_20260227_082104.json",
+                                                               "reports\\ingest_index_20260227_110605.json",
+                                                               "reports\\ingest_index_20260306_233049.json",
+                                                               "reports\\ingest_index_20260302_162103.json",
+                                                               "reports\\ingest_index_20260305_044707.json",
+                                                               "reports\\ingest_index_20260302_204942.json",
+                                                               "reports\\ingest_index_20260302_155104.json",
+                                                               "reports\\ingest_index_20260302_044603.json",
+                                                               "reports\\ingest_index_20260302_035104.json",
+                                                               "reports\\ingest_index_20260302_054603.json"
+                                                           ],
                                 "excluded_large_files":  [
-                                                             "reports\\onyx_health_investigation.json",
-                                                             "reports\\mason_legacy_index.json",
-                                                             "reports\\ingest_index_20260227_022603.json",
-                                                             "reports\\self_index.json"
+
                                                          ]
                             },
     "missing_from_mirror":  {
@@ -133,13 +797,11 @@
                                                                          ".env.sample",
                                                                          ".git",
                                                                          ".git_backup_20260209_100930",
-                                                                         ".gitignore",
                                                                          "__pycache__",
                                                                          "ActivateAndOpenDashboard.ps1",
                                                                          "ActivateAndOpenDashboard.ps1.bak-20251103-190053",
                                                                          "ActivateAndOpenDashboard.ps1.bak-20251103-190233",
                                                                          "ActivatePhase1.ps1",
-                                                                         "AGENTS.md",
                                                                          "archive",
                                                                          "archives",
                                                                          "artifacts",
@@ -159,7 +821,6 @@
                                                                          "cd",
                                                                          "Checklist_TickBySignals.ps1",
                                                                          "Checklist_TickBySignals_v3.ps1",
-                                                                         "Component - Onyx App",
                                                                          "control",
                                                                          "Dash_QuickView.ps1",
                                                                          "desktop.ini",
@@ -169,6 +830,7 @@
                                                                          "Enforce_OneFolder.ps1",
                                                                          "forensics",
                                                                          "Generate_PortableManifest.ps1",
+                                                                         "Get-Content",
                                                                          "ind.html",
                                                                          "index.html.20251211_140805.bak",
                                                                          "index.html.20251211_171545.bak",
@@ -215,7 +877,6 @@
                                                                          "queue",
                                                                          "Queue_InitialSeeds.ps1",
                                                                          "Rebuild_StatusSummary.ps1",
-                                                                         "roadmap",
                                                                          "Roadmap_Integrity.ps1",
                                                                          "roadmaps",
                                                                          "-RootPath",
@@ -228,15 +889,11 @@
                                                                          "server.py.20251211_131413.bak",
                                                                          "server.py.20251211_132152.bak",
                                                                          "server.py.bak",
-                                                                         "services",
                                                                          "skills",
                                                                          "snapshots",
                                                                          "specs",
                                                                          "startup_backup.csv",
-                                                                         "state",
                                                                          "state_samples",
-                                                                         "Stop_Stack.ps1",
-                                                                         "Stop_Stack_Deep.ps1",
                                                                          "Stop-MasonNow.ps1",
                                                                          "tasks",
                                                                          "tools.zip",

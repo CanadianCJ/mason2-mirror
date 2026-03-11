@@ -1,0 +1,93 @@
+﻿{
+    "summary":  "Recommended production-ready AI tools and services for Mason to enhance self-monitoring, code quality, and AI infrastructure integration on Windows.",
+    "priority":  "high",
+    "categories":  [
+                       {
+                           "id":  "core_self_ops",
+                           "label":  "Core self-ops \u0026 health",
+                           "description":  "Tools that help Mason observe, log, and heal himself."
+                       },
+                       {
+                           "id":  "code_quality",
+                           "label":  "Code review \u0026 refactoring",
+                           "description":  "Tools that help Mason analyze and upgrade his own scripts."
+                       },
+                       {
+                           "id":  "ai_infra",
+                           "label":  "AI infrastructure",
+                           "description":  "Tools and services for model usage, evaluation, and orchestration."
+                       }
+                   ],
+    "tools":  [
+                  {
+                      "id":  "tool-001",
+                      "name":  "Prometheus + Node Exporter",
+                      "category_id":  "core_self_ops",
+                      "kind":  "service",
+                      "risk_level":  "R0",
+                      "description":  "Prometheus is a widely used open-source monitoring system that can scrape metrics from Node Exporter running on Windows. This setup helps Mason monitor system health, resource usage, and custom application metrics for self-observation and alerting.",
+                      "integration_idea":  "Install Node Exporter on Windows and run Prometheus server locally or remotely. Mason can query Prometheus HTTP API from PowerShell to fetch health metrics and trigger alerts or self-healing scripts.",
+                      "notes":  "Requires running a local or networked Prometheus server. Node Exporter must be configured to expose relevant metrics. Safe and read-only monitoring."
+                  },
+                  {
+                      "id":  "tool-002",
+                      "name":  "OpenAI CLI",
+                      "category_id":  "ai_infra",
+                      "kind":  "cli",
+                      "risk_level":  "R1",
+                      "description":  "Official OpenAI CLI tool to interact with OpenAI models non-interactively from Windows PowerShell. Useful for planning, code review, and safe external AI model usage.",
+                      "integration_idea":  "Install OpenAI CLI via npm or direct executable. Mason can call it from PowerShell scripts to send prompts for code analysis, refactoring suggestions, or planning tasks.",
+                      "notes":  "Requires OpenAI API key and internet access. Use with rate limits and secure key storage to maintain safety."
+                  },
+                  {
+                      "id":  "tool-003",
+                      "name":  "SonarScanner CLI",
+                      "category_id":  "code_quality",
+                      "kind":  "cli",
+                      "risk_level":  "R0",
+                      "description":  "SonarScanner is a CLI tool to analyze code quality, detect bugs, code smells, and security vulnerabilities. It integrates with SonarQube or SonarCloud for detailed reports, helping Mason improve his own codebase.",
+                      "integration_idea":  "Install SonarScanner on Windows and configure it to scan Mason\u0027s code directories. Run scans from PowerShell and upload results to SonarQube/SonarCloud for review.",
+                      "notes":  "Requires setup of SonarQube server or SonarCloud account. Scans are local and safe; no code is sent externally unless using SonarCloud."
+                  },
+                  {
+                      "id":  "tool-004",
+                      "name":  "GitHub CLI (gh)",
+                      "category_id":  "code_quality",
+                      "kind":  "cli",
+                      "risk_level":  "R0",
+                      "description":  "GitHub CLI enables automation of code review workflows, pull requests, and issue management from the command line. Mason can automate code refactoring reviews and integrate AI suggestions into GitHub workflows.",
+                      "integration_idea":  "Install GitHub CLI on Windows and authenticate. Mason can script PR creation, commenting, and merging from PowerShell to streamline code quality processes.",
+                      "notes":  "Requires GitHub account and repository access. Safe for personal PC usage with proper token management."
+                  },
+                  {
+                      "id":  "tool-005",
+                      "name":  "LangChain Python Library",
+                      "category_id":  "ai_infra",
+                      "kind":  "library",
+                      "risk_level":  "R1",
+                      "description":  "LangChain is a Python library to build AI applications with external model integrations, prompt management, and chaining. Mason can use it to orchestrate AI calls safely and modularly for planning and code review.",
+                      "integration_idea":  "Install Python and LangChain on Windows. Mason can run Python scripts from PowerShell that use LangChain to call OpenAI or other models with controlled prompts and outputs.",
+                      "notes":  "Requires Python environment setup and API keys for external models. Code execution should be sandboxed and monitored for safety."
+                  },
+                  {
+                      "id":  "tool-006",
+                      "name":  "Logrotate for Windows (e.g., logrotate-win)",
+                      "category_id":  "core_self_ops",
+                      "kind":  "cli",
+                      "risk_level":  "R0",
+                      "description":  "Logrotate-win is a Windows port of the popular log rotation tool. It helps Mason manage log file sizes and retention to prevent disk overuse and maintain clean logs for monitoring.",
+                      "integration_idea":  "Install logrotate-win and configure rotation policies for Mason\u0027s log directories. Run logrotate commands from PowerShell on schedule or trigger.",
+                      "notes":  "Ensure configuration files are correct to avoid accidental log deletion. Safe and lightweight."
+                  },
+                  {
+                      "id":  "tool-007",
+                      "name":  "Microsoft Application Insights CLI",
+                      "category_id":  "core_self_ops",
+                      "kind":  "cli",
+                      "risk_level":  "R1",
+                      "description":  "Application Insights CLI allows sending telemetry and logs to Azure Application Insights for advanced monitoring and alerting. Mason can use it to centralize logs and monitor health remotely.",
+                      "integration_idea":  "Install Azure CLI and Application Insights extension. Mason can send custom telemetry events from PowerShell scripts to Application Insights.",
+                      "notes":  "Requires Azure subscription and internet access. Data privacy and cost considerations apply."
+                  }
+              ]
+}

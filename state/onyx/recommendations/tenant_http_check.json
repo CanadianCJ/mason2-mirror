@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "tenant_id": "tenant_http_check",
+  "generated_at_utc": "2026-03-08T02:13:49.559555Z",
+  "recommendations": [
+    {
+      "recommendation_id": "rec_ca988b93ca9c",
+      "tenant_id": "tenant_http_check",
+      "type": "workflow",
+      "title": "Execute the latest Rescue Plan checklist",
+      "description": "Review the pending Rescue Plan tasks and assign owners before starting more tooling work.",
+      "reason": "The latest Rescue Plan artifact still has open tasks.",
+      "evidence": [
+        {
+          "source": "tool_artifact",
+          "label": "Latest task",
+          "value": "Create 24-hour rescue stabilization checklist",
+          "path": "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\tools\\toolrun_20260307_195557_rescue_plan_v1\\artifact.json"
+        }
+      ],
+      "priority": 91,
+      "estimated_roi_impact": "High: faster execution against the current stabilization plan.",
+      "risk_level": "R1",
+      "status": "new",
+      "linked_tool_id": "",
+      "created_at": "2026-03-08T02:13:26.146924Z",
+      "updated_at": "2026-03-08T02:13:26.146924Z",
+      "is_current": true
+    },
+    {
+      "recommendation_id": "rec_b53765a9d8b4",
+      "tenant_id": "tenant_http_check",
+      "type": "tool",
+      "title": "Run Marketing Pack",
+      "description": "Build message pillars and a campaign outline that fit this tenant's business profile.",
+      "reason": "Growth or audience-building signals are present, and no current Marketing Pack artifact exists.",
+      "evidence": [
+        {
+          "source": "business_profile",
+          "label": "Goal signal",
+          "value": "Confirm endpoint",
+          "path": "C:\\Users\\Chris\\Desktop\\Mason2\\state\\onyx\\tenants\\tenant_http_check.json"
+        }
+      ],
+      "priority": 76,
+      "estimated_roi_impact": "Medium: faster campaign launch and clearer messaging.",
+      "risk_level": "R1",
+      "status": "dismissed",
+      "linked_tool_id": "marketing_pack_v1",
+      "created_at": "2026-03-08T02:13:26.147242Z",
+      "updated_at": "2026-03-08T02:14:03.172870Z",
+      "is_current": true
+    },
+    {
+      "recommendation_id": "rec_89565ea73595",
+      "tenant_id": "tenant_http_check",
+      "type": "tool",
+      "title": "Run Sales Follow-Up",
+      "description": "Create a tenant-specific follow-up sequence for leads, objections, and pipeline movement.",
+      "reason": "Sales friction is visible in the current tenant state or latest Rescue Plan output.",
+      "evidence": [
+        {
+          "source": "tool_artifact",
+          "label": "Latest rescue risk",
+          "value": "Follow-up backlog",
+          "path": "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\tools\\toolrun_20260307_195557_rescue_plan_v1\\artifact.json"
+        }
+      ],
+      "priority": 88,
+      "estimated_roi_impact": "High: less revenue leakage from slow or inconsistent follow-up.",
+      "risk_level": "R1",
+      "status": "accepted",
+      "linked_tool_id": "sales_followup_v1",
+      "created_at": "2026-03-08T02:13:26.147121Z",
+      "updated_at": "2026-03-08T02:13:26.164043Z",
+      "is_current": false
+    }
+  ]
+}

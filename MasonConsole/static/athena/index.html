@@ -3,882 +3,485 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b1220" />
-  <title>Athena Cockpit</title>
+  <meta name="theme-color" content="#0e1527" />
+  <title>Athena Control Plane</title>
   <link rel="manifest" href="/athena/manifest.webmanifest" />
   <style>
     :root {
-      --bg: #060b16;
-      --card: #121a2a;
-      --card-soft: #182236;
-      --line: #2b3a57;
-      --text: #eaf0ff;
-      --muted: #95a8cc;
-      --accent: #3dd7cc;
-      --accent-2: #4f8cff;
-      --danger: #ff5d6e;
-      --ok: #3bcf8e;
-      --warn: #f8c861;
-      --radius: 14px;
+      --bg: #08111d;
+      --panel: rgba(14, 22, 39, 0.92);
+      --panel-strong: rgba(18, 28, 48, 0.98);
+      --line: rgba(122, 156, 214, 0.18);
+      --text: #f3f7ff;
+      --muted: #97a8c7;
+      --green: #48d597;
+      --yellow: #f0c15d;
+      --red: #ff6d7f;
+      --blue: #67a8ff;
+      --cyan: #45d4d0;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+      --radius: 18px;
     }
 
     * { box-sizing: border-box; }
 
-    html, body {
-      height: 100%;
-    }
-
     body {
       margin: 0;
-      font-family: "Segoe UI", "SF Pro Text", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 500px at 0% 0%, #0f2345 0%, transparent 65%),
-        radial-gradient(900px 400px at 100% 0%, #0f3637 0%, transparent 60%),
-        var(--bg);
       min-height: 100vh;
-      overflow: hidden;
-    }
-
-    .app {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 12px 12px 30px;
-      height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-      overflow: hidden;
-    }
-
-    .head {
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      backdrop-filter: blur(10px);
-      background: rgba(6, 11, 22, 0.85);
-      border-bottom: 1px solid var(--line);
-      margin: -12px -12px 12px;
-      padding: 12px;
-    }
-
-    .title {
-      font-size: 19px;
-      font-weight: 700;
-      letter-spacing: .4px;
-      margin: 0;
-    }
-
-    .subtitle {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .status-pill {
-      margin-top: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(61, 215, 204, .12);
-      border: 1px solid rgba(61, 215, 204, .45);
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 12px;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--ok);
-    }
-
-    .tabs {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      margin-bottom: 10px;
-      padding-bottom: 4px;
-      position: sticky;
-      top: 84px;
-      z-index: 4;
-      background: rgba(6, 11, 22, 0.85);
-      padding-top: 4px;
-    }
-
-    .tab {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--card);
-      color: var(--muted);
-      padding: 7px 12px;
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .tab.active {
       color: var(--text);
-      border-color: rgba(79, 140, 255, .7);
-      background: linear-gradient(120deg, rgba(79, 140, 255, .22), rgba(61, 215, 204, .2));
+      font-family: "Bahnschrift", "Segoe UI Variable", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(103, 168, 255, 0.2), transparent 34%),
+        radial-gradient(circle at top right, rgba(69, 212, 208, 0.18), transparent 32%),
+        linear-gradient(180deg, #07101b 0%, #08111d 50%, #060c16 100%);
+    }
+
+    .shell {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 24px;
     }
 
     .card {
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: linear-gradient(160deg, rgba(18, 26, 42, .95), rgba(24, 34, 54, .95));
-      padding: 12px;
-      margin-bottom: 10px;
-      min-height: 0;
+      background: linear-gradient(180deg, var(--panel), var(--panel-strong));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
     }
 
-    .card h3 {
-      margin: 0 0 8px;
-      font-size: 14px;
+    .hero {
+      padding: 24px;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: minmax(0, 1.7fr) minmax(220px, 0.8fr);
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .muted { color: var(--muted); font-size: 12px; }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -120px -120px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(103, 168, 255, 0.22), transparent 68%);
+      pointer-events: none;
+    }
 
-    .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
 
-    input, textarea, select, button {
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      background: #0f1727;
-      color: var(--text);
-      padding: 9px 10px;
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-note,
+    .section-note,
+    .path,
+    .muted {
+      color: var(--muted);
       font-size: 13px;
+      line-height: 1.5;
     }
 
-    input, textarea { width: 100%; }
-    textarea { min-height: 90px; resize: vertical; }
+    .hero-status {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      justify-items: end;
+    }
+
+    .status-badge,
+    .mode-chip,
+    .mini-pill,
+    .control-state {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+    }
+
+    .status-green,
+    .state-success { color: var(--green); border-color: rgba(72, 213, 151, 0.32); background: rgba(72, 213, 151, 0.12); }
+    .status-yellow { color: var(--yellow); border-color: rgba(240, 193, 93, 0.32); background: rgba(240, 193, 93, 0.12); }
+    .status-red,
+    .state-fail { color: var(--red); border-color: rgba(255, 109, 127, 0.32); background: rgba(255, 109, 127, 0.12); }
+    .state-running { color: var(--blue); border-color: rgba(103, 168, 255, 0.32); background: rgba(103, 168, 255, 0.12); }
+    .state-idle { color: var(--muted); border-color: rgba(151, 168, 199, 0.22); background: rgba(151, 168, 199, 0.08); }
+    .mode-chip { color: var(--blue); border-color: rgba(103, 168, 255, 0.25); background: rgba(103, 168, 255, 0.1); }
+
+    .hero-meta,
+    .layout,
+    .controls-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-meta {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .metric {
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(8, 14, 26, 0.55);
+      border: 1px solid rgba(122, 156, 214, 0.14);
+    }
+
+    .metric span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 18px;
+      word-break: break-word;
+    }
+
+    .layout.top {
+      grid-template-columns: minmax(0, 1.6fr) minmax(290px, 0.8fr);
+      margin-bottom: 18px;
+    }
+
+    .layout.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-bottom: 18px;
+    }
+
+    .section-head {
+      display: flex;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .card-block { padding: 20px; }
+
+    .controls-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 16px;
+    }
+
+    .control-card {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(122, 156, 214, 0.16);
+      background: rgba(6, 12, 23, 0.54);
+      display: grid;
+      gap: 10px;
+    }
+
+    .control-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
 
     button {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 700;
+      color: #04101c;
+      background: linear-gradient(135deg, var(--cyan), #7de4ff);
       cursor: pointer;
-      background: linear-gradient(120deg, rgba(79, 140, 255, .3), rgba(61, 215, 204, .28));
-      border-color: rgba(79, 140, 255, .7);
     }
 
-    button.warn { border-color: rgba(248, 200, 97, .8); background: rgba(248, 200, 97, .15); }
-    button.danger { border-color: rgba(255, 93, 110, .8); background: rgba(255, 93, 110, .12); }
+    button.secondary { background: linear-gradient(135deg, #f0c15d, #ffd889); }
+    button.danger { background: linear-gradient(135deg, #ff7f8c, #ffb0b8); }
+    button[disabled] { opacity: 0.55; cursor: wait; }
 
+    code,
     pre {
+      font-family: "Consolas", "Cascadia Mono", monospace;
+    }
+
+    .command,
+    .log-box,
+    .path-box {
       margin: 0;
+      border-radius: 14px;
+      border: 1px solid rgba(122, 156, 214, 0.14);
+      background: rgba(4, 8, 16, 0.82);
+      padding: 12px;
       font-size: 12px;
-      white-space: pre-wrap;
+      line-height: 1.5;
+      overflow: auto;
       word-break: break-word;
-      background: #0c1322;
-      border: 1px solid #22324e;
-      border-radius: 10px;
-      padding: 10px;
-      max-height: none;
-      overflow: auto;
     }
 
-    .hidden { display: none; }
-
-    .tab-body {
-      flex: 1;
-      min-height: 0;
-      overflow: auto;
-      padding-bottom: 8px;
+    .summary-list,
+    .feed {
+      display: grid;
+      gap: 10px;
     }
 
-    .tab-body.hidden {
-      display: none;
+    .summary-row,
+    .feed-row {
+      border-radius: 14px;
+      border: 1px solid rgba(122, 156, 214, 0.12);
+      background: rgba(6, 12, 23, 0.48);
+      padding: 12px 14px;
     }
 
-    .fill-card {
+    .summary-row {
       display: flex;
-      flex-direction: column;
-      flex: 1;
-      min-height: 0;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: baseline;
     }
 
-    .fill-pre {
-      flex: 1;
-      min-height: 220px;
-      overflow: auto;
-    }
+    .summary-row span,
+    .feed-meta { color: var(--muted); font-size: 12px; }
 
-    .output-card {
-      margin-bottom: 0;
-    }
+    .table-wrap { overflow: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid rgba(122, 156, 214, 0.1); font-size: 13px; vertical-align: top; }
+    th { color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; }
 
-    .kpi {
-      min-width: 120px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 8px;
-      background: rgba(17, 28, 46, .8);
-    }
-
-    .kpi .label { color: var(--muted); font-size: 11px; }
-    .kpi .val { font-size: 17px; margin-top: 4px; }
-    .kpi .sub { color: var(--muted); font-size: 11px; margin-top: 4px; }
-
-    .palette {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    .palette input { flex: 1; }
+    .recovery { padding: 20px; }
+    .hidden { display: none !important; }
 
     .toast {
       position: fixed;
-      left: 12px;
-      right: 12px;
-      bottom: 14px;
+      right: 22px;
+      bottom: 22px;
       z-index: 20;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 12px;
-      background: #0e1730;
+      min-width: 220px;
+      max-width: 420px;
+      padding: 14px 16px;
+      border-radius: 14px;
       color: var(--text);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+      border: 1px solid rgba(122, 156, 214, 0.18);
+      background: rgba(8, 14, 26, 0.95);
+      box-shadow: var(--shadow);
     }
 
-    .toast.ok { border-color: rgba(59, 207, 142, .8); }
-    .toast.error { border-color: rgba(255, 93, 110, .85); }
-
-    .timeline-filters {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 8px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      border: 1px solid var(--line);
-      background: #0f1727;
-      color: var(--muted);
-    }
-
-    .filter-btn.active {
-      color: var(--text);
-      border-color: rgba(79, 140, 255, .7);
-      background: linear-gradient(120deg, rgba(79, 140, 255, .22), rgba(61, 215, 204, .2));
-    }
-
-    details.security-panel {
-      border: 1px solid #33466a;
-      border-radius: 10px;
-      background: rgba(12, 19, 34, .9);
-      padding: 8px;
-      margin-top: 8px;
-    }
-
-    details.security-panel > summary {
-      cursor: pointer;
-      color: var(--warn);
-      font-size: 12px;
-      user-select: none;
-      outline: none;
-    }
-
-    @media (min-width: 760px) {
-      .grid {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 10px;
-      }
+    @media (max-width: 980px) {
+      .hero,
+      .layout.top,
+      .layout.two,
+      .hero-meta,
+      .controls-grid { grid-template-columns: 1fr; }
+      .hero-status { justify-items: start; }
     }
   </style>
 </head>
 <body>
-  <div class="app">
-    <div class="head">
-      <h1 class="title">Athena Cockpit</h1>
-      <p class="subtitle">Private controls over Tailscale with signed requests.</p>
-      <div class="status-pill"><span class="dot"></span><span id="pillText">Ready</span></div>
-      <div id="secureBanner" class="muted hidden" style="margin-top:8px;color:#f8c861;">
-        Open Athena over HTTPS (.ts.net) for signed requests.
-      </div>
-    </div>
-
-    <div class="tabs" id="tabs"></div>
-
-    <section id="tab-status" class="tab-body">
-      <div class="grid">
-        <div class="card">
-          <h3>Pair Device</h3>
-          <div class="muted">Pair once to receive the HMAC secret for signed API calls.</div>
-          <div class="row">
-            <input id="pairDeviceId" placeholder="device id (example: iphone-chris)" />
-            <input id="pairDeviceLabel" placeholder="device label" value="Chris iPhone" />
-          </div>
-          <div class="row">
-            <button id="pairStartBtn">Start Pairing</button>
-            <button id="pairCompleteBtn">Complete Pairing</button>
-            <button id="pairClearBtn" class="warn">Clear Pairing</button>
-          </div>
-          <div class="muted">Pair token</div>
-          <input id="pairToken" placeholder="pair token" />
-          <pre id="pairInfoBox">Pairing not started.</pre>
-        </div>
-
-        <div class="card">
-          <h3>Quick Controls</h3>
-          <div class="row">
-            <select id="doctorModeSelect" title="Doctor mode">
-              <option value="quick">Doctor Quick</option>
-              <option value="full">Doctor Full</option>
-            </select>
-            <button id="runDoctorBtn" data-action="/api/control/run_doctor" class="ctl">Run Doctor</button>
-            <button id="runE2EBtn" data-action="/api/control/run_e2e_verify" class="ctl">Run E2E Verify</button>
-            <button data-action="/api/control/ingest/run" class="ctl">Run Ingest</button>
-            <button data-action="/api/control/mirror/run" class="ctl">Run Mirror</button>
-          </div>
-          <div class="row">
-            <button data-action="/api/control/stack/start" class="ctl">Start Stack</button>
-            <button data-action="/api/control/stack/stop" class="ctl warn">Stop Stack</button>
-            <button data-action="/api/control/onyx/restart" class="ctl">Restart Onyx</button>
-          </div>
-          <div class="row">
-            <button data-action="/api/control/freeze" class="ctl danger">Freeze</button>
-            <button data-action="/api/control/unfreeze" class="ctl">Unfreeze</button>
-            <button data-action="/api/control/onyx/smoketest" class="ctl">Onyx Smoke</button>
-          </div>
+  <div class="shell">
+    <header class="hero card">
+      <div>
+        <p class="eyebrow">Athena Control Plane</p>
+        <h1>Owner cockpit for Mason</h1>
+        <p id="heroNote" class="hero-note">Polling live stack reality from Mason now.</p>
+        <div class="hero-meta">
+          <div class="metric"><span>Current run_id</span><strong id="runId">-</strong></div>
+          <div class="metric"><span>Last successful pass</span><strong id="lastPass">-</strong></div>
+          <div class="metric"><span>Failing component</span><strong id="failingComponent">-</strong></div>
+          <div class="metric"><span>Last refresh</span><strong id="lastRefresh">-</strong></div>
         </div>
       </div>
-
-      <div class="card">
-        <h3>Setup</h3>
-        <div class="muted">iPhone setup, pairing flow, and signed-request posture.</div>
-        <pre id="setupBox">Loading setup...</pre>
+      <div class="hero-status">
+        <div id="overallStatus" class="status-badge status-red">RED</div>
+        <div id="controlMode" class="mode-chip">Command-only</div>
       </div>
+    </header>
 
-      <div class="card">
-        <h3>Last Doctor Run</h3>
-        <pre id="doctorRunBox">No doctor run found yet.</pre>
-        <div class="row">
-          <select id="doctorLogStreamSelect" title="Doctor log stream">
-            <option value="stdout">stdout</option>
-            <option value="stderr">stderr</option>
-          </select>
-          <button id="viewDoctorLogsBtn" class="ctl">View Logs</button>
+    <section class="layout top">
+      <div class="card card-block">
+        <div class="section-head">
+          <h2>Controls</h2>
+          <span id="controlNote" class="section-note">Buttons execute when a signed session is available. Otherwise they copy the exact command.</span>
         </div>
-        <pre id="doctorLogBox">No logs loaded.</pre>
+        <div id="controlsGrid" class="controls-grid"></div>
       </div>
-
-      <div class="card">
-        <h3>E2E Status</h3>
-        <pre id="e2eBox">No E2E run found yet.</pre>
-      </div>
-
-      <div class="card">
-        <h3>Pinned Cards</h3>
-        <div class="row" id="kpis"></div>
-      </div>
-
-      <div class="card">
-        <h3>Timeline</h3>
-        <div class="timeline-filters">
-          <button id="timelineFilterOperational" class="filter-btn">Operational</button>
-          <button id="timelineFilterAll" class="filter-btn">All</button>
-          <button id="timelineFilterSecurity" class="filter-btn">Security</button>
+      <aside id="recoveryCard" class="card recovery hidden">
+        <div class="section-head">
+          <h2>Recovery</h2>
+          <span class="mini-pill status-red">RED only</span>
         </div>
-        <pre id="timelineBox" class="fill-pre">Loading events...</pre>
-        <details id="securityPanel" class="security-panel hidden">
-          <summary id="securitySummary">Security Events: 0</summary>
-          <pre id="securityBox">No recent auth rejects.</pre>
-        </details>
+        <div id="recoveryBody" class="summary-list"></div>
+        <button id="recoveryButton" type="button">Run recovery</button>
+      </aside>
+    </section>
+
+    <section class="card card-block">
+      <div class="section-head">
+        <h2>Ports And Health</h2>
+        <span class="section-note">Loopback contract: 8383, 8109, 8484, 8000, 5353</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Port</th>
+              <th>Listening</th>
+              <th>Health</th>
+              <th>Listeners</th>
+              <th>Probe</th>
+            </tr>
+          </thead>
+          <tbody id="portTable"></tbody>
+        </table>
       </div>
     </section>
 
-    <section id="tab-approvals" class="tab-body hidden">
-      <div class="card fill-card">
-        <h3>Approvals</h3>
-        <pre id="approvalsBox" class="fill-pre">Loading approvals...</pre>
-      </div>
+    <section class="layout two">
+      <div class="card card-block"><div class="section-head"><h2>Start Run</h2><span class="section-note">`start_run_last.json`</span></div><div id="startRunSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Last Failure</h2><span class="section-note">`last_failure.json`</span></div><div id="lastFailureSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Mirror Update</h2><span class="section-note">`mirror_update_last.json`</span></div><div id="mirrorSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>System Health</h2><span class="section-note">CPU, RAM, disk, uptime</span></div><div id="systemHealthSummary" class="summary-list"></div></div>
     </section>
 
-    <section id="tab-components" class="tab-body hidden">
-      <div class="card fill-card">
-        <h3>Components</h3>
-        <div class="row" id="componentButtons"></div>
-        <pre id="componentsBox" class="fill-pre">Loading components...</pre>
-      </div>
+    <section class="layout two">
+      <div class="card card-block"><div class="section-head"><h2>Approvals</h2><span class="section-note">Pending, eligible, quarantine</span></div><div id="approvalsSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>System Validation</h2><span class="section-note">`system_validation_last.json`</span></div><div id="systemValidationSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Autonomy And Trust</h2><span class="section-note">Guardrails and drift posture</span></div><div id="autonomySummary" class="summary-list"></div></div>
     </section>
 
-    <section id="tab-uploads" class="tab-body hidden">
-      <div class="card">
-        <h3>Upload Text</h3>
-        <textarea id="uploadText" placeholder="Paste notes or source text"></textarea>
-        <div class="row">
-          <button id="uploadTextBtn">Save Text</button>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Upload ZIP (base64)</h3>
-        <input id="zipFilename" placeholder="archive.zip" value="archive.zip" />
-        <textarea id="zipBase64" placeholder="Paste base64 zip payload"></textarea>
-        <div class="row">
-          <button id="uploadZipBtn">Save ZIP</button>
-        </div>
-      </div>
+    <section class="layout two">
+      <div class="card card-block"><div class="section-head"><h2>Recent Mason Actions</h2><span class="section-note">Last 50 events</span></div><div id="recentActions" class="feed"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Failing Component Logs</h2><span id="failureLabel" class="section-note">No failing component</span></div><div id="failureLogPath" class="path"></div><pre id="failureLogLines" class="log-box">Loading...</pre></div>
     </section>
 
-    <section id="tab-chat" class="tab-body hidden">
-      <div class="card">
-        <h3>Chat Capture</h3>
-        <textarea id="chatText" placeholder="Capture intent, task notes, or decisions"></textarea>
-        <div class="row">
-          <button id="chatSendBtn">Append to Knowledge</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="tab-timeline" class="tab-body hidden">
-      <div class="card fill-card">
-        <h3>Command Palette</h3>
-        <div class="palette">
-          <input id="paletteInput" placeholder="Search command: doctor, ingest, mirror, start, stop" />
-          <button id="paletteRunBtn">Run</button>
-        </div>
-        <pre id="paletteBox" class="fill-pre">Enter a command and run.</pre>
-      </div>
-    </section>
-
-    <div class="card output-card">
-      <h3>API Output</h3>
-      <pre id="outBox">Ready.</pre>
-    </div>
-
-    <div id="toast" class="toast hidden" aria-live="polite"></div>
+    <div id="toast" class="toast hidden"></div>
   </div>
-
   <script>
-    const STORE_KEY = "athena_pairing_v1";
     const DEVICE_ID_KEY = "athena_device_id";
     const DEVICE_SECRET_KEY = "athena_device_secret";
+    const STORE_KEY = "athena_pairing_v1";
     const SIGNING_AVAILABLE = Boolean(window.isSecureContext && window.crypto && window.crypto.subtle);
     const state = {
-      tabs: ["status", "approvals", "components", "uploads", "chat", "timeline"],
-      activeTab: "status",
-      components: [],
-      statusPollTimer: null,
-      timelinePollTimer: null,
-      doctorJobPollTimer: null,
-      e2eJobPollTimer: null,
-      doctorJobRunning: false,
-      e2eJobRunning: false,
-      awaitDoctorCompletion: false,
-      awaitE2ECompletion: false,
-      latestDoctorJobId: "",
-      latestE2EJobId: "",
-      timelineFilter: "operational",
-      toastTimer: null
+      dashboard: null,
+      pendingActionId: "",
+      refreshTimer: null
     };
 
     function getCreds() {
       try {
         const legacy = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
-        const device_id = localStorage.getItem(DEVICE_ID_KEY) || legacy.device_id || "";
-        const hmac_secret = localStorage.getItem(DEVICE_SECRET_KEY) || legacy.hmac_secret || "";
-        const device_label = legacy.device_label || "";
-        return { device_id, hmac_secret, device_label };
+        return {
+          device_id: localStorage.getItem(DEVICE_ID_KEY) || legacy.device_id || "",
+          hmac_secret: localStorage.getItem(DEVICE_SECRET_KEY) || legacy.hmac_secret || ""
+        };
       } catch {
-        return {};
+        return { device_id: "", hmac_secret: "" };
       }
     }
 
-    function setCreds(data) {
-      const payload = data || {};
-      const device_id = payload.device_id || "";
-      const hmac_secret = payload.hmac_secret || payload.device_secret || "";
-      localStorage.setItem(DEVICE_ID_KEY, device_id);
-      localStorage.setItem(DEVICE_SECRET_KEY, hmac_secret);
-      localStorage.setItem(
-        STORE_KEY,
-        JSON.stringify({
-          device_id,
-          hmac_secret,
-          device_label: payload.device_label || ""
-        })
-      );
+    function canExecuteControls() {
+      const creds = getCreds();
+      return Boolean(SIGNING_AVAILABLE && creds.device_id && creds.hmac_secret);
     }
 
-    function clearCreds() {
-      localStorage.removeItem(DEVICE_ID_KEY);
-      localStorage.removeItem(DEVICE_SECRET_KEY);
-      localStorage.removeItem(STORE_KEY);
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
     }
 
-    function setOut(value) {
-      const box = document.getElementById("outBox");
-      box.textContent = typeof value === "string" ? value : JSON.stringify(value, null, 2);
+    function formatTs(value) {
+      if (!value) return "n/a";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return String(value);
+      return date.toLocaleString();
     }
 
-    function setPill(text, ok = true) {
-      document.getElementById("pillText").textContent = text;
-      document.querySelector(".dot").style.background = ok ? "#3bcf8e" : "#ff5d6e";
+    function setText(id, value) {
+      const node = document.getElementById(id);
+      if (node) node.textContent = value;
     }
 
-    function setPairInfo(text) {
-      const box = document.getElementById("pairInfoBox");
-      box.textContent = text || "Pairing not started.";
+    function statusClass(status) {
+      const value = String(status || "idle").toLowerCase();
+      if (value === "green" || value === "success" || value === "pass") return "status-green state-success";
+      if (value === "yellow" || value === "warn") return "status-yellow";
+      if (value === "red" || value === "fail" || value === "failed") return "status-red state-fail";
+      if (value === "running") return "state-running";
+      return "state-idle";
     }
 
-    function formatCad(value) {
-      const num = Number(value);
-      if (!Number.isFinite(num)) {
-        return "n/a";
-      }
-      const formatted = new Intl.NumberFormat("en-CA", {
-        style: "currency",
-        currency: "CAD",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }).format(num);
-      return `${formatted} CAD`;
-    }
-
-    function showToast(text, kind = "ok") {
+    function showToast(text) {
       const toast = document.getElementById("toast");
-      if (!toast) return;
-      toast.textContent = text || "";
-      toast.classList.remove("hidden", "ok", "error");
-      toast.classList.add(kind === "error" ? "error" : "ok");
-      if (state.toastTimer) {
-        clearTimeout(state.toastTimer);
-      }
-      state.toastTimer = setTimeout(() => {
-        toast.classList.add("hidden");
-      }, 3200);
+      toast.textContent = text;
+      toast.classList.remove("hidden");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.add("hidden"), 2600);
     }
 
-    function renderDoctorRun(job) {
-      const box = document.getElementById("doctorRunBox");
-      const runBtn = document.getElementById("runDoctorBtn");
-      const modeSelect = document.getElementById("doctorModeSelect");
-      if (!job || typeof job !== "object") {
-        box.textContent = "No doctor run found yet.";
-        state.doctorJobRunning = false;
-        state.latestDoctorJobId = "";
-        if (runBtn) {
-          runBtn.disabled = !SIGNING_AVAILABLE;
-          runBtn.textContent = "Run Doctor";
-        }
-        if (modeSelect) {
-          modeSelect.disabled = false;
-        }
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
         return;
       }
-
-      state.latestDoctorJobId = String(job.job_id || "");
-      const started = job.started_at_utc || "unknown";
-      const ended = job.ended_at_utc || "(running)";
-      const mode = job.mode || "full";
-      const status = job.ended_at_utc ? (job.ok ? "success" : "failed") : "running";
-      const reportPath = (job.artifacts && (job.artifacts.doctor_report || job.artifacts.doctor_quick_report)) || "reports/mason2_doctor_report.json";
-      const stdoutLog = (job.artifacts && job.artifacts.stdout_log) || "";
-      const stderrLog = (job.artifacts && job.artifacts.stderr_log) || "";
-      const errorText = job.error || "none";
-      box.textContent = [
-        `job_id: ${job.job_id || "unknown"}`,
-        `action: ${job.action || "run_doctor"}`,
-        `mode: ${mode}`,
-        `requested_by_device: ${job.requested_by_device || "unknown"}`,
-        `started_at_utc: ${started}`,
-        `ended_at_utc: ${ended}`,
-        `status: ${status}`,
-        `error: ${errorText}`,
-        `doctor_report: ${reportPath}`,
-        `stdout_log: ${stdoutLog || "n/a"}`,
-        `stderr_log: ${stderrLog || "n/a"}`
-      ].join("\n");
-
-      state.doctorJobRunning = !job.ended_at_utc;
-      if (runBtn) {
-        runBtn.disabled = state.doctorJobRunning || !SIGNING_AVAILABLE;
-        runBtn.textContent = state.doctorJobRunning ? "Run Doctor (running...)" : "Run Doctor";
-      }
-      if (modeSelect) {
-        modeSelect.disabled = state.doctorJobRunning;
-        if (job.mode && (job.mode === "quick" || job.mode === "full")) {
-          modeSelect.value = job.mode;
-        }
-      }
-    }
-
-    function renderE2ERun(job) {
-      const box = document.getElementById("e2eBox");
-      const runBtn = document.getElementById("runE2EBtn");
-      if (!job || typeof job !== "object") {
-        box.textContent = "No E2E run found yet.";
-        state.e2eJobRunning = false;
-        state.latestE2EJobId = "";
-        if (runBtn) {
-          runBtn.disabled = !SIGNING_AVAILABLE;
-          runBtn.textContent = "Run E2E Verify";
-        }
-        return;
-      }
-
-      state.latestE2EJobId = String(job.job_id || "");
-      const started = job.started_at_utc || "unknown";
-      const ended = job.ended_at_utc || "(running)";
-      const status = job.ended_at_utc ? (job.ok ? "PASS" : "FAIL") : "RUNNING";
-      const resultStatus = job.result_status || "unknown";
-      const reportPath = (job.artifacts && job.artifacts.e2e_report) || "reports/mason2_e2e_verify.json";
-      const errorText = job.error || "none";
-      box.textContent = [
-        `job_id: ${job.job_id || "unknown"}`,
-        `started_at_utc: ${started}`,
-        `ended_at_utc: ${ended}`,
-        `status: ${status}`,
-        `overall_status: ${resultStatus}`,
-        `error: ${errorText}`,
-        `report: ${reportPath}`
-      ].join("\n");
-
-      state.e2eJobRunning = !job.ended_at_utc;
-      if (runBtn) {
-        runBtn.disabled = state.e2eJobRunning || !SIGNING_AVAILABLE;
-        runBtn.textContent = state.e2eJobRunning ? "Run E2E Verify (running...)" : "Run E2E Verify";
-      }
-    }
-
-    function parseApiError(err) {
-      const status = (err && typeof err === "object" && Number(err.status)) || 0;
-      const payload = err && typeof err === "object" ? err.payload : null;
-      const apiError = payload && typeof payload.error === "string" ? payload.error : "";
-      const hint = payload && typeof payload.hint === "string" ? payload.hint : "";
-      const message = (err && typeof err === "object" && err.message) ? String(err.message) : String(err);
-      return { status, apiError, hint, message };
-    }
-
-    function mapApiError(err) {
-      const parsed = parseApiError(err);
-      if (parsed.apiError === "signature_mismatch") {
-        return parsed.hint ? `Signature mismatch. ${parsed.hint}` : "Signature mismatch";
-      }
-      if (parsed.apiError === "missing_signature_headers") {
-        return "Not signed / not paired";
-      }
-      if (parsed.apiError === "device_not_paired" || parsed.apiError === "unknown_device") {
-        return "Not paired";
-      }
-      return parsed.message;
-    }
-
-    function stopDoctorJobPolling() {
-      if (state.doctorJobPollTimer) {
-        clearInterval(state.doctorJobPollTimer);
-        state.doctorJobPollTimer = null;
-      }
-    }
-
-    function stopE2EJobPolling() {
-      if (state.e2eJobPollTimer) {
-        clearInterval(state.e2eJobPollTimer);
-        state.e2eJobPollTimer = null;
-      }
-    }
-
-    function stopVisibilityPolling() {
-      if (state.timelinePollTimer) {
-        clearInterval(state.timelinePollTimer);
-        state.timelinePollTimer = null;
-      }
-      if (state.statusPollTimer) {
-        clearInterval(state.statusPollTimer);
-        state.statusPollTimer = null;
-      }
-      stopDoctorJobPolling();
-      stopE2EJobPolling();
-    }
-
-    function startVisibilityPolling() {
-      if (!SIGNING_AVAILABLE || document.hidden) {
-        return;
-      }
-      if (!state.timelinePollTimer) {
-        state.timelinePollTimer = setInterval(() => {
-          if (!document.hidden) {
-            refreshTimeline();
-          }
-        }, 3000);
-      }
-      if (!state.statusPollTimer) {
-        state.statusPollTimer = setInterval(() => {
-          if (!document.hidden) {
-            refreshStatus();
-          }
-        }, 5000);
-      }
-      if (state.awaitDoctorCompletion && !state.doctorJobPollTimer) {
-        state.doctorJobPollTimer = setInterval(() => {
-          if (!document.hidden) {
-            refreshDoctorLatest(true);
-          }
-        }, 2000);
-      }
-      if (state.awaitE2ECompletion && !state.e2eJobPollTimer) {
-        state.e2eJobPollTimer = setInterval(() => {
-          if (!document.hidden) {
-            refreshE2ELatest(true);
-          }
-        }, 2000);
-      }
-    }
-
-    function applySecureContextState() {
-      const banner = document.getElementById("secureBanner");
-      const needsHttps = !SIGNING_AVAILABLE;
-      banner.classList.toggle("hidden", !needsHttps);
-
-      const signedButtons = [
-        ...document.querySelectorAll(".ctl"),
-        document.getElementById("uploadTextBtn"),
-        document.getElementById("uploadZipBtn"),
-        document.getElementById("chatSendBtn"),
-        document.getElementById("paletteRunBtn")
-      ].filter(Boolean);
-
-      signedButtons.forEach((btn) => {
-        btn.disabled = needsHttps;
-        if (needsHttps) {
-          btn.title = "Open Athena over HTTPS (.ts.net) for signed requests.";
-        } else {
-          btn.title = "";
-        }
-      });
-    }
-
-    function isSecurityEvent(event) {
-      if (!event || typeof event !== "object") {
-        return false;
-      }
-      const kind = String(event.kind || "").toLowerCase();
-      const status = String(event.status || "").toLowerCase();
-      const details = event.details && typeof event.details === "object" ? event.details : {};
-      const reason = String(details.reason || details.error || "").toLowerCase();
-      if (kind === "auth" || kind.startsWith("auth_")) {
-        return true;
-      }
-      if (status === "rejected" && reason) {
-        return true;
-      }
-      return false;
-    }
-
-    function formatEventList(events) {
-      const rows = Array.isArray(events) ? events : [];
-      if (!rows.length) {
-        return "No events.";
-      }
-      return JSON.stringify(rows, null, 2);
-    }
-
-    function setTimelineFilter(mode) {
-      const next = String(mode || "").toLowerCase();
-      if (!["all", "operational", "security"].includes(next)) {
-        return;
-      }
-      state.timelineFilter = next;
-      const map = {
-        all: document.getElementById("timelineFilterAll"),
-        operational: document.getElementById("timelineFilterOperational"),
-        security: document.getElementById("timelineFilterSecurity")
-      };
-      Object.entries(map).forEach(([key, btn]) => {
-        if (!btn) return;
-        btn.classList.toggle("active", key === next);
-      });
-    }
-
-    function renderTimelineEvents(eventsPayload) {
-      const timelineBox = document.getElementById("timelineBox");
-      const securitySummary = document.getElementById("securitySummary");
-      const securityBox = document.getElementById("securityBox");
-      const securityPanel = document.getElementById("securityPanel");
-      const events = Array.isArray(eventsPayload) ? eventsPayload : [];
-      const securityEvents = events.filter((evt) => isSecurityEvent(evt));
-      const operationalEvents = events.filter((evt) => !isSecurityEvent(evt));
-
-      let visible = operationalEvents;
-      if (state.timelineFilter === "all") {
-        visible = events;
-      } else if (state.timelineFilter === "security") {
-        visible = securityEvents;
-      }
-      timelineBox.textContent = formatEventList(visible);
-
-      const securityCount = securityEvents.length;
-      const recentSecurity = securityEvents.slice(-5);
-      if (securitySummary) {
-        securitySummary.textContent = `Security Events: ${securityCount} (showing last 5)`;
-      }
-      if (securityBox) {
-        securityBox.textContent = formatEventList(recentSecurity);
-      }
-      if (securityPanel) {
-        securityPanel.classList.toggle("hidden", securityCount === 0);
-      }
-    }
-
-    function tabButton(name) {
-      const btn = document.createElement("button");
-      btn.className = "tab" + (state.activeTab === name ? " active" : "");
-      btn.textContent = name[0].toUpperCase() + name.slice(1);
-      btn.onclick = () => switchTab(name);
-      return btn;
-    }
-
-    function renderTabs() {
-      const host = document.getElementById("tabs");
-      host.innerHTML = "";
-      state.tabs.forEach((tab) => host.appendChild(tabButton(tab)));
-    }
-
-    function switchTab(tab) {
-      state.activeTab = tab;
-      renderTabs();
-      document.querySelectorAll(".tab-body").forEach((el) => el.classList.add("hidden"));
-      const body = document.getElementById(`tab-${tab}`);
-      if (body) body.classList.remove("hidden");
+      const area = document.createElement("textarea");
+      area.value = text;
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand("copy");
+      area.remove();
     }
 
     async function sha256Hex(text) {
-      const data = new TextEncoder().encode(text);
-      const hash = await crypto.subtle.digest("SHA-256", data);
+      const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
       return [...new Uint8Array(hash)].map((b) => b.toString(16).padStart(2, "0")).join("");
     }
 
     async function hmacHex(secret, payload) {
-      const keyData = new TextEncoder().encode(secret);
-      const key = await crypto.subtle.importKey(
-        "raw",
-        keyData,
-        { name: "HMAC", hash: "SHA-256" },
-        false,
-        ["sign"]
-      );
+      const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
       const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(payload));
       return [...new Uint8Array(sig)].map((b) => b.toString(16).padStart(2, "0")).join("");
     }
 
     async function signedFetch(url, options = {}, requireSign = true) {
       const opts = { method: "GET", ...options };
-      const bodyString = typeof opts.body === "string" ? opts.body : (opts.body ? JSON.stringify(opts.body) : "");
       const headers = new Headers(opts.headers || {});
-      const requestUrl = new URL(url, window.location.origin);
-      const pathWithQuery = requestUrl.pathname + requestUrl.search;
+      const bodyString = typeof opts.body === "string" ? opts.body : (opts.body ? JSON.stringify(opts.body) : "");
       if (bodyString && !headers.get("content-type")) {
         headers.set("content-type", "application/json");
       }
-
+      const requestUrl = new URL(url, window.location.origin);
+      const pathWithQuery = requestUrl.pathname + requestUrl.search;
       if (requireSign) {
-        if (!SIGNING_AVAILABLE) {
-          throw new Error("Open Athena over HTTPS (.ts.net) for signed requests.");
-        }
         const creds = getCreds();
-        if (!creds.device_id || !creds.hmac_secret) {
-          throw new Error("Device is not paired. Complete pairing first.");
+        if (!canExecuteControls()) {
+          throw new Error("No paired device secret available.");
         }
         const ts = Math.floor(Date.now() / 1000).toString();
         const nonce = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
@@ -890,598 +493,276 @@
         headers.set("x-mason-nonce", nonce);
         headers.set("x-mason-signature", sig);
       }
-
-      const resp = await fetch(requestUrl.toString(), {
-        method: opts.method,
-        headers,
-        body: bodyString || undefined
-      });
-      const text = await resp.text();
-      let json;
-      try { json = text ? JSON.parse(text) : {}; } catch { json = { ok: false, raw: text }; }
-      if (!resp.ok) {
-        const error = new Error(`${resp.status} ${JSON.stringify(json)}`);
-        error.status = resp.status;
-        error.payload = json;
-        error.pathWithQuery = pathWithQuery;
+      const response = await fetch(requestUrl.toString(), { method: opts.method, headers, body: bodyString || undefined, cache: "no-store" });
+      const text = await response.text();
+      let payload = {};
+      try { payload = text ? JSON.parse(text) : {}; } catch { payload = { ok: false, raw: text }; }
+      if (!response.ok) {
+        const error = new Error(payload.error || `${response.status}`);
+        error.payload = payload;
         throw error;
       }
-      return json;
+      return payload;
     }
 
-    async function refreshStatus() {
-      if (!SIGNING_AVAILABLE) {
-        setPill("HTTPS required", false);
-        setOut("Open Athena over HTTPS (.ts.net) for signed requests.");
+    function renderSummaryList(id, rows) {
+      const host = document.getElementById(id);
+      host.innerHTML = rows.map((row) => `<div class="summary-row"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.value)}</strong></div>`).join("");
+    }
+
+    function renderPortTable(rows) {
+      const host = document.getElementById("portTable");
+      host.innerHTML = rows.map((row) => {
+        const health = row.health_ready ? "PASS" : (row.health_status_code ? `HTTP ${row.health_status_code}` : "FAIL");
+        const listeners = (row.listeners || []).map((item) => `${item.local_address}:${row.port} pid=${item.owning_pid}`).join("; ") || "none";
+        return `
+          <tr>
+            <td>${escapeHtml(row.label)}</td>
+            <td>${escapeHtml(row.port)}</td>
+            <td><span class="control-state ${row.listening ? "state-success" : "state-fail"}">${row.listening ? "listening" : "down"}</span></td>
+            <td><span class="control-state ${row.health_ready ? "state-success" : "state-fail"}">${escapeHtml(health)}</span></td>
+            <td>${escapeHtml(listeners)}</td>
+            <td>${escapeHtml(row.health_url || row.health_error || "n/a")}</td>
+          </tr>`;
+      }).join("");
+    }
+
+    function renderRecentActions(events) {
+      const host = document.getElementById("recentActions");
+      if (!events.length) {
+        host.innerHTML = `<div class="feed-row">No recent actions found.</div>`;
         return;
       }
-      try {
-        const status = await signedFetch("/api/status");
-        const queue = await signedFetch("/api/queues");
-        const budget = await signedFetch("/api/budget");
-        const creds = getCreds();
-        setPill(creds.device_id && creds.hmac_secret ? "Paired" : "Online", true);
-
-        const kpis = document.getElementById("kpis");
-        const remainingCad = budget.budget_remaining_cad
-          ?? (budget.budget && (budget.budget.weekly_remaining_cad ?? budget.budget.remaining_cad))
-          ?? null;
-        const budgetLeftCad = formatCad(remainingCad);
-        const values = [
-          { label: "Killswitch", val: status.killswitch_enabled ? "ON" : "OFF" },
-          { label: "Pending LLM", val: queue.pending_llm_chunks ?? 0 },
-          { label: "Approvals", val: queue.approvals_total ?? 0 },
-          { label: "Budget Left", val: budgetLeftCad, sub: "USD ledger tracked internally" }
+      host.innerHTML = events.map((event) => `
+        <div class="feed-row">
+          <div class="feed-meta">${escapeHtml(formatTs(event.timestamp_utc))} | ${escapeHtml(event.kind || "event")} | ${escapeHtml(event.status || "")}${event.component ? ` | ${escapeHtml(event.component)}` : ""}</div>
+          <div>${escapeHtml(event.summary || "No extra detail.")}</div>
+        </div>`).join("");
+    }
+    function renderControls(controls) {
+      const host = document.getElementById("controlsGrid");
+      const manualMode = !canExecuteControls();
+      const order = ["start", "stop", "verify", "mirror"];
+      host.innerHTML = order.map((actionId) => {
+        const control = controls[actionId] || {};
+        const pending = state.pendingActionId === actionId;
+        const status = pending ? "running" : (control.status || "idle");
+        const note = pending ? "Request in flight. Athena will refresh this card automatically." : (control.message || "No result yet.");
+        const lastFinished = control.last_finished_at_utc ? formatTs(control.last_finished_at_utc) : "n/a";
+        const buttonClass = actionId === "stop" ? "secondary" : (actionId === "mirror" ? "secondary" : "");
+        const commandText = control.command_run || control.command || "";
+        const summaryRows = [
+          `<div class="summary-row"><span>Last status</span><strong>${escapeHtml(control.result_status || "n/a")}</strong></div>`,
+          `<div class="summary-row"><span>Last finished</span><strong>${escapeHtml(lastFinished)}</strong></div>`
         ];
-        kpis.innerHTML = "";
-        values.forEach((item) => {
-          const div = document.createElement("div");
-          div.className = "kpi";
-          const label = item.label ?? "";
-          const val = item.val ?? "n/a";
-          const sub = item.sub ? `<div class=\"sub\">${item.sub}</div>` : "";
-          div.innerHTML = `<div class=\"label\">${label}</div><div class=\"val\">${val}</div>${sub}`;
-          kpis.appendChild(div);
-        });
-
-        setOut({ status, queue, budget });
-        await refreshDoctorLatest(false);
-        await refreshE2ELatest(false);
-      } catch (err) {
-        setPill("Auth required", false);
-        setOut(mapApiError(err));
-      }
-    }
-
-    async function refreshDoctorLatest(notify = false) {
-      if (!SIGNING_AVAILABLE) {
-        renderDoctorRun(null);
-        return null;
-      }
-      try {
-        const data = await signedFetch("/api/jobs/latest?action=run_doctor");
-        const job = data && data.job ? data.job : null;
-        renderDoctorRun(job);
-        if (job && job.ended_at_utc) {
-          stopDoctorJobPolling();
-          if (state.awaitDoctorCompletion) {
-            if (job.ok) {
-              showToast(`Doctor run completed (${job.job_id || "job"})`, "ok");
-            } else {
-              showToast(`Doctor run failed (${job.error || "unknown_error"})`, "error");
-            }
-            state.awaitDoctorCompletion = false;
-            if (notify) {
-              setOut({ ok: Boolean(job.ok), job });
-            }
-          }
-        } else if (job && !job.ended_at_utc) {
-          state.awaitDoctorCompletion = true;
+        let pathMarkup = `<div class="path-box">${escapeHtml(control.log_path || "No log path available.")}</div>`;
+        let footerNote = manualMode ? "Command-only mode: clicking copies the exact command." : "Signed mode: clicking executes through Athena.";
+        if (actionId === "verify") {
+          summaryRows.push(`<div class="summary-row"><span>Failing component</span><strong>${escapeHtml(control.failing_component || "None")}</strong></div>`);
+          summaryRows.push(`<div class="summary-row"><span>Artifact</span><strong>${escapeHtml(control.result_path || "n/a")}</strong></div>`);
+          const failingLogPath = control.failing_log_path || control.raw_report_path || control.log_path || "No failing log path recorded.";
+          const rawReportPath = control.raw_report_path && control.raw_report_path !== failingLogPath
+            ? `
+              <div class="section-note">Raw verify report</div>
+              <div class="path-box">${escapeHtml(control.raw_report_path)}</div>`
+            : "";
+          pathMarkup = `
+            <div class="section-note">Failing log path</div>
+            <div class="path-box">${escapeHtml(failingLogPath)}</div>
+            <div class="section-note">${escapeHtml(control.recommended_next_action || "No recommended next action recorded.")}</div>
+            ${rawReportPath}`;
+          footerNote = manualMode
+            ? "Verify is unsigned in this session. Run the exact command below; Athena will refresh when reports/verify_last.json changes."
+            : "Signed verify runs fresh, waits for completion, and publishes reports/verify_last.json.";
         }
-        return job;
-      } catch (err) {
-        if (notify) {
-          showToast(mapApiError(err), "error");
-        }
-        return null;
-      }
-    }
-
-    async function refreshE2ELatest(notify = false) {
-      if (!SIGNING_AVAILABLE) {
-        renderE2ERun(null);
-        return null;
-      }
-      try {
-        const data = await signedFetch("/api/jobs/latest?action=run_e2e_verify");
-        const job = data && data.job ? data.job : null;
-        renderE2ERun(job);
-        if (job && job.ended_at_utc) {
-          stopE2EJobPolling();
-          if (state.awaitE2ECompletion) {
-            if (job.ok) {
-              showToast(`E2E verify completed (${job.job_id || "job"})`, "ok");
-            } else {
-              showToast(`E2E verify failed (${job.error || "unknown_error"})`, "error");
-            }
-            state.awaitE2ECompletion = false;
-            if (notify) {
-              setOut({ ok: Boolean(job.ok), job });
-            }
-          }
-        } else if (job && !job.ended_at_utc) {
-          state.awaitE2ECompletion = true;
-        }
-        return job;
-      } catch (err) {
-        if (notify) {
-          showToast(mapApiError(err), "error");
-        }
-        return null;
-      }
-    }
-
-    async function loadDoctorLogs() {
-      if (!SIGNING_AVAILABLE) {
-        return;
-      }
-      const logBox = document.getElementById("doctorLogBox");
-      const streamSelect = document.getElementById("doctorLogStreamSelect");
-      const stream = streamSelect ? streamSelect.value : "stdout";
-      const jobId = state.latestDoctorJobId || "";
-      if (!jobId) {
-        logBox.textContent = "No doctor job selected.";
-        return;
-      }
-      try {
-        const data = await signedFetch(`/api/jobs/logs/${encodeURIComponent(jobId)}?stream=${encodeURIComponent(stream)}&tail=2000`);
-        logBox.textContent = data.content || "(empty log)";
-      } catch (err) {
-        logBox.textContent = mapApiError(err);
-      }
-    }
-
-    async function refreshSetup() {
-      const setupBox = document.getElementById("setupBox");
-      try {
-        const version = await signedFetch("/api/version", {}, false);
-        const origin = window.location.origin || "";
-        const httpsFromOrigin = origin.startsWith("https://") && origin.includes(".ts.net")
-          ? `${origin}/athena/`
-          : "";
-        const httpsUrl = httpsFromOrigin || version.athena_https_url || "not detected";
-        const lines = [
-          `Build UTC: ${version.build_timestamp_utc || "unknown"}`,
-          `Git Commit: ${version.git_commit_short || "unknown"}`,
-          `Signed Requests: ${version.signed_requests_required ? "ENABLED" : "DISABLED"}`,
-          `HTTPS URL: ${httpsUrl}`,
-          `Tailnet URL: ${version.tailnet_url || "not detected yet"}`,
-          `Local URL: ${version.local_url || "http://127.0.0.1:8000/athena/"}`,
-          "",
-          "Pairing steps:",
-          "1) Start Pairing",
-          "2) Complete Pairing",
-          "3) Add to Home Screen in Safari"
-        ];
-        setupBox.textContent = lines.join("\n");
-      } catch (err) {
-        setupBox.textContent = mapApiError(err);
-      }
-    }
-
-    async function refreshApprovals() {
-      if (!SIGNING_AVAILABLE) {
-        document.getElementById("approvalsBox").textContent = "HTTPS required for signed calls.";
-        return;
-      }
-      try {
-        const data = await signedFetch("/api/approvals");
-        document.getElementById("approvalsBox").textContent = JSON.stringify(data, null, 2);
-      } catch (err) {
-        document.getElementById("approvalsBox").textContent = mapApiError(err);
-      }
-    }
-
-    async function refreshComponents() {
-      if (!SIGNING_AVAILABLE) {
-        document.getElementById("componentsBox").textContent = "HTTPS required for signed calls.";
-        return;
-      }
-      try {
-        const tabs = await signedFetch("/api/athena/tabs");
-        state.components = tabs.components || [];
-        const buttonHost = document.getElementById("componentButtons");
-        buttonHost.innerHTML = "";
-        state.components.forEach((c) => {
-          const b = document.createElement("button");
-          b.textContent = c.label || c.component_id;
-          b.onclick = async () => {
-            const data = await signedFetch(`/api/athena/status/${encodeURIComponent(c.component_id)}`);
-            document.getElementById("componentsBox").textContent = JSON.stringify(data, null, 2);
-          };
-          buttonHost.appendChild(b);
-        });
-        document.getElementById("componentsBox").textContent = JSON.stringify(tabs, null, 2);
-      } catch (err) {
-        document.getElementById("componentsBox").textContent = mapApiError(err);
-      }
-    }
-
-    async function refreshTimeline() {
-      if (!SIGNING_AVAILABLE) {
-        document.getElementById("timelineBox").textContent = "HTTPS required for signed calls.";
-        const panel = document.getElementById("securityPanel");
-        if (panel) panel.classList.add("hidden");
-        return;
-      }
-      try {
-        const data = await signedFetch("/api/events?limit=50");
-        renderTimelineEvents(data && Array.isArray(data.events) ? data.events : []);
-      } catch (err) {
-        document.getElementById("timelineBox").textContent = mapApiError(err);
-        const panel = document.getElementById("securityPanel");
-        if (panel) panel.classList.add("hidden");
-      }
-    }
-
-    async function runDoctorNow() {
-      const runBtn = document.getElementById("runDoctorBtn");
-      const modeSelect = document.getElementById("doctorModeSelect");
-      const modeValue = modeSelect ? (modeSelect.value || "quick") : "quick";
-      if (runBtn) {
-        runBtn.disabled = true;
-        runBtn.textContent = "Run Doctor (running...)";
-      }
-      if (modeSelect) {
-        modeSelect.disabled = true;
-      }
-      try {
-        const data = await signedFetch(`/api/control/run_doctor?mode=${encodeURIComponent(modeValue)}`, { method: "POST" });
-        setOut(data);
-        if (!data.ok) {
-          const message = data.error ? `Run Doctor failed to start: ${data.error}` : "Run Doctor failed to start.";
-          showToast(message, "error");
-          renderDoctorRun({
-            job_id: data.job_id || "",
-            action: "run_doctor",
-            mode: modeValue,
-            requested_by_device: "unknown",
-            started_at_utc: new Date().toISOString(),
-            ended_at_utc: new Date().toISOString(),
-            ok: false,
-            error: data.error || "start_failed",
-            artifacts: data.artifacts || { doctor_report: "reports/mason2_doctor_report.json" }
-          });
-          return;
-        }
-        state.awaitDoctorCompletion = true;
-        showToast(`Doctor started: ${data.job_id || "job queued"}`, "ok");
-        renderDoctorRun({
-          job_id: data.job_id || "",
-          action: "run_doctor",
-          mode: modeValue,
-          requested_by_device: "this_device",
-          started_at_utc: new Date().toISOString(),
-          ended_at_utc: null,
-          ok: null,
-          error: null,
-          artifacts: data.artifacts || { doctor_report: "reports/mason2_doctor_report.json" }
-        });
-        await refreshDoctorLatest(false);
-        await refreshTimeline();
-        if (!state.doctorJobPollTimer) {
-          state.doctorJobPollTimer = setInterval(() => {
-            if (!document.hidden) {
-              refreshDoctorLatest(true);
-            }
-          }, 2000);
-        }
-      } catch (err) {
-        const message = mapApiError(err);
-        showToast(message, "error");
-        setOut(message);
-        if (runBtn) {
-          runBtn.disabled = !SIGNING_AVAILABLE;
-          runBtn.textContent = "Run Doctor";
-        }
-        if (modeSelect) {
-          modeSelect.disabled = false;
-        }
-      }
-    }
-
-    async function runE2ENow() {
-      const runBtn = document.getElementById("runE2EBtn");
-      if (runBtn) {
-        runBtn.disabled = true;
-        runBtn.textContent = "Run E2E Verify (running...)";
-      }
-      try {
-        const data = await signedFetch("/api/control/run_e2e_verify", { method: "POST" });
-        setOut(data);
-        if (!data.ok) {
-          const message = data.error ? `Run E2E failed to start: ${data.error}` : "Run E2E failed to start.";
-          showToast(message, "error");
-          renderE2ERun({
-            job_id: data.job_id || "",
-            action: "run_e2e_verify",
-            requested_by_device: "unknown",
-            started_at_utc: new Date().toISOString(),
-            ended_at_utc: new Date().toISOString(),
-            ok: false,
-            error: data.error || "start_failed",
-            artifacts: data.artifacts || { e2e_report: "reports/mason2_e2e_verify.json" }
-          });
-          return;
-        }
-        state.awaitE2ECompletion = true;
-        showToast(`E2E verify started: ${data.job_id || "job queued"}`, "ok");
-        renderE2ERun({
-          job_id: data.job_id || "",
-          action: "run_e2e_verify",
-          requested_by_device: "this_device",
-          started_at_utc: new Date().toISOString(),
-          ended_at_utc: null,
-          ok: null,
-          error: null,
-          artifacts: data.artifacts || { e2e_report: "reports/mason2_e2e_verify.json" }
-        });
-        await refreshE2ELatest(false);
-        await refreshTimeline();
-        if (!state.e2eJobPollTimer) {
-          state.e2eJobPollTimer = setInterval(() => {
-            if (!document.hidden) {
-              refreshE2ELatest(true);
-            }
-          }, 2000);
-        }
-      } catch (err) {
-        const message = mapApiError(err);
-        showToast(message, "error");
-        setOut(message);
-        if (runBtn) {
-          runBtn.disabled = !SIGNING_AVAILABLE;
-          runBtn.textContent = "Run E2E Verify";
-        }
-      }
-    }
-
-    async function runControl(path, payload = null) {
-      try {
-        const data = await signedFetch(path, { method: "POST", body: payload ? JSON.stringify(payload) : "" });
-        setOut(data);
-        await refreshStatus();
-        await refreshTimeline();
-      } catch (err) {
-        setOut(mapApiError(err));
-      }
-    }
-
-    async function doPairStart() {
-      try {
-        const device_id = document.getElementById("pairDeviceId").value.trim();
-        const label = document.getElementById("pairDeviceLabel").value || "iPhone";
-        if (device_id.length < 3) {
-          throw new Error("Device ID must be at least 3 characters.");
-        }
-        const data = await signedFetch(
-          "/api/auth/pair/start",
-          { method: "POST", body: JSON.stringify({ device_id, device_label: label }) },
-          false
-        );
-        document.getElementById("pairToken").value = data.token || "";
-        setPairInfo(
-          `Pair code: ${data.pair_code || "n/a"}\nExpires: ${data.expires_at_utc || "n/a"}\nDevice: ${device_id}`
-        );
-        setOut({ ok: true, token_received: Boolean(data.token), pair_code: data.pair_code, expires_at_utc: data.expires_at_utc });
-      } catch (err) {
-        setOut(mapApiError(err));
-      }
-    }
-
-    async function doPairComplete() {
-      try {
-        const device_id = document.getElementById("pairDeviceId").value.trim();
-        const token = document.getElementById("pairToken").value.trim();
-        if (device_id.length < 3) {
-          throw new Error("Device ID must be at least 3 characters.");
-        }
-        if (!token) {
-          throw new Error("Pair token is required.");
-        }
-        const data = await signedFetch(
-          "/api/auth/pair/complete",
-          { method: "POST", body: JSON.stringify({ device_id, token }) },
-          false
-        );
-        const secretValue = data.device_secret || data.hmac_secret || "";
-        if (!secretValue) {
-          throw new Error("Pairing response missing device secret.");
-        }
-        setCreds({
-          device_id: data.device_id || device_id,
-          hmac_secret: secretValue,
-          device_label: document.getElementById("pairDeviceLabel").value.trim() || "iPhone"
-        });
-        setPairInfo(`Paired device: ${data.device_id || device_id}`);
-
-        if (!SIGNING_AVAILABLE) {
-          setPill("HTTPS required", false);
-          setOut({
-            ok: true,
-            paired: true,
-            device_id: data.device_id || device_id,
-            note: "Pairing saved. Open Athena over HTTPS (.ts.net) to run signed calls."
-          });
-          return;
-        }
-
-        setPill("Paired", true);
-
-        const signedStatus = await signedFetch("/api/status", {}, true);
-        setOut({
-          ok: true,
-          paired: true,
-          device_id: data.device_id || device_id,
-          signed_status_ok: Boolean(signedStatus && signedStatus.ok)
-        });
-        await refreshStatus();
-      } catch (err) {
-        setPill("Auth required", false);
-        setOut(mapApiError(err));
-      }
-    }
-
-    function doPairClear() {
-      clearCreds();
-      document.getElementById("pairToken").value = "";
-      setPairInfo("Pairing cleared.");
-      setPill("Auth required", false);
-      setOut({ ok: true, pairing_cleared: true });
-    }
-
-    async function saveUploadText() {
-      const text = document.getElementById("uploadText").value;
-      await runControl("/api/upload_text", { source: "athena_upload", kind: "upload_text", text, tags: ["athena"] });
-    }
-
-    async function saveUploadZip() {
-      const filename = document.getElementById("zipFilename").value || "archive.zip";
-      const zip_base64 = document.getElementById("zipBase64").value.trim();
-      await runControl("/api/upload_zip", { filename, zip_base64, tags: ["athena"] });
-    }
-
-    async function saveChat() {
-      const text = document.getElementById("chatText").value;
-      await runControl("/api/chat", { text, tags: ["athena", "chat"] });
-    }
-
-    async function runPalette() {
-      const q = (document.getElementById("paletteInput").value || "").toLowerCase();
-      const map = {
-        doctor: "/api/control/run_doctor",
-        e2e: "/api/control/run_e2e_verify",
-        ingest: "/api/control/ingest/run",
-        mirror: "/api/control/mirror/run",
-        start: "/api/control/stack/start",
-        stop: "/api/control/stack/stop",
-        freeze: "/api/control/freeze",
-        unfreeze: "/api/control/unfreeze"
-      };
-      let target = "";
-      Object.keys(map).forEach((k) => { if (!target && q.includes(k)) target = map[k]; });
-      if (!target) {
-        document.getElementById("paletteBox").textContent = "No matching command.";
-        return;
-      }
-      try {
-        if (target === "/api/control/run_doctor") {
-          const modeSelect = document.getElementById("doctorModeSelect");
-          if (modeSelect && q.includes("full")) {
-            modeSelect.value = "full";
-          } else if (modeSelect) {
-            modeSelect.value = "quick";
-          }
-          await runDoctorNow();
-          document.getElementById("paletteBox").textContent = "Doctor job queued.";
-          return;
-        }
-        if (target === "/api/control/run_e2e_verify") {
-          await runE2ENow();
-          document.getElementById("paletteBox").textContent = "E2E verify job queued.";
-          return;
-        }
-        const data = await signedFetch(target, { method: "POST" });
-        document.getElementById("paletteBox").textContent = JSON.stringify(data, null, 2);
-        await refreshTimeline();
-      } catch (err) {
-        document.getElementById("paletteBox").textContent = mapApiError(err);
-      }
-    }
-
-    function wire() {
-      applySecureContextState();
-      setTimelineFilter("operational");
-      renderTabs();
-      switchTab("status");
-      document.getElementById("pairStartBtn").onclick = doPairStart;
-      document.getElementById("pairCompleteBtn").onclick = doPairComplete;
-      document.getElementById("pairClearBtn").onclick = doPairClear;
-      document.getElementById("uploadTextBtn").onclick = saveUploadText;
-      document.getElementById("uploadZipBtn").onclick = saveUploadZip;
-      document.getElementById("chatSendBtn").onclick = saveChat;
-      document.getElementById("paletteRunBtn").onclick = runPalette;
-      document.getElementById("viewDoctorLogsBtn").onclick = loadDoctorLogs;
-      document.getElementById("timelineFilterAll").onclick = () => {
-        setTimelineFilter("all");
-        refreshTimeline();
-      };
-      document.getElementById("timelineFilterOperational").onclick = () => {
-        setTimelineFilter("operational");
-        refreshTimeline();
-      };
-      document.getElementById("timelineFilterSecurity").onclick = () => {
-        setTimelineFilter("security");
-        refreshTimeline();
-      };
-
-      document.querySelectorAll(".ctl").forEach((btn) => {
-        btn.onclick = () => {
-          const path = btn.getAttribute("data-action");
-          if (!path) return;
-          if (path === "/api/control/run_doctor") {
-            runDoctorNow();
-            return;
-          }
-          if (path === "/api/control/run_e2e_verify") {
-            runE2ENow();
-            return;
-          }
-          if (path === "/api/control/mirror/run") {
-            runControl(path, { reason: "manual" });
-          } else {
-            runControl(path);
-          }
-        };
+        return `
+          <article class="control-card">
+            <div class="control-head">
+              <div>
+                <h2>${escapeHtml(control.label || actionId)}</h2>
+                <div class="section-note">${escapeHtml(note)}</div>
+              </div>
+              <span class="control-state ${statusClass(status)}">${escapeHtml(status)}</span>
+            </div>
+            <button type="button" class="${buttonClass}" data-action="${escapeHtml(actionId)}" ${pending ? "disabled" : ""}>${escapeHtml(manualMode && actionId === "verify" ? "Copy Verify Command" : (control.label || actionId))}</button>
+            <div class="summary-list">
+              ${summaryRows.join("")}
+            </div>
+            ${pathMarkup}
+            <pre class="command">${escapeHtml(commandText || "No command available.")}</pre>
+            <div class="section-note">${escapeHtml(footerNote)}</div>
+          </article>`;
+      }).join("");
+      host.querySelectorAll("button[data-action]").forEach((button) => {
+        button.addEventListener("click", () => runAction(button.getAttribute("data-action")));
       });
+    }
 
+    function renderDashboard(data) {
+      state.dashboard = data;
+      const overall = data.overall || {};
+      const severity = String(overall.severity || "red").toLowerCase();
+      const overallStatus = document.getElementById("overallStatus");
+      overallStatus.textContent = String(overall.status || "RED");
+      overallStatus.className = `status-badge ${statusClass(severity)}`;
+
+      const modeNode = document.getElementById("controlMode");
       const creds = getCreds();
-      if (creds.device_id) {
-        document.getElementById("pairDeviceId").value = creds.device_id;
-        setPill("Paired", true);
-        setPairInfo(`Stored pairing for device: ${creds.device_id}`);
-      }
-      if (creds.device_label) {
-        document.getElementById("pairDeviceLabel").value = creds.device_label;
+      modeNode.textContent = canExecuteControls() ? `Signed: ${creds.device_id}` : "Command-only";
+
+      const failure = data.most_relevant_failure || {};
+      const heroLine = severity === "green"
+        ? "All required stack checks are passing. Athena is watching the real control-plane files and ports."
+        : `${String(overall.status || "RED")} state: ${failure.component_label || "Unknown component"} - ${failure.why || "No reason supplied."}`;
+      setText("heroNote", heroLine);
+      setText("runId", data.current_run_id || "n/a");
+      setText("lastPass", formatTs(data.last_successful_pass && data.last_successful_pass.generated_at_utc));
+      setText("failingComponent", failure.component_label || "None");
+      setText("lastRefresh", formatTs(data.generated_at_utc));
+
+      renderControls(data.controls || {});
+      renderPortTable((data.ports && data.ports.table) || []);
+      renderSummaryList("startRunSummary", [
+        { label: "Status", value: data.start_run?.summary?.status || "n/a" },
+        { label: "Run ID", value: data.start_run?.summary?.run_id || "n/a" },
+        { label: "Mode", value: data.start_run?.summary?.mode || "n/a" },
+        { label: "Required ready", value: `${data.start_run?.summary?.ready_count ?? 0}/${data.start_run?.summary?.required_count ?? 0}` },
+        { label: "Report", value: data.start_run?.path || "n/a" }
+      ]);
+      renderSummaryList("lastFailureSummary", [
+        { label: "Status", value: data.last_failure_file?.summary?.status || "NONE" },
+        { label: "Component", value: data.last_failure_file?.summary?.component || "n/a" },
+        { label: "Reason", value: data.last_failure_file?.summary?.reason || "No failure recorded." },
+        { label: "Run ID", value: data.last_failure_file?.summary?.run_id || "n/a" },
+        { label: "Report", value: data.last_failure_file?.path || "n/a" }
+      ]);
+      renderSummaryList("mirrorSummary", [
+        { label: "OK", value: String(Boolean(data.mirror_update?.summary?.ok)) },
+        { label: "Phase", value: data.mirror_update?.summary?.phase || "n/a" },
+        { label: "Push", value: data.mirror_update?.summary?.mirror_push || "n/a" },
+        { label: "Reason", value: data.mirror_update?.summary?.reason || "n/a" },
+        { label: "Report", value: data.mirror_update?.path || "n/a" }
+      ]);
+      renderSummaryList("systemHealthSummary", [
+        { label: "CPU", value: `${data.system_health?.cpu_percent ?? "n/a"}%` },
+        { label: "RAM used", value: `${data.system_health?.memory_used_percent ?? "n/a"}% (${data.system_health?.memory_used_human || "n/a"})` },
+        { label: "RAM total", value: data.system_health?.memory_total_human || "n/a" },
+        { label: "Disk free", value: data.system_health?.disk_free_human || "n/a" },
+        { label: "Uptime", value: data.system_health?.uptime_human || "n/a" }
+      ]);
+      renderSummaryList("approvalsSummary", [
+        { label: "Pending", value: data.approvals?.pending_total ?? 0 },
+        { label: "Eligible", value: data.approvals?.eligible_total ?? 0 },
+        { label: "Quarantine", value: data.approvals?.quarantine_total ?? 0 },
+        { label: "Approved", value: data.approvals?.approved_total ?? 0 },
+        { label: "Posture report", value: data.approvals?.path || "n/a" }
+      ]);
+      renderSummaryList("systemValidationSummary", [
+        { label: "System", value: data.system_validation?.overall_status || "UNKNOWN" },
+        { label: "Counts", value: `${data.system_validation?.failed_count ?? 0} fail / ${data.system_validation?.warn_count ?? 0} warn / ${data.system_validation?.passed_count ?? 0} pass` },
+        { label: "Failing", value: (data.system_validation?.failing_components || []).join(", ") || "None" },
+        { label: "Next action", value: data.system_validation?.recommended_next_action || "Run the whole-system validator." },
+        { label: "Updated", value: formatTs(data.system_validation?.timestamp_utc) }
+      ]);
+      renderSummaryList("autonomySummary", [
+        { label: "Trust posture", value: data.autonomy?.trust_posture || "n/a" },
+        { label: "Local-first", value: String(Boolean(data.autonomy?.local_first)) },
+        { label: "High-risk auto-apply", value: String(Boolean(data.autonomy?.high_risk_auto_apply)) },
+        { label: "Money loop", value: String(Boolean(data.autonomy?.money_loop_enabled)) },
+        { label: "Drift findings", value: `${data.autonomy?.drift_findings_total ?? 0} total / ${data.autonomy?.drift_high_risk_count ?? 0} high-risk` }
+      ]);
+      renderRecentActions(data.recent_actions || []);
+
+      setText("failureLabel", failure.component_label || "No failing component");
+      setText("failureLogPath", data.failure_logs?.log_path || "No failing log path available.");
+      setText("failureLogLines", (data.failure_logs?.lines || ["No failing component log available."]).join("\n"));
+
+      const recoveryCard = document.getElementById("recoveryCard");
+      const recovery = data.recovery || {};
+      if (recovery.show) {
+        recoveryCard.classList.remove("hidden");
+        document.getElementById("recoveryBody").innerHTML = `
+          <div class="summary-row"><span>Failed</span><strong>${escapeHtml(recovery.failed_component || failure.component_label || "Stack")}</strong></div>
+          <div class="summary-row"><span>Why</span><strong>${escapeHtml(recovery.why || "n/a")}</strong></div>
+          <div class="summary-row"><span>Recommended</span><strong>${escapeHtml(recovery.recommended_action_label || "n/a")}</strong></div>`;
+        const button = document.getElementById("recoveryButton");
+        button.textContent = recovery.recommended_action_label || "Run recovery";
+        button.onclick = () => runAction(recovery.recommended_action_id);
+      } else {
+        recoveryCard.classList.add("hidden");
       }
 
-      refreshStatus();
-      refreshSetup();
-      refreshApprovals();
-      refreshComponents();
-      refreshTimeline();
-      refreshDoctorLatest(false);
-      refreshE2ELatest(false);
-      startVisibilityPolling();
+      setText("controlNote", canExecuteControls()
+        ? "Signed controls are live. Every click executes through Athena and the cards keep the real command and log path visible."
+        : (SIGNING_AVAILABLE
+          ? "No paired device secret was found. Buttons copy the exact command and keep the real log path visible."
+          : "This session cannot sign requests. Buttons copy the exact command and keep the real log path visible."));
+    }
 
-      document.addEventListener("visibilitychange", () => {
-        if (document.hidden) {
-          stopVisibilityPolling();
-          return;
+    async function runAction(actionId) {
+      const control = state.dashboard?.controls?.[actionId];
+      if (!control) return;
+      if (!canExecuteControls()) {
+        await copyText(control.command_run || control.command || "");
+        showToast(actionId === "verify"
+          ? "Verify is unsigned: command copied"
+          : `${control.label || actionId}: command copied`);
+        return;
+      }
+      state.pendingActionId = actionId;
+      renderControls(state.dashboard.controls || {});
+      try {
+        const options = { method: "POST" };
+        if (actionId === "mirror") {
+          options.body = { reason: "manual" };
         }
-        refreshStatus();
-        refreshTimeline();
-        refreshDoctorLatest(false);
-        refreshE2ELatest(false);
-        startVisibilityPolling();
-      });
+        const result = await signedFetch(control.api_path, options, true);
+        showToast(actionId === "verify"
+          ? `${control.label}: ${result.status || "UNKNOWN"}`
+          : (result.status === "running" ? `${control.label} queued` : `${control.label} finished`));
+      } catch (error) {
+        const apiError = error?.payload?.error || error?.message || "request_failed";
+        if (/paired|signature|device/i.test(apiError)) {
+          await copyText(control.command_run || control.command || "");
+          showToast(actionId === "verify"
+            ? "Verify is unsigned: command copied"
+            : `${control.label}: command copied instead of inline execution`);
+        } else {
+          showToast(`${control.label}: ${apiError}`);
+        }
+      } finally {
+        state.pendingActionId = "";
+        await refreshDashboard();
+      }
     }
 
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/athena/sw.js?v=4").catch(() => {});
+    async function refreshDashboard() {
+      try {
+        const data = await signedFetch("/api/stack_status", {}, false);
+        renderDashboard(data);
+      } catch (error) {
+        setText("heroNote", `Athena could not load stack status: ${error?.message || error}`);
+        showToast("Athena could not refresh stack status.");
+      }
     }
 
-    wire();
+    function startPolling() {
+      clearInterval(state.refreshTimer);
+      state.refreshTimer = setInterval(() => {
+        if (!document.hidden) {
+          refreshDashboard();
+        }
+      }, 2000);
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) {
+        refreshDashboard();
+      }
+    });
+
+    refreshDashboard();
+    startPolling();
   </script>
 </body>
 </html>

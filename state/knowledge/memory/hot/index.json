@@ -1,0 +1,61 @@
+﻿{
+    "schema":  "mason-memory-index-v1",
+    "tier":  "hot",
+    "updated_at_utc":  "2026-03-07T21:09:56.4237835Z",
+    "items":  {
+                  "3a83322db02f47bdb057814492345ccc7fa1b1198a1d34fa4a70980d9885aea1":  {
+                                                                                           "record_path":  "state/knowledge/memory/records/3a83322db02f47bdb057814492345ccc7fa1b1198a1d34fa4a70980d9885aea1.json",
+                                                                                           "tier":  "hot",
+                                                                                           "source_type":  "json",
+                                                                                           "content_type":  "json",
+                                                                                           "summary":  "{\"component\":\"athena\",\"status\":\"warn\",\"next_action\":\"inspect verify_last.json\"}",
+                                                                                           "tags":  [
+                                                                                                        "smoke-clean",
+                                                                                                        "json",
+                                                                                                        "tier-hot"
+                                                                                                    ],
+                                                                                           "first_seen_utc":  "2026-03-07T21:07:49.3427246Z",
+                                                                                           "last_seen_utc":  "2026-03-07T21:09:55.8431791Z",
+                                                                                           "updated_at_utc":  "2026-03-07T21:09:55.8431791Z",
+                                                                                           "primary_source_path":  "C:\\Users\\Chris\\AppData\\Local\\Temp\\mason_memory_smoke\\facts.json",
+                                                                                           "source_ref_count":  1,
+                                                                                           "duplicate_source_count":  0
+                                                                                       },
+                  "49fbbae5a25e21d5e72fc95448cf459c747a8c726b665b57e576b5f9bece13f1":  {
+                                                                                           "record_path":  "state/knowledge/memory/records/49fbbae5a25e21d5e72fc95448cf459c747a8c726b665b57e576b5f9bece13f1.json",
+                                                                                           "tier":  "hot",
+                                                                                           "source_type":  "txt",
+                                                                                           "content_type":  "txt",
+                                                                                           "summary":  "Athena verify workflow must stay authoritative. Launcher should open Athena UI at /athena/ and Onyx UI at /.",
+                                                                                           "tags":  [
+                                                                                                        "smoke-clean",
+                                                                                                        "txt",
+                                                                                                        "tier-hot"
+                                                                                                    ],
+                                                                                           "first_seen_utc":  "2026-03-07T21:07:49.7157281Z",
+                                                                                           "last_seen_utc":  "2026-03-07T21:09:56.2877906Z",
+                                                                                           "updated_at_utc":  "2026-03-07T21:09:56.2877906Z",
+                                                                                           "primary_source_path":  "C:\\Users\\Chris\\AppData\\Local\\Temp\\mason_memory_smoke\\notes.txt",
+                                                                                           "source_ref_count":  2,
+                                                                                           "duplicate_source_count":  1
+                                                                                       },
+                  "ba71934c72680d8a70d4a9faff570738686c419c7a4af8e21f996f35284815d2":  {
+                                                                                           "record_path":  "state/knowledge/memory/records/ba71934c72680d8a70d4a9faff570738686c419c7a4af8e21f996f35284815d2.json",
+                                                                                           "tier":  "hot",
+                                                                                           "source_type":  "csv",
+                                                                                           "content_type":  "csv",
+                                                                                           "summary":  "name,port athena,8000 onyx,5353",
+                                                                                           "tags":  [
+                                                                                                        "smoke-clean",
+                                                                                                        "csv",
+                                                                                                        "tier-hot"
+                                                                                                    ],
+                                                                                           "first_seen_utc":  "2026-03-07T21:07:49.9417374Z",
+                                                                                           "last_seen_utc":  "2026-03-07T21:09:56.3807843Z",
+                                                                                           "updated_at_utc":  "2026-03-07T21:09:56.3807843Z",
+                                                                                           "primary_source_path":  "C:\\Users\\Chris\\AppData\\Local\\Temp\\mason_memory_smoke\\ports.csv",
+                                                                                           "source_ref_count":  1,
+                                                                                           "duplicate_source_count":  0
+                                                                                       }
+              }
+}

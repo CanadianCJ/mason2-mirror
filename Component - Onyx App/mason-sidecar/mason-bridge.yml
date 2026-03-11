@@ -1,0 +1,7 @@
+﻿assistant: "Mason"
+guardrails:
+  forbidden: ["apply_change","run_shell","exfiltrate_data"]
+review:
+  required_for: ["code_suggestion","policy_change"]
+audit:
+  log_file: "C:\Users\Chris\Desktop\ONYX\mason-sidecar\logs\bridge_audit.jsonl"

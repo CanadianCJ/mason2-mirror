@@ -1,0 +1,5 @@
+{
+  "max_auto_risk_level_for_mason":  "R2",
+  "max_auto_risk_level_for_athena": "R1",
+  "max_auto_risk_level_for_onyx":   "R0"
+}

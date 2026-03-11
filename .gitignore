@@ -1,30 +1,66 @@
-# Mirror Guardrails: secrets + runtime noise + dependency/vendor trees
+﻿# --- Mason: keep repo source-only, block huge/private artifacts ---
 
-# Secrets
-.env*
-config/secrets_mason.json
-**/secrets*.json
+# Known big/problem paths from your push
+snapshots/
+staging_*/
+**/reports/
+**/reports/*.json
+**/self_state.json
 
-# Runtime state / logs / reports
-state/
+# Vault / imports / exports / activity dumps (private + huge)
+VAULT_backup/
+**/VAULT_backup/
+**/imports/
+**/exports/
+**/User Online Activity/
+**/Conversations_*/
+
+# Giant "code export/slice" artifacts
+*Mason2-code-export-*.txt
+*Mason2-code-slice-*.txt
+*code-export*.txt
+*code-slice*.txt
+
+# Archives (commonly huge)
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+
+# Logs / caches / temp
 logs/
-reports/
-knowledge/ingest/raw/
-**/*log*
-**/*.pid
+**/logs/
+*.log
+*.tmp
 
-# Dependency and generated trees
-**/.venv/
-**/venv/
-**/__pycache__/
-**/node_modules/
-**/.dart_tool/
-**/build/
-**/dist/
-**/.pytest_cache/
+# Common dev/build junk
+node_modules/
+.venv/
+venv/
+__pycache__/
+dist/
+build/
 
-# OS / editor
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
+# Secrets / keys (never commit)
+.env
+config/.env
+config/secrets_mason.json
+*.pem
+*.key
+*.pfx
+*secret*
+*token*
+credentials*.json
+
+# Runtime state drift
+/state/forensic.mark
+/state/knowledge/mason_teacher_plan_latest.json
+/state/knowledge/ue_mason_state.json
+
+# Runtime/learning outputs
+/control/
+/knowledge/Mason/*.html
+/brain/learn_log_*.txt
+/learn/seeds/queue/
+/Mason2_tree_FULL.txt

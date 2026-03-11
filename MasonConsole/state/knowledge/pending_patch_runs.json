@@ -1,0 +1,9 @@
+﻿[
+  {
+    "id": "test-approval-001",
+    "component_id": "onyx",
+    "title": "Test approval for Onyx (R0)",
+    "risk_level": "R0",
+    "status": "pending"
+  }
+]

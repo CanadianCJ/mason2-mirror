@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "provider": "stripe",
+  "mode": "stub",
+  "publishable_key_env": "STRIPE_PUBLISHABLE_KEY",
+  "secret_key_env": "STRIPE_SECRET_KEY",
+  "webhook_secret_env": "STRIPE_WEBHOOK_SECRET",
+  "currency": "USD",
+  "success_url": "http://127.0.0.1:5353/",
+  "cancel_url": "http://127.0.0.1:5353/",
+  "portal_return_url": "http://127.0.0.1:5353/",
+  "money_actions_require_approval": true
+}

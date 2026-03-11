@@ -1,0 +1,7 @@
+﻿assistant:
+  model: "mason-bridge"   # label only; this is just metadata the sidecar shows
+forbidden: ["apply_change","run_shell","exfiltrate_data"]
+review:
+  required_for: ["code_suggestion","policy_change"]
+audit:
+  log_file: "./logs/bridge_audit.jsonl"

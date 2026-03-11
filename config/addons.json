@@ -1,26 +1,40 @@
 {
-  "version": 1,
+  "version": 2,
   "addons": [
+    {
+      "addon_id": "addon_sales_followup_v1",
+      "tool_id": "sales_followup_v1",
+      "name": "Sales Follow-Up Add-on",
+      "description": "Unlocks Sales Follow-Up for Starter tenants that need a tighter follow-up loop.",
+      "price_usd": 19.0,
+      "billing_interval": "monthly",
+      "eligible_plan_ids": [
+        "starter_monthly"
+      ],
+      "enabled_tools": [
+        "sales_followup_v1"
+      ],
+      "enabled_features": [
+        "deals"
+      ],
+      "status": "active"
+    },
     {
       "addon_id": "addon_marketing_pack_v1",
       "tool_id": "marketing_pack_v1",
       "name": "Marketing Pack Add-on",
-      "one_off_price_usd": 29.0,
-      "description": "Unlocks marketing campaign pack generation for any tier."
-    },
-    {
-      "addon_id": "addon_sales_followup_v1",
-      "tool_id": "sales_followup_v1",
-      "name": "Sales Follow-up Add-on",
-      "one_off_price_usd": 19.0,
-      "description": "Unlocks structured follow-up sequence generation for any tier."
-    },
-    {
-      "addon_id": "addon_rescue_plan_v1",
-      "tool_id": "rescue_plan_v1",
-      "name": "Rescue Plan Add-on",
-      "one_off_price_usd": 15.0,
-      "description": "Unlocks rescue planning for custom or legacy tiers."
+      "description": "Unlocks Marketing Pack for Starter or Growth tenants that need campaign scaffolding.",
+      "price_usd": 29.0,
+      "billing_interval": "monthly",
+      "eligible_plan_ids": [
+        "starter_monthly",
+        "growth_monthly"
+      ],
+      "enabled_tools": [
+        "marketing_pack_v1"
+      ],
+      "enabled_features": [],
+      "status": "active"
     }
   ]
 }
