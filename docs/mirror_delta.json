@@ -1,24 +1,28 @@
 ﻿{
-    "generated_at_utc":  "2026-03-11T06:27:35.7727534Z",
+    "generated_at_utc":  "2026-03-11T07:25:02.1811274Z",
     "mirror_root":  "C:\\Mason2_MIRROR",
-    "changed_count":  12,
-    "added_count":  3,
-    "modified_count":  9,
+    "changed_count":  16,
+    "added_count":  1,
+    "modified_count":  15,
     "removed_count":  0,
     "top_changed_paths":  [
+                              "Start_Mason2.ps1",
                               "docs/knowledge_pack/index.json",
                               "docs/knowledge_pack/stats.json",
                               "docs/mirror_delta.json",
                               "docs/mirror_manifest.json",
                               "state/knowledge/budget_state.json",
-                              "state/knowledge/pending_patch_runs.json",
-                              "state/knowledge/pending_patch_runs_archive_20260311_013358.json",
-                              "state/knowledge/pending_patch_runs_archive_20260311_013429.json",
+                              "state/knowledge/pending_patch_runs_archive_20260311_024345.json",
                               "state/knowledge/pending_patch_runs_quarantine.json",
                               "state/knowledge/stack_last_pids.json",
                               "state/knowledge/stack_pids.json",
-                              "tools/ops/Run_Host_Guardian.ps1"
+                              "tools/Mason_Component_Inventory.ps1",
+                              "tools/Mason_Doctor.ps1",
+                              "tools/Mason_Start_Core_NoApps.ps1",
+                              "tools/ops/Run_Host_Guardian.ps1",
+                              "tools/ops/Stack_Reset_And_Start.ps1",
+                              "tools/ops/Validate_Whole_System.ps1"
                           ],
-    "head_before":  "0eba0115036f5df1cddc5419bd10a75a716d5f46",
-    "head_after":  "c95524cfa00d86b295a1d20d8e62e12186c71800"
+    "head_before":  "c95524cfa00d86b295a1d20d8e62e12186c71800",
+    "head_after":  "45a1e2da6c7ff8c38d9f74e35ec8a6c4fa51d497"
 }

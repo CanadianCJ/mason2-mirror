@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at_utc":  "2026-03-11T07:03:09.2086912Z",
+    "generated_at_utc":  "2026-03-11T08:03:27.8457091Z",
     "source_root":  "C:\\Users\\Chris\\Desktop\\Mason2",
     "mirror_root":  "C:\\Mason2_MIRROR",
     "policy_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\mirror_policy.json",
@@ -186,7 +186,7 @@
                      "Component - Onyx App/mason-live/.venv/**",
                      "Component - Onyx App/mason-live/__pycache__/**"
                  ],
-    "last_sync_timestamp_utc":  "2026-03-11T07:03:09.2132186Z",
+    "last_sync_timestamp_utc":  "2026-03-11T08:03:27.8502579Z",
     "counts_per_folder":  [
                               {
                                   "name":  ".gitignore",
@@ -256,7 +256,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  17,
-                                  "total_bytes":  128365083
+                                  "total_bytes":  128365298
                               },
                               {
                                   "name":  "roadmap",
@@ -647,8 +647,8 @@
                                   "name":  "reports",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  39118,
-                                  "total_bytes":  1387059605
+                                  "file_count":  39167,
+                                  "total_bytes":  1391239472
                               }
                           ],
     "policy_summary":  {
@@ -731,9 +731,9 @@
                                                            "reports/queue/tool_factory_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  17683,
+                                "candidate_count":  17708,
                                 "matched_allowlist_count":  27,
-                                "excluded_pattern_count":  17656,
+                                "excluded_pattern_count":  17681,
                                 "eligible_count":  27,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -783,8 +783,8 @@
                                                                "reports\\ingest_index_20260306_233049.json",
                                                                "reports\\ingest_index_20260302_155104.json",
                                                                "reports\\ingest_index_20260305_044707.json",
-                                                               "reports\\ingest_index_20260302_084603.json",
                                                                "reports\\ingest_index_20260228_220603.json",
+                                                               "reports\\ingest_index_20260302_084603.json",
                                                                "reports\\ingest_index_20260302_094603.json"
                                                            ],
                                 "excluded_large_files":  [
