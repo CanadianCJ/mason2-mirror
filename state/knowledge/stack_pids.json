@@ -1,92 +1,177 @@
 ﻿{
-    "core_launcher_pid":  145380,
+    "core_launcher_pid":  53828,
     "tasks_to_approvals_loop_pid":  45236,
-    "mason_api_stderr_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_053526_571_mason_api_20260311_013526_stderr.log",
-    "bridge_pid":  124744,
-    "seed_api_stdout_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_053526_571_seed_api_20260311_013526_stdout.log",
+    "mason_api_stderr_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_064333_698_c08efd_mason_api_20260311_024352_stderr.log",
+    "bridge_pid":  157768,
+    "seed_api_stdout_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_064333_698_c08efd_seed_api_20260311_024355_stdout.log",
     "core_noapps_services":  [
                                  {
                                      "component":  "mason_api",
                                      "script":  "services\\mason_api\\serve_mason_api.py",
-                                     "pid":  37280,
+                                     "pid":  143220,
+                                     "listener_pid":  143220,
+                                     "started_pid":  143220,
+                                     "reused":  false,
                                      "commandline":  "C:\\Program Files\\Python313\\python.exe -u C:\\Users\\Chris\\Desktop\\Mason2\\services\\mason_api\\serve_mason_api.py",
-                                     "stdout_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_053526_571_mason_api_20260311_013526_stdout.log",
-                                     "stderr_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_053526_571_mason_api_20260311_013526_stderr.log"
+                                     "stdout_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_064333_698_c08efd_mason_api_20260311_024352_stdout.log",
+                                     "stderr_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_064333_698_c08efd_mason_api_20260311_024352_stderr.log",
+                                     "duplicate_cleanup":  [
+
+                                                           ]
                                  },
                                  {
                                      "component":  "seed_api",
                                      "script":  "services\\seed_api\\serve_seed_api.py",
-                                     "pid":  142500,
+                                     "pid":  91368,
+                                     "listener_pid":  91368,
+                                     "started_pid":  91368,
+                                     "reused":  false,
                                      "commandline":  "C:\\Program Files\\Python313\\python.exe -u C:\\Users\\Chris\\Desktop\\Mason2\\services\\seed_api\\serve_seed_api.py",
-                                     "stdout_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_053526_571_seed_api_20260311_013526_stdout.log",
-                                     "stderr_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_053526_571_seed_api_20260311_013526_stderr.log"
+                                     "stdout_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_064333_698_c08efd_seed_api_20260311_024355_stdout.log",
+                                     "stderr_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_064333_698_c08efd_seed_api_20260311_024355_stderr.log",
+                                     "duplicate_cleanup":  [
+
+                                                           ]
                                  }
                              ],
+    "athena_launcher_pid":  65760,
     "created_at_utc":  "2026-02-25T04:25:44.0824335Z",
-    "core_noapps_launched_at":  "2026-03-11T05:35:27.1616705Z",
-    "mason_api_stdout_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_053526_571_mason_api_20260311_013526_stdout.log",
-    "athena_pid":  128264,
+    "core_noapps_launched_at":  "2026-03-11T06:43:57.4627781Z",
+    "mason_api_stdout_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_064333_698_c08efd_mason_api_20260311_024352_stdout.log",
+    "athena_pid":  81480,
     "core_launcher_script":  "C:\\Users\\Chris\\Desktop\\Mason2\\tools\\Mason_Start_Core_NoApps.ps1",
+    "singleton_truth_updated_at":  "2026-03-11T06:44:09.7314664Z",
     "status_file":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\mason2_core_status.json",
     "start_log_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\logs\\stack_start_20260224_232544.txt",
-    "bridge_launcher_pid":  79636,
-    "start_run_id":  "20260311_053419_061_cefaf2",
-    "canonical_launcher_start":  "2026-03-11T05:34:23.1041376Z",
-    "canonical_launcher_pid":  92648,
+    "bridge_launcher_pid":  57208,
+    "start_run_id":  "20260311_064333_698_c08efd",
+    "canonical_launcher_start":  "2026-03-11T06:43:38.0299792Z",
+    "canonical_launcher_pid":  78952,
     "self_improve_pid":  126416,
     "mason_core_pid":  120256,
     "start_reports_dir":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start",
-    "onyx_pid":  143552,
-    "seed_api_pid":  142500,
-    "watcher_pid":  192264,
-    "mason_api_pid":  37280,
-    "seed_api_stderr_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_053526_571_seed_api_20260311_013526_stderr.log",
+    "onyx_launcher_pid":  8968,
+    "onyx_pid":  32896,
+    "singleton_runtime":  [
+                              {
+                                  "component":  "mason_api",
+                                  "port":  8383,
+                                  "owner_pids":  [
+                                                     143220
+                                                 ],
+                                  "owner_count":  1,
+                                  "canonical_owner":  143220,
+                                  "launcher_owner":  null,
+                                  "status":  "singleton",
+                                  "recommended_action":  "No action required."
+                              },
+                              {
+                                  "component":  "seed_api",
+                                  "port":  8109,
+                                  "owner_pids":  [
+                                                     91368
+                                                 ],
+                                  "owner_count":  1,
+                                  "canonical_owner":  91368,
+                                  "launcher_owner":  null,
+                                  "status":  "singleton",
+                                  "recommended_action":  "No action required."
+                              },
+                              {
+                                  "component":  "bridge",
+                                  "port":  8484,
+                                  "owner_pids":  [
+                                                     157768
+                                                 ],
+                                  "owner_count":  1,
+                                  "canonical_owner":  157768,
+                                  "launcher_owner":  57208,
+                                  "status":  "singleton",
+                                  "recommended_action":  "No action required."
+                              },
+                              {
+                                  "component":  "athena",
+                                  "port":  8000,
+                                  "owner_pids":  [
+                                                     81480
+                                                 ],
+                                  "owner_count":  1,
+                                  "canonical_owner":  81480,
+                                  "launcher_owner":  65760,
+                                  "status":  "singleton",
+                                  "recommended_action":  "No action required."
+                              },
+                              {
+                                  "component":  "onyx",
+                                  "port":  5353,
+                                  "owner_pids":  [
+                                                     32896
+                                                 ],
+                                  "owner_count":  1,
+                                  "canonical_owner":  32896,
+                                  "launcher_owner":  8968,
+                                  "status":  "singleton",
+                                  "recommended_action":  "No action required."
+                              }
+                          ],
+    "seed_api_pid":  91368,
+    "launcher_pids":  {
+                          "bridge":  57208,
+                          "athena":  65760,
+                          "onyx":  8968
+                      },
+    "current_live_pids":  {
+                              "mason_api":  143220,
+                              "seed_api":  91368,
+                              "bridge":  157768,
+                              "athena":  81480,
+                              "onyx":  32896
+                          },
+    "watcher_pid":  63424,
+    "mason_api_pid":  143220,
+    "seed_api_stderr_log":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\20260311_064333_698_c08efd_seed_api_20260311_024355_stderr.log",
     "mode":  "CoreWithAthenaOnyx",
     "core_noapps_processes":  [
                                   {
-                                      "script":  "Mason_Executor_Watcher.ps1",
-                                      "pid":  58160
-                                  },
-                                  {
                                       "script":  "Mason_AutoLoop.ps1",
-                                      "pid":  45588
+                                      "pid":  105656
                                   },
                                   {
                                       "script":  "Mason_Watchdog.ps1",
-                                      "pid":  52696
+                                      "pid":  114340
                                   },
                                   {
                                       "script":  "Mason_DiskGuard.ps1",
-                                      "pid":  96748
+                                      "pid":  139140
                                   },
                                   {
                                       "script":  "Mason_Health_Aggregator.ps1",
-                                      "pid":  60012
+                                      "pid":  97636
                                   },
                                   {
                                       "script":  "Mason_Learner.ps1",
-                                      "pid":  155448
+                                      "pid":  109904
                                   },
                                   {
                                       "script":  "Mason_TaskGovernor.ps1",
-                                      "pid":  182972
+                                      "pid":  184548
                                   },
                                   {
                                       "script":  "Mason_UE_Loop_Mason.ps1",
-                                      "pid":  43248
+                                      "pid":  143896
                                   },
                                   {
                                       "script":  "Mason_SelfImprove_Loop.ps1",
-                                      "pid":  179352
+                                      "pid":  91900
                                   },
                                   {
                                       "script":  "services\\mason_api\\serve_mason_api.py",
-                                      "pid":  37280
+                                      "pid":  143220
                                   },
                                   {
                                       "script":  "services\\seed_api\\serve_seed_api.py",
-                                      "pid":  142500
+                                      "pid":  91368
                                   }
                               ],
-    "timestamp":  "2026-03-11T05:34:52.1122569Z"
+    "timestamp":  "2026-03-11T06:44:08.6295098Z"
 }

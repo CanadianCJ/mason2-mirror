@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at_utc":  "2026-03-11T06:03:21.0713762Z",
+    "generated_at_utc":  "2026-03-11T07:03:09.2086912Z",
     "source_root":  "C:\\Users\\Chris\\Desktop\\Mason2",
     "mirror_root":  "C:\\Mason2_MIRROR",
     "policy_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\mirror_policy.json",
@@ -186,7 +186,7 @@
                      "Component - Onyx App/mason-live/.venv/**",
                      "Component - Onyx App/mason-live/__pycache__/**"
                  ],
-    "last_sync_timestamp_utc":  "2026-03-11T06:03:21.0784255Z",
+    "last_sync_timestamp_utc":  "2026-03-11T07:03:09.2132186Z",
     "counts_per_folder":  [
                               {
                                   "name":  ".gitignore",
@@ -207,7 +207,7 @@
                                   "exists":  true,
                                   "type":  "file",
                                   "file_count":  1,
-                                  "total_bytes":  69343
+                                  "total_bytes":  76364
                               },
                               {
                                   "name":  "Start-Athena.ps1",
@@ -242,7 +242,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  566,
-                                  "total_bytes":  5832881
+                                  "total_bytes":  5851720
                               },
                               {
                                   "name":  "config",
@@ -256,7 +256,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  17,
-                                  "total_bytes":  128365592
+                                  "total_bytes":  128365083
                               },
                               {
                                   "name":  "roadmap",
@@ -297,8 +297,8 @@
                                   "name":  "state/knowledge",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  68,
-                                  "total_bytes":  8540111
+                                  "file_count":  69,
+                                  "total_bytes":  8640463
                               },
                               {
                                   "name":  "state/onyx",
@@ -647,8 +647,8 @@
                                   "name":  "reports",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  38991,
-                                  "total_bytes":  1382346661
+                                  "file_count":  39118,
+                                  "total_bytes":  1387059605
                               }
                           ],
     "policy_summary":  {
@@ -731,9 +731,9 @@
                                                            "reports/queue/tool_factory_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  17635,
+                                "candidate_count":  17683,
                                 "matched_allowlist_count":  27,
-                                "excluded_pattern_count":  17608,
+                                "excluded_pattern_count":  17656,
                                 "eligible_count":  27,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -744,8 +744,8 @@
                                                        "reports\\mirror_update_last.json",
                                                        "reports\\system_validation_last.json",
                                                        "reports\\context_pack.json",
-                                                       "reports\\component_inventory.json",
                                                        "reports\\mason2_core_status.json",
+                                                       "reports\\component_inventory.json",
                                                        "reports\\start\\start_run_last.json",
                                                        "reports\\stack_reset_last.json",
                                                        "reports\\drift_manifest.json",
@@ -757,10 +757,10 @@
                                                        "reports\\queue\\tool_factory_last.json",
                                                        "reports\\memory_ingest_last.json",
                                                        "reports\\tenant_safety_report.json",
+                                                       "reports\\bridge_status.json",
                                                        "reports\\ingest_autopilot_status.json",
                                                        "reports\\launcher\\oneclick_last.json",
                                                        "reports\\verify_last.json",
-                                                       "reports\\bridge_status.json",
                                                        "reports\\risk_normalize_report.json",
                                                        "reports\\launcher\\last_fullstack.json",
                                                        "reports\\launcher\\last_coreonly.json"
@@ -770,22 +770,22 @@
                                                                "reports\\mason_legacy_index.json",
                                                                "reports\\ingest_index_20260227_022603.json",
                                                                "reports\\self_index.json",
-                                                               "reports\\ingest_index_20260227_071604.json",
                                                                "reports\\ingest_index_20260227_103104.json",
-                                                               "reports\\ingest_index_20260227_075104.json",
-                                                               "reports\\ingest_index_20260227_092604.json",
                                                                "reports\\ingest_index_20260227_100103.json",
                                                                "reports\\ingest_index_20260227_082104.json",
+                                                               "reports\\ingest_index_20260227_071604.json",
+                                                               "reports\\ingest_index_20260227_092604.json",
                                                                "reports\\ingest_index_20260227_085104.json",
+                                                               "reports\\ingest_index_20260227_075104.json",
                                                                "reports\\ingest_index_20260227_110605.json",
-                                                               "reports\\ingest_index_20260306_233049.json",
-                                                               "reports\\ingest_index_20260302_162103.json",
-                                                               "reports\\ingest_index_20260305_044707.json",
                                                                "reports\\ingest_index_20260302_204942.json",
+                                                               "reports\\ingest_index_20260302_162103.json",
+                                                               "reports\\ingest_index_20260306_233049.json",
                                                                "reports\\ingest_index_20260302_155104.json",
-                                                               "reports\\ingest_index_20260302_044603.json",
-                                                               "reports\\ingest_index_20260228_202103.json",
-                                                               "reports\\ingest_index_20260302_054603.json"
+                                                               "reports\\ingest_index_20260305_044707.json",
+                                                               "reports\\ingest_index_20260302_084603.json",
+                                                               "reports\\ingest_index_20260228_220603.json",
+                                                               "reports\\ingest_index_20260302_094603.json"
                                                            ],
                                 "excluded_large_files":  [
 

@@ -599,6 +599,7 @@ $behaviorTrustPath = Join-Path $stateKnowledgeDir "behavior_trust.json"
 $toolFactoryPath = Join-Path $stateKnowledgeDir "tool_factory.json"
 $trustIndexPath = Join-Path $stateKnowledgeDir "trust_index.json"
 $dataGovernanceStatePath = Join-Path $stateKnowledgeDir "data_governance_requests.json"
+$stackPidPath = Join-Path $stateKnowledgeDir "stack_pids.json"
 
 $onyxStateDir = Join-Path $repoRoot "state\onyx"
 $tenantWorkspacePath = Join-Path $onyxStateDir "tenant_workspace.json"
@@ -624,6 +625,8 @@ $expectedPorts = [ordered]@{
     onyx      = 5353
 }
 $portListeners = Get-PortListenersMap -Ports @($expectedPorts.Values)
+$stackPidArtifact = Read-JsonSafe -Path $stackPidPath -Default $null
+$stackCurrentLivePids = if ($stackPidArtifact) { Get-PropValue -Object $stackPidArtifact -Name "current_live_pids" -Default $null } else { $null }
 
 $stackStatusUrl = "http://127.0.0.1:8000/api/stack_status"
 $athenaUiUrl = "http://127.0.0.1:8000/athena/"
@@ -721,6 +724,46 @@ foreach ($entry in @(
     }
     else {
         $stackChecks += New-Check -Name ("listener_{0}" -f $entry.name) -Status "FAIL" -Detail ("Port {0} is not listening." -f $entry.port) -Component $entry.name -Path $startRunPath -NextAction ("Start or reset the stack until {0} listens on {1}." -f (Get-ComponentLabel $entry.name), $entry.port)
+    }
+
+    $ownerPids = @($listeners | ForEach-Object { [int]$_.owning_pid } | Where-Object { $_ -gt 0 } | Sort-Object -Unique)
+    if ($ownerPids.Count -le 1) {
+        $stackChecks += New-Check -Name ("singleton_{0}" -f $entry.name) -Status "PASS" -Detail ("Singleton listener ownership is clean for port {0}." -f $entry.port) -Component $entry.name -Path $stackPidPath -NextAction "No action required."
+    }
+    else {
+        $ownerText = ($ownerPids | ForEach-Object { $_.ToString() }) -join ", "
+        $stackChecks += New-Check -Name ("singleton_{0}" -f $entry.name) -Status "WARN" -Detail ("Port {0} has multiple listener owners: {1}." -f $entry.port, $ownerText) -Component $entry.name -Path $stackPidPath -NextAction ("Run the normal stack reset/start flow to collapse duplicate singleton ownership for {0}." -f (Get-ComponentLabel $entry.name))
+    }
+
+    $canonicalRaw = $null
+    if ($stackCurrentLivePids) {
+        $canonicalRaw = Get-PropValue -Object $stackCurrentLivePids -Name $entry.name -Default $null
+    }
+    if (-not $canonicalRaw) {
+        $topLevelPidKey = switch ($entry.name) {
+            "mason_api" { "mason_api_pid" }
+            "seed_api" { "seed_api_pid" }
+            "bridge" { "bridge_pid" }
+            "athena" { "athena_pid" }
+            "onyx" { "onyx_pid" }
+            default { "" }
+        }
+        if ($topLevelPidKey) {
+            $canonicalRaw = Get-PropValue -Object $stackPidArtifact -Name $topLevelPidKey -Default $null
+        }
+    }
+
+    $canonicalPid = 0
+    if ($ownerPids.Count -eq 1 -and [int]::TryParse([string]$canonicalRaw, [ref]$canonicalPid) -and $canonicalPid -gt 0) {
+        if ($ownerPids -contains $canonicalPid) {
+            $stackChecks += New-Check -Name ("stack_pid_truth_{0}" -f $entry.name) -Status "PASS" -Detail ("stack_pids canonical pid matches the live listener owner for port {0}." -f $entry.port) -Component $entry.name -Path $stackPidPath -NextAction "No action required."
+        }
+        else {
+            $stackChecks += New-Check -Name ("stack_pid_truth_{0}" -f $entry.name) -Status "WARN" -Detail ("stack_pids canonical pid {0} does not match live listener owner {1} for port {2}." -f $canonicalPid, [int]$ownerPids[0], $entry.port) -Component $entry.name -Path $stackPidPath -NextAction ("Refresh the normal stack start flow so stack_pids.json matches live runtime truth for {0}." -f (Get-ComponentLabel $entry.name))
+        }
+    }
+    elseif ($ownerPids.Count -eq 1) {
+        $stackChecks += New-Check -Name ("stack_pid_truth_{0}" -f $entry.name) -Status "WARN" -Detail ("stack_pids.json is missing a canonical live pid for {0}." -f (Get-ComponentLabel $entry.name)) -Component $entry.name -Path $stackPidPath -NextAction ("Refresh the normal stack start flow so stack_pids.json records the live owner for {0}." -f (Get-ComponentLabel $entry.name))
     }
 }
 

@@ -538,6 +538,143 @@ function Get-ProcessByCommandFragment {
     }
 }
 
+function Get-ProcessesByCommandFragment {
+    param(
+        [Parameter(Mandatory = $true)][string]$Fragment,
+        [string[]]$ProcessNames = @()
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Fragment)) {
+        return @()
+    }
+
+    $normalizedNames = @($ProcessNames | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) } | ForEach-Object { ([string]$_).ToLowerInvariant() })
+    try {
+        $procs = Get-CimInstance Win32_Process -ErrorAction Stop | Where-Object {
+            $cmdLine = [string]$_.CommandLine
+            if (-not $cmdLine) {
+                return $false
+            }
+            if ($cmdLine.IndexOf($Fragment, [System.StringComparison]::OrdinalIgnoreCase) -lt 0) {
+                return $false
+            }
+            if ($normalizedNames.Count -eq 0) {
+                return $true
+            }
+            return ($normalizedNames -contains ([string]$_.Name).ToLowerInvariant())
+        }
+        return @($procs | Sort-Object CreationDate, ProcessId)
+    }
+    catch {
+        Write-LaunchLog "Could not inspect generic process command lines: $($_.Exception.Message)" "WARN"
+        return @()
+    }
+}
+
+function Get-UniquePortOwnersFromSnapshot {
+    param(
+        [Parameter(Mandatory = $true)][object[]]$PortSnapshot,
+        [Parameter(Mandatory = $true)][int]$Port
+    )
+
+    $portRow = @($PortSnapshot | Where-Object { [int]$_.port -eq [int]$Port } | Select-Object -First 1)
+    if ($portRow.Count -eq 0) {
+        return @()
+    }
+
+    return @(
+        $portRow[0].listeners |
+        ForEach-Object { [int]$_.owning_pid } |
+        Where-Object { $_ -gt 0 } |
+        Sort-Object -Unique
+    )
+}
+
+function Sync-CanonicalSingletonPidState {
+    param(
+        [Parameter(Mandatory = $true)][hashtable]$State,
+        [Parameter(Mandatory = $true)][object[]]$PortSnapshot,
+        [Parameter(Mandatory = $true)][hashtable]$RuntimePortMap,
+        [hashtable]$LauncherPidMap = @{}
+    )
+
+    $currentLivePids = [ordered]@{}
+    $launcherPids = [ordered]@{}
+    $singletonRuntime = @()
+    $specs = @(
+        [ordered]@{ component = "mason_api"; port = [int]$RuntimePortMap["mason_api"]; pid_key = "mason_api_pid"; launcher_key = $null }
+        [ordered]@{ component = "seed_api";  port = [int]$RuntimePortMap["seed_api"];  pid_key = "seed_api_pid";  launcher_key = $null }
+        [ordered]@{ component = "bridge";    port = [int]$RuntimePortMap["bridge"];    pid_key = "bridge_pid";    launcher_key = "bridge_launcher_pid" }
+        [ordered]@{ component = "athena";    port = [int]$RuntimePortMap["athena"];    pid_key = "athena_pid";    launcher_key = "athena_launcher_pid" }
+        [ordered]@{ component = "onyx";      port = [int]$RuntimePortMap["onyx"];      pid_key = "onyx_pid";      launcher_key = "onyx_launcher_pid" }
+    )
+
+    foreach ($spec in $specs) {
+        $ownerPids = @(Get-UniquePortOwnersFromSnapshot -PortSnapshot $PortSnapshot -Port ([int]$spec.port))
+        $canonicalOwner = $null
+        if ($ownerPids.Count -gt 0) {
+            $canonicalOwner = [int]$ownerPids[0]
+            $State[[string]$spec.pid_key] = [int]$canonicalOwner
+            $currentLivePids[[string]$spec.component] = [int]$canonicalOwner
+        }
+        elseif ($State.Contains([string]$spec.pid_key)) {
+            $null = $State.Remove([string]$spec.pid_key)
+        }
+
+        $launcherOwner = $null
+        $launcherKey = [string]$spec.launcher_key
+        if ($launcherKey) {
+            if ($LauncherPidMap.Contains([string]$spec.component)) {
+                $launcherValue = 0
+                if ([int]::TryParse([string]$LauncherPidMap[[string]$spec.component], [ref]$launcherValue) -and $launcherValue -gt 0) {
+                    $State[$launcherKey] = [int]$launcherValue
+                    $launcherPids[[string]$spec.component] = [int]$launcherValue
+                    $launcherOwner = [int]$launcherValue
+                }
+                elseif ($State.Contains($launcherKey)) {
+                    $null = $State.Remove($launcherKey)
+                }
+            }
+            elseif ($State.Contains($launcherKey)) {
+                $null = $State.Remove($launcherKey)
+            }
+        }
+
+        $status = "missing_listener"
+        $nextAction = ("Start or reset {0} until port {1} is owned by a single live process." -f [string]$spec.component, [int]$spec.port)
+        if ($ownerPids.Count -eq 1) {
+            $status = "singleton"
+            $nextAction = "No action required."
+        }
+        elseif ($ownerPids.Count -gt 1) {
+            $status = "multiple_owners"
+            $nextAction = ("Run the normal stack reset/start flow to collapse duplicate listener owners for {0}." -f [string]$spec.component)
+        }
+
+        $singletonRuntime += [pscustomobject][ordered]@{
+            component           = [string]$spec.component
+            port                = [int]$spec.port
+            owner_pids          = @($ownerPids)
+            owner_count         = @($ownerPids).Count
+            canonical_owner     = $canonicalOwner
+            launcher_owner      = $launcherOwner
+            status              = [string]$status
+            recommended_action  = [string]$nextAction
+        }
+    }
+
+    $State["current_live_pids"] = $currentLivePids
+    if ($launcherPids.Count -gt 0) {
+        $State["launcher_pids"] = $launcherPids
+    }
+    elseif ($State.Contains("launcher_pids")) {
+        $null = $State.Remove("launcher_pids")
+    }
+    $State["singleton_runtime"] = @($singletonRuntime)
+    $State["singleton_truth_updated_at"] = (Get-Date).ToUniversalTime().ToString("o")
+    return $State
+}
+
 function Start-ScriptWindow {
     param(
         [Parameter(Mandatory = $true)][string]$ScriptPath,
@@ -1339,6 +1476,13 @@ $driftManifestReportPath = Join-Path $ReportsDir "drift_manifest.json"
 
 $launchResults = New-Object System.Collections.Generic.List[object]
 $preWatcherPrepResults = New-Object System.Collections.Generic.List[object]
+$runtimePortMap = [ordered]@{
+    mason_api = [int]$masonApiPort
+    seed_api  = [int]$seedApiPort
+    bridge    = [int]$bridgePort
+    athena    = [int]$athenaPort
+    onyx      = [int]$onyxPort
+}
 $pidUpdates = [ordered]@{
     mode                     = $profile
     start_run_id             = $startRunId
@@ -1472,6 +1616,12 @@ foreach ($missing in $coreApiMissing) {
         }
     }
 
+    $serviceProcesses = @(Get-ProcessesByCommandFragment -Fragment ([string]$serviceScriptPath) -ProcessNames @("python.exe", "pythonw.exe"))
+    if ($serviceProcesses.Count -gt 0) {
+        Write-LaunchLog ("Bootstrap launch skipped for {0}; matching service process already exists (pid={1})." -f $component, [int]$serviceProcesses[0].ProcessId) "WARN"
+        continue
+    }
+
     $serviceResult = Start-ScriptWindow `
         -ScriptPath $serviceScriptPath `
         -WorkingDirectory $Base `
@@ -1513,6 +1663,7 @@ if (-not $coreGatePassed) {
     Write-LaunchLog "Core readiness gate failed. Downstream startup (Bridge/Athena/Onyx) will be skipped." "ERROR"
 }
 
+$bridgeResult = $null
 if ($coreGatePassed -and $bridgeEnabled) {
     $bridgeResult = Start-ScriptWindow `
         -ScriptPath $bridgeStartPath `
@@ -1533,6 +1684,7 @@ elseif ($bridgeEnabled) {
     Write-LaunchLog "Bridge launch skipped due to core readiness gate failure." "WARN"
 }
 
+$athenaResult = $null
 if ($coreGatePassed -and $athenaEnabled) {
     $athenaResult = Start-ScriptWindow `
         -ScriptPath $athenaStartPath `
@@ -1545,13 +1697,14 @@ if ($coreGatePassed -and $athenaEnabled) {
 
     $launchResults.Add($athenaResult)
     if ($athenaResult.pid) {
-        $pidUpdates["athena_pid"] = [int]$athenaResult.pid
+        $pidUpdates["athena_launcher_pid"] = [int]$athenaResult.pid
     }
 }
 elseif ($athenaEnabled) {
     Write-LaunchLog "Athena launch skipped due to core readiness gate failure." "WARN"
 }
 
+$onyxResult = $null
 if ($coreGatePassed -and $onyxEnabled) {
     $onyxResult = Start-ScriptWindow `
         -ScriptPath $onyxStartPath `
@@ -1564,7 +1717,7 @@ if ($coreGatePassed -and $onyxEnabled) {
 
     $launchResults.Add($onyxResult)
     if ($onyxResult.pid) {
-        $pidUpdates["onyx_pid"] = [int]$onyxResult.pid
+        $pidUpdates["onyx_launcher_pid"] = [int]$onyxResult.pid
     }
 }
 elseif ($onyxEnabled) {
@@ -1640,8 +1793,6 @@ foreach ($key in $pidUpdates.Keys) {
 }
 $existingPidState["timestamp"] = (Get-Date).ToUniversalTime().ToString("o")
 $existingPidState["status_file"] = $statusPath
-
-Write-JsonFile -Path $stackPidPath -Object $existingPidState -Depth 12
 
 $launchResultsArray = @()
 if ($launchResults) {
@@ -1803,6 +1954,22 @@ foreach ($endpoint in $readinessArray) {
 }
 
 $portSnapshot = Get-PortSnapshot -Ports @($knownPorts)
+$launcherPidMap = [ordered]@{}
+if ($bridgeResult -and $bridgeResult.pid) {
+    $launcherPidMap["bridge"] = [int]$bridgeResult.pid
+}
+if ($athenaResult -and $athenaResult.pid) {
+    $launcherPidMap["athena"] = [int]$athenaResult.pid
+}
+if ($onyxResult -and $onyxResult.pid) {
+    $launcherPidMap["onyx"] = [int]$onyxResult.pid
+}
+$existingPidState = Sync-CanonicalSingletonPidState -State $existingPidState -PortSnapshot $portSnapshot -RuntimePortMap $runtimePortMap -LauncherPidMap $launcherPidMap
+Write-JsonFile -Path $stackPidPath -Object $existingPidState -Depth 16
+$singletonRuntimeSummary = @()
+if ($existingPidState.Contains("singleton_runtime")) {
+    $singletonRuntimeSummary = @($existingPidState["singleton_runtime"])
+}
 $reportSnapshots = @(
     Get-ReportSnapshot -Path $approvalsPosturePath
     Get-ReportSnapshot -Path $bridgeStatusPath
@@ -1825,6 +1992,7 @@ $startRunManifest = [ordered]@{
     launch_results         = $launchResultsArray
     readiness              = $readinessArray
     ports                  = $portSnapshot
+    singleton_runtime      = $singletonRuntimeSummary
     opened_browsers        = $openedBrowsers
 }
 Write-JsonFile -Path $startRunManifestPath -Object $startRunManifest -Depth 14
@@ -1845,6 +2013,7 @@ $statusBlob = [ordered]@{
     last_reports     = $reportSnapshots
     readiness        = $readinessArray
     overall_status   = $overallStatus
+    singleton_runtime = $singletonRuntimeSummary
     config_sources   = [ordered]@{
         services_json           = $servicesPath
         ports_json              = $portsPath

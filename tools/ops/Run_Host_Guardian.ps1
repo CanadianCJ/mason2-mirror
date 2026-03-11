@@ -552,28 +552,57 @@ function Get-StackPidPresence {
     }
 
     $tracked = @()
-    foreach ($property in @($stackData.PSObject.Properties)) {
-        if ($property.Name -notlike "*_pid") {
-            continue
-        }
+    $source = "top_level_pid_keys"
+    $currentLive = $null
+    if ($stackData.PSObject.Properties.Name -contains "current_live_pids") {
+        $currentLive = $stackData.current_live_pids
+    }
 
-        $parsedPid = 0
-        $valueText = [string]$property.Value
-        if ([string]::IsNullOrWhiteSpace($valueText)) {
-            continue
-        }
+    if ($currentLive) {
+        $source = "current_live_pids"
+        foreach ($property in @($currentLive.PSObject.Properties)) {
+            $parsedPid = 0
+            $valueText = [string]$property.Value
+            if ([string]::IsNullOrWhiteSpace($valueText)) {
+                continue
+            }
+            if (-not [int]::TryParse($valueText, [ref]$parsedPid)) {
+                continue
+            }
+            if ($parsedPid -le 0) {
+                continue
+            }
 
-        if (-not [int]::TryParse($valueText, [ref]$parsedPid)) {
-            continue
+            $tracked += [pscustomobject]@{
+                component = [string]$property.Name
+                pid       = [int]$parsedPid
+            }
         }
+    }
+    else {
+        foreach ($property in @($stackData.PSObject.Properties)) {
+            if ($property.Name -notlike "*_pid") {
+                continue
+            }
 
-        if ($parsedPid -le 0) {
-            continue
-        }
+            $parsedPid = 0
+            $valueText = [string]$property.Value
+            if ([string]::IsNullOrWhiteSpace($valueText)) {
+                continue
+            }
 
-        $tracked += [pscustomobject]@{
-            component = [string]$property.Name
-            pid       = [int]$parsedPid
+            if (-not [int]::TryParse($valueText, [ref]$parsedPid)) {
+                continue
+            }
+
+            if ($parsedPid -le 0) {
+                continue
+            }
+
+            $tracked += [pscustomobject]@{
+                component = [string]$property.Name
+                pid       = [int]$parsedPid
+            }
         }
     }
 
@@ -590,6 +619,7 @@ function Get-StackPidPresence {
     return [ordered]@{
         readable           = $true
         path               = $stackPath
+        source             = $source
         tracked_pid_total  = @($tracked).Count
         tracked_pid_alive  = @($alive).Count
         tracked_components = @($tracked | Select-Object -First 25)

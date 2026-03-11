@@ -320,6 +320,177 @@ function Get-KnownRepoProcessCandidates {
     return @($result)
 }
 
+function Get-ProcessesByCommandFragment {
+    param(
+        [Parameter(Mandatory = $true)][string]$Fragment,
+        [string[]]$ProcessNames = @()
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Fragment)) {
+        return @()
+    }
+
+    $normalizedNames = @($ProcessNames | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) } | ForEach-Object { ([string]$_).ToLowerInvariant() })
+    try {
+        $rows = Get-CimInstance Win32_Process -ErrorAction Stop | Where-Object {
+            $cmdLine = [string]$_.CommandLine
+            if (-not $cmdLine) {
+                return $false
+            }
+            if ($cmdLine.IndexOf($Fragment, [System.StringComparison]::OrdinalIgnoreCase) -lt 0) {
+                return $false
+            }
+            if ($normalizedNames.Count -eq 0) {
+                return $true
+            }
+            return ($normalizedNames -contains ([string]$_.Name).ToLowerInvariant())
+        }
+        return @($rows | Sort-Object CreationDate, ProcessId)
+    }
+    catch {
+        Write-ResetLog ("Could not inspect process command lines for singleton drift: {0}" -f $_.Exception.Message) "WARN"
+        return @()
+    }
+}
+
+function Get-UniquePortOwnersFromSnapshot {
+    param(
+        [Parameter(Mandatory = $true)][object[]]$PortSnapshot,
+        [Parameter(Mandatory = $true)][int]$Port
+    )
+
+    $row = @($PortSnapshot | Where-Object { [int]$_.port -eq [int]$Port } | Select-Object -First 1)
+    if ($row.Count -eq 0) {
+        return @()
+    }
+
+    return @(
+        $row[0].listeners |
+        ForEach-Object { [int]$_.owning_pid } |
+        Where-Object { $_ -gt 0 } |
+        Sort-Object -Unique
+    )
+}
+
+function Get-CanonicalRuntimePid {
+    param(
+        $StackState,
+        [Parameter(Mandatory = $true)][string]$Component
+    )
+
+    if (-not $StackState) {
+        return $null
+    }
+
+    $currentLive = $null
+    if ($StackState.PSObject.Properties.Name -contains "current_live_pids") {
+        $currentLive = $StackState.current_live_pids
+    }
+    if ($currentLive) {
+        $rawValue = $null
+        if ($currentLive -is [System.Collections.IDictionary]) {
+            if ($currentLive.Contains($Component)) {
+                $rawValue = $currentLive[$Component]
+            }
+        }
+        else {
+            $property = $currentLive.PSObject.Properties[$Component]
+            if ($property) {
+                $rawValue = $property.Value
+            }
+        }
+
+        $parsed = 0
+        if ([int]::TryParse([string]$rawValue, [ref]$parsed) -and $parsed -gt 0) {
+            return [int]$parsed
+        }
+    }
+
+    $topLevelKey = switch ($Component) {
+        "mason_api" { "mason_api_pid" }
+        "seed_api" { "seed_api_pid" }
+        "bridge" { "bridge_pid" }
+        "athena" { "athena_pid" }
+        "onyx" { "onyx_pid" }
+        default { $null }
+    }
+    if (-not $topLevelKey) {
+        return $null
+    }
+
+    $topLevelValue = $null
+    if ($StackState -is [System.Collections.IDictionary]) {
+        if ($StackState.Contains($topLevelKey)) {
+            $topLevelValue = $StackState[$topLevelKey]
+        }
+    }
+    elseif ($StackState.PSObject.Properties.Name -contains $topLevelKey) {
+        $topLevelValue = $StackState.$topLevelKey
+    }
+
+    $topLevelParsed = 0
+    if ([int]::TryParse([string]$topLevelValue, [ref]$topLevelParsed) -and $topLevelParsed -gt 0) {
+        return [int]$topLevelParsed
+    }
+
+    return $null
+}
+
+function Get-RuntimeSingletonDrift {
+    param(
+        [Parameter(Mandatory = $true)][string]$RepoRoot,
+        [Parameter(Mandatory = $true)]$ContractPorts,
+        [Parameter(Mandatory = $true)][object[]]$PortSnapshot
+    )
+
+    $stackState = Read-JsonSafe -Path (Join-Path $RepoRoot "state\knowledge\stack_pids.json") -Default $null
+    $findings = @()
+    $singletonSpecs = @(
+        [ordered]@{ component = "mason_api"; port = [int]$ContractPorts.mason_api }
+        [ordered]@{ component = "seed_api";  port = [int]$ContractPorts.seed_api }
+        [ordered]@{ component = "bridge";    port = [int]$ContractPorts.bridge }
+        [ordered]@{ component = "athena";    port = [int]$ContractPorts.athena }
+        [ordered]@{ component = "onyx";      port = [int]$ContractPorts.onyx }
+    )
+
+    foreach ($spec in $singletonSpecs) {
+        $owners = @(Get-UniquePortOwnersFromSnapshot -PortSnapshot $PortSnapshot -Port ([int]$spec.port))
+        if ($owners.Count -gt 1) {
+            $findings += [pscustomobject]@{
+                component = [string]$spec.component
+                type      = "multiple_listener_owners"
+                detail    = ("Port {0} has multiple listener owners: {1}" -f [int]$spec.port, (($owners | ForEach-Object { $_.ToString() }) -join ", "))
+            }
+        }
+
+        $canonicalPid = Get-CanonicalRuntimePid -StackState $stackState -Component ([string]$spec.component)
+        if ($owners.Count -eq 1 -and $canonicalPid -and ([int]$owners[0] -ne [int]$canonicalPid)) {
+            $findings += [pscustomobject]@{
+                component = [string]$spec.component
+                type      = "stack_pid_mismatch"
+                detail    = ("stack_pids canonical pid {0} does not match live listener pid {1} on port {2}" -f [int]$canonicalPid, [int]$owners[0], [int]$spec.port)
+            }
+        }
+    }
+
+    $serviceSpecs = @(
+        [ordered]@{ component = "mason_api"; script = (Join-Path $RepoRoot "services\mason_api\serve_mason_api.py") }
+        [ordered]@{ component = "seed_api";  script = (Join-Path $RepoRoot "services\seed_api\serve_seed_api.py") }
+    )
+    foreach ($service in $serviceSpecs) {
+        $processes = @(Get-ProcessesByCommandFragment -Fragment ([string]$service.script) -ProcessNames @("python.exe", "pythonw.exe"))
+        if ($processes.Count -gt 1) {
+            $findings += [pscustomobject]@{
+                component = [string]$service.component
+                type      = "duplicate_service_processes"
+                detail    = ("Found {0} matching service processes for {1}." -f $processes.Count, [string]$service.component)
+            }
+        }
+    }
+
+    return @($findings)
+}
+
 function Stop-ProcessIdsBestEffort {
     param([int[]]$Pids)
     $rows = @()
@@ -471,32 +642,41 @@ $coreUrls = @(
 $alreadyGreen = Wait-EndpointsReady -Urls $coreUrls -TimeoutSeconds ([Math]::Min([Math]::Max(5, $ReadinessTimeoutSeconds), 12))
 if ($alreadyGreen) {
     $shortSnapshot = Get-PortSnapshot -Ports $targetPorts
-    $shortReport = [ordered]@{
-        generated_at_utc = (Get-Date).ToUniversalTime().ToString("o")
-        run_id           = $runId
-        root_path        = $repoRoot
-        target_ports     = $targetPorts
-        ok               = $true
-        phase            = "already_green_short_circuit"
-        summary          = "All required endpoints were already healthy. Relaunch skipped."
-        ports_before     = $shortSnapshot
-        ports_after      = $shortSnapshot
-        stop_phase       = [ordered]@{
-            skipped = $true
-            reason  = "already_green"
+    $singletonDrift = @(Get-RuntimeSingletonDrift -RepoRoot $repoRoot -ContractPorts $contractPorts -PortSnapshot $shortSnapshot)
+    if ($singletonDrift.Count -eq 0) {
+        $shortReport = [ordered]@{
+            generated_at_utc = (Get-Date).ToUniversalTime().ToString("o")
+            run_id           = $runId
+            root_path        = $repoRoot
+            target_ports     = $targetPorts
+            ok               = $true
+            phase            = "already_green_short_circuit"
+            summary          = "All required endpoints were already healthy and singleton runtime truth was clean. Relaunch skipped."
+            ports_before     = $shortSnapshot
+            ports_after      = $shortSnapshot
+            singleton_drift_before = @()
+            singleton_drift_after  = @()
+            stop_phase       = [ordered]@{
+                skipped = $true
+                reason  = "already_green"
+            }
+            start_phase      = [ordered]@{
+                skipped = $true
+                reason  = "already_green"
+            }
         }
-        start_phase      = [ordered]@{
-            skipped = $true
-            reason  = "already_green"
-        }
+        Write-JsonFile -Path $reportPath -Object $shortReport -Depth 16
+        Write-JsonFile -Path $stackResetLastPath -Object $shortReport -Depth 16
+        Write-ResetLog "All required endpoints are already healthy and singleton runtime truth is clean; short-circuiting without relaunch."
+        exit 0
     }
-    Write-JsonFile -Path $reportPath -Object $shortReport -Depth 16
-    Write-JsonFile -Path $stackResetLastPath -Object $shortReport -Depth 16
-    Write-ResetLog "All required endpoints are already healthy; short-circuiting without relaunch."
-    exit 0
+
+    $driftSummary = (($singletonDrift | ForEach-Object { $_.detail }) -join "; ")
+    Write-ResetLog ("Endpoints are healthy but singleton drift was detected; continuing with full reset/start. {0}" -f $driftSummary) "WARN"
 }
 
 $beforeSnapshot = Get-PortSnapshot -Ports $targetPorts
+$beforeSingletonDrift = @(Get-RuntimeSingletonDrift -RepoRoot $repoRoot -ContractPorts $contractPorts -PortSnapshot $beforeSnapshot)
 $listenerPids = New-Object System.Collections.Generic.List[int]
 foreach ($row in @($beforeSnapshot)) {
     foreach ($listener in @($row.listeners)) {
@@ -614,6 +794,7 @@ if ($startTimedOut) {
 }
 
 $afterSnapshot = Get-PortSnapshot -Ports $targetPorts
+$afterSingletonDrift = @(Get-RuntimeSingletonDrift -RepoRoot $repoRoot -ContractPorts $contractPorts -PortSnapshot $afterSnapshot)
 $startRunLastPath = Join-Path $repoRoot "reports\start\start_run_last.json"
 $startRunLast = Read-JsonSafe -Path $startRunLastPath -Default $null
 $failureArtifactPath = $null
@@ -677,6 +858,8 @@ $report = [ordered]@{
     }
     ports_before     = $beforeSnapshot
     ports_after      = $afterSnapshot
+    singleton_drift_before = @($beforeSingletonDrift)
+    singleton_drift_after  = @($afterSingletonDrift)
     ok               = [bool]$ok
     summary          = $summary
 }

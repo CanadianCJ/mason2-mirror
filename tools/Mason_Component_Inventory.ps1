@@ -355,7 +355,7 @@ $componentDefs["mason"] = [ordered]@{
     root_paths   = @(".")
     key_files    = @("Start_Mason2.ps1", "tools\Mason_Doctor.ps1")
     status_files = @("reports\mason2_core_status.json", "reports\mason2_doctor_report.json")
-    pid_keys     = @("core_launcher_pid", "mason_core_pid")
+    pid_keys     = @("mason_api_pid", "seed_api_pid", "core_launcher_pid", "mason_core_pid")
     expected_ports = @("mason_api", "seed_api")
 }
 $componentDefs["bridge"] = [ordered]@{
@@ -364,7 +364,7 @@ $componentDefs["bridge"] = [ordered]@{
     root_paths   = @("bridge")
     key_files    = @("tools\Start_Bridge.ps1", "bridge\mason_bridge_server.py")
     status_files = @("reports\bridge_status.json")
-    pid_keys     = @("bridge_launcher_pid")
+    pid_keys     = @("bridge_pid", "bridge_launcher_pid")
     expected_ports = @("bridge")
 }
 $componentDefs["athena"] = [ordered]@{
@@ -373,7 +373,7 @@ $componentDefs["athena"] = [ordered]@{
     root_paths   = @("MasonConsole")
     key_files    = @("Start-Athena.ps1", "MasonConsole\server.py")
     status_files = @("reports\athena_self_state.json")
-    pid_keys     = @("athena_pid")
+    pid_keys     = @("athena_pid", "athena_launcher_pid")
     expected_ports = @("athena")
 }
 $componentDefs["onyx"] = [ordered]@{
@@ -385,7 +385,7 @@ $componentDefs["onyx"] = [ordered]@{
         $onyxLauncherRelative
     )
     status_files = @("reports\onyx_health_status.json")
-    pid_keys     = @("onyx_pid")
+    pid_keys     = @("onyx_pid", "onyx_launcher_pid")
     expected_ports = @("onyx")
 }
 

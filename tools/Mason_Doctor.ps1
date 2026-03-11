@@ -167,9 +167,9 @@ function Get-PortDefinitions {
         "onyx"      = "onyx"
     }
     $expectedPidMap = @{
-        "mason_api" = "core_launcher_pid"
-        "seed_api"  = "core_launcher_pid"
-        "bridge"    = "bridge_launcher_pid"
+        "mason_api" = "mason_api_pid"
+        "seed_api"  = "seed_api_pid"
+        "bridge"    = "bridge_pid"
         "athena"    = "athena_pid"
         "onyx"      = "onyx_pid"
     }
@@ -210,6 +210,27 @@ function Resolve-ExpectedPortPid {
             $pidVal = 0
             if ([int]::TryParse([string]$stack.$key, [ref]$pidVal)) {
                 return $pidVal
+            }
+        }
+    }
+
+    if ($stack -and ($stack.PSObject.Properties.Name -contains "current_live_pids") -and $PortDef.PSObject.Properties.Name -contains "name") {
+        $currentLive = $stack.current_live_pids
+        if ($currentLive) {
+            $liveKey = [string]$PortDef.name
+            $liveValue = $null
+            if ($currentLive -is [System.Collections.IDictionary]) {
+                if ($currentLive.Contains($liveKey)) {
+                    $liveValue = $currentLive[$liveKey]
+                }
+            }
+            elseif ($currentLive.PSObject.Properties.Name -contains $liveKey) {
+                $liveValue = $currentLive.$liveKey
+            }
+
+            $livePid = 0
+            if ([int]::TryParse([string]$liveValue, [ref]$livePid) -and $livePid -gt 0) {
+                return $livePid
             }
         }
     }
@@ -406,8 +427,10 @@ if ($stackStateStatus.valid) {
 }
 
 $knownPidKeys = @(
-    "watcher_pid", "core_launcher_pid", "mason_core_pid", "athena_pid",
-    "onyx_pid", "fullstack_launcher_pid", "tasks_to_approvals_loop_pid"
+    "watcher_pid", "core_launcher_pid", "mason_core_pid", "mason_api_pid",
+    "seed_api_pid", "bridge_pid", "bridge_launcher_pid", "athena_pid",
+    "athena_launcher_pid", "onyx_pid", "onyx_launcher_pid",
+    "fullstack_launcher_pid", "tasks_to_approvals_loop_pid"
 )
 
 $runningPidDetails = @()
