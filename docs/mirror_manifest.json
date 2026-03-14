@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at_utc":  "2026-03-14T20:16:27.1236375Z",
+    "generated_at_utc":  "2026-03-14T21:08:11.8903673Z",
     "source_root":  "C:\\Users\\Chris\\Desktop\\Mason2",
     "mirror_root":  "C:\\Mason2_MIRROR",
     "policy_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\mirror_policy.json",
@@ -187,7 +187,7 @@
                      "Component - Onyx App/mason-live/.venv/**",
                      "Component - Onyx App/mason-live/__pycache__/**"
                  ],
-    "last_sync_timestamp_utc":  "2026-03-14T20:16:27.1276608Z",
+    "last_sync_timestamp_utc":  "2026-03-14T21:08:11.9639393Z",
     "counts_per_folder":  [
                               {
                                   "name":  ".gitignore",
@@ -257,7 +257,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  17,
-                                  "total_bytes":  144741435
+                                  "total_bytes":  144742009
                               },
                               {
                                   "name":  "roadmap",
@@ -648,8 +648,8 @@
                                   "name":  "reports",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  44681,
-                                  "total_bytes":  1671435292
+                                  "file_count":  44726,
+                                  "total_bytes":  1673792561
                               }
                           ],
     "policy_summary":  {
@@ -765,9 +765,9 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  44681,
+                                "candidate_count":  44726,
                                 "matched_allowlist_count":  92,
-                                "excluded_pattern_count":  44589,
+                                "excluded_pattern_count":  44634,
                                 "eligible_count":  92,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -801,8 +801,8 @@
                                                        "reports\\brand_leak_audit_last.json",
                                                        "reports\\support_brain_last.json",
                                                        "reports\\environment_profile_last.json",
-                                                       "reports\\release_candidate_last.json",
                                                        "reports\\tenant_safety_report.json",
+                                                       "reports\\release_candidate_last.json",
                                                        "reports\\system_truth_summary_last.json",
                                                        "reports\\teacher_usefulness_last.json",
                                                        "reports\\self_heal_last.json",
@@ -831,7 +831,7 @@
                                                                "reports\\mirror_update_log.jsonl",
                                                                "reports\\metrics.csv",
                                                                "reports\\mason_teacher_import.log",
-                                                               "reports\\ingest_index_20260313_213101.json",
+                                                               "reports\\ingest_index_20260312_235237.json",
                                                                "reports\\ingest_index_20260313_162922.json"
                                                            ],
                                 "excluded_large_files":  [
@@ -903,9 +903,9 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  44681,
+                                "candidate_count":  44726,
                                 "matched_allowlist_count":  92,
-                                "excluded_pattern_count":  44589,
+                                "excluded_pattern_count":  44634,
                                 "eligible_count":  92,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -939,8 +939,8 @@
                                                        "reports\\brand_leak_audit_last.json",
                                                        "reports\\support_brain_last.json",
                                                        "reports\\environment_profile_last.json",
-                                                       "reports\\release_candidate_last.json",
                                                        "reports\\tenant_safety_report.json",
+                                                       "reports\\release_candidate_last.json",
                                                        "reports\\system_truth_summary_last.json",
                                                        "reports\\teacher_usefulness_last.json",
                                                        "reports\\self_heal_last.json",
@@ -969,7 +969,7 @@
                                                                "reports\\mirror_update_log.jsonl",
                                                                "reports\\metrics.csv",
                                                                "reports\\mason_teacher_import.log",
-                                                               "reports\\ingest_index_20260313_213101.json",
+                                                               "reports\\ingest_index_20260312_235237.json",
                                                                "reports\\ingest_index_20260313_162922.json"
                                                            ],
                                 "excluded_large_files":  [
@@ -1092,7 +1092,7 @@
                                                                          "watchdog.ps1"
                                                                      ],
                                 "allowlist_names_absent_in_mirror":  [
-                                                                         "reports"
+
                                                                      ]
                             }
 }

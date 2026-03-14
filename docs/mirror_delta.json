@@ -1,13 +1,20 @@
 ﻿{
-    "generated_at_utc":  "2026-03-14T19:49:23.6684238Z",
+    "generated_at_utc":  "2026-03-14T20:51:31.3996720Z",
     "mirror_root":  "C:\\Mason2_MIRROR",
-    "changed_count":  0,
+    "changed_count":  8,
     "added_count":  0,
-    "modified_count":  0,
+    "modified_count":  8,
     "removed_count":  0,
     "top_changed_paths":  [
-
+                              "docs/knowledge_pack/index.json",
+                              "docs/knowledge_pack/stats.json",
+                              "docs/mirror_delta.json",
+                              "docs/mirror_manifest.json",
+                              "state/workspaces/tenant_http_check/workspace.json",
+                              "tools/ops/Run_Repair_Wave_02.ps1",
+                              "tools/ops/Validate_Whole_System.ps1",
+                              "tools/sync/Mason_Mirror_Update.ps1"
                           ],
     "head_before":  "53ee5d3e55c72f991c497bda553b75d761ba63b6",
-    "head_after":  ""
+    "head_after":  "cd8d71770552ddd936b18559e62f1445df118bae"
 }
