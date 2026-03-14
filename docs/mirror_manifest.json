@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at_utc":  "2026-03-14T21:08:11.8903673Z",
+    "generated_at_utc":  "2026-03-14T22:08:31.5594878Z",
     "source_root":  "C:\\Users\\Chris\\Desktop\\Mason2",
     "mirror_root":  "C:\\Mason2_MIRROR",
     "policy_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\mirror_policy.json",
@@ -187,7 +187,7 @@
                      "Component - Onyx App/mason-live/.venv/**",
                      "Component - Onyx App/mason-live/__pycache__/**"
                  ],
-    "last_sync_timestamp_utc":  "2026-03-14T21:08:11.9639393Z",
+    "last_sync_timestamp_utc":  "2026-03-14T22:08:31.5645578Z",
     "counts_per_folder":  [
                               {
                                   "name":  ".gitignore",
@@ -243,7 +243,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  585,
-                                  "total_bytes":  6976060
+                                  "total_bytes":  6976068
                               },
                               {
                                   "name":  "config",
@@ -257,7 +257,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  17,
-                                  "total_bytes":  144742009
+                                  "total_bytes":  144741803
                               },
                               {
                                   "name":  "roadmap",
@@ -298,8 +298,8 @@
                                   "name":  "state/knowledge",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  112,
-                                  "total_bytes":  13817550
+                                  "file_count":  113,
+                                  "total_bytes":  13911387
                               },
                               {
                                   "name":  "state/onyx",
@@ -648,8 +648,8 @@
                                   "name":  "reports",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  44726,
-                                  "total_bytes":  1673792561
+                                  "file_count":  44814,
+                                  "total_bytes":  1676652849
                               }
                           ],
     "policy_summary":  {
@@ -765,9 +765,9 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  44726,
+                                "candidate_count":  44814,
                                 "matched_allowlist_count":  92,
-                                "excluded_pattern_count":  44634,
+                                "excluded_pattern_count":  44722,
                                 "eligible_count":  92,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -799,18 +799,18 @@
                                                        "reports\\start\\start_run_last.json",
                                                        "reports\\knowledge_quality_last.json",
                                                        "reports\\brand_leak_audit_last.json",
+                                                       "reports\\tenant_safety_report.json",
                                                        "reports\\support_brain_last.json",
                                                        "reports\\environment_profile_last.json",
-                                                       "reports\\tenant_safety_report.json",
                                                        "reports\\release_candidate_last.json",
                                                        "reports\\system_truth_summary_last.json",
                                                        "reports\\teacher_usefulness_last.json",
                                                        "reports\\self_heal_last.json",
+                                                       "reports\\mirror_coverage_last.json",
                                                        "reports\\internal_scheduler_last.json",
                                                        "reports\\incident_explanations_last.json",
                                                        "reports\\whole_folder_golden_paths_last.json",
-                                                       "reports\\billing_summary.json",
-                                                       "reports\\queue\\behavior_trust_last.json"
+                                                       "reports\\billing_summary.json"
                                                    ],
                                 "excluded_pattern_files":  [
                                                                "reports\\onyx_health_investigation.json",
@@ -832,7 +832,7 @@
                                                                "reports\\metrics.csv",
                                                                "reports\\mason_teacher_import.log",
                                                                "reports\\ingest_index_20260312_235237.json",
-                                                               "reports\\ingest_index_20260313_162922.json"
+                                                               "reports\\ingest_index_20260313_213101.json"
                                                            ],
                                 "excluded_large_files":  [
 
@@ -903,9 +903,9 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  44726,
+                                "candidate_count":  44814,
                                 "matched_allowlist_count":  92,
-                                "excluded_pattern_count":  44634,
+                                "excluded_pattern_count":  44722,
                                 "eligible_count":  92,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -937,18 +937,18 @@
                                                        "reports\\start\\start_run_last.json",
                                                        "reports\\knowledge_quality_last.json",
                                                        "reports\\brand_leak_audit_last.json",
+                                                       "reports\\tenant_safety_report.json",
                                                        "reports\\support_brain_last.json",
                                                        "reports\\environment_profile_last.json",
-                                                       "reports\\tenant_safety_report.json",
                                                        "reports\\release_candidate_last.json",
                                                        "reports\\system_truth_summary_last.json",
                                                        "reports\\teacher_usefulness_last.json",
                                                        "reports\\self_heal_last.json",
+                                                       "reports\\mirror_coverage_last.json",
                                                        "reports\\internal_scheduler_last.json",
                                                        "reports\\incident_explanations_last.json",
                                                        "reports\\whole_folder_golden_paths_last.json",
-                                                       "reports\\billing_summary.json",
-                                                       "reports\\queue\\behavior_trust_last.json"
+                                                       "reports\\billing_summary.json"
                                                    ],
                                 "excluded_pattern_files":  [
                                                                "reports\\onyx_health_investigation.json",
@@ -970,7 +970,7 @@
                                                                "reports\\metrics.csv",
                                                                "reports\\mason_teacher_import.log",
                                                                "reports\\ingest_index_20260312_235237.json",
-                                                               "reports\\ingest_index_20260313_162922.json"
+                                                               "reports\\ingest_index_20260313_213101.json"
                                                            ],
                                 "excluded_large_files":  [
 

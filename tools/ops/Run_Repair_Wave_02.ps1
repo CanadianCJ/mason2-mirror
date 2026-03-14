@@ -962,8 +962,8 @@ $brokenPathClusterArtifact = @{
 Write-JsonFile -Path $brokenPathClusterRepairPath -Object $brokenPathClusterArtifact -Depth 16
 
 $remotePushRepairStatus = if ($remoteCurrent) { "PASS" } else { "WARN" }
-$remotePushFailureClass = if ($remoteCurrent) { "" } else { Normalize-Text $remotePushFailureSummary.failure_class }
-$remotePushFailureReason = if ($remoteCurrent) { "" } else { Normalize-Text $remotePushFailureSummary.failure_reason }
+$remotePushFailureClass = if ($remoteCurrent) { "none" } else { Normalize-Text $remotePushFailureSummary.failure_class }
+$remotePushFailureReason = if ($remoteCurrent) { "none" } else { Normalize-Text $remotePushFailureSummary.failure_reason }
 $remotePushOversizedPaths = if ($remoteCurrent) { @() } else { @($remotePushFailureSummary.oversized_paths) }
 $remotePushNextAction = if ($remoteCurrent) { "No action required." } elseif ((Normalize-Text $remotePushFailureSummary.failure_class) -eq "large_file_history_rejection") { "Remove or rewrite the oversized file history in the mirror before the next push attempt." } else { "Inspect the exact remote push failure class and mirror credentials before retrying." }
 $remotePushRepairArtifact = @{
