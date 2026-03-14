@@ -1,0 +1,2769 @@
+﻿{
+    "generated_at_utc":  "2026-03-13T03:18:28.0215058+00:00",
+    "overall_status":  "WARN",
+    "card_count":  49,
+    "cards":  [
+                  {
+                      "card_id":  "card_playbook_pb_billing_stub_gated",
+                      "title":  "Billing Remains Stubbed And Approval-Gated",
+                      "domain":  "playbook_support",
+                      "component":  "playbook_support",
+                      "topic":  "customer_safe_support",
+                      "summary":  "Billing is still in a safe setup posture. Plan visibility and entitlement logic can work, but live money actions remain intentionally blocked until external billing secrets and webhook configuration are ready.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+                                              "source_type":  "playbook_library",
+                                              "observed_at":  "2026-03-12T10:47:26.6175169Z"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\billing_summary.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\billing_provider.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "playbook",
+                      "provenance_class":  "repeat_success_playbook",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.29,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.97,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T10:47:26.6175169Z",
+                      "first_seen_at":  "2026-03-12T10:47:26.6175169Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "support_explanation",
+                                                "incident_response",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Configure the external billing provider only when you are ready for real money flow and webhook verification.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_playbook_pb_brand_exposure_leakage",
+                      "title":  "Brand Exposure Leakage",
+                      "domain":  "playbook_support",
+                      "component":  "playbook_support",
+                      "topic":  "customer_safe_support",
+                      "summary":  "A brand exposure leak means an internal/operator name escaped into a customer-facing surface. Internal naming can remain intact, but public surfaces must stay Onyx-only.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+                                              "source_type":  "playbook_library",
+                                              "observed_at":  "2026-03-12T10:47:26.6175169Z"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\brand_exposure_isolation_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "playbook",
+                      "provenance_class":  "repeat_success_playbook",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.29,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.97,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T10:47:26.6175169Z",
+                      "first_seen_at":  "2026-03-12T10:47:26.6175169Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "support_explanation",
+                                                "incident_response",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Correct the public wording and rerun brand exposure isolation.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_playbook_pb_keepalive_policy_escalation",
+                      "title":  "KeepAlive Escalated Instead Of Retrying Blindly",
+                      "domain":  "playbook_support",
+                      "component":  "playbook_support",
+                      "topic":  "escalation",
+                      "summary":  "KeepAlive saw issues it could explain, but it refused to keep retrying because the next action was not low-risk or would have created a restart storm. That is correct governed behavior, not a missed heal.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+                                              "source_type":  "playbook_library",
+                                              "observed_at":  "2026-03-12T10:47:26.6175169Z"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\keepalive_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\self_heal_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\escalation_queue_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "playbook",
+                      "provenance_class":  "repeat_success_playbook",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.29,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.97,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T10:47:26.6175169Z",
+                      "first_seen_at":  "2026-03-12T10:47:26.6175169Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "support_explanation",
+                                                "incident_response",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Review the escalation queue and authorize only the specific recovery that matches the evidence.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_playbook_pb_mirror_incomplete_or_stale",
+                      "title":  "Mirror Or Checkpoint Incomplete",
+                      "domain":  "playbook_support",
+                      "component":  "playbook_support",
+                      "topic":  "recovery",
+                      "summary":  "The checkpoint mirror did not complete cleanly. That means rollback and off-box continuity evidence may be incomplete, even if the stack itself is still up.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+                                              "source_type":  "playbook_library",
+                                              "observed_at":  "2026-03-12T10:47:26.6175169Z"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\mirror_update_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\regression_guard_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "playbook",
+                      "provenance_class":  "repeat_success_playbook",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.29,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.97,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T10:47:26.6175169Z",
+                      "first_seen_at":  "2026-03-12T10:47:26.6175169Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "support_explanation",
+                                                "incident_response",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Resolve the access issue, then rerun the mirror flow so the checkpoint can return to ok=true and phase=done.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_playbook_pb_host_pending_reboot",
+                      "title":  "Pending Reboot And Caution Host Posture",
+                      "domain":  "playbook_support",
+                      "component":  "playbook_support",
+                      "topic":  "warning",
+                      "summary":  "The host is asking for a reboot. Mason can keep observing and throttling, but it should not reboot the machine automatically because that would interrupt the running stack and may affect active work.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+                                              "source_type":  "playbook_library",
+                                              "observed_at":  "2026-03-12T10:47:26.6175169Z"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\host_health_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\runtime_posture_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "playbook",
+                      "provenance_class":  "repeat_success_playbook",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.29,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.97,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T10:47:26.6175169Z",
+                      "first_seen_at":  "2026-03-12T10:47:26.6175169Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "support_explanation",
+                                                "incident_response",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Schedule a controlled Windows reboot when it will not interrupt current work.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_playbook_pb_regression_promotion_blocked",
+                      "title":  "Promotion Blocked By Regression Guard",
+                      "domain":  "playbook_support",
+                      "component":  "playbook_support",
+                      "topic":  "governance",
+                      "summary":  "Promotion is blocked because the regression guard does not yet have enough evidence to say the current platform is safely better than the comparison baseline. That is a guardrail, not an accidental slowdown.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+                                              "source_type":  "playbook_library",
+                                              "observed_at":  "2026-03-12T10:47:26.6175169Z"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\regression_guard_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\promotion_gate_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\rollback_plan_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "playbook",
+                      "provenance_class":  "repeat_success_playbook",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.29,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.97,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T10:47:26.6175169Z",
+                      "first_seen_at":  "2026-03-12T10:47:26.6175169Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "support_explanation",
+                                                "incident_response",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Review the seeded baseline, accept a trusted baseline when justified, and clear the remaining warning regressions before promotion.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_playbook_pb_runtime_singleton_truth_drift",
+                      "title":  "Runtime Singleton Or PID Truth Drift",
+                      "domain":  "playbook_support",
+                      "component":  "playbook_support",
+                      "topic":  "recovery",
+                      "summary":  "Runtime truth drift means the platform has conflicting answers about which process actually owns a required service. Mason should treat current live listener ownership as authoritative and avoid trusting stale launcher PID leftovers.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+                                              "source_type":  "playbook_library",
+                                              "observed_at":  "2026-03-12T10:47:26.6175169Z"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\knowledge\\stack_pids.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "playbook",
+                      "provenance_class":  "repeat_success_playbook",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.29,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.97,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T10:47:26.6175169Z",
+                      "first_seen_at":  "2026-03-12T10:47:26.6175169Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "support_explanation",
+                                                "incident_response",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Review the canonical live owner if singleton ownership cannot be established safely.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_playbook_pb_security_tenant_safety_watch",
+                      "title":  "Security Or Tenant-Safety Watch Posture",
+                      "domain":  "playbook_support",
+                      "component":  "playbook_support",
+                      "topic":  "warning",
+                      "summary":  "Security and tenant-safety are in a watch posture. That means the platform still has known governance or isolation work to finish, even if the stack is otherwise running.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+                                              "source_type":  "playbook_library",
+                                              "observed_at":  "2026-03-12T10:47:26.6175169Z"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\security_posture.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\tenant_safety_report.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "playbook",
+                      "provenance_class":  "repeat_success_playbook",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.29,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.97,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T10:47:26.6175169Z",
+                      "first_seen_at":  "2026-03-12T10:47:26.6175169Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "support_explanation",
+                                                "incident_response",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Review the tenant safety report and close the isolation warnings intentionally.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_playbook_pb_self_improvement_review_gate",
+                      "title":  "Self-Improvement Remains Review-Gated",
+                      "domain":  "playbook_support",
+                      "component":  "playbook_support",
+                      "topic":  "governance",
+                      "summary":  "The self-improvement governor is doing its job: it is screening ideas, keeping risky changes approval-gated, and refusing to let weak teacher-backed work flow straight into staging.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+                                              "source_type":  "playbook_library",
+                                              "observed_at":  "2026-03-12T10:47:26.6175169Z"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\self_improvement_governor_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_call_budget_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_decision_log_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "playbook",
+                      "provenance_class":  "repeat_success_playbook",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.29,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.97,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T10:47:26.6175169Z",
+                      "first_seen_at":  "2026-03-12T10:47:26.6175169Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "support_explanation",
+                                                "incident_response",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Review blocked teacher-worthy items manually and approve only the ones with strong evidence.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_playbook_pb_service_health_missing_listener",
+                      "title":  "Service Health Or Missing Listener",
+                      "domain":  "playbook_support",
+                      "component":  "playbook_support",
+                      "topic":  "incident",
+                      "summary":  "A required Mason stack service is missing, unhealthy, or not answering on its loopback contract port. Mason should trust the live probe and listener state first, then use the validator and start artifacts to explain what changed.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+                                              "source_type":  "playbook_library",
+                                              "observed_at":  "2026-03-12T10:47:26.6175169Z"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\keepalive_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "playbook",
+                      "provenance_class":  "repeat_success_playbook",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.29,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.97,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T10:47:26.6175169Z",
+                      "first_seen_at":  "2026-03-12T10:47:26.6175169Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "support_explanation",
+                                                "incident_response",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Review the failing component log and authorize targeted recovery if the service does not return cleanly.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_playbook_pb_stale_truth_artifact_mismatch",
+                      "title":  "Stale Artifact Versus Live Probe Mismatch",
+                      "domain":  "playbook_support",
+                      "component":  "playbook_support",
+                      "topic":  "explanation",
+                      "summary":  "A truth mismatch means an older artifact is describing a healthier or different state than the live machine. Mason should trust the freshest authoritative producer or the live loopback probe, not the prettier-looking stale file.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+                                              "source_type":  "playbook_library",
+                                              "observed_at":  "2026-03-12T10:47:26.6175169Z"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\keepalive_last.json",
+                                              "source_type":  "playbook_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "playbook",
+                      "provenance_class":  "repeat_success_playbook",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.29,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.97,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T10:47:26.6175169Z",
+                      "first_seen_at":  "2026-03-12T10:47:26.6175169Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "support_explanation",
+                                                "incident_response",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Review whether the stale producer needs to be rerun or repaired.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_business_outcome_churn_risk_indicators",
+                      "title":  "churn_risk_indicators",
+                      "domain":  "business_outcomes",
+                      "component":  "business_outcomes",
+                      "topic":  "churn_risk_indicators",
+                      "summary":  "Moderate-or-higher churn risk tenants=0; completed onboarding tenants=1.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\business_outcomes_last.json",
+                                              "source_type":  "business_outcomes",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "business_outcome",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.27,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "positive",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "outcome_analysis",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Watch tenants with weak adoption or incomplete onboarding for disengagement.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_tool_sales_followup_v1",
+                      "title":  "Tool usefulness: sales_followup_v1",
+                      "domain":  "tools",
+                      "component":  "sales_followup_v1",
+                      "topic":  "tool_usefulness",
+                      "summary":  "Runs=1; accepted_recommendations=1; dismissed_recommendations=0.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\tool_usefulness_last.json",
+                                              "source_type":  "tool_usefulness",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "tool_usefulness",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.27,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "positive",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "tenant_context",
+                                                "recommendation_refinement",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "tenant_count_affected=1; usefulness=useful.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_system_truth_brand_exposure",
+                      "title":  "System truth: brand_exposure",
+                      "domain":  "brand_exposure",
+                      "component":  "brand_exposure",
+                      "topic":  "system_truth",
+                      "summary":  "Brand exposure PASS; public_leaks=0; surfaces_scanned=13.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\brand_exposure_isolation_last.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-11T19:53:22.7564675+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  82.11,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  98.04,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-11T19:53:22.7564675+00:00",
+                      "first_seen_at":  "2026-03-11T19:53:22.7564675+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "positive",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "No action required.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_system_truth_mirror",
+                      "title":  "System truth: mirror",
+                      "domain":  "mirror",
+                      "component":  "mirror",
+                      "topic":  "system_truth",
+                      "summary":  "Mirror ok=true; phase=done; push=local_commit_only_remote_push_failed.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\mirror_update_last.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-12T03:25:22.4635147+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  81.22,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  93.6,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T03:25:22.4635147+00:00",
+                      "first_seen_at":  "2026-03-12T03:25:22.4635147+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "trusted",
+                      "execution_support":  "validated_local_execution",
+                      "outcome_support":  "positive",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Review mirror remote connectivity if off-box replication is required; the local checkpoint was committed successfully.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_system_truth_tenants",
+                      "title":  "System truth: tenants",
+                      "domain":  "tenants",
+                      "component":  "tenants",
+                      "topic":  "system_truth",
+                      "summary":  "Tenant workspace tracks 1 tenant context(s); active_tenant_id=tenant_http_check.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\onyx\\tenant_workspace.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-08T06:10:00.0000000+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  80.41,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  89.54,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-08T06:10:00.0000000+00:00",
+                      "first_seen_at":  "2026-03-08T06:10:00.0000000+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "positive",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "No action required.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_system_truth_queues",
+                      "title":  "System truth: queues",
+                      "domain":  "queues",
+                      "component":  "queues",
+                      "topic":  "system_truth",
+                      "summary":  "Improvement queue has 208 item(s); pending approvals=0.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\knowledge\\improvement_queue.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-08T03:50:26.4577110+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  80.37,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  89.33,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-08T03:50:26.4577110+00:00",
+                      "first_seen_at":  "2026-03-08T03:50:26.4577110+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "positive",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "No action required.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_system_truth_trust",
+                      "title":  "System truth: trust",
+                      "domain":  "trust",
+                      "component":  "trust",
+                      "topic":  "system_truth",
+                      "summary":  "Behavior trust tracks 2 behaviors; auto_allowed=1; blocked=0.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\knowledge\\behavior_trust.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-08T03:50:26.3722460+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  80.37,
+                      "confidence_band":  "trusted",
+                      "freshness_score":  89.33,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-08T03:50:26.3722460+00:00",
+                      "first_seen_at":  "2026-03-08T03:50:26.3722460+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "positive",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "No action required.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_system_truth_tools",
+                      "title":  "System truth: tools",
+                      "domain":  "tools",
+                      "component":  "tools",
+                      "topic":  "system_truth",
+                      "summary":  "Tool registry has 4 tools; enabled=3; latest_artifact_count=2.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\tool_registry.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-08T15:23:29.8783412+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  79.61,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  85.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-08T15:23:29.8783412+00:00",
+                      "first_seen_at":  "2026-03-08T15:23:29.8783412+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "positive",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "No action required.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_business_outcome_onboarding_completion",
+                      "title":  "onboarding_completion",
+                      "domain":  "business_outcomes",
+                      "component":  "business_outcomes",
+                      "topic":  "onboarding_completion",
+                      "summary":  "Completed=1; incomplete=0.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\business_outcomes_last.json",
+                                              "source_type":  "business_outcomes",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "business_outcome",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  76.27,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "unknown",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "outcome_analysis",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Collect more outcome evidence before promoting this card.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_recommendation_workflow",
+                      "title":  "Recommendation effectiveness: workflow",
+                      "domain":  "recommendations",
+                      "component":  "workflow",
+                      "topic":  "recommendation_effectiveness",
+                      "summary":  "workflow recommendations are not_enough_data; acceptance=0; rejection=0.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\recommendation_effectiveness_last.json",
+                                              "source_type":  "recommendation_effectiveness",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "recommendation_effectiveness",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  76.27,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "unknown",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "recommendation_refinement",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "refinement_needed=false.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_business_outcome_tenant_engagement",
+                      "title":  "tenant_engagement",
+                      "domain":  "business_outcomes",
+                      "component":  "business_outcomes",
+                      "topic":  "tenant_engagement",
+                      "summary":  "Active tenants=1; low engagement=0.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\business_outcomes_last.json",
+                                              "source_type":  "business_outcomes",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "business_outcome",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  76.27,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "unknown",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "outcome_analysis",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Collect more outcome evidence before promoting this card.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_tool_rescue_plan_v1",
+                      "title":  "Tool usefulness: rescue_plan_v1",
+                      "domain":  "tools",
+                      "component":  "rescue_plan_v1",
+                      "topic":  "tool_usefulness",
+                      "summary":  "Runs=1; accepted_recommendations=0; dismissed_recommendations=0.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\tool_usefulness_last.json",
+                                              "source_type":  "tool_usefulness",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "tool_usefulness",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  76.27,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "tenant_context",
+                                                "recommendation_refinement",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "tenant_count_affected=1; usefulness=unclear.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_business_outcome_revenue_help_indicators",
+                      "title":  "revenue_help_indicators",
+                      "domain":  "business_outcomes",
+                      "component":  "business_outcomes",
+                      "topic":  "revenue_help_indicators",
+                      "summary":  "Revenue-help remains behavior-level only; accepted follow-through plus sales/marketing usage are treated as signal, not revenue proof.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\business_outcomes_last.json",
+                                              "source_type":  "business_outcomes",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "business_outcome",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  75.27,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "positive",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "outcome_analysis",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "Keep tracking sales or marketing tool follow-through before claiming stronger revenue help.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_tool_workflow_capability_builder_v1",
+                      "title":  "Tool usefulness: workflow_capability_builder_v1",
+                      "domain":  "tools",
+                      "component":  "workflow_capability_builder_v1",
+                      "topic":  "tool_usefulness",
+                      "summary":  "Runs=0; accepted_recommendations=0; dismissed_recommendations=0.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\tool_usefulness_last.json",
+                                              "source_type":  "tool_usefulness",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "tool_usefulness",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  95.76,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  73.94,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "review_only",
+                      "outcome_support":  "unknown",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "tenant_context",
+                                                "recommendation_refinement",
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  {
+
+                                            },
+                      "notes_for_reviewer":  "tenant_count_affected=0; usefulness=not_enough_data.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  true
+                  },
+                  {
+                      "card_id":  "card_system_truth_live_docs",
+                      "title":  "System truth: live_docs",
+                      "domain":  "live_docs",
+                      "component":  "live_docs",
+                      "topic":  "system_truth",
+                      "summary":  "Live docs WARN; docs_count=3; stale_docs=0.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\live_docs_summary.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-11T17:50:06.1463637+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  69.08,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  97.91,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-11T17:50:06.1463637+00:00",
+                      "first_seen_at":  "2026-03-11T17:50:06.1463637+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "No action required.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_system_truth_self_improvement",
+                      "title":  "System truth: self_improvement",
+                      "domain":  "self_improvement",
+                      "component":  "self_improvement",
+                      "topic":  "system_truth",
+                      "summary":  "Self-improvement posture WARN; active=197; teacher_allowed=0; blocked_by_local_first=197.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\self_improvement_governor_last.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-11T12:41:24.1577885+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  68.81,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  96.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-11T12:41:24.1577885+00:00",
+                      "first_seen_at":  "2026-03-11T12:41:24.1577885+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "validated_local_execution",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "Review blocked teacher-worthy items manually and keep money/security/policy changes approval-gated.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_system_truth_billing",
+                      "title":  "System truth: billing",
+                      "domain":  "billing",
+                      "component":  "billing",
+                      "topic":  "system_truth",
+                      "summary":  "Billing plan=growth_monthly; tenant_status=active; provider_mode=stub; enabled_tools=2.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\billing_summary.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-12T03:40:13.6869970+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  68.23,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  93.67,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-12T03:40:13.6869970+00:00",
+                      "first_seen_at":  "2026-03-12T03:40:13.6869970+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "validated_local_execution",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "Configure external billing secrets and webhook settings before enabling live money actions.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_system_truth_services",
+                      "title":  "System truth: services",
+                      "domain":  "services",
+                      "component":  "services",
+                      "topic":  "system_truth",
+                      "summary":  "All required services are healthy, but Athena has live PID truth drift.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "live://contract_ports_and_health_probes",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  68.23,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  93.67,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-12T03:40:31.1074120+00:00",
+                      "first_seen_at":  "2026-03-12T03:40:31.1074120+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "validated_local_execution",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "Refresh stack PID truth for Athena without broad restarts.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_system_truth_stack",
+                      "title":  "System truth: stack",
+                      "domain":  "stack",
+                      "component":  "stack",
+                      "topic":  "system_truth",
+                      "summary":  "All required services are healthy, but runtime truth drift remains for Athena.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\start\\start_run_last.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  68.23,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  93.67,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-12T03:40:31.1074120+00:00",
+                      "first_seen_at":  "2026-03-12T03:40:31.1074120+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "validated_local_execution",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "Refresh the normal stack start flow so stack_pids.json matches live runtime truth for Athena.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_system_truth_validator",
+                      "title":  "System truth: validator",
+                      "domain":  "validator",
+                      "component":  "validator",
+                      "topic":  "system_truth",
+                      "summary":  "WARN with 0 fail / 8 warn / 147 pass.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-12T03:40:18.6523885+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  68.23,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  93.67,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-12T03:40:18.6523885+00:00",
+                      "first_seen_at":  "2026-03-12T03:40:18.6523885+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "validated_local_execution",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "Refresh the normal stack start flow so stack_pids.json matches live runtime truth for Athena.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_system_truth_keepalive_ops",
+                      "title":  "System truth: keepalive_ops",
+                      "domain":  "keepalive_ops",
+                      "component":  "keepalive_ops",
+                      "topic":  "system_truth",
+                      "summary":  "KeepAlive WARN; recoverable=0; escalated=5; repairs=0/0 success.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\keepalive_last.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-12T00:48:59.0430163+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  68.08,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  92.9,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-12T00:48:59.0430163+00:00",
+                      "first_seen_at":  "2026-03-12T00:48:59.0430163+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "validated_local_execution",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "Plan a safe reboot window when appropriate.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_system_truth_environment",
+                      "title":  "System truth: environment",
+                      "domain":  "environment",
+                      "component":  "environment",
+                      "topic":  "system_truth",
+                      "summary":  "Environment env_8f6a125e2aa8 on desktop; drift=no_material_change; throttle=caution.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\environment_profile_last.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-11T11:46:31.1603079+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  67.38,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  89.41,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-11T11:46:31.1603079+00:00",
+                      "first_seen_at":  "2026-03-11T11:46:31.1603079+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "validated_local_execution",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "No action required.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_system_truth_host",
+                      "title":  "System truth: host",
+                      "domain":  "host",
+                      "component":  "host",
+                      "topic":  "system_truth",
+                      "summary":  "Host status WARN; throttle=caution; next=Schedule a controlled Windows reboot to clear the pending reboot state.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                              "source_type":  "system_truth_spine",
+                                              "observed_at":  "2026-03-12T03:40:31.1074120+00:00"
+                                          },
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\host_health_last.json",
+                                              "source_type":  "domain_source",
+                                              "observed_at":  "2026-03-11T11:46:12.4237372+00:00"
+                                          }
+                                      ],
+                      "source_type":  "system_truth_domain",
+                      "provenance_class":  "validated_local_execution",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  67.38,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  89.41,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-11T11:46:12.4237372+00:00",
+                      "first_seen_at":  "2026-03-11T11:46:12.4237372+00:00",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "validated_local_execution",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "support_explanation",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "Schedule a controlled Windows reboot to clear the pending reboot state.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_teacher_teacher-20260225043518-001",
+                      "title":  "Enhance Mason\u0027s Watchdog Health Checks",
+                      "domain":  "mason",
+                      "component":  "watchdog",
+                      "topic":  "teacher_review",
+                      "summary":  "Teacher material scored 81.83 and is queue_for_review.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_decision_log_last.json",
+                                              "source_type":  "teacher_decision_log",
+                                              "observed_at":  "2026-03-11T12:41:24.1567882Z"
+                                          },
+                                          {
+                                              "path":  "domain=mason",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "keyword_overlap=13",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "referenced_action_paths_found=1/2",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "teacher_review",
+                      "provenance_class":  "teacher_output_reviewed",
+                      "evidence_score":  82.33,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  66.09,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  96.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-11T12:41:24.1567882Z",
+                      "first_seen_at":  "2026-03-11T12:41:24.1567882Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "review_only",
+                      "outcome_support":  "weak",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "reference_review",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  [
+                                                "action_influence",
+                                                "autonomous_action",
+                                                "recommendation_priority"
+                                            ],
+                      "notes_for_reviewer":  [
+                                                 "Teacher classification=queue_for_review; referenced_action_paths_found=1.",
+                                                 "Teacher-originated material remains local-first and review-gated until it passes the quality floor."
+                                             ],
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_business_outcome_time_saved_indicators",
+                      "title":  "time_saved_indicators",
+                      "domain":  "business_outcomes",
+                      "component":  "business_outcomes",
+                      "topic":  "time_saved_indicators",
+                      "summary":  "Tool runs=2; accepted recommendation follow-through tenants=1; no precise hours claimed.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\business_outcomes_last.json",
+                                              "source_type":  "business_outcomes",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "business_outcome",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  94.16,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  66.06,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "outcome_analysis",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "Collect more repeated tenant workflow completions before making stronger time-saved claims.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_business_outcome_recommendation_effectiveness",
+                      "title":  "recommendation_effectiveness",
+                      "domain":  "business_outcomes",
+                      "component":  "business_outcomes",
+                      "topic":  "recommendation_effectiveness",
+                      "summary":  "Accepted=1; dismissed=1; pending=1.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\business_outcomes_last.json",
+                                              "source_type":  "business_outcomes",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "business_outcome",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  90.16,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  63.86,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "unknown",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "outcome_analysis",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "Refine wording or timing where recommendations are dismissed, and keep measuring follow-through.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_business_outcome_tool_usefulness",
+                      "title":  "tool_usefulness",
+                      "domain":  "business_outcomes",
+                      "component":  "business_outcomes",
+                      "topic":  "tool_usefulness",
+                      "summary":  "Some tools show real usefulness signal, but usage remains sparse.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\business_outcomes_last.json",
+                                              "source_type":  "business_outcomes",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "business_outcome",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  90.16,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  63.86,
+                      "confidence_band":  "usable_with_review",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "2026-03-13T03:18:28.0215058+00:00",
+                      "use_count":  2,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "unknown",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "founder_summary",
+                                                "outcome_analysis",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  "action_influence",
+                      "notes_for_reviewer":  "Collect more outcome evidence before promoting this card.",
+                      "stale":  false,
+                      "reuse_eligible":  true,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_tool_marketing_pack_v1",
+                      "title":  "Tool usefulness: marketing_pack_v1",
+                      "domain":  "tools",
+                      "component":  "marketing_pack_v1",
+                      "topic":  "tool_usefulness",
+                      "summary":  "Runs=0; accepted_recommendations=0; dismissed_recommendations=1.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\tool_usefulness_last.json",
+                                              "source_type":  "tool_usefulness",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "tool_usefulness",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  84.76,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  51.39,
+                      "confidence_band":  "caution",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "",
+                      "use_count":  0,
+                      "success_count":  0,
+                      "failure_count":  1,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "review_only",
+                      "outcome_support":  "weak",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "tenant_context",
+                                                "recommendation_refinement",
+                                                "knowledge_reuse",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  [
+                                                "knowledge_reuse",
+                                                "action_influence"
+                                            ],
+                      "notes_for_reviewer":  "tenant_count_affected=0; usefulness=underused.",
+                      "stale":  false,
+                      "reuse_eligible":  false,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_teacher_teacher-20260225043518-008",
+                      "title":  "Add Approval Workflow UI for Risky Changes",
+                      "domain":  "athena",
+                      "component":  "approvals",
+                      "topic":  "teacher_review",
+                      "summary":  "Teacher material scored 74.83 and is queue_for_review.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_decision_log_last.json",
+                                              "source_type":  "teacher_decision_log",
+                                              "observed_at":  "2026-03-11T12:41:24.1567882Z"
+                                          },
+                                          {
+                                              "path":  "domain=athena",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "keyword_overlap=18",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "referenced_action_paths_found=0/3",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "teacher_review",
+                      "provenance_class":  "teacher_output_reviewed",
+                      "evidence_score":  63.24,
+                      "evidence_band":  "medium_evidence",
+                      "confidence_score":  47.09,
+                      "confidence_band":  "caution",
+                      "freshness_score":  96.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-11T12:41:24.1567882Z",
+                      "first_seen_at":  "2026-03-11T12:41:24.1567882Z",
+                      "last_used_at":  "",
+                      "use_count":  0,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "not_verified",
+                      "outcome_support":  "weak",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "reference_review",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  [
+                                                "action_influence",
+                                                "autonomous_action",
+                                                "recommendation_priority",
+                                                "knowledge_reuse"
+                                            ],
+                      "notes_for_reviewer":  [
+                                                 "Teacher classification=queue_for_review; referenced_action_paths_found=0.",
+                                                 "Teacher-originated material remains local-first and review-gated until it passes the quality floor."
+                                             ],
+                      "stale":  false,
+                      "reuse_eligible":  false,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_teacher_teacher-20260225043518-004",
+                      "title":  "Add Clear Status Indicators for Risk and Autonomy Mode",
+                      "domain":  "athena",
+                      "component":  "ui",
+                      "topic":  "teacher_review",
+                      "summary":  "Teacher material scored 74.83 and is queue_for_review.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_decision_log_last.json",
+                                              "source_type":  "teacher_decision_log",
+                                              "observed_at":  "2026-03-11T12:41:24.1567882Z"
+                                          },
+                                          {
+                                              "path":  "domain=athena",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "keyword_overlap=14",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "referenced_action_paths_found=0/3",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "teacher_review",
+                      "provenance_class":  "teacher_output_reviewed",
+                      "evidence_score":  63.24,
+                      "evidence_band":  "medium_evidence",
+                      "confidence_score":  47.09,
+                      "confidence_band":  "caution",
+                      "freshness_score":  96.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-11T12:41:24.1567882Z",
+                      "first_seen_at":  "2026-03-11T12:41:24.1567882Z",
+                      "last_used_at":  "",
+                      "use_count":  0,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "not_verified",
+                      "outcome_support":  "weak",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "reference_review",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  [
+                                                "action_influence",
+                                                "autonomous_action",
+                                                "recommendation_priority",
+                                                "knowledge_reuse"
+                                            ],
+                      "notes_for_reviewer":  [
+                                                 "Teacher classification=queue_for_review; referenced_action_paths_found=0.",
+                                                 "Teacher-originated material remains local-first and review-gated until it passes the quality floor."
+                                             ],
+                      "stale":  false,
+                      "reuse_eligible":  false,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_teacher_teacher-20260225043518-005",
+                      "title":  "Improve Onyx Error Handling and Retry Logic",
+                      "domain":  "onyx",
+                      "component":  "reliability",
+                      "topic":  "teacher_review",
+                      "summary":  "Teacher material scored 74.83 and is queue_for_review.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_decision_log_last.json",
+                                              "source_type":  "teacher_decision_log",
+                                              "observed_at":  "2026-03-11T12:41:24.1567882Z"
+                                          },
+                                          {
+                                              "path":  "domain=onyx",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "keyword_overlap=19",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "referenced_action_paths_found=0/3",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "teacher_review",
+                      "provenance_class":  "teacher_output_reviewed",
+                      "evidence_score":  63.24,
+                      "evidence_band":  "medium_evidence",
+                      "confidence_score":  47.09,
+                      "confidence_band":  "caution",
+                      "freshness_score":  96.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-11T12:41:24.1567882Z",
+                      "first_seen_at":  "2026-03-11T12:41:24.1567882Z",
+                      "last_used_at":  "",
+                      "use_count":  0,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "not_verified",
+                      "outcome_support":  "weak",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "reference_review",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  [
+                                                "action_influence",
+                                                "autonomous_action",
+                                                "recommendation_priority",
+                                                "knowledge_reuse"
+                                            ],
+                      "notes_for_reviewer":  [
+                                                 "Teacher classification=queue_for_review; referenced_action_paths_found=0.",
+                                                 "Teacher-originated material remains local-first and review-gated until it passes the quality floor."
+                                             ],
+                      "stale":  false,
+                      "reuse_eligible":  false,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_teacher_teacher-20260225043518-006",
+                      "title":  "Implement Canary Runs for Medium-Risk Changes",
+                      "domain":  "mason",
+                      "component":  "stack",
+                      "topic":  "teacher_review",
+                      "summary":  "Teacher material scored 73.5 and is queue_for_review.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_decision_log_last.json",
+                                              "source_type":  "teacher_decision_log",
+                                              "observed_at":  "2026-03-11T12:41:24.1567882Z"
+                                          },
+                                          {
+                                              "path":  "domain=mason",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "keyword_overlap=14",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "referenced_action_paths_found=0/2",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "teacher_review",
+                      "provenance_class":  "teacher_output_reviewed",
+                      "evidence_score":  63.1,
+                      "evidence_band":  "medium_evidence",
+                      "confidence_score":  47.02,
+                      "confidence_band":  "caution",
+                      "freshness_score":  96.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-11T12:41:24.1567882Z",
+                      "first_seen_at":  "2026-03-11T12:41:24.1567882Z",
+                      "last_used_at":  "",
+                      "use_count":  0,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "not_verified",
+                      "outcome_support":  "weak",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "reference_review",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  [
+                                                "action_influence",
+                                                "autonomous_action",
+                                                "recommendation_priority",
+                                                "knowledge_reuse"
+                                            ],
+                      "notes_for_reviewer":  [
+                                                 "Teacher classification=queue_for_review; referenced_action_paths_found=0.",
+                                                 "Teacher-originated material remains local-first and review-gated until it passes the quality floor."
+                                             ],
+                      "stale":  false,
+                      "reuse_eligible":  false,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_teacher_teacher-20260225043518-007",
+                      "title":  "Integrate Basic AI Model Evaluation Metrics",
+                      "domain":  "mason",
+                      "component":  "stack",
+                      "topic":  "teacher_review",
+                      "summary":  "Teacher material scored 73.5 and is queue_for_review.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_decision_log_last.json",
+                                              "source_type":  "teacher_decision_log",
+                                              "observed_at":  "2026-03-11T12:41:24.1567882Z"
+                                          },
+                                          {
+                                              "path":  "domain=mason",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "keyword_overlap=18",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "referenced_action_paths_found=0/2",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "teacher_review",
+                      "provenance_class":  "teacher_output_reviewed",
+                      "evidence_score":  63.1,
+                      "evidence_band":  "medium_evidence",
+                      "confidence_score":  47.02,
+                      "confidence_band":  "caution",
+                      "freshness_score":  96.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-11T12:41:24.1567882Z",
+                      "first_seen_at":  "2026-03-11T12:41:24.1567882Z",
+                      "last_used_at":  "",
+                      "use_count":  0,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "not_verified",
+                      "outcome_support":  "weak",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "reference_review",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  [
+                                                "action_influence",
+                                                "autonomous_action",
+                                                "recommendation_priority",
+                                                "knowledge_reuse"
+                                            ],
+                      "notes_for_reviewer":  [
+                                                 "Teacher classification=queue_for_review; referenced_action_paths_found=0.",
+                                                 "Teacher-originated material remains local-first and review-gated until it passes the quality floor."
+                                             ],
+                      "stale":  false,
+                      "reuse_eligible":  false,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_teacher_teacher-20260225043518-009",
+                      "title":  "Optimize Onyx Startup Time and Resource Usage",
+                      "domain":  "onyx",
+                      "component":  "performance",
+                      "topic":  "teacher_review",
+                      "summary":  "Teacher material scored 73.5 and is queue_for_review.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_decision_log_last.json",
+                                              "source_type":  "teacher_decision_log",
+                                              "observed_at":  "2026-03-11T12:41:24.1567882Z"
+                                          },
+                                          {
+                                              "path":  "domain=onyx",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "keyword_overlap=14",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "referenced_action_paths_found=0/2",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "teacher_review",
+                      "provenance_class":  "teacher_output_reviewed",
+                      "evidence_score":  63.1,
+                      "evidence_band":  "medium_evidence",
+                      "confidence_score":  47.02,
+                      "confidence_band":  "caution",
+                      "freshness_score":  96.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-11T12:41:24.1567882Z",
+                      "first_seen_at":  "2026-03-11T12:41:24.1567882Z",
+                      "last_used_at":  "",
+                      "use_count":  0,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "not_verified",
+                      "outcome_support":  "weak",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "reference_review",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  [
+                                                "action_influence",
+                                                "autonomous_action",
+                                                "recommendation_priority",
+                                                "knowledge_reuse"
+                                            ],
+                      "notes_for_reviewer":  [
+                                                 "Teacher classification=queue_for_review; referenced_action_paths_found=0.",
+                                                 "Teacher-originated material remains local-first and review-gated until it passes the quality floor."
+                                             ],
+                      "stale":  false,
+                      "reuse_eligible":  false,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_teacher_teacher-20260225043518-002",
+                      "title":  "Implement Disk Usage Monitoring and Log Rotation",
+                      "domain":  "mason",
+                      "component":  "resource_guard",
+                      "topic":  "teacher_review",
+                      "summary":  "Teacher material scored 70.17 and is queue_for_review.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_decision_log_last.json",
+                                              "source_type":  "teacher_decision_log",
+                                              "observed_at":  "2026-03-11T12:41:24.1567882Z"
+                                          },
+                                          {
+                                              "path":  "domain=mason",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "keyword_overlap=12",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "referenced_action_paths_found=0/2",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "teacher_review",
+                      "provenance_class":  "teacher_output_reviewed",
+                      "evidence_score":  62.75,
+                      "evidence_band":  "medium_evidence",
+                      "confidence_score":  46.82,
+                      "confidence_band":  "caution",
+                      "freshness_score":  96.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  1,
+                      "last_verified_at":  "2026-03-11T12:41:24.1567882Z",
+                      "first_seen_at":  "2026-03-11T12:41:24.1567882Z",
+                      "last_used_at":  "",
+                      "use_count":  0,
+                      "success_count":  0,
+                      "failure_count":  0,
+                      "rejection_count":  0,
+                      "review_status":  "review_required",
+                      "execution_support":  "not_verified",
+                      "outcome_support":  "weak",
+                      "anti_repeat_flag":  false,
+                      "allowed_use_modes":  [
+                                                "reference_review",
+                                                "history_review"
+                                            ],
+                      "blocked_use_modes":  [
+                                                "action_influence",
+                                                "autonomous_action",
+                                                "recommendation_priority",
+                                                "knowledge_reuse"
+                                            ],
+                      "notes_for_reviewer":  [
+                                                 "Teacher classification=queue_for_review; referenced_action_paths_found=0.",
+                                                 "Teacher-originated material remains local-first and review-gated until it passes the quality floor."
+                                             ],
+                      "stale":  false,
+                      "reuse_eligible":  false,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_recommendation_tool",
+                      "title":  "Recommendation effectiveness: tool",
+                      "domain":  "recommendations",
+                      "component":  "tool",
+                      "topic":  "recommendation_effectiveness",
+                      "summary":  "tool recommendations are mixed; acceptance=1; rejection=1.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\recommendation_effectiveness_last.json",
+                                              "source_type":  "recommendation_effectiveness",
+                                              "observed_at":  "2026-03-12T18:51:03.7306756Z"
+                                          }
+                                      ],
+                      "source_type":  "recommendation_effectiveness",
+                      "provenance_class":  "local_authoritative_artifact",
+                      "evidence_score":  100,
+                      "evidence_band":  "high_evidence",
+                      "confidence_score":  24,
+                      "confidence_band":  "blocked",
+                      "freshness_score":  98.87,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  0,
+                      "last_verified_at":  "2026-03-12T18:51:03.7306756Z",
+                      "first_seen_at":  "2026-03-12T18:51:03.7306756Z",
+                      "last_used_at":  "",
+                      "use_count":  0,
+                      "success_count":  1,
+                      "failure_count":  0,
+                      "rejection_count":  1,
+                      "review_status":  "blocked",
+                      "execution_support":  "artifact_supported",
+                      "outcome_support":  "mixed",
+                      "anti_repeat_flag":  true,
+                      "allowed_use_modes":  [
+                                                "recommendation_refinement",
+                                                "knowledge_reuse"
+                                            ],
+                      "blocked_use_modes":  [
+                                                "knowledge_reuse",
+                                                "action_influence",
+                                                "autonomous_action",
+                                                "recommendation_priority"
+                                            ],
+                      "notes_for_reviewer":  [
+                                                 "refinement_needed=true.",
+                                                 "Anti-repeat memory is active for this card."
+                                             ],
+                      "stale":  false,
+                      "reuse_eligible":  false,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_teacher_teacher-20260225043518-003",
+                      "title":  "Enforce Least Privilege for Mason Scripts",
+                      "domain":  "mason",
+                      "component":  "security",
+                      "topic":  "teacher_review",
+                      "summary":  "Teacher material scored 63.17 and is reject.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_decision_log_last.json",
+                                              "source_type":  "teacher_decision_log",
+                                              "observed_at":  "2026-03-11T12:41:24.1567882Z"
+                                          },
+                                          {
+                                              "path":  "domain=mason",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "keyword_overlap=12",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          },
+                                          {
+                                              "path":  "referenced_action_paths_found=0/3",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "teacher_review",
+                      "provenance_class":  "failed_prior_suggestion",
+                      "evidence_score":  8.02,
+                      "evidence_band":  "rejected_evidence",
+                      "confidence_score":  0,
+                      "confidence_band":  "blocked",
+                      "freshness_score":  96.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  2,
+                      "last_verified_at":  "2026-03-11T12:41:24.1567882Z",
+                      "first_seen_at":  "2026-03-11T12:41:24.1567882Z",
+                      "last_used_at":  "",
+                      "use_count":  0,
+                      "success_count":  0,
+                      "failure_count":  1,
+                      "rejection_count":  1,
+                      "review_status":  "blocked",
+                      "execution_support":  "not_verified",
+                      "outcome_support":  "negative",
+                      "anti_repeat_flag":  true,
+                      "allowed_use_modes":  "reference_review",
+                      "blocked_use_modes":  [
+                                                "action_influence",
+                                                "autonomous_action",
+                                                "recommendation_priority",
+                                                "knowledge_reuse"
+                                            ],
+                      "notes_for_reviewer":  [
+                                                 "Teacher classification=reject; referenced_action_paths_found=0.",
+                                                 "Teacher-originated material remains local-first and review-gated until it passes the quality floor.",
+                                                 "Anti-repeat memory is active for this card."
+                                             ],
+                      "stale":  false,
+                      "reuse_eligible":  false,
+                      "action_eligible":  false
+                  },
+                  {
+                      "card_id":  "card_teacher_teacher_suggestions_latest",
+                      "title":  "Latest teacher suggestions artifact",
+                      "domain":  "mason",
+                      "component":  "teacher_suggestions",
+                      "topic":  "teacher_review",
+                      "summary":  "Teacher material scored 10 and is reject.",
+                      "source_refs":  [
+                                          {
+                                              "path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\teacher_decision_log_last.json",
+                                              "source_type":  "teacher_decision_log",
+                                              "observed_at":  "2026-03-11T12:41:24.1567882Z"
+                                          },
+                                          {
+                                              "path":  "reason=All teacher steps were rejected by no-randomness validation.",
+                                              "source_type":  "teacher_evidence",
+                                              "observed_at":  ""
+                                          }
+                                      ],
+                      "source_type":  "teacher_review",
+                      "provenance_class":  "failed_prior_suggestion",
+                      "evidence_score":  0,
+                      "evidence_band":  "rejected_evidence",
+                      "confidence_score":  0,
+                      "confidence_band":  "blocked",
+                      "freshness_score":  96.55,
+                      "freshness_band":  "fresh",
+                      "contradiction_count":  2,
+                      "last_verified_at":  "2026-03-11T12:41:24.1567882Z",
+                      "first_seen_at":  "2026-03-11T12:41:24.1567882Z",
+                      "last_used_at":  "",
+                      "use_count":  0,
+                      "success_count":  0,
+                      "failure_count":  1,
+                      "rejection_count":  1,
+                      "review_status":  "blocked",
+                      "execution_support":  "not_verified",
+                      "outcome_support":  "negative",
+                      "anti_repeat_flag":  true,
+                      "allowed_use_modes":  "reference_review",
+                      "blocked_use_modes":  [
+                                                "action_influence",
+                                                "autonomous_action",
+                                                "recommendation_priority",
+                                                "knowledge_reuse"
+                                            ],
+                      "notes_for_reviewer":  [
+                                                 "Teacher classification=reject; referenced_action_paths_found=0.",
+                                                 "Teacher-originated material remains local-first and review-gated until it passes the quality floor.",
+                                                 "Anti-repeat memory is active for this card."
+                                             ],
+                      "stale":  false,
+                      "reuse_eligible":  false,
+                      "action_eligible":  false
+                  }
+              ]
+}

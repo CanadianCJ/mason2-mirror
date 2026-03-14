@@ -1,0 +1,75 @@
+﻿{
+    "version":  1,
+    "policy_name":  "autonomous_release_management",
+    "release_stages":  [
+                           "draft",
+                           "candidate",
+                           "blocked",
+                           "canary_only",
+                           "pilot_ready",
+                           "customer_ready",
+                           "rollback_recommended"
+                       ],
+    "canary_group_rules":  {
+                               "internal_operator_only":  "Can receive internal canary exposure when core loopback health is stable and a basic rollback path is known.",
+                               "founder_pilot":  "Requires regression gate clearance, trusted baseline, rollback readiness, and non-frozen change posture.",
+                               "limited_customer_safe":  "Requires pilot readiness plus clean brand exposure, non-stub billing posture, and stronger business outcome confidence.",
+                               "broader_rollout_blocked":  "Stays active whenever the release is not customer-ready."
+                           },
+    "promotion_prerequisites":  [
+                                    "whole-system validator has no failures",
+                                    "regression guard allows promotion",
+                                    "trusted baseline exists",
+                                    "rollback path is known and safe enough",
+                                    "release-critical services are stable",
+                                    "change budget and promotion throttle allow broader rollout"
+                                ],
+    "rollback_prerequisites":  [
+                                   "rollback plan artifact exists",
+                                   "safe rollback steps are recorded",
+                                   "baseline reference is trusted enough for broader rollout"
+                               ],
+    "blocking_conditions":  [
+                                "validator failures",
+                                "regression guard blocks promotion",
+                                "trusted baseline missing",
+                                "rollback readiness is weak",
+                                "brand leakage in public/customer-safe surfaces",
+                                "release-critical services are unstable"
+                            ],
+    "warning_only_conditions":  [
+                                    "validator overall WARN without failures",
+                                    "security or tenant safety watch posture",
+                                    "billing remains in stub mode",
+                                    "business outcomes remain sparse or low-confidence",
+                                    "playbook support still reports recurring issues"
+                                ],
+    "release_note_generation_rules":  [
+                                          "Release notes must be built from current local artifacts and payload evidence.",
+                                          "Do not claim customer readiness or general availability unless the gates actually allow it.",
+                                          "Prefer operationally useful summaries over marketing language."
+                                      ],
+    "domain_dependency_rules":  [
+                                    "system truth, validator, regression, and rollback are release-critical inputs",
+                                    "capability/change budget is advisory when missing and gating when present",
+                                    "security, billing, brand exposure, keepalive, and business outcomes influence release scope"
+                                ],
+    "pilot_customer_internal_visibility_rules":  {
+                                                     "internal_canary":  "owner/operator only",
+                                                     "founder_pilot":  "founder-controlled pilot only",
+                                                     "limited_customer_safe":  "customer-safe only with governed wording and clean exposure posture"
+                                                 },
+    "stale_evidence_handling":  {
+                                    "validator_max_age_hours":  24,
+                                    "regression_max_age_hours":  24,
+                                    "system_truth_max_age_hours":  24,
+                                    "action_if_stale":  "downgrade to blocked or canary-only depending on missing evidence severity"
+                                },
+    "release_freeze_conditions":  [
+                                      "critical regression appears",
+                                      "security or tenant safety materially degrades",
+                                      "brand leakage appears",
+                                      "validator fails",
+                                      "rollback path becomes unknown or unsafe"
+                                  ]
+}

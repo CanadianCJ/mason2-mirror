@@ -130,6 +130,7 @@
     .status-yellow { color: var(--yellow); border-color: rgba(240, 193, 93, 0.32); background: rgba(240, 193, 93, 0.12); }
     .status-red,
     .state-fail { color: var(--red); border-color: rgba(255, 109, 127, 0.32); background: rgba(255, 109, 127, 0.12); }
+    .status-blue { color: var(--blue); border-color: rgba(103, 168, 255, 0.32); background: rgba(103, 168, 255, 0.12); }
     .state-running { color: var(--blue); border-color: rgba(103, 168, 255, 0.32); background: rgba(103, 168, 255, 0.12); }
     .state-idle { color: var(--muted); border-color: rgba(151, 168, 199, 0.22); background: rgba(151, 168, 199, 0.08); }
     .mode-chip { color: var(--blue); border-color: rgba(103, 168, 255, 0.25); background: rgba(103, 168, 255, 0.1); }
@@ -271,6 +272,245 @@
     th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid rgba(122, 156, 214, 0.1); font-size: 13px; vertical-align: top; }
     th { color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; }
 
+    .view-switch {
+      padding: 14px 18px;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .view-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tab-button {
+      color: var(--text);
+      background: rgba(6, 12, 23, 0.48);
+      border: 1px solid rgba(122, 156, 214, 0.16);
+      padding: 10px 14px;
+    }
+
+    .tab-button.active {
+      color: #04101c;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--cyan), #7de4ff);
+    }
+
+    .surface {
+      display: grid;
+      gap: 0;
+    }
+
+    .founder-banner {
+      margin-bottom: 18px;
+    }
+
+    .founder-hud {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      margin-top: 14px;
+    }
+
+    .hud-card {
+      border-radius: 14px;
+      border: 1px solid rgba(122, 156, 214, 0.12);
+      background: rgba(6, 12, 23, 0.48);
+      padding: 12px 14px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .hud-card span {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .founder-shell {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .founder-panel-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: sticky;
+      top: 12px;
+      z-index: 4;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(122, 156, 214, 0.14);
+      background: rgba(10, 20, 34, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .founder-panel-tabs button {
+      color: var(--text);
+      background: rgba(6, 12, 23, 0.48);
+      border: 1px solid rgba(122, 156, 214, 0.16);
+      padding: 10px 14px;
+    }
+
+    .founder-panel-tabs button.active {
+      color: #04101c;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--cyan), #7de4ff);
+    }
+
+    .founder-panel {
+      display: grid;
+      gap: 18px;
+    }
+
+    .founder-queue-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .queue-column {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .queue-label {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .founder-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .founder-item {
+      border-radius: 14px;
+      border: 1px solid rgba(122, 156, 214, 0.12);
+      background: rgba(6, 12, 23, 0.48);
+      padding: 12px 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .founder-item-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .founder-item-head strong {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .founder-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .founder-action-grid,
+    .component-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .action-card,
+    .component-card {
+      border-radius: 16px;
+      border: 1px solid rgba(122, 156, 214, 0.14);
+      background: rgba(6, 12, 23, 0.48);
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .approval-action-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .approval-card {
+      border-radius: 16px;
+      border: 1px solid rgba(122, 156, 214, 0.14);
+      background: rgba(6, 12, 23, 0.48);
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .button-row button,
+    .action-card button,
+    .component-card button {
+      min-height: 40px;
+    }
+
+    .button-help {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .docs-layout {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 300px minmax(0, 1fr);
+      margin-bottom: 18px;
+    }
+
+    .docs-nav {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .docs-nav button {
+      text-align: left;
+      border-radius: 14px;
+      border: 1px solid rgba(122, 156, 214, 0.12);
+      background: rgba(6, 12, 23, 0.48);
+      padding: 12px 14px;
+      color: var(--text);
+      display: grid;
+      gap: 8px;
+    }
+
+    .docs-nav button.active {
+      border-color: rgba(125, 228, 255, 0.5);
+      background: rgba(14, 34, 50, 0.9);
+    }
+
+    .docs-nav-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .docs-block {
+      display: grid;
+      gap: 10px;
+    }
+
     .recovery { padding: 20px; }
     .hidden { display: none !important; }
 
@@ -294,8 +534,16 @@
       .layout.top,
       .layout.two,
       .hero-meta,
-      .controls-grid { grid-template-columns: 1fr; }
+      .controls-grid,
+      .founder-queue-grid,
+      .docs-layout,
+      .founder-action-grid,
+      .component-grid { grid-template-columns: 1fr; }
       .hero-status { justify-items: start; }
+      .founder-panel-tabs {
+        position: static;
+        padding: 10px;
+      }
     }
   </style>
 </head>
@@ -319,6 +567,16 @@
       </div>
     </header>
 
+    <section class="card view-switch">
+      <div class="view-tabs">
+        <button id="operationsTab" class="tab-button active" type="button" data-athena-view="operations">Operations</button>
+        <button id="founderTab" class="tab-button" type="button" data-athena-view="founder">Founder Mode</button>
+        <button id="docsTab" class="tab-button" type="button" data-athena-view="docs">Live Docs</button>
+      </div>
+      <div class="section-note">Operations, Founder Mode, and Live Docs are additive owner-only Athena surfaces derived from authoritative validator, runtime, governance, and registry artifacts.</div>
+    </section>
+
+    <div id="operationsSurface" class="surface">
     <section class="layout top">
       <div class="card card-block">
         <div class="section-head">
@@ -369,6 +627,32 @@
     <section class="layout two">
       <div class="card card-block"><div class="section-head"><h2>Approvals</h2><span class="section-note">Pending, eligible, quarantine</span></div><div id="approvalsSummary" class="summary-list"></div></div>
       <div class="card card-block"><div class="section-head"><h2>System Validation</h2><span class="section-note">`system_validation_last.json`</span></div><div id="systemValidationSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>KeepAlive Ops</h2><span class="section-note">`keepalive_last.json` plus daily report</span></div><div id="keepaliveOpsSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>System Truth</h2><span class="section-note">Merged truth spine</span></div><div id="systemTruthSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Regression Guard</h2><span class="section-note">Baseline compare and promotion gate</span></div><div id="regressionGuardSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Playbook Support</h2><span class="section-note">Reusable explanations and next actions</span></div><div id="playbookSupportSummary" class="summary-list"></div><div id="playbookSupportIssues" class="feed"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Wedge Packs</h2><span class="section-note">Segment overlays and future expansion</span></div><div id="wedgePackSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Business Outcomes</h2><span class="section-note">Adoption, onboarding, and churn signals</span></div><div id="businessOutcomesSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Release Management</h2><span class="section-note">Staged rollout, promotion, and rollback posture</span></div><div id="releaseManagementSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Revenue Optimization</h2><span class="section-note">Plan fit, add-ons, and churn rescue analysis</span></div><div id="revenueOptimizationSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Model Cost Governance</h2><span class="section-note">Teacher escalation, quality floor, and mirror posture</span></div><div id="modelCostGovernanceSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Knowledge Quality</h2><span class="section-note">Evidence, confidence, reuse, and anti-repeat memory</span></div><div id="knowledgeQualitySummary" class="summary-list"></div><div id="knowledgeQualityFeed" class="feed"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>UX Simplicity</h2><span class="section-note">Founder cockpit and customer clarity posture</span></div><div id="uxSimplicitySummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Whole Folder Verification</h2><span class="section-note">Full-tree discovery, gaps, golden paths, faults, and mirror truth</span></div><div id="wholeFolderVerificationSummary" class="summary-list"></div><div id="wholeFolderVerificationFeed" class="feed"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Repair Wave 01</h2><span class="section-note">Focused corrective pass over onboarding, billing, wiring, and mirror truth</span></div><div id="repairWaveSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Onboarding Repair</h2><span class="section-note">Public-safe wording and completion action status</span></div><div id="onboardingRepairSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Billing Triage</h2><span class="section-note">Entitlement root cause and guarded repair posture</span></div><div id="billingRepairSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Half-Wired Repair</h2><span class="section-note">Safe fixes and remaining queued repair items</span></div><div id="halfwiredRepairSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Scheduler Oversight</h2><span class="section-note">Windows Task Scheduler visibility for Mason2-related jobs</span></div><div id="schedulerOversightSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Internal Visibility</h2><span class="section-note">What Mason can currently inspect and classify inside Mason2</span></div><div id="internalVisibilitySummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Mirror Hardening</h2><span class="section-note">Mirror-safe coverage, omissions, and remote currentness truth</span></div><div id="mirrorHardeningSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Repair Wave 02</h2><span class="section-note">Internal scheduler, host-task migration, popup suppression, and remote push repair</span></div><div id="repairWave02Summary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Internal Scheduler</h2><span class="section-note">Mason-owned recurring work foundation with host fallback truth</span></div><div id="internalSchedulerSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Legacy Task Migration</h2><span class="section-note">Windows Task Scheduler inventory, migration posture, and fallback status</span></div><div id="legacyTaskMigrationSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Popup Suppression</h2><span class="section-note">Background console-noise reduction with audit-safe execution</span></div><div id="popupSuppressionSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Validator Coverage Repair</h2><span class="section-note">Stack/base coverage closure for Mason APIs and bridge</span></div><div id="validatorCoverageRepairSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Broken Path Reduction</h2><span class="section-note">High-value cluster repair and verified count movement</span></div><div id="brokenPathClusterRepairSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Remote Push Repair</h2><span class="section-note">Mirror remote currentness, failure class, and oversized-path truth</span></div><div id="remotePushRepairSummary" class="summary-list"></div></div>
       <div class="card card-block"><div class="section-head"><h2>Autonomy And Trust</h2><span class="section-note">Guardrails and drift posture</span></div><div id="autonomySummary" class="summary-list"></div></div>
     </section>
 
@@ -376,6 +660,197 @@
       <div class="card card-block"><div class="section-head"><h2>Recent Mason Actions</h2><span class="section-note">Last 50 events</span></div><div id="recentActions" class="feed"></div></div>
       <div class="card card-block"><div class="section-head"><h2>Failing Component Logs</h2><span id="failureLabel" class="section-note">No failing component</span></div><div id="failureLogPath" class="path"></div><pre id="failureLogLines" class="log-box">Loading...</pre></div>
     </section>
+    </div>
+
+    <div id="founderSurface" class="surface hidden">
+      <section class="card card-block founder-banner">
+        <div class="section-head">
+          <h2>Founder Mode</h2>
+          <span class="section-note">Owner-only Athena surface</span>
+        </div>
+        <div id="founderSummaryLine" class="hero-note">Founder Mode is waiting for the authoritative stack payload.</div>
+        <div id="founderHud" class="founder-hud"></div>
+      </section>
+
+      <section class="card card-block founder-shell">
+        <div class="founder-panel-tabs">
+          <button type="button" class="active" data-founder-panel="overview">Overview</button>
+          <button type="button" data-founder-panel="approvals">Approvals</button>
+          <button type="button" data-founder-panel="controls">Controls</button>
+          <button type="button" data-founder-panel="components">Components</button>
+        </div>
+
+        <div id="founderPanelOverview" class="founder-panel">
+          <section class="layout two">
+            <div class="card card-block">
+              <div class="section-head"><h2>Stack Truth Summary</h2><span class="section-note">Validator plus live authoritative artifacts</span></div>
+              <div id="founderTruthSummary" class="founder-list"></div>
+            </div>
+            <div class="card card-block">
+              <div class="section-head"><h2>Founder Attention Queue</h2><span class="section-note">What matters now</span></div>
+              <div class="founder-queue-grid">
+                <div class="queue-column">
+                  <div class="queue-label">Warning Now</div>
+                  <div id="founderWarnings" class="founder-list"></div>
+                </div>
+                <div class="queue-column">
+                  <div class="queue-label">Blocked Now</div>
+                  <div id="founderBlocked" class="founder-list"></div>
+                </div>
+                <div class="queue-column">
+                  <div class="queue-label">Owner Action Now</div>
+                  <div id="founderOwnerActions" class="founder-list"></div>
+                </div>
+                <div class="queue-column">
+                  <div class="queue-label">Safe To Ignore</div>
+                  <div id="founderSafeToIgnore" class="founder-list"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="layout two">
+            <div class="card card-block">
+              <div class="section-head"><h2>Safe Next Actions</h2><span class="section-note">Deterministic recommendations only</span></div>
+              <div id="founderNextActions" class="founder-list"></div>
+            </div>
+            <div class="card card-block">
+              <div class="section-head"><h2>Runtime Snapshot</h2><span class="section-note">Current host, environment, and loopback posture</span></div>
+              <div id="founderRuntimeSummary" class="summary-list"></div>
+            </div>
+          </section>
+        </div>
+
+        <div id="founderPanelApprovals" class="founder-panel hidden">
+          <section class="layout two">
+            <div class="card card-block">
+              <div class="section-head"><h2>Approvals Inbox</h2><span class="section-note">Approve or reject governed items directly</span></div>
+              <div id="founderApprovalsSummary" class="summary-list"></div>
+              <div id="founderApprovalHint" class="button-help"></div>
+              <div id="founderApprovalActions" class="approval-action-grid"></div>
+            </div>
+            <div class="card card-block">
+              <div class="section-head"><h2>Review Queues</h2><span class="section-note">Blocked, review-only, and safe-to-test items</span></div>
+              <div id="founderSelfImprovementSummary" class="summary-list"></div>
+              <div id="founderSelfImprovementItems" class="founder-list"></div>
+              <div class="section-head"><h2>Approval History Snapshot</h2><span class="section-note">Current pending and review posture</span></div>
+              <div id="founderApprovalItems" class="founder-list"></div>
+            </div>
+          </section>
+        </div>
+
+        <div id="founderPanelControls" class="founder-panel hidden">
+          <section class="layout two">
+            <div class="card card-block">
+              <div class="section-head"><h2>Quick Actions</h2><span class="section-note">Real founder controls only</span></div>
+              <div id="founderQuickActions" class="founder-action-grid"></div>
+            </div>
+            <div class="card card-block">
+              <div class="section-head"><h2>Approval And UX Posture</h2><span class="section-note">Founder-only UX and action readiness</span></div>
+              <div id="founderUxSummary" class="summary-list"></div>
+            </div>
+          </section>
+        </div>
+
+        <div id="founderPanelComponents" class="founder-panel hidden">
+          <section class="card card-block">
+            <div class="section-head"><h2>Component Navigation</h2><span class="section-note">Jump between managed components, docs, and safe controls</span></div>
+            <div id="founderComponentHint" class="button-help"></div>
+            <div id="founderComponentCards" class="component-grid"></div>
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <div id="docsSurface" class="surface hidden">
+      <section class="card card-block founder-banner">
+        <div class="section-head">
+          <h2>Live Docs</h2>
+          <span class="section-note">Generated from live registries and artifacts</span>
+        </div>
+        <div id="docsSummaryLine" class="hero-note">Live manuals are waiting for the authoritative docs payload.</div>
+      </section>
+
+      <section class="docs-layout">
+        <aside class="card card-block">
+          <div class="section-head">
+            <h2>Components</h2>
+            <span id="docsGeneratedAt" class="section-note">No docs generated yet.</span>
+          </div>
+          <div id="docsComponentNav" class="docs-nav"></div>
+        </aside>
+        <div class="docs-block">
+          <section class="card card-block">
+            <div class="section-head"><h2>Component Overview</h2><span class="section-note">Current owner-facing manual selection</span></div>
+            <div id="docsOverview" class="summary-list"></div>
+          </section>
+          <section class="card card-block">
+            <div class="section-head"><h2>Current Truth / Status</h2><span class="section-note">Live validator and artifact posture</span></div>
+            <div id="docsTruth" class="summary-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="layout two">
+        <div class="card card-block">
+          <div class="section-head"><h2>Capabilities</h2><span class="section-note">What the component is currently wired to do</span></div>
+          <div id="docsCapabilities" class="feed"></div>
+        </div>
+        <div class="card card-block">
+          <div class="section-head"><h2>How It Runs</h2><span class="section-note">Entrypoints, ports, and health routes</span></div>
+          <div id="docsHowRuns" class="feed"></div>
+        </div>
+      </section>
+
+      <section class="layout two">
+        <div class="card card-block">
+          <div class="section-head"><h2>Source Artifacts</h2><span class="section-note">Current source-of-truth inputs for this manual</span></div>
+          <div id="docsSourceArtifacts" class="feed"></div>
+        </div>
+        <div class="card card-block">
+          <div class="section-head"><h2>Dependencies</h2><span class="section-note">Linked components and posture inputs</span></div>
+          <div id="docsDependencies" class="feed"></div>
+        </div>
+      </section>
+
+      <section class="layout two">
+        <div class="card card-block">
+          <div class="section-head"><h2>Operator Checks</h2><span class="section-note">Live validator checks mapped to this manual</span></div>
+          <div id="docsOperatorChecks" class="feed"></div>
+        </div>
+        <div class="card card-block">
+          <div class="section-head"><h2>Warnings / Blockers</h2><span class="section-note">Truthful current warnings only</span></div>
+          <div id="docsWarnings" class="feed"></div>
+        </div>
+      </section>
+
+      <section class="layout two">
+        <div class="card card-block">
+          <div class="section-head"><h2>Founder Actions</h2><span class="section-note">Owner-facing actions grounded in current artifacts</span></div>
+          <div id="docsFounderActions" class="feed"></div>
+        </div>
+        <div class="card card-block">
+          <div class="section-head"><h2>Mason-Safe Actions</h2><span class="section-note">Low-risk actions Mason can handle safely</span></div>
+          <div id="docsMasonSafeActions" class="feed"></div>
+        </div>
+      </section>
+
+      <section class="layout two">
+        <div class="card card-block">
+          <div class="section-head"><h2>Blocked / Guarded Actions</h2><span class="section-note">Current policy and governance constraints</span></div>
+          <div id="docsBlockedActions" class="feed"></div>
+        </div>
+        <div class="card card-block">
+          <div class="section-head"><h2>Recent Changes</h2><span class="section-note">Artifact-observed changes only</span></div>
+          <div id="docsRecentChanges" class="feed"></div>
+        </div>
+      </section>
+
+      <section class="card card-block">
+        <div class="section-head"><h2>Safe Next Actions</h2><span class="section-note">Deterministic and evidence-linked only</span></div>
+        <div id="docsActions" class="feed"></div>
+      </section>
+    </div>
 
     <div id="toast" class="toast hidden"></div>
   </div>
@@ -387,7 +862,11 @@
     const state = {
       dashboard: null,
       pendingActionId: "",
-      refreshTimer: null
+      pendingApprovalId: "",
+      refreshTimer: null,
+      view: "operations",
+      founderPanel: "overview",
+      liveDocsSelected: ""
     };
 
     function getCreds() {
@@ -434,6 +913,15 @@
       if (value === "yellow" || value === "warn") return "status-yellow";
       if (value === "red" || value === "fail" || value === "failed") return "status-red state-fail";
       if (value === "running") return "state-running";
+      return "state-idle";
+    }
+
+    function founderStateClass(stateLabel) {
+      const value = String(stateLabel || "").toLowerCase();
+      if (value === "healthy") return "status-green";
+      if (value === "warning") return "status-yellow";
+      if (value === "action required" || value === "blocked") return "status-red";
+      if (value === "review only") return "status-blue";
       return "state-idle";
     }
 
@@ -508,6 +996,248 @@
     function renderSummaryList(id, rows) {
       const host = document.getElementById(id);
       host.innerHTML = rows.map((row) => `<div class="summary-row"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.value)}</strong></div>`).join("");
+    }
+
+    function renderFounderItems(id, items, emptyText) {
+      const host = document.getElementById(id);
+      if (!host) return;
+      if (!items.length) {
+        host.innerHTML = `<div class="feed-row">${escapeHtml(emptyText)}</div>`;
+        return;
+      }
+      host.innerHTML = items.map((item) => `
+        <div class="founder-item">
+          <div class="founder-item-head">
+            <strong>${escapeHtml(item.title || "Untitled")}</strong>
+            <span class="mini-pill ${founderStateClass(item.display_state)}">${escapeHtml(item.display_state || "Review Only")}</span>
+          </div>
+          <div class="muted">${escapeHtml(item.reason || "No detail recorded.")}</div>
+          <div class="founder-meta">
+            <span>Risk ${escapeHtml(item.risk_level || "R1")}</span>
+            <span>${escapeHtml(item.action_posture || "review_needed")}</span>
+            ${item.component ? `<span>${escapeHtml(item.component)}</span>` : ""}
+          </div>
+          <div class="path">${escapeHtml(item.source_path || "No artifact path recorded.")}</div>
+        </div>`).join("");
+    }
+
+    function liveDocsDisplayState(status) {
+      const value = String(status || "").toLowerCase();
+      if (value === "pass" || value === "ok" || value === "healthy") return "Healthy";
+      if (value === "fail" || value === "failed" || value === "error") return "Action Required";
+      if (value === "blocked") return "Blocked";
+      return "Warning";
+    }
+
+    function renderFeedList(id, rows, emptyText) {
+      const host = document.getElementById(id);
+      if (!host) return;
+      if (!rows.length) {
+        host.innerHTML = `<div class="feed-row">${escapeHtml(emptyText)}</div>`;
+        return;
+      }
+      host.innerHTML = rows.join("");
+    }
+
+    function renderLiveDocs(docs) {
+      const docsData = docs || {};
+      const components = (docsData.components || []).filter((item) => item && item.visible_in_athena !== false);
+      const manuals = docsData.manuals || [];
+      const defaultComponent = docsData.default_component || (components[0] && components[0].component_id) || "";
+      if (!state.liveDocsSelected || !components.some((item) => item.component_id === state.liveDocsSelected)) {
+        state.liveDocsSelected = defaultComponent;
+      }
+      const selectedManual = manuals.find((item) => item && item.component_id === state.liveDocsSelected) || manuals[0] || null;
+
+      const warningCount = (docsData.components_with_warnings || []).length;
+      const blockedCount = (docsData.components_blocked || []).length;
+      const staleCount = Number(docsData.stale_docs_count || 0);
+      setText(
+        "docsSummaryLine",
+        docsData.generated_at_utc
+          ? `Live docs ${docsData.summary_status || "WARN"} across ${docsData.docs_count ?? components.length} manuals. ${warningCount} warning, ${blockedCount} blocked, ${staleCount} stale.`
+          : "Live manuals are waiting for generated docs artifacts."
+      );
+      setText(
+        "docsGeneratedAt",
+        docsData.generated_at_utc
+          ? `Generated ${formatTs(docsData.latest_generated_at_utc || docsData.generated_at_utc)}`
+          : "No docs generated yet."
+      );
+
+      const navHost = document.getElementById("docsComponentNav");
+      if (navHost) {
+        if (!components.length) {
+          navHost.innerHTML = `<div class="feed-row">No visible live-doc components are available yet.</div>`;
+        } else {
+          navHost.innerHTML = components.map((component) => {
+            const warningSummary = component.warning_summary || {};
+            const badgeText = liveDocsDisplayState(component.current_status);
+            const warningText = Number(warningSummary.total || 0) > 0 ? `Warnings ${warningSummary.total}` : "No warnings";
+            return `
+            <button type="button" class="${component.component_id === state.liveDocsSelected ? "active" : ""}" data-doc-component="${escapeHtml(component.component_id)}">
+              <div class="docs-nav-head">
+                <strong>${escapeHtml(component.display_name || component.component_id)}</strong>
+                <span class="mini-pill ${founderStateClass(badgeText)}">${escapeHtml(badgeText)}</span>
+              </div>
+              <div class="muted">${escapeHtml(component.current_status_reason || component.purpose_summary || "No status reason recorded.")}</div>
+              <div class="founder-meta">
+                <span>${escapeHtml(component.role || "component")}</span>
+                <span>${escapeHtml(warningText)}</span>
+                ${component.stale ? "<span>stale</span>" : ""}
+              </div>
+            </button>`;
+          }).join("");
+          navHost.querySelectorAll("[data-doc-component]").forEach((button) => {
+            button.addEventListener("click", () => {
+              state.liveDocsSelected = button.getAttribute("data-doc-component") || "";
+              renderLiveDocs(state.dashboard?.live_docs || {});
+            });
+          });
+        }
+      }
+
+      if (!selectedManual) {
+        renderSummaryList("docsOverview", [
+          { label: "Status", value: "No data" },
+          { label: "Manual", value: "Missing" }
+        ]);
+        renderSummaryList("docsTruth", [
+          { label: "Reason", value: "Generate live docs so Athena can render the operator manuals." }
+        ]);
+        renderFeedList("docsCapabilities", [], "No capability data is available.");
+        renderFeedList("docsHowRuns", [], "No runtime details are available.");
+        renderFeedList("docsSourceArtifacts", [], "No source artifacts are available.");
+        renderFeedList("docsDependencies", [], "No dependency data is available.");
+        renderFeedList("docsOperatorChecks", [], "No mapped operator checks are available.");
+        renderFeedList("docsWarnings", [], "No warnings are available.");
+        renderFeedList("docsFounderActions", [], "No founder actions are available.");
+        renderFeedList("docsMasonSafeActions", [], "No Mason-safe actions are available.");
+        renderFeedList("docsBlockedActions", [], "No blocked actions are available.");
+        renderFeedList("docsRecentChanges", [], "No recent changes are available.");
+        renderFeedList("docsActions", [], "No safe next actions are available.");
+        return;
+      }
+
+      const warningSummary = selectedManual.warning_summary || {};
+      renderSummaryList("docsOverview", [
+        { label: "Component", value: selectedManual.display_name || selectedManual.component_id || "n/a" },
+        { label: "Role", value: selectedManual.role || "n/a" },
+        { label: "Current status", value: `${selectedManual.current_status || "WARN"} (${liveDocsDisplayState(selectedManual.current_status)})` },
+        { label: "Owner surface", value: selectedManual.owner_surface || "n/a" },
+        { label: "Baseline", value: selectedManual.baseline_tag || "n/a" },
+        { label: "Manual path", value: selectedManual.manual_path || "n/a" }
+      ]);
+      renderSummaryList("docsTruth", [
+        { label: "Purpose", value: selectedManual.purpose_summary || selectedManual.description || "No purpose summary recorded." },
+        { label: "Status reason", value: selectedManual.current_status_reason || warningSummary.headline || "No current-status reason recorded." },
+        { label: "Warning summary", value: `${warningSummary.total ?? 0} warning(s), ${warningSummary.blocked_or_guarded_total ?? 0} guarded, stale=${warningSummary.stale ? "yes" : "no"}` },
+        { label: "Validator timestamp", value: formatTs(selectedManual.last_validator_timestamp_utc) },
+        { label: "Generated", value: formatTs(selectedManual.generated_at_utc) }
+      ]);
+
+      renderFeedList(
+        "docsCapabilities",
+        (selectedManual.capabilities || []).map((item) => `<div class="feed-row">${escapeHtml(item)}</div>`),
+        "No capabilities were recorded for this component."
+      );
+
+      const howRunsRows = []
+        .concat((selectedManual.key_endpoints_or_interfaces || []).map((item) => `<div class="feed-row"><div class="feed-meta">${escapeHtml(item.kind || "interface")}</div><div>${escapeHtml(item.value || "n/a")}${item.detail ? ` <span class="muted">(${escapeHtml(item.detail)})</span>` : ""}</div></div>`))
+        .concat((selectedManual.key_entrypoints || []).map((item) => `<div class="feed-row"><div class="feed-meta">Entrypoint</div><div>${escapeHtml(item)}</div></div>`))
+        .concat((selectedManual.contract_ports || []).map((item) => `<div class="feed-row"><div class="feed-meta">Port</div><div>${escapeHtml(item.port_key)} -> ${escapeHtml(item.bind_host)}:${escapeHtml(item.port)}</div></div>`))
+        .concat((selectedManual.health_endpoints || []).map((item) => `<div class="feed-row"><div class="feed-meta">Health</div><div>${escapeHtml(item)}</div></div>`));
+      renderFeedList("docsHowRuns", howRunsRows, "No entrypoints, ports, or health endpoints were recorded.");
+
+      renderFeedList(
+        "docsSourceArtifacts",
+        (selectedManual.source_artifacts || selectedManual.discovered_artifacts || []).map((item) => `<div class="feed-row"><div class="feed-meta">${escapeHtml(item.role || item.source_kind || "artifact")} | ${escapeHtml(item.item_type || "unknown")} | ${item.exists ? "present" : "missing"}</div><div>${escapeHtml(item.path || item.reference_path || "n/a")}</div><div class="muted">${escapeHtml(item.last_write_utc ? formatTs(item.last_write_utc) : "No timestamp recorded.")}</div></div>`),
+        "No source artifacts were recorded."
+      );
+
+      renderFeedList(
+        "docsDependencies",
+        []
+          .concat((selectedManual.dependencies || []).map((item) => `<div class="feed-row"><div>${escapeHtml(item)}</div></div>`))
+          .concat([
+            `<div class="feed-row"><div class="feed-meta">Loopback posture</div><div>${escapeHtml(selectedManual.runtime_posture?.loopback_network_posture || "n/a")}</div></div>`,
+            `<div class="feed-row"><div class="feed-meta">Security posture</div><div>${escapeHtml(selectedManual.governance_posture?.security_status || "n/a")}</div></div>`
+          ]),
+        "No dependencies were recorded."
+      );
+
+      renderFeedList(
+        "docsOperatorChecks",
+        (selectedManual.operator_checks || []).slice(0, 12).map((item) => `<div class="feed-row"><div class="feed-meta">${escapeHtml(item.section_name || "check")} | ${escapeHtml(item.status || "WARN")}</div><div>${escapeHtml(item.name || "check")} - ${escapeHtml(item.detail || "No detail recorded.")}</div><div class="path">${escapeHtml(item.path || "n/a")}</div></div>`),
+        "No operator checks were mapped to this component."
+      );
+
+      renderFeedList(
+        "docsWarnings",
+        (selectedManual.latest_known_warnings || []).map((item) => `<div class="feed-row"><div class="feed-meta">${escapeHtml(item.status || "WARN")}</div><div>${escapeHtml(item.title || "warning")} - ${escapeHtml(item.reason || "No detail recorded.")}</div><div class="path">${escapeHtml(item.source_truth_path || "n/a")}</div></div>`),
+        "No warnings or blockers are currently recorded."
+      );
+
+      const renderActionRows = (items, emptyText) => renderFeedList(
+        emptyText.id,
+        (items || []).map((item) => `<div class="feed-row"><div class="feed-meta">${escapeHtml(item.action_posture || "safe")} | ${escapeHtml(item.risk_level || "R1")}</div><div>${escapeHtml(item.title || "Action")} - ${escapeHtml(item.reason || "No reason recorded.")}</div><div class="path">${escapeHtml(item.source_truth_path || "n/a")}</div></div>`),
+        emptyText.empty
+      );
+      renderActionRows(selectedManual.founder_actions, { id: "docsFounderActions", empty: "No founder actions are currently recorded." });
+      renderActionRows(selectedManual.mason_safe_actions, { id: "docsMasonSafeActions", empty: "No Mason-safe actions are currently recorded." });
+      renderActionRows(selectedManual.blocked_or_guarded_actions, { id: "docsBlockedActions", empty: "No blocked or guarded actions are currently recorded." });
+
+      renderFeedList(
+        "docsRecentChanges",
+        (selectedManual.recent_changes || []).map((item) => `<div class="feed-row"><div class="feed-meta">${escapeHtml(item.provenance || "artifact-observed")} | ${escapeHtml(formatTs(item.observed_at_utc))}</div><div>${escapeHtml(item.title || "Recent change")} - ${escapeHtml(item.summary || "No change summary recorded.")}</div><div class="path">${escapeHtml(item.source_truth_path || "n/a")}</div></div>`),
+        "No recent changes are currently recorded."
+      );
+
+      renderFeedList(
+        "docsActions",
+        (selectedManual.safe_next_actions || []).map((item) => `<div class="feed-row"><div class="feed-meta">${escapeHtml(item.action_posture || "safe")} | ${escapeHtml(item.risk_level || "R1")}</div><div>${escapeHtml(item.title || "Action")} - ${escapeHtml(item.reason || "No reason recorded.")}</div><div class="path">${escapeHtml(item.source_truth_path || "n/a")}</div></div>`),
+        "No safe next actions are currently recorded."
+      );
+    }
+
+    function setView(view) {
+      state.view = view === "founder" || view === "docs" ? view : "operations";
+      const operationsSurface = document.getElementById("operationsSurface");
+      const founderSurface = document.getElementById("founderSurface");
+      const docsSurface = document.getElementById("docsSurface");
+      if (operationsSurface) operationsSurface.classList.toggle("hidden", state.view !== "operations");
+      if (founderSurface) founderSurface.classList.toggle("hidden", state.view !== "founder");
+      if (docsSurface) docsSurface.classList.toggle("hidden", state.view !== "docs");
+      document.querySelectorAll("[data-athena-view]").forEach((button) => {
+        const active = button.getAttribute("data-athena-view") === state.view;
+        button.classList.toggle("active", active);
+      });
+    }
+
+    function setFounderPanel(panel) {
+      state.founderPanel = ["overview", "approvals", "controls", "components"].includes(panel) ? panel : "overview";
+      document.querySelectorAll("[data-founder-panel]").forEach((button) => {
+        const active = button.getAttribute("data-founder-panel") === state.founderPanel;
+        button.classList.toggle("active", active);
+      });
+      ["overview", "approvals", "controls", "components"].forEach((panelId) => {
+        const node = document.getElementById(`founderPanel${panelId.charAt(0).toUpperCase()}${panelId.slice(1)}`);
+        if (node) node.classList.toggle("hidden", panelId !== state.founderPanel);
+      });
+    }
+
+    function initViewSwitchers() {
+      document.querySelectorAll("[data-athena-view]").forEach((button) => {
+        button.addEventListener("click", () => setView(button.getAttribute("data-athena-view")));
+      });
+      setView(state.view);
+    }
+
+    function initFounderPanelSwitchers() {
+      document.querySelectorAll("[data-founder-panel]").forEach((button) => {
+        button.addEventListener("click", () => setFounderPanel(button.getAttribute("data-founder-panel")));
+      });
+      setFounderPanel(state.founderPanel);
     }
 
     function renderPortTable(rows) {
@@ -598,6 +1328,304 @@
       });
     }
 
+    function renderFounderQuickActions(actions) {
+      const host = document.getElementById("founderQuickActions");
+      if (!host) return;
+      const items = Array.isArray(actions) ? actions : [];
+      if (!items.length) {
+        host.innerHTML = `<div class="feed-row">No founder quick actions are available yet.</div>`;
+        return;
+      }
+      const signedMode = canExecuteControls();
+      host.innerHTML = items.map((item) => {
+        const actionType = item.action_type || "control";
+        const requiresSigned = Boolean(item.requires_signed_session);
+        const manualSupported = item.manual_supported !== false;
+        const pending = state.pendingActionId === item.action_id;
+        const disabled = pending || (requiresSigned && !signedMode && !manualSupported);
+        const disabledReason = disabled && !pending
+          ? (item.disabled_reason || "Requires a signed Athena session.")
+          : "";
+        return `
+          <article class="action-card">
+            <div class="founder-item-head">
+              <strong>${escapeHtml(item.label || "Action")}</strong>
+              <span class="mini-pill ${founderStateClass(item.display_state || item.status || "Review Only")}">${escapeHtml(item.display_state || "Review Only")}</span>
+            </div>
+            <div class="muted">${escapeHtml(item.description || "No action detail recorded.")}</div>
+            <button
+              type="button"
+              data-founder-action="${escapeHtml(item.action_id || "")}"
+              data-founder-action-type="${escapeHtml(actionType)}"
+              data-founder-url="${escapeHtml(item.url || "")}"
+              data-founder-view="${escapeHtml(item.view || "")}"
+              data-founder-component="${escapeHtml(item.component_id || "")}"
+              ${disabled ? "disabled" : ""}
+            >${escapeHtml(item.label || "Run action")}</button>
+            <div class="button-help">${escapeHtml(disabledReason || (requiresSigned && !signedMode ? "Unsigned mode will copy a safe local command when one exists." : "This button is wired to a live founder action."))}</div>
+          </article>`;
+      }).join("");
+      host.querySelectorAll("[data-founder-action]").forEach((button) => {
+        button.addEventListener("click", () => handleFounderAction({
+          action_id: button.getAttribute("data-founder-action") || "",
+          action_type: button.getAttribute("data-founder-action-type") || "control",
+          url: button.getAttribute("data-founder-url") || "",
+          view: button.getAttribute("data-founder-view") || "",
+          component_id: button.getAttribute("data-founder-component") || ""
+        }));
+      });
+    }
+
+    function renderFounderApprovalActions(items) {
+      const host = document.getElementById("founderApprovalActions");
+      const hint = document.getElementById("founderApprovalHint");
+      if (!host) return;
+      const approvals = Array.isArray(items) ? items : [];
+      const signedMode = canExecuteControls();
+      if (hint) {
+        hint.textContent = approvals.length
+          ? (signedMode
+            ? "Approve or reject each pending item directly from Athena. Decisions are written back to the governed approval files."
+            : "Approve and reject stay disabled until Athena is paired for signed founder actions.")
+          : "No current pending approvals are waiting for founder review.";
+      }
+      if (!approvals.length) {
+        host.innerHTML = `<div class="feed-row">No pending approvals need founder action right now.</div>`;
+        return;
+      }
+      host.innerHTML = approvals.map((item) => {
+        const busyApprove = state.pendingApprovalId === `${item.approval_id}:approve`;
+        const busyReject = state.pendingApprovalId === `${item.approval_id}:reject`;
+        const approveDisabled = !signedMode || item.can_approve === false;
+        const rejectDisabled = !signedMode || item.can_reject === false;
+        const buttonHelp = !signedMode
+          ? "Pair Athena to enable approval decisions."
+          : (item.disabled_reason || "Approve or reject this governed item.");
+        return `
+          <article class="approval-card">
+            <div class="founder-item-head">
+              <strong>${escapeHtml(item.title || "Pending approval")}</strong>
+              <span class="mini-pill ${founderStateClass(item.display_state || "Review Only")}">${escapeHtml(item.risk_level || "R1")}</span>
+            </div>
+            <div class="muted">${escapeHtml(item.why_approval_needed || "No approval reason recorded.")}</div>
+            <div class="founder-meta">
+              <span>${escapeHtml(item.component_label || item.component_id || "component")}</span>
+              <span>${escapeHtml(item.source || "manual")}</span>
+              <span>${escapeHtml(formatTs(item.created_at) || "n/a")}</span>
+            </div>
+            <div class="button-help">${escapeHtml(item.recommended_action || "No recommended action recorded.")}</div>
+            <div class="path">${escapeHtml(item.source_path || "No source path recorded.")}</div>
+            <div class="button-row">
+              <button type="button" data-approval-decision="approve" data-approval-id="${escapeHtml(item.approval_id || "")}" ${approveDisabled || busyApprove ? "disabled" : ""}>${busyApprove ? "Approving..." : "Approve"}</button>
+              <button type="button" class="secondary" data-approval-decision="reject" data-approval-id="${escapeHtml(item.approval_id || "")}" ${rejectDisabled || busyReject ? "disabled" : ""}>${busyReject ? "Rejecting..." : "Reject"}</button>
+            </div>
+            <div class="button-help">${escapeHtml(buttonHelp)}</div>
+          </article>`;
+      }).join("");
+      host.querySelectorAll("[data-approval-decision]").forEach((button) => {
+        button.addEventListener("click", () => submitApprovalDecision(
+          button.getAttribute("data-approval-id") || "",
+          button.getAttribute("data-approval-decision") || ""
+        ));
+      });
+    }
+
+    function renderFounderComponents(items) {
+      const host = document.getElementById("founderComponentCards");
+      const hint = document.getElementById("founderComponentHint");
+      if (!host) return;
+      const cards = Array.isArray(items) ? items : [];
+      if (hint) {
+        hint.textContent = cards.length
+          ? "Use these cards to jump into live docs, open loopback apps, and run supported founder actions."
+          : "No component cards are available yet.";
+      }
+      if (!cards.length) {
+        host.innerHTML = `<div class="feed-row">No component cards are available yet.</div>`;
+        return;
+      }
+      host.innerHTML = cards.map((item) => `
+        <article class="component-card">
+          <div class="founder-item-head">
+            <strong>${escapeHtml(item.label || item.component_id || "Component")}</strong>
+            <span class="mini-pill ${founderStateClass(item.display_state || "Warning")}">${escapeHtml(item.display_state || "Warning")}</span>
+          </div>
+          <div class="muted">${escapeHtml(item.status_summary || "No status detail recorded.")}</div>
+          <div class="founder-meta">
+            <span>Port ${escapeHtml(item.port || "n/a")}</span>
+            <span>${escapeHtml(item.listener_count || 0)} listener(s)</span>
+          </div>
+          <div class="path">${escapeHtml(item.health_url || "No health URL recorded.")}</div>
+          <div class="button-row">
+            ${(item.actions || []).map((action) => `
+              <button
+                type="button"
+                data-founder-action="${escapeHtml(action.action_id || "")}"
+                data-founder-action-type="${escapeHtml(action.action_type || "control")}"
+                data-founder-url="${escapeHtml(action.url || "")}"
+                data-founder-view="${escapeHtml(action.view || "")}"
+                data-founder-component="${escapeHtml(action.component_id || item.docs_component_id || "")}"
+              >${escapeHtml(action.label || "Open")}</button>`).join("")}
+          </div>
+        </article>
+      `).join("");
+      host.querySelectorAll("[data-founder-action]").forEach((button) => {
+        button.addEventListener("click", () => handleFounderAction({
+          action_id: button.getAttribute("data-founder-action") || "",
+          action_type: button.getAttribute("data-founder-action-type") || "control",
+          url: button.getAttribute("data-founder-url") || "",
+          view: button.getAttribute("data-founder-view") || "",
+          component_id: button.getAttribute("data-founder-component") || ""
+        }));
+      });
+    }
+
+    async function handleFounderAction(action) {
+      const actionId = action?.action_id || "";
+      const actionType = action?.action_type || "control";
+      if (!actionId && actionType !== "open_url") return;
+      if (actionType === "control") {
+        await runAction(actionId);
+        return;
+      }
+      if (actionType === "refresh") {
+        await refreshDashboard();
+        showToast("Founder view refreshed.");
+        return;
+      }
+      if (actionType === "open_url") {
+        window.open(action.url || "", "_blank", "noopener");
+        return;
+      }
+      if (actionType === "view" || actionType === "view_docs") {
+        if (action.component_id) {
+          state.liveDocsSelected = action.component_id;
+        }
+        setView(action.view || "docs");
+        renderLiveDocs(state.dashboard?.live_docs || {});
+      }
+    }
+
+    async function submitApprovalDecision(approvalId, decision) {
+      if (!approvalId || !decision) return;
+      if (!canExecuteControls()) {
+        showToast("Approval decisions require a signed Athena session.");
+        return;
+      }
+      state.pendingApprovalId = `${approvalId}:${decision}`;
+      renderFounderMode(state.dashboard?.founder_mode || {});
+      try {
+        const result = await signedFetch("/api/approvals/decision", {
+          method: "POST",
+          body: { approval_id: approvalId, decision }
+        }, true);
+        showToast(`Approval ${decision}d: ${result.approval_id || approvalId}`);
+      } catch (error) {
+        showToast(`Approval ${decision} failed: ${error?.payload?.error || error?.message || "request_failed"}`);
+      } finally {
+        state.pendingApprovalId = "";
+        await refreshDashboard();
+      }
+    }
+
+    function renderFounderMode(founder) {
+      const founderData = founder || {};
+      const ux = state.dashboard?.ux_simplicity || {};
+      setText("founderSummaryLine", founderData.summary_line || "Founder Mode is waiting for authoritative founder data.");
+      renderFounderItems("founderTruthSummary", (founderData.stack_truth_summary && founderData.stack_truth_summary.items) || [], "No stack truth summary is available yet.");
+      renderFounderItems("founderWarnings", (founderData.attention_queue && founderData.attention_queue.warnings) || [], "No active warnings.");
+      renderFounderItems("founderBlocked", (founderData.attention_queue && founderData.attention_queue.blocked) || [], "No blocked governance items.");
+      renderFounderItems("founderOwnerActions", (founderData.attention_queue && founderData.attention_queue.owner_actions) || [], "No owner review items are waiting.");
+      renderFounderItems("founderSafeToIgnore", (founderData.attention_queue && founderData.attention_queue.safe_to_ignore) || [], "Nothing is being deferred safely right now.");
+      renderFounderItems("founderNextActions", founderData.safe_next_actions || [], "No safe next actions are available.");
+
+      const hud = document.getElementById("founderHud");
+      if (hud) {
+        const approvals = founderData.approvals_governed_actions || {};
+        const warnings = (founderData.attention_queue && founderData.attention_queue.warnings) || [];
+        const blocked = (founderData.attention_queue && founderData.attention_queue.blocked) || [];
+        hud.innerHTML = [
+          { label: "Validator", value: (state.dashboard?.system_validation?.overall_status || "UNKNOWN") },
+          { label: "Warnings", value: warnings.length },
+          { label: "Blocked", value: blocked.length },
+          { label: "Pending approvals", value: approvals.pending_total ?? 0 },
+          { label: "Dead buttons", value: ux.dead_button_count ?? 0 },
+          { label: "Mobile layout", value: ux.mobile_layout_status || "unknown" }
+        ].map((item) => `<div class="hud-card"><span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.value)}</strong></div>`).join("");
+      }
+
+      const posture = founderData.self_improvement_posture || {};
+      renderSummaryList("founderSelfImprovementSummary", [
+        { label: "Governor status", value: posture.overall_status || "UNKNOWN" },
+        { label: "Active improvements screened", value: posture.active_improvement_total ?? 0 },
+        { label: "Teacher calls allowed", value: posture.teacher_calls_allowed ?? 0 },
+        { label: "Teacher calls blocked", value: posture.teacher_calls_blocked ?? 0 },
+        { label: "Local-first enforced", value: String(Boolean(posture.local_first_enforced)) },
+        { label: "Safe to test", value: posture.safe_to_test_count ?? 0 },
+        { label: "Review-only", value: posture.review_only_count ?? 0 },
+        { label: "Budget posture", value: posture.budget_posture || "n/a" }
+      ]);
+      renderFounderItems(
+        "founderSelfImprovementItems",
+        []
+          .concat(posture.safe_to_test_items || [])
+          .concat(posture.review_items || [])
+          .concat(posture.blocked_items || [])
+          .slice(0, 8),
+        "No governed self-improvement items are queued."
+      );
+
+      const approvals = founderData.approvals_governed_actions || {};
+      renderSummaryList("founderApprovalsSummary", [
+        { label: "Pending approvals", value: approvals.pending_total ?? 0 },
+        { label: "Eligible approvals", value: approvals.eligible_total ?? 0 },
+        { label: "Quarantine", value: approvals.quarantine_total ?? 0 },
+        { label: "Approval required", value: approvals.approval_required_total ?? 0 },
+        { label: "Blocked items", value: approvals.blocked_total ?? 0 },
+        { label: "Safe to test", value: approvals.safe_to_test_total ?? 0 }
+      ]);
+      renderFounderItems(
+        "founderApprovalItems",
+        []
+          .concat(approvals.pending_items || [])
+          .concat(approvals.review_items || [])
+          .concat(approvals.blocked_items || [])
+          .slice(0, 8),
+        "No pending approvals or governed review items."
+      );
+      renderFounderApprovalActions(approvals.actionable_items || []);
+      renderFounderQuickActions(founderData.quick_actions || []);
+      renderFounderComponents(founderData.component_cards || []);
+
+      renderSummaryList("founderUxSummary", [
+        { label: "Founder UX", value: ux.athena_founder_ux_status || "UNKNOWN" },
+        { label: "Customer UX", value: ux.onyx_customer_ux_status || "UNKNOWN" },
+        { label: "Approval surface", value: ux.approval_surface_status || "UNKNOWN" },
+        { label: "Mobile layout", value: ux.mobile_layout_status || "unknown" },
+        { label: "Control buttons", value: ux.control_button_count ?? 0 },
+        { label: "Approval buttons", value: `${ux.approval_button_count ?? 0} approve / ${ux.reject_button_count ?? 0} reject` },
+        { label: "Dead buttons", value: ux.dead_button_count ?? 0 },
+        { label: "Next action", value: ux.recommended_next_action || "No action required." }
+      ]);
+
+      const runtime = founderData.runtime_environment_host_posture || {};
+      renderSummaryList("founderRuntimeSummary", [
+        { label: "Host classification", value: runtime.host_classification || "unknown" },
+        { label: "Throttle guidance", value: runtime.throttle_guidance || "n/a" },
+        { label: "Learning posture", value: runtime.learning_posture || "n/a" },
+        { label: "Heavy-job posture", value: runtime.heavy_jobs_posture || "n/a" },
+        { label: "Monitoring posture", value: runtime.monitoring_posture || "n/a" },
+        { label: "Cleanup posture", value: runtime.cleanup_posture || "n/a" },
+        { label: "Loopback posture", value: runtime.loopback_network_posture || "n/a" },
+        { label: "Environment ID", value: runtime.current_environment_id || "n/a" },
+        { label: "Drift level", value: runtime.drift_level || "n/a" },
+        { label: "Migration detected", value: String(Boolean(runtime.migration_detected)) },
+        { label: "Disk free %", value: runtime.disk_free_percent == null ? "n/a" : `${runtime.disk_free_percent}%` },
+        { label: "Next action", value: runtime.recommended_next_action || "No action required." }
+      ]);
+      setFounderPanel(state.founderPanel);
+    }
+
     function renderDashboard(data) {
       state.dashboard = data;
       const overall = data.overall || {};
@@ -664,6 +1692,267 @@
         { label: "Next action", value: data.system_validation?.recommended_next_action || "Run the whole-system validator." },
         { label: "Updated", value: formatTs(data.system_validation?.timestamp_utc) }
       ]);
+      renderSummaryList("keepaliveOpsSummary", [
+        { label: "Status", value: data.keepalive_ops?.overall_status || "UNKNOWN" },
+        { label: "Recoverable", value: data.keepalive_ops?.recoverable_issue_count ?? 0 },
+        { label: "Escalated", value: data.keepalive_ops?.escalated_issue_count ?? 0 },
+        { label: "Repairs", value: `${data.keepalive_ops?.repair_success_count ?? 0} success / ${data.keepalive_ops?.repair_blocked_count ?? 0} blocked / ${data.keepalive_ops?.repair_attempt_count ?? 0} attempted` },
+        { label: "Daily report", value: data.keepalive_ops?.daily_report_status || "UNKNOWN" },
+        { label: "Next action", value: data.keepalive_ops?.recommended_next_action || "Run keepalive/self-heal." }
+      ]);
+      renderSummaryList("systemTruthSummary", [
+        { label: "Overall", value: data.system_truth?.overall_status || "UNKNOWN" },
+        { label: "Domains", value: `${data.system_truth?.available_domain_count ?? 0}/${data.system_truth?.domain_count ?? 0} available` },
+        { label: "Warnings", value: `${data.system_truth?.warning_domain_count ?? 0} (${(data.system_truth?.top_warning_domains || []).join(", ") || "none"})` },
+        { label: "Failing", value: `${data.system_truth?.failing_domain_count ?? 0}` },
+        { label: "Healthy", value: (data.system_truth?.top_healthy_domains || []).join(", ") || "None listed" },
+        { label: "Updated", value: formatTs(data.system_truth?.truth_timestamp_utc) },
+        { label: "Next action", value: data.system_truth?.recommended_next_action || "Build the system truth spine." }
+      ]);
+      renderSummaryList("regressionGuardSummary", [
+        { label: "Status", value: data.regression_guard?.overall_status || "UNKNOWN" },
+        { label: "Baseline", value: data.regression_guard?.baseline_available ? `${data.regression_guard?.baseline_id || "available"} (${data.regression_guard?.comparison_mode || "comparison"})` : "Missing" },
+        { label: "Trusted", value: String(Boolean(data.regression_guard?.baseline_trusted)) },
+        { label: "Regressions", value: `${data.regression_guard?.regression_count ?? 0} total / ${data.regression_guard?.blocking_regression_count ?? 0} blocking` },
+        { label: "Promotion", value: data.regression_guard?.promotion_allowed ? "Allowed" : "Blocked" },
+        { label: "Rollback", value: data.regression_guard?.rollback_recommended ? "Recommended" : "Not recommended" },
+        { label: "Next action", value: data.regression_guard?.recommended_next_action || "Run the regression guard." }
+      ]);
+      renderSummaryList("playbookSupportSummary", [
+        { label: "Status", value: data.playbook_support?.overall_status || "UNKNOWN" },
+        { label: "Playbooks", value: `${data.playbook_support?.active_playbook_count ?? 0} active / ${data.playbook_support?.playbook_count ?? 0} total` },
+        { label: "Recurring issues", value: data.playbook_support?.recurring_issue_count ?? 0 },
+        { label: "Customer-safe ready", value: data.playbook_support?.customer_safe_ready_count ?? 0 },
+        { label: "Internal ready", value: data.playbook_support?.internal_support_ready_count ?? 0 },
+        { label: "Next action", value: data.playbook_support?.recommended_next_action || "Build the playbook support brain." }
+      ]);
+      renderFeedList(
+        "playbookSupportIssues",
+        (data.playbook_support?.top_issue_explanations || []).map((item) => `
+          <div class="feed-row">
+            <div class="feed-meta">${escapeHtml(item.severity || "info")} | ${escapeHtml(item.issue_type || "issue")}</div>
+            <div>${escapeHtml(item.plain_english_explanation || "No explanation recorded.")}</div>
+            <div class="muted">${escapeHtml(item.what_should_happen_next || "No next action recorded.")}</div>
+          </div>`),
+        "No recurring issue explanations are currently recorded."
+      );
+      renderSummaryList("wedgePackSummary", [
+        { label: "Status", value: data.wedge_pack_framework?.overall_status || "UNKNOWN" },
+        { label: "Categories", value: `${data.wedge_pack_framework?.business_category_count ?? 0} categories / ${data.wedge_pack_framework?.business_subcategory_count ?? 0} subcategories` },
+        { label: "Packs", value: `${data.wedge_pack_framework?.wedge_pack_count ?? 0} total / ${data.wedge_pack_framework?.customer_ready_pack_count ?? 0} customer-ready / ${data.wedge_pack_framework?.experimental_pack_count ?? 0} experimental` },
+        { label: "Fallback", value: data.wedge_pack_framework?.fallback_pack_available ? "Available" : "Missing" },
+        { label: "Active fit", value: `${data.wedge_pack_framework?.active_business_category || "n/a"} / ${data.wedge_pack_framework?.active_business_subcategory || "n/a"}` },
+        { label: "Next action", value: data.wedge_pack_framework?.recommended_next_action || "Build the wedge-pack framework." }
+      ]);
+      renderSummaryList("businessOutcomesSummary", [
+        { label: "Status", value: data.business_outcomes?.overall_status || "UNKNOWN" },
+        { label: "Tenants", value: `${data.business_outcomes?.tenants_with_measurable_signals ?? 0} measurable / ${data.business_outcomes?.tenant_count ?? 0} total` },
+        { label: "Tool usefulness", value: data.business_outcomes?.tool_usefulness_summary || "n/a" },
+        { label: "Recommendation effectiveness", value: data.business_outcomes?.recommendation_effectiveness_summary || "n/a" },
+        { label: "Onboarding", value: data.business_outcomes?.onboarding_completion_summary || "n/a" },
+        { label: "Churn risk", value: `${data.business_outcomes?.churn_risk_count ?? 0} flagged | ${data.business_outcomes?.churn_risk_summary || "n/a"}` },
+        { label: "Next action", value: data.business_outcomes?.recommended_next_action || "Run business outcome optimization." }
+      ]);
+      renderSummaryList("releaseManagementSummary", [
+        { label: "Status", value: data.release_management?.overall_status || "UNKNOWN" },
+        { label: "Candidate", value: data.release_management?.release_candidate_id || "n/a" },
+        { label: "Stage", value: data.release_management?.release_stage || "n/a" },
+        { label: "Promotion", value: data.release_management?.promotion_allowed ? "Allowed" : "Blocked" },
+        { label: "Rollout", value: data.release_management?.rollout_mode || "n/a" },
+        { label: "Rollback ready", value: data.release_management?.rollback_ready ? "Yes" : "No" },
+        { label: "Blocking reasons", value: `${data.release_management?.blocking_reason_count ?? 0} blocking / ${data.release_management?.warning_reason_count ?? 0} warning` },
+        { label: "Next action", value: data.release_management?.recommended_next_action || "Run autonomous release management." }
+      ]);
+      renderSummaryList("revenueOptimizationSummary", [
+        { label: "Status", value: data.revenue_optimization?.overall_status || "UNKNOWN" },
+        { label: "Tenants", value: `${data.revenue_optimization?.tenants_with_revenue_signal ?? 0} with revenue signal / ${data.revenue_optimization?.tenant_count ?? 0} total` },
+        { label: "Upgrade opportunities", value: data.revenue_optimization?.upgrade_opportunity_count ?? 0 },
+        { label: "Add-on fit", value: data.revenue_optimization?.add_on_fit_count ?? 0 },
+        { label: "Churn rescue", value: data.revenue_optimization?.churn_rescue_count ?? 0 },
+        { label: "Billing gated", value: data.revenue_optimization?.billing_gated ? "Yes" : "No" },
+        { label: "Blocked money actions", value: data.revenue_optimization?.blocked_money_action_count ?? 0 },
+        { label: "Next action", value: data.revenue_optimization?.recommended_next_action || "Run revenue optimization." }
+      ]);
+      renderSummaryList("modelCostGovernanceSummary", [
+        { label: "Status", value: data.model_cost_governance?.overall_status || "UNKNOWN" },
+        { label: "Task classes", value: data.model_cost_governance?.task_class_count ?? 0 },
+        { label: "Teacher posture", value: `${data.model_cost_governance?.teacher_allowed_count ?? 0} allowed / ${data.model_cost_governance?.teacher_blocked_count ?? 0} blocked` },
+        { label: "Quality floor", value: data.model_cost_governance?.quality_floor_status || "unknown" },
+        { label: "Cost posture", value: data.model_cost_governance?.cost_governance_posture || "unknown" },
+        { label: "Mirror refresh", value: data.model_cost_governance?.mirror_refresh_status || "unknown" },
+        { label: "Next action", value: data.model_cost_governance?.recommended_next_action || "Run model/cost governance." }
+      ]);
+      renderSummaryList("knowledgeQualitySummary", [
+        { label: "Status", value: data.knowledge_learning_quality?.overall_status || "UNKNOWN" },
+        { label: "Cards", value: `${data.knowledge_learning_quality?.card_count ?? 0} total / ${data.knowledge_learning_quality?.reusable_card_count ?? 0} reusable` },
+        { label: "Trust bands", value: `${data.knowledge_learning_quality?.trusted_card_count ?? 0} trusted / ${data.knowledge_learning_quality?.review_card_count ?? 0} review / ${data.knowledge_learning_quality?.blocked_card_count ?? 0} blocked` },
+        { label: "Stale cards", value: data.knowledge_learning_quality?.stale_card_count ?? 0 },
+        { label: "Anti-repeat", value: data.knowledge_learning_quality?.anti_repeat_count ?? 0 },
+        { label: "Teacher review queue", value: data.knowledge_learning_quality?.low_confidence_teacher_count ?? 0 },
+        { label: "Next action", value: data.knowledge_learning_quality?.recommended_next_action || "Run the knowledge quality engine." }
+      ]);
+      renderFeedList(
+        "knowledgeQualityFeed",
+        [
+          ...((data.knowledge_learning_quality?.recent_reused_cards || []).map((item) => `
+            <div class="feed-row">
+              <div class="feed-meta">reused | ${escapeHtml(item.confidence_band || "unknown")} | ${escapeHtml(item.evidence_band || "unknown")}</div>
+              <div>${escapeHtml(item.title || item.card_id || "knowledge card")}</div>
+              <div class="muted">${escapeHtml(item.why_selected || "Selected for reuse.")}</div>
+            </div>`)),
+          ...((data.knowledge_learning_quality?.low_confidence_teacher_material || []).slice(0, 3).map((item) => `
+            <div class="feed-row">
+              <div class="feed-meta">teacher review | ${escapeHtml(item.review_status || "review_required")} | ${escapeHtml(item.confidence_band || "unknown")}</div>
+              <div>${escapeHtml(item.title || item.card_id || "teacher material")}</div>
+              <div class="muted">${escapeHtml((item.notes_for_reviewer || []).join(" | ") || "Awaiting review.")}</div>
+            </div>`))
+        ],
+        "No current knowledge reuse or review items are recorded."
+      );
+      renderSummaryList("uxSimplicitySummary", [
+        { label: "Status", value: data.ux_simplicity?.overall_status || "UNKNOWN" },
+        { label: "Founder cockpit", value: data.ux_simplicity?.athena_founder_ux_status || "UNKNOWN" },
+        { label: "Customer clarity", value: data.ux_simplicity?.onyx_customer_ux_status || "UNKNOWN" },
+        { label: "Dead buttons", value: data.ux_simplicity?.dead_button_count ?? 0 },
+        { label: "Approval surface", value: data.ux_simplicity?.approval_surface_status || "UNKNOWN" },
+        { label: "Mobile layout", value: data.ux_simplicity?.mobile_layout_status || "unknown" },
+        { label: "Next action", value: data.ux_simplicity?.recommended_next_action || "Run the UX simplicity audit." }
+      ]);
+      renderSummaryList("wholeFolderVerificationSummary", [
+        { label: "Status", value: data.whole_folder_verification?.overall_status || "UNKNOWN" },
+        { label: "Inventory", value: `${data.whole_folder_verification?.inventory_summary?.total_scanned ?? 0} scanned / ${data.whole_folder_verification?.inventory_summary?.broken_count ?? 0} broken / ${data.whole_folder_verification?.inventory_summary?.orphaned_count ?? 0} orphaned` },
+        { label: "Registration gaps", value: `${data.whole_folder_verification?.registry_gap_count ?? 0} total / ${data.whole_folder_verification?.unregistered_count ?? 0} unregistered` },
+        { label: "Broken paths", value: `${data.whole_folder_verification?.broken_path_count ?? 0}${data.whole_folder_verification?.critical_path_broken ? " (critical path impacted)" : ""}` },
+        { label: "Golden paths", value: data.whole_folder_verification?.golden_path_status || "UNKNOWN" },
+        { label: "Fault tests", value: data.whole_folder_verification?.fault_test_status || "UNKNOWN" },
+        { label: "Migration", value: data.whole_folder_verification?.migration_risk_status || "UNKNOWN" },
+        { label: "Mirror", value: data.whole_folder_verification?.mirror_status || "UNKNOWN" },
+        { label: "Next action", value: data.whole_folder_verification?.recommended_next_action || "Run the whole-folder verification campaign." }
+      ]);
+      renderFeedList(
+        "wholeFolderVerificationFeed",
+        [
+          ...((data.whole_folder_verification?.top_broken_paths || []).map((item) => `
+            <div class="feed-row">
+              <div class="feed-meta">broken path | ${escapeHtml(item.severity || "unknown")} | ${escapeHtml(item.component || "component")}</div>
+              <div>${escapeHtml(item.description || item.path || "Broken path record")}</div>
+              <div class="muted">${escapeHtml(item.path || "n/a")} | ${escapeHtml(item.recommended_action || "Review and repair.")}</div>
+            </div>`)),
+          ...((data.whole_folder_verification?.top_registration_gaps || []).slice(0, 3).map((item) => `
+            <div class="feed-row">
+              <div class="feed-meta">registration gap | ${escapeHtml(item.severity || "unknown")} | ${escapeHtml(item.item_id || "item")}</div>
+              <div>${escapeHtml(item.description || item.path || "Registration gap")}</div>
+              <div class="muted">${escapeHtml(item.path || "n/a")} | ${escapeHtml(item.recommended_action || "Register and align the contract.")}</div>
+            </div>`))
+        ],
+        "No whole-folder verification details are currently recorded."
+      );
+      renderSummaryList("repairWaveSummary", [
+        { label: "Status", value: data.repair_wave_01?.overall_status || "UNKNOWN" },
+        { label: "Fixes", value: `${data.repair_wave_01?.fixed_count ?? 0} fixed / ${data.repair_wave_01?.unresolved_queue_count ?? 0} queued` },
+        { label: "Broken paths", value: `${data.repair_wave_01?.broken_paths_before ?? 0} -> ${data.repair_wave_01?.broken_paths_after ?? 0}` },
+        { label: "Registration gaps", value: `${data.repair_wave_01?.registration_gaps_before ?? 0} -> ${data.repair_wave_01?.registration_gaps_after ?? 0}` },
+        { label: "Mirror", value: data.repair_wave_01?.mirror_push_result || "unknown" },
+        { label: "Next action", value: data.repair_wave_01?.recommended_next_action || "Run repair wave 01." }
+      ]);
+      renderSummaryList("onboardingRepairSummary", [
+        { label: "Status", value: data.onboarding_repair?.overall_status || "UNKNOWN" },
+        { label: "Public wording", value: data.onboarding_repair?.public_wording_status || "UNKNOWN" },
+        { label: "Completion action", value: data.onboarding_repair?.completion_action_status || "UNKNOWN" },
+        { label: "Dead buttons", value: data.onboarding_repair?.dead_button_count ?? 0 },
+        { label: "Selector label", value: data.onboarding_repair?.active_selector_label || "unknown" },
+        { label: "Next action", value: data.onboarding_repair?.recommended_next_action || "Verify the onboarding repair flow." }
+      ]);
+      renderSummaryList("billingRepairSummary", [
+        { label: "Status", value: data.billing_entitlements_repair?.overall_status || "UNKNOWN" },
+        { label: "Root cause", value: data.billing_entitlements_repair?.root_cause_class || "unknown" },
+        { label: "Workspace", value: data.billing_entitlements_repair?.active_workspace_label || "unknown" },
+        { label: "Tier", value: data.billing_entitlements_repair?.current_tier || "unknown" },
+        { label: "Enabled tools", value: `${data.billing_entitlements_repair?.enabled_tools_before_count ?? 0} -> ${data.billing_entitlements_repair?.enabled_tools_after_count ?? 0}` },
+        { label: "Repaired", value: String(Boolean(data.billing_entitlements_repair?.repaired)) },
+        { label: "Next action", value: data.billing_entitlements_repair?.recommended_next_action || "Review billing entitlement truth." }
+      ]);
+      renderSummaryList("halfwiredRepairSummary", [
+        { label: "Status", value: data.halfwired_repair?.overall_status || "UNKNOWN" },
+        { label: "Fixed count", value: data.halfwired_repair?.fixed_count ?? 0 },
+        { label: "Queued count", value: data.halfwired_repair?.queued_count ?? 0 },
+        { label: "Next action", value: data.halfwired_repair?.recommended_next_action || "Review remaining half-wired repairs." }
+      ]);
+      renderSummaryList("schedulerOversightSummary", [
+        { label: "Status", value: data.scheduler_oversight?.overall_status || "UNKNOWN" },
+        { label: "Relevant tasks", value: data.scheduler_oversight?.relevant_task_count ?? 0 },
+        { label: "Healthy", value: data.scheduler_oversight?.healthy_count ?? 0 },
+        { label: "Disabled / stale / failing", value: `${data.scheduler_oversight?.disabled_count ?? 0} / ${data.scheduler_oversight?.stale_count ?? 0} / ${data.scheduler_oversight?.failing_count ?? 0}` },
+        { label: "Next action", value: data.scheduler_oversight?.recommended_next_action || "Review scheduled task posture." }
+      ]);
+      renderSummaryList("internalVisibilitySummary", [
+        { label: "Status", value: data.internal_visibility?.overall_status || "UNKNOWN" },
+        { label: "Visible categories", value: data.internal_visibility?.visible_category_count ?? 0 },
+        { label: "Blind spots", value: data.internal_visibility?.blind_spot_count ?? 0 },
+        { label: "Next action", value: data.internal_visibility?.recommended_next_action || "Review internal visibility posture." }
+      ]);
+      renderSummaryList("mirrorHardeningSummary", [
+        { label: "Status", value: data.mirror_hardening?.overall_status || "UNKNOWN" },
+        { label: "Coverage", value: data.mirror_hardening?.coverage_status || "UNKNOWN" },
+        { label: "Omissions", value: data.mirror_hardening?.omission_count ?? 0 },
+        { label: "Matched files", value: data.mirror_hardening?.matched_file_count ?? 0 },
+        { label: "Remote push", value: data.mirror_hardening?.remote_push_result || "unknown" },
+        { label: "Next action", value: data.mirror_hardening?.recommended_next_action || "Review mirror hardening posture." }
+      ]);
+      renderSummaryList("repairWave02Summary", [
+        { label: "Status", value: data.repair_wave_02?.overall_status || "UNKNOWN" },
+        { label: "Task migration", value: `${data.repair_wave_02?.migrated_task_count ?? 0} migrated / ${data.repair_wave_02?.internal_scheduler_status || "UNKNOWN"} scheduler` },
+        { label: "Popup fixes", value: data.repair_wave_02?.popup_fixed_count ?? 0 },
+        { label: "Broken paths", value: `${data.repair_wave_02?.broken_paths_before ?? 0} -> ${data.repair_wave_02?.broken_paths_after ?? 0}` },
+        { label: "Remote push", value: data.repair_wave_02?.remote_push_result || "unknown" },
+        { label: "Next action", value: data.repair_wave_02?.recommended_next_action || "Run repair wave 02." }
+      ]);
+      renderSummaryList("internalSchedulerSummary", [
+        { label: "Status", value: data.internal_scheduler?.overall_status || "UNKNOWN" },
+        { label: "Foundation", value: data.internal_scheduler?.foundation_status || "UNKNOWN" },
+        { label: "Task definitions", value: `${data.internal_scheduler?.task_definition_count ?? 0} total / ${data.internal_scheduler?.enabled_task_count ?? 0} enabled` },
+        { label: "Audit logging", value: data.internal_scheduler?.audit_logging_status || "UNKNOWN" },
+        { label: "Host fallback deps", value: data.internal_scheduler?.windows_fallback_dependency_count ?? 0 },
+        { label: "Next action", value: data.internal_scheduler?.recommended_next_action || "Review internal scheduler foundation." }
+      ]);
+      renderSummaryList("legacyTaskMigrationSummary", [
+        { label: "Status", value: data.legacy_task_migration?.overall_status || "UNKNOWN" },
+        { label: "Relevant tasks", value: data.legacy_task_migration?.relevant_task_count ?? 0 },
+        { label: "Migrated", value: data.legacy_task_migration?.migrated_count ?? 0 },
+        { label: "Fallback only", value: data.legacy_task_migration?.fallback_only_count ?? 0 },
+        { label: "Keep temporarily", value: data.legacy_task_migration?.keep_temporarily_count ?? 0 },
+        { label: "Blocked", value: data.legacy_task_migration?.blocked_count ?? 0 },
+        { label: "Next action", value: data.legacy_task_migration?.recommended_next_action || "Review legacy task migration posture." }
+      ]);
+      renderSummaryList("popupSuppressionSummary", [
+        { label: "Status", value: data.popup_suppression?.overall_status || "UNKNOWN" },
+        { label: "Noisy sources", value: data.popup_suppression?.noisy_source_count ?? 0 },
+        { label: "Fixed", value: data.popup_suppression?.fixed_count ?? 0 },
+        { label: "Remaining visible", value: data.popup_suppression?.remaining_visible_count ?? 0 },
+        { label: "Next action", value: data.popup_suppression?.recommended_next_action || "Review popup suppression posture." }
+      ]);
+      renderSummaryList("validatorCoverageRepairSummary", [
+        { label: "Status", value: data.validator_coverage_repair?.overall_status || "UNKNOWN" },
+        { label: "Components checked", value: (data.validator_coverage_repair?.components_checked || []).join(", ") || "none" },
+        { label: "Fully covered", value: data.validator_coverage_repair?.fully_covered_count ?? 0 },
+        { label: "Uncovered", value: data.validator_coverage_repair?.uncovered_count ?? 0 },
+        { label: "Next action", value: data.validator_coverage_repair?.recommended_next_action || "Review validator coverage repair." }
+      ]);
+      renderSummaryList("brokenPathClusterRepairSummary", [
+        { label: "Status", value: data.broken_path_cluster_repair?.overall_status || "UNKNOWN" },
+        { label: "Clusters", value: `${data.broken_path_cluster_repair?.fixed_count ?? 0} fixed / ${data.broken_path_cluster_repair?.target_cluster_count ?? 0} targeted` },
+        { label: "Broken paths", value: `${data.broken_path_cluster_repair?.broken_paths_before ?? 0} -> ${data.broken_path_cluster_repair?.broken_paths_after ?? 0}` },
+        { label: "Next action", value: data.broken_path_cluster_repair?.recommended_next_action || "Review broken path reduction posture." }
+      ]);
+      renderSummaryList("remotePushRepairSummary", [
+        { label: "Status", value: data.remote_push_repair?.overall_status || "UNKNOWN" },
+        { label: "Failure class", value: data.remote_push_repair?.push_failure_class || "unknown" },
+        { label: "Safe repair attempted", value: String(Boolean(data.remote_push_repair?.safe_repair_attempted)) },
+        { label: "Remote push", value: data.remote_push_repair?.remote_push_result || "unknown" },
+        { label: "Remote current", value: String(Boolean(data.remote_push_repair?.remote_current)) },
+        { label: "Oversized paths", value: data.remote_push_repair?.oversized_path_count ?? 0 },
+        { label: "Next action", value: data.remote_push_repair?.recommended_next_action || "Review remote push repair posture." }
+      ]);
       renderSummaryList("autonomySummary", [
         { label: "Trust posture", value: data.autonomy?.trust_posture || "n/a" },
         { label: "Local-first", value: String(Boolean(data.autonomy?.local_first)) },
@@ -671,6 +1960,8 @@
         { label: "Money loop", value: String(Boolean(data.autonomy?.money_loop_enabled)) },
         { label: "Drift findings", value: `${data.autonomy?.drift_findings_total ?? 0} total / ${data.autonomy?.drift_high_risk_count ?? 0} high-risk` }
       ]);
+      renderFounderMode(data.founder_mode || {});
+      renderLiveDocs(data.live_docs || {});
       renderRecentActions(data.recent_actions || []);
 
       setText("failureLabel", failure.component_label || "No failing component");
@@ -711,6 +2002,7 @@
       }
       state.pendingActionId = actionId;
       renderControls(state.dashboard.controls || {});
+      renderFounderMode(state.dashboard?.founder_mode || {});
       try {
         const options = { method: "POST" };
         if (actionId === "mirror") {
@@ -761,6 +2053,8 @@
       }
     });
 
+    initViewSwitchers();
+    initFounderPanelSwitchers();
     refreshDashboard();
     startPolling();
   </script>

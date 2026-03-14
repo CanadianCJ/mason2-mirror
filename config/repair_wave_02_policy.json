@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "policy_name": "repair_wave_02",
+  "repair_targets": {
+    "validator_coverage_components": [
+      "mason_api",
+      "seed_api",
+      "bridge"
+    ],
+    "broken_path_clusters": [
+      "jsonc_tsconfig_false_broken",
+      "stale_validator_component_coverage",
+      "mirror_large_file_history"
+    ],
+    "popup_suppression_managed_tasks": [
+      "Mason_Watchdog",
+      "Mason_Learner",
+      "Mason_Morning_Report_9AM",
+      "Mason2-AthenaStatus-10m",
+      "Mason2-OnyxHealth-10m",
+      "Mason2-OnyxHealthSummary-1h",
+      "Mason2-PCResource-10m"
+    ]
+  },
+  "popup_suppression_rules": {
+    "default_background_window_mode": "hidden",
+    "visible_only_if_interactive": [
+      "manual_review",
+      "interactive_auth",
+      "founder_prompt"
+    ],
+    "require_logs_and_artifacts": true
+  },
+  "remote_push_repair": {
+    "attempt_safe_reset_on_large_file_history": true,
+    "deny_large_knowledge_pack_roadmap": true,
+    "require_truthful_remote_current": true
+  },
+  "reverify": {
+    "whole_folder_verification_required": true,
+    "validator_required": true,
+    "mirror_refresh_required": true
+  }
+}

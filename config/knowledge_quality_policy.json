@@ -1,0 +1,117 @@
+﻿{
+    "version":  "2026-03-13",
+    "policy_name":  "knowledge_quality_engine",
+    "source_classes":  {
+                           "validated_local_execution":  {
+                                                             "trust_order":  1,
+                                                             "base_evidence_weight":  84
+                                                         },
+                           "local_authoritative_artifact":  {
+                                                                "trust_order":  2,
+                                                                "base_evidence_weight":  76
+                                                            },
+                           "explicit_owner_directive":  {
+                                                            "trust_order":  3,
+                                                            "base_evidence_weight":  78
+                                                        },
+                           "repeat_success_playbook":  {
+                                                           "trust_order":  4,
+                                                           "base_evidence_weight":  72
+                                                       },
+                           "teacher_output_reviewed":  {
+                                                           "trust_order":  5,
+                                                           "base_evidence_weight":  44
+                                                       },
+                           "inferred_synthesis":  {
+                                                      "trust_order":  6,
+                                                      "base_evidence_weight":  34
+                                                  },
+                           "stale_memory":  {
+                                                "trust_order":  7,
+                                                "base_evidence_weight":  20
+                                            },
+                           "failed_prior_suggestion":  {
+                                                           "trust_order":  8,
+                                                           "base_evidence_weight":  10
+                                                       }
+                       },
+    "evidence_weighting":  {
+                               "freshness":  0.12,
+                               "source_count_bonus":  6,
+                               "contradiction_penalty":  10
+                           },
+    "confidence_weighting":  {
+                                 "evidence_score":  0.55,
+                                 "freshness_score":  0.2,
+                                 "success_weight":  6,
+                                 "failure_weight":  8,
+                                 "rejection_weight":  10
+                             },
+    "freshness_decay_behavior":  {
+                                     "fast_domains":  [
+                                                          "stack",
+                                                          "validator",
+                                                          "services",
+                                                          "host",
+                                                          "environment",
+                                                          "mirror",
+                                                          "billing",
+                                                          "keepalive_ops",
+                                                          "system_truth",
+                                                          "release_management"
+                                                      ],
+                                     "medium_domains":  [
+                                                            "tools",
+                                                            "recommendations",
+                                                            "tenant_engagement",
+                                                            "business_outcomes",
+                                                            "revenue_optimization",
+                                                            "regression_guard"
+                                                        ],
+                                     "slow_domains":  [
+                                                          "playbook_support",
+                                                          "live_docs",
+                                                          "brand_exposure",
+                                                          "security_posture"
+                                                      ]
+                                 },
+    "contradiction_penalties":  {
+                                    "warn":  8,
+                                    "fail":  18,
+                                    "direct":  25
+                                },
+    "anti_repeat_thresholds":  {
+                                   "rejection_count_block":  1,
+                                   "failure_count_review_gate":  1,
+                                   "repeated_failure_block":  2,
+                                   "quarantine_duplicate_review_gate":  3,
+                                   "quarantine_duplicate_block":  10
+                               },
+    "minimum_score_for_reuse":  {
+                                    "evidence_score":  60,
+                                    "confidence_score":  55,
+                                    "freshness_score":  35
+                                },
+    "minimum_score_for_action_influence":  {
+                                               "evidence_score":  75,
+                                               "confidence_score":  70,
+                                               "freshness_score":  50
+                                           },
+    "teacher_reuse_restrictions":  {
+                                       "blocked_classifications":  [
+                                                                       "reject"
+                                                                   ],
+                                       "review_required_classifications":  [
+                                                                               "queue_for_review"
+                                                                           ],
+                                       "blocked_use_modes":  [
+                                                                 "action_influence",
+                                                                 "autonomous_action",
+                                                                 "recommendation_priority"
+                                                             ]
+                                   },
+    "operator_override_rules":  {
+                                    "owner_can_reenable_blocked_card":  true,
+                                    "override_requires_notes":  true
+                                }
+}

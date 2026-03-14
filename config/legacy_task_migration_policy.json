@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "policy_name": "legacy_task_migration",
+  "classification_rules": {
+    "bootstrap_only_keywords": [
+      "watchdog",
+      "startup",
+      "revive"
+    ],
+    "stale_path_indicators": [
+      "C:\\Users\\Chris\\Desktop\\Mason\\",
+      "Broken mason",
+      "Mason_old",
+      "Mason_Backup"
+    ],
+    "mason_relevance_keywords": [
+      "Mason",
+      "Mason2",
+      "Athena",
+      "Onyx",
+      "Mirror",
+      "Governor",
+      "Watchdog",
+      "Learner"
+    ]
+  },
+  "migration_postures": [
+    "bootstrap_only",
+    "mason_owned_migrate",
+    "mason_owned_keep_temporarily",
+    "non_mason_ignore",
+    "unknown_manual_review",
+    "noisy_interactive",
+    "broken_or_stale"
+  ],
+  "popup_rules": {
+    "background_should_be_hidden": true,
+    "visible_only_if_interactive": [
+      "manual_review",
+      "interactive_auth",
+      "founder_prompt"
+    ]
+  },
+  "safe_disable_rules": {
+    "allow_disable_only_when_internal_definition_exists": true,
+    "keep_bootstrap_fallback_for_startup_recovery": true
+  }
+}

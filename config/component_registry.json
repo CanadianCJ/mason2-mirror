@@ -20,6 +20,55 @@
       "readme_path": "docs/Mason_README.md"
     },
     {
+      "id": "mason_api",
+      "label": "Mason API",
+      "type": "service",
+      "root_paths": [
+        "services"
+      ],
+      "status_sources": [
+        "reports/system_validation_last.json",
+        "reports/host_health_last.json"
+      ],
+      "approvals_filters": {
+        "area_prefix": "mason_api_"
+      },
+      "readme_path": "docs/Mason_README.md"
+    },
+    {
+      "id": "seed_api",
+      "label": "Seed API",
+      "type": "service",
+      "root_paths": [
+        "services"
+      ],
+      "status_sources": [
+        "reports/system_validation_last.json",
+        "reports/host_health_last.json"
+      ],
+      "approvals_filters": {
+        "area_prefix": "seed_api_"
+      },
+      "readme_path": "docs/Mason_README.md"
+    },
+    {
+      "id": "bridge",
+      "label": "Bridge Service",
+      "type": "service",
+      "root_paths": [
+        "bridge",
+        "tools"
+      ],
+      "status_sources": [
+        "reports/system_validation_last.json",
+        "reports/host_health_last.json"
+      ],
+      "approvals_filters": {
+        "area_prefix": "bridge_"
+      },
+      "readme_path": "docs/Mason_README.md"
+    },
+    {
       "id": "onyx",
       "label": "Onyx App",
       "type": "app",

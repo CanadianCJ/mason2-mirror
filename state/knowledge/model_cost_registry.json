@@ -1,0 +1,16 @@
+﻿{
+    "generated_at_utc":  "2026-03-12T23:35:40.1005517Z",
+    "overall_status":  "WARN",
+    "latest_governance_artifact":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\model_cost_governance_last.json",
+    "task_class_count":  5,
+    "teacher_allowed_count":  0,
+    "teacher_blocked_count":  197,
+    "quality_floor_status":  "guarded",
+    "mirror_refresh_status":  "local_checkpoint_only",
+    "notes":  [
+                  "budget_posture=guarded",
+                  "validator_status=WARN",
+                  "regression_status=WARN",
+                  "mirror_refresh_status=local_checkpoint_only"
+              ]
+}

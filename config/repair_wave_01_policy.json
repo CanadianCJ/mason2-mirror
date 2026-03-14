@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "policy_name": "repair_wave_01",
+  "description": "Focused corrective pass for onboarding UX, entitlement truth, half-wired tools, scheduler visibility, internal visibility, and mirror usefulness.",
+  "repair_buckets": [
+    "onboarding_public_wording",
+    "onboarding_completion_action",
+    "billing_entitlement_truth",
+    "half_wired_tools",
+    "registration_gaps",
+    "scheduler_oversight",
+    "internal_visibility",
+    "mirror_hardening"
+  ],
+  "safe_auto_fix_classes": [
+    "public_wording_cleanup",
+    "dead_button_to_existing_route",
+    "missing_registry_entry_for_existing_low_risk_component",
+    "status_source_artifact_restore",
+    "validator_contract_alignment",
+    "tool_artifact_lookup_fix",
+    "mirror_policy_allowlist_expansion"
+  ],
+  "blocked_auto_fix_classes": [
+    "money_movement",
+    "auto_entitlement_grant",
+    "destructive_cleanup",
+    "approval_bypass",
+    "auth_sensitive_mutation",
+    "cross_business_mutation",
+    "network_exposure_change"
+  ],
+  "billing_rules": {
+    "allow_truthful_diagnosis_without_fake_entitlements": true,
+    "allow_checkout_required_empty_entitlements_as_warn": true,
+    "require_root_cause_class": true,
+    "require_before_after_counts": true
+  },
+  "scheduler_oversight": {
+    "keywords": [
+      "mason",
+      "athena",
+      "onyx",
+      "mirror",
+      "verify",
+      "watchdog",
+      "keepalive",
+      "governor",
+      "maintenance",
+      "bridge"
+    ],
+    "mutation_allowed": false
+  },
+  "mirror_hardening": {
+    "require_coverage_report": true,
+    "require_omission_report": true,
+    "require_safe_index_markdown": true,
+    "remote_current_only_when_push_succeeds": true
+  },
+  "reverify": {
+    "run_whole_folder_verification": true,
+    "run_validator": true,
+    "refresh_mirror": true
+  }
+}

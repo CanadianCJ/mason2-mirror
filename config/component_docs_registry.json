@@ -1,0 +1,273 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "component_id": "mason",
+      "display_name": "Mason Core",
+      "owner_surface": "mason",
+      "category": "core_orchestration",
+      "role": "core orchestrator",
+      "purpose_summary": "Operate the Mason runtime, governance, memory, validation, and checkpoint backbone under loopback-only controls.",
+      "description": "Core runtime, verification, governance, memory, queue, and automation loops that operate the Mason stack.",
+      "entrypoints": [
+        ".\\Start_Mason2.ps1 -FullStack",
+        ".\\tools\\Mason_Start_Core_NoApps.ps1",
+        "http://127.0.0.1:8383/health",
+        "http://127.0.0.1:8109/health",
+        "http://127.0.0.1:8484/health"
+      ],
+      "ports": [
+        "mason_api",
+        "seed_api",
+        "bridge"
+      ],
+      "primary_artifacts": [
+        "reports/system_validation_last.json",
+        "reports/start/start_run_last.json",
+        "reports/verify_last.json",
+        "state/knowledge/stack_pids.json"
+      ],
+      "supporting_artifacts": [
+        "reports/host_health_last.json",
+        "reports/runtime_posture_last.json",
+        "reports/environment_profile_last.json",
+        "reports/self_improvement_governor_last.json",
+        "reports/teacher_call_budget_last.json",
+        "reports/security_posture.json",
+        "reports/tenant_safety_report.json",
+        "reports/mirror_update_last.json"
+      ],
+      "dependencies": [
+        "athena",
+        "onyx"
+      ],
+      "visible_in_athena": true,
+      "docs_enabled": true,
+      "sort_order": 10,
+      "future_auto_generate": true,
+      "capabilities": [
+        "Stack orchestration",
+        "Verification and runtime truth",
+        "Governed self-improvement",
+        "Memory, queue, and tool backbone"
+      ],
+      "validation_sections": [
+        "stack/base",
+        "memory/ingest/context pack",
+        "unified improvement queue",
+        "trust/autonomy ladder",
+        "tool factory",
+        "self-improvement governor",
+        "security/legal/tenant safety",
+        "environment adaptation",
+        "mirror/checkpoint state"
+      ]
+    },
+    {
+      "component_id": "mason_api",
+      "display_name": "Mason API",
+      "owner_surface": "internal",
+      "category": "runtime_service",
+      "role": "core api service",
+      "purpose_summary": "Serve the primary Mason loopback API contract for runtime health, orchestration, and governed control actions.",
+      "description": "Primary loopback API service for Mason runtime health, control endpoints, and backend orchestration.",
+      "entrypoints": [
+        "http://127.0.0.1:8383/health"
+      ],
+      "ports": [
+        "mason_api"
+      ],
+      "primary_artifacts": [
+        "reports/system_validation_last.json",
+        "reports/host_health_last.json",
+        "state/knowledge/stack_pids.json"
+      ],
+      "supporting_artifacts": [
+        "reports/start/start_run_last.json",
+        "reports/verify_last.json"
+      ],
+      "dependencies": [
+        "mason"
+      ],
+      "visible_in_athena": true,
+      "docs_enabled": true,
+      "sort_order": 12,
+      "future_auto_generate": true,
+      "capabilities": [
+        "Loopback health contract",
+        "Runtime control endpoints",
+        "Core stack API surface"
+      ],
+      "validation_sections": [
+        "stack/base"
+      ]
+    },
+    {
+      "component_id": "seed_api",
+      "display_name": "Seed API",
+      "owner_surface": "internal",
+      "category": "runtime_service",
+      "role": "seed data service",
+      "purpose_summary": "Provide the Seed API loopback runtime service used by the Mason stack contract.",
+      "description": "Loopback Seed API service that supports the current Mason stack contract and health checks.",
+      "entrypoints": [
+        "http://127.0.0.1:8109/health"
+      ],
+      "ports": [
+        "seed_api"
+      ],
+      "primary_artifacts": [
+        "reports/system_validation_last.json",
+        "reports/host_health_last.json",
+        "state/knowledge/stack_pids.json"
+      ],
+      "supporting_artifacts": [
+        "reports/start/start_run_last.json"
+      ],
+      "dependencies": [
+        "mason"
+      ],
+      "visible_in_athena": true,
+      "docs_enabled": true,
+      "sort_order": 13,
+      "future_auto_generate": true,
+      "capabilities": [
+        "Loopback health contract",
+        "Seed service visibility"
+      ],
+      "validation_sections": [
+        "stack/base"
+      ]
+    },
+    {
+      "component_id": "bridge",
+      "display_name": "Bridge Service",
+      "owner_surface": "internal",
+      "category": "runtime_service",
+      "role": "bridge service",
+      "purpose_summary": "Maintain the bridge loopback service that connects Mason stack components through the governed contract.",
+      "description": "Loopback bridge runtime service used by the Mason stack for contract health and coordination.",
+      "entrypoints": [
+        "http://127.0.0.1:8484/health"
+      ],
+      "ports": [
+        "bridge"
+      ],
+      "primary_artifacts": [
+        "reports/system_validation_last.json",
+        "reports/host_health_last.json",
+        "state/knowledge/stack_pids.json"
+      ],
+      "supporting_artifacts": [
+        "reports/start/start_run_last.json"
+      ],
+      "dependencies": [
+        "mason"
+      ],
+      "visible_in_athena": true,
+      "docs_enabled": true,
+      "sort_order": 14,
+      "future_auto_generate": true,
+      "capabilities": [
+        "Loopback health contract",
+        "Bridge service visibility"
+      ],
+      "validation_sections": [
+        "stack/base"
+      ]
+    },
+    {
+      "component_id": "athena",
+      "display_name": "Athena Control Plane",
+      "owner_surface": "athena",
+      "category": "owner_cockpit",
+      "role": "owner cockpit",
+      "purpose_summary": "Give Chris one owner-only control surface for runtime truth, governance, manuals, approvals, and recovery.",
+      "description": "Owner-only cockpit for stack control, founder visibility, live manuals, approvals, validation, and recovery.",
+      "entrypoints": [
+        ".\\Start-Athena.ps1",
+        "http://127.0.0.1:8000/athena/",
+        "http://127.0.0.1:8000/api/stack_status",
+        "http://127.0.0.1:8000/api/health"
+      ],
+      "ports": [
+        "athena"
+      ],
+      "primary_artifacts": [
+        "reports/system_validation_last.json",
+        "reports/verify_last.json",
+        "reports/mirror_update_last.json"
+      ],
+      "supporting_artifacts": [
+        "reports/live_docs_summary.json",
+        "reports/live_docs_index.json",
+        "reports/start/start_run_last.json",
+        "reports/security_posture.json"
+      ],
+      "dependencies": [
+        "mason"
+      ],
+      "visible_in_athena": true,
+      "docs_enabled": true,
+      "sort_order": 20,
+      "future_auto_generate": true,
+      "capabilities": [
+        "Owner-only operations cockpit",
+        "Founder mode governance view",
+        "Live stack controls",
+        "Live documentation surface"
+      ],
+      "validation_sections": [
+        "Athena"
+      ]
+    },
+    {
+      "component_id": "onyx",
+      "display_name": "Onyx Business Manager",
+      "owner_surface": "onyx",
+      "category": "tenant_business_app",
+      "role": "tenant workspace",
+      "purpose_summary": "Run tenant onboarding, business profiles, tools, recommendations, and billing-aware workflows without exposing Mason publicly.",
+      "description": "Business-facing workspace for tenant onboarding, profiles, tools, recommendations, and billing-aware workflows.",
+      "entrypoints": [
+        ".\\Component - Onyx App\\onyx_business_manager\\Start-Onyx5353.ps1",
+        "http://127.0.0.1:5353/",
+        "http://127.0.0.1:5353/main.dart.js"
+      ],
+      "ports": [
+        "onyx"
+      ],
+      "primary_artifacts": [
+        "state/onyx/tenant_workspace.json",
+        "reports/billing_summary.json",
+        "config/tool_registry.json"
+      ],
+      "supporting_artifacts": [
+        "state/onyx/recommendations",
+        "state/onyx/billing",
+        "state/knowledge/improvement_queue.json",
+        "reports/tenant_safety_report.json"
+      ],
+      "dependencies": [
+        "mason",
+        "athena"
+      ],
+      "visible_in_athena": true,
+      "docs_enabled": true,
+      "sort_order": 30,
+      "future_auto_generate": true,
+      "capabilities": [
+        "Tenant onboarding and business profiles",
+        "Tenant-aware tools and recommendations",
+        "Billing-aware plan visibility",
+        "Persistent business context"
+      ],
+      "validation_sections": [
+        "Onyx",
+        "tenant/onboarding/business profile",
+        "recommendations",
+        "billing/entitlements"
+      ]
+    }
+  ]
+}

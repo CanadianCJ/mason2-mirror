@@ -1,0 +1,11 @@
+﻿{
+    "generated_at_utc":  "2026-03-12T19:49:53.3742919Z",
+    "current_release_candidate_id":  "rc_corewithathenaonyx_5157bdb37fd1",
+    "current_release_stage":  "canary_only",
+    "latest_release_management_artifact":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\release_management_last.json",
+    "latest_release_notes_artifact":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\release_notes_last.json",
+    "latest_rollout_artifact":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\release_rollout_last.json",
+    "promotion_allowed":  false,
+    "rollback_ready":  false,
+    "notes":  "Current release posture is canary_only; rollout mode internal_operator_canary_only; trusted baseline available=false."
+}

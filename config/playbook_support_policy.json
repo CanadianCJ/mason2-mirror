@@ -1,0 +1,69 @@
+﻿{
+    "version":  1,
+    "policy_name":  "playbook_support_brain",
+    "policy_posture":  "conservative_grounded",
+    "allowed_source_artifacts":  [
+                                     "reports/system_validation_last.json",
+                                     "reports/host_health_last.json",
+                                     "reports/runtime_posture_last.json",
+                                     "reports/environment_drift_last.json",
+                                     "reports/keepalive_last.json",
+                                     "reports/self_heal_last.json",
+                                     "reports/self_improvement_governor_last.json",
+                                     "reports/billing_summary.json",
+                                     "reports/security_posture.json",
+                                     "reports/tenant_safety_report.json",
+                                     "reports/mirror_update_last.json",
+                                     "reports/regression_guard_last.json",
+                                     "reports/system_truth_spine_last.json",
+                                     "reports/brand_exposure_isolation_last.json",
+                                     "reports/live_docs_summary.json"
+                                 ],
+    "explanation_scope_classes":  [
+                                      "internal_operator",
+                                      "customer_safe"
+                                  ],
+    "internal_vs_customer_safe_output_rules":  {
+                                                   "internal_operator":  [
+                                                                             "May reference Mason, Athena, validator sections, local artifact names, and governed internal posture."
+                                                                         ],
+                                                   "customer_safe":  [
+                                                                         "Must prefer Onyx/customer-safe labels.",
+                                                                         "Must avoid internal-only file paths, Mason-private terminology, and sensitive operational detail.",
+                                                                         "Must stay calm, specific, and non-alarmist."
+                                                                     ]
+                                               },
+    "plain_english_formatting_expectations":  [
+                                                  "State what happened.",
+                                                  "State what it means operationally.",
+                                                  "State what Mason did or refused to do.",
+                                                  "State the exact next action when one exists.",
+                                                  "Avoid vague filler or speculative language."
+                                              ],
+    "playbook_freshness_rules":  {
+                                     "preferred_max_age_hours":  24,
+                                     "stale_if_older_than_hours":  72,
+                                     "stale_manual_ok_if_marked":  true
+                                 },
+    "recommendation_safety_rules":  [
+                                        "Respect current validator, keepalive, regression, and self-improvement gates.",
+                                        "Do not recommend destructive cleanup or broad restart storms.",
+                                        "Do not recommend money, billing, or security-control changes without owner approval."
+                                    ],
+    "blocked_content_classes":  [
+                                    "secret values",
+                                    "private credentials",
+                                    "destructive rollback instructions",
+                                    "public exposure of Mason-private internals in customer-safe summaries"
+                                ],
+    "confidence_evidence_rules":  [
+                                      "Explanations must be backed by current local artifacts.",
+                                      "When provenance is partial, label it artifact-observed instead of code-confirmed.",
+                                      "Missing sources must be called out instead of silently invented."
+                                  ],
+    "escalation_wording_rules":  [
+                                     "Escalate only when recovery is blocked, unsafe, or repeatedly unsuccessful.",
+                                     "State why Mason did not auto-fix the issue.",
+                                     "State the owner action required."
+                                 ]
+}

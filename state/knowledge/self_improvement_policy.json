@@ -1,0 +1,72 @@
+﻿{
+    "version":  1,
+    "generated_at_utc":  "2026-03-11T12:41:20.7955399Z",
+    "policy_name":  "self_improvement_governor",
+    "local_first_mandatory":  true,
+    "teacher_calls_enabled":  true,
+    "cost_sensitivity":  "guarded",
+    "minimum_teacher_quality_score":  70,
+    "minimum_teacher_quality_classification":  "queue_for_review",
+    "local_first_sources":  [
+                                "runtime",
+                                "self-heal",
+                                "manual",
+                                "owner",
+                                "recommendation"
+                            ],
+    "teacher_optional_sources":  [
+                                     "recommendation",
+                                     "owner"
+                                 ],
+    "teacher_focus_sources":  [
+                                  "competitor",
+                                  "tool-gap"
+                              ],
+    "blocked_target_types":  [
+                                 "billing",
+                                 "security"
+                             ],
+    "blocked_keywords":  [
+                             "billing",
+                             "payment",
+                             "pricing",
+                             "stripe",
+                             "subscription",
+                             "webhook",
+                             "secret",
+                             "credential",
+                             "token",
+                             "password",
+                             "api key",
+                             "firewall",
+                             "registry",
+                             "network exposure"
+                         ],
+    "score_thresholds":  {
+                             "trivial_local_only_max_difficulty":  30,
+                             "local_first_optional_min_fallback":  65,
+                             "teacher_low_cost_min_expected_value":  55,
+                             "teacher_standard_min_expected_value":  70,
+                             "teacher_high_value_min_expected_value":  85,
+                             "safe_to_stage_min_quality":  78,
+                             "safe_to_test_min_quality":  88
+                         },
+    "cost_tiers":  {
+                       "low_usd":  5,
+                       "standard_usd":  15,
+                       "high_usd":  30
+                   },
+    "blocked_conditions":  {
+                               "money_actions_require_human_gate":  true,
+                               "credential_and_secret_changes_blocked":  true,
+                               "risky_external_actions_blocked":  true,
+                               "medium_or_higher_risk_needs_review":  true,
+                               "security_and_billing_teacher_blocked":  true
+                           },
+    "execution_disposition_rules":  {
+                                        "allow_safe_to_stage_max_risk":  "R1",
+                                        "allow_safe_to_test_requires_auto_allowed_behavior":  true,
+                                        "default_high_risk_disposition":  "approval_required",
+                                        "default_unknown_disposition":  "suggest_only"
+                                    }
+}

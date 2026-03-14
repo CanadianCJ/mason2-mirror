@@ -1,0 +1,105 @@
+{
+    "version":  1,
+    "policy_name":  "regression_guard_policy",
+    "baseline_source_policy":  {
+                                   "preferred_baseline":  "trusted_eligible",
+                                   "fallback_baseline":  "seed_observation_only",
+                                   "allow_seed_initialization":  true,
+                                   "prefer_active_baseline_id":  true
+                               },
+    "comparison_domains":  [
+                               "validator",
+                               "stack",
+                               "runtime_truth",
+                               "host",
+                               "environment",
+                               "keepalive_ops",
+                               "self_improvement",
+                               "security_posture",
+                               "billing",
+                               "mirror",
+                               "brand_exposure",
+                               "live_docs",
+                               "system_truth"
+                           ],
+    "regression_severity_thresholds":  {
+                                           "critical_domains":  [
+                                                                    "validator",
+                                                                    "stack",
+                                                                    "runtime_truth",
+                                                                    "security_posture",
+                                                                    "brand_exposure"
+                                                                ],
+                                           "high_domains":  [
+                                                                "keepalive_ops",
+                                                                "mirror",
+                                                                "system_truth"
+                                                            ],
+                                           "medium_domains":  [
+                                                                  "host",
+                                                                  "environment",
+                                                                  "billing",
+                                                                  "live_docs"
+                                                              ],
+                                           "validator_warn_delta_for_low":  1,
+                                           "pid_drift_delta_for_medium":  1,
+                                           "tenant_safety_issue_delta_for_high":  1,
+                                           "escalation_delta_for_medium":  1,
+                                           "live_docs_stale_delta_for_low":  1
+                                       },
+    "allowed_deltas":  {
+                           "unchanged_warn_is_not_regression":  true,
+                           "unchanged_billing_stub_is_not_regression":  true,
+                           "unchanged_self_improvement_review_gate_is_not_regression":  true,
+                           "unchanged_environment_no_material_change_is_not_regression":  true,
+                           "unchanged_host_pending_reboot_is_not_regression":  true,
+                           "validator_warn_count_increase_without_status_drop":  1
+                       },
+    "promotion_blocking_rules":  {
+                                     "require_trusted_baseline":  true,
+                                     "block_on_blocking_regression":  true,
+                                     "block_on_public_brand_leak":  true,
+                                     "block_on_service_health_degradation":  true,
+                                     "block_on_truth_integrity_degradation":  true,
+                                     "block_on_rollback_recommended":  true,
+                                     "block_on_stale_baseline":  true
+                                 },
+    "rollback_recommendation_rules":  {
+                                          "recommend_on_severity":  [
+                                                                        "high",
+                                                                        "critical"
+                                                                    ],
+                                          "recommend_on_domains":  [
+                                                                       "validator",
+                                                                       "stack",
+                                                                       "runtime_truth",
+                                                                       "security_posture",
+                                                                       "brand_exposure",
+                                                                       "mirror"
+                                                                   ]
+                                      },
+    "excluded_noisy_signals":  [
+                                   "unchanged_billing_stub",
+                                   "unchanged_self_improvement_review_gate",
+                                   "unchanged_host_pending_reboot",
+                                   "unchanged_environment_no_material_change",
+                                   "unchanged_live_docs_component_warning"
+                               ],
+    "evidence_precedence":  [
+                                "live_loopback_probe",
+                                "current_live_pid_truth",
+                                "system_truth_spine",
+                                "whole_system_validator",
+                                "domain_artifacts"
+                            ],
+    "stale_baseline_handling":  {
+                                    "max_age_hours":  168,
+                                    "warn_if_exceeded":  true,
+                                    "block_promotion_if_exceeded":  true
+                                },
+    "missing_baseline_handling":  {
+                                      "seed_initial_baseline":  true,
+                                      "compare_against_seed_for_observation":  true,
+                                      "allow_promotion_without_trusted_baseline":  false
+                                  }
+}

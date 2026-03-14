@@ -1,0 +1,94 @@
+﻿{
+    "generated_at_utc":  "2026-03-12T10:47:26.6175169Z",
+    "current_playbook_count":  11,
+    "current_categories":  [
+                               "customer_safe_support",
+                               "escalation",
+                               "explanation",
+                               "governance",
+                               "incident",
+                               "recovery",
+                               "warning"
+                           ],
+    "latest_library_artifact":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\playbook_library_last.json",
+    "current_status":  "WARN",
+    "playbooks":  [
+                      {
+                          "playbook_id":  "pb_service_health_missing_listener",
+                          "title":  "Service Health Or Missing Listener",
+                          "category":  "incident",
+                          "status":  "ready",
+                          "customer_safe_wording_available":  false
+                      },
+                      {
+                          "playbook_id":  "pb_runtime_singleton_truth_drift",
+                          "title":  "Runtime Singleton Or PID Truth Drift",
+                          "category":  "recovery",
+                          "status":  "ready",
+                          "customer_safe_wording_available":  false
+                      },
+                      {
+                          "playbook_id":  "pb_stale_truth_artifact_mismatch",
+                          "title":  "Stale Artifact Versus Live Probe Mismatch",
+                          "category":  "explanation",
+                          "status":  "ready",
+                          "customer_safe_wording_available":  false
+                      },
+                      {
+                          "playbook_id":  "pb_keepalive_policy_escalation",
+                          "title":  "KeepAlive Escalated Instead Of Retrying Blindly",
+                          "category":  "escalation",
+                          "status":  "active",
+                          "customer_safe_wording_available":  false
+                      },
+                      {
+                          "playbook_id":  "pb_self_improvement_review_gate",
+                          "title":  "Self-Improvement Remains Review-Gated",
+                          "category":  "governance",
+                          "status":  "active",
+                          "customer_safe_wording_available":  false
+                      },
+                      {
+                          "playbook_id":  "pb_security_tenant_safety_watch",
+                          "title":  "Security Or Tenant-Safety Watch Posture",
+                          "category":  "warning",
+                          "status":  "active",
+                          "customer_safe_wording_available":  false
+                      },
+                      {
+                          "playbook_id":  "pb_billing_stub_gated",
+                          "title":  "Billing Remains Stubbed And Approval-Gated",
+                          "category":  "customer_safe_support",
+                          "status":  "active",
+                          "customer_safe_wording_available":  true
+                      },
+                      {
+                          "playbook_id":  "pb_mirror_incomplete_or_stale",
+                          "title":  "Mirror Or Checkpoint Incomplete",
+                          "category":  "recovery",
+                          "status":  "ready",
+                          "customer_safe_wording_available":  false
+                      },
+                      {
+                          "playbook_id":  "pb_host_pending_reboot",
+                          "title":  "Pending Reboot And Caution Host Posture",
+                          "category":  "warning",
+                          "status":  "active",
+                          "customer_safe_wording_available":  false
+                      },
+                      {
+                          "playbook_id":  "pb_brand_exposure_leakage",
+                          "title":  "Brand Exposure Leakage",
+                          "category":  "customer_safe_support",
+                          "status":  "ready",
+                          "customer_safe_wording_available":  true
+                      },
+                      {
+                          "playbook_id":  "pb_regression_promotion_blocked",
+                          "title":  "Promotion Blocked By Regression Guard",
+                          "category":  "governance",
+                          "status":  "active",
+                          "customer_safe_wording_available":  false
+                      }
+                  ]
+}

@@ -1,0 +1,41 @@
+{
+    "version":  1,
+    "latest_truth_artifact_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+    "latest_metrics_artifact_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_metrics_spine_last.json",
+    "latest_summary_artifact_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_summary_last.json",
+    "last_build_timestamp_utc":  "2026-03-12T03:40:31.1074120+00:00",
+    "last_overall_status":  "WARN",
+    "prior_overall_status":  "",
+    "last_domain_statuses":  {
+                                 "stack":  "WARN",
+                                 "validator":  "WARN",
+                                 "services":  "WARN",
+                                 "host":  "WARN",
+                                 "environment":  "WARN",
+                                 "mirror":  "PASS",
+                                 "billing":  "WARN",
+                                 "trust":  "PASS",
+                                 "queues":  "PASS",
+                                 "tenants":  "PASS",
+                                 "tools":  "PASS",
+                                 "self_improvement":  "WARN",
+                                 "live_docs":  "WARN",
+                                 "brand_exposure":  "PASS",
+                                 "keepalive_ops":  "WARN"
+                             },
+    "source_availability_summary":  {
+                                        "available_count":  23,
+                                        "readable_count":  23,
+                                        "stale_count":  1,
+                                        "missing_count":  0,
+                                        "unreadable_count":  0
+                                    },
+    "history":  [
+                    {
+                        "timestamp_utc":  "2026-03-12T03:40:31.1074120+00:00",
+                        "overall_status":  "WARN",
+                        "truth_artifact_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                        "summary_artifact_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_summary_last.json"
+                    }
+                ]
+}

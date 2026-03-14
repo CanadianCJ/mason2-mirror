@@ -1,0 +1,166 @@
+﻿{
+    "generated_at_utc":  "2026-03-12T18:24:14.2330221Z",
+    "current_status":  "PASS",
+    "current_framework_generation_timestamp":  "2026-03-12T18:24:14.2330221Z",
+    "wedge_packs":  [
+                        {
+                            "workflow_pack_id":  "workflow_pack_general_small_business",
+                            "business_category":  "general_small_business",
+                            "business_subcategory":  [
+                                                         "other"
+                                                     ],
+                            "status":  "customer_ready",
+                            "wedge_status":  "customer_ready",
+                            "customer_safe_label":  "General Small-Business Pack"
+                        },
+                        {
+                            "workflow_pack_id":  "workflow_pack_contractor_field_ops",
+                            "business_category":  "contractor",
+                            "business_subcategory":  [
+                                                         "general_contractor",
+                                                         "plumber",
+                                                         "painter",
+                                                         "cabinet_maker"
+                                                     ],
+                            "status":  "pilot_ready",
+                            "wedge_status":  "pilot_ready",
+                            "customer_safe_label":  "Contractor Field Ops Pack"
+                        },
+                        {
+                            "workflow_pack_id":  "workflow_pack_service_growth",
+                            "business_category":  "services",
+                            "business_subcategory":  [
+                                                         "studio_creative",
+                                                         "consulting_practice",
+                                                         "salon",
+                                                         "barber"
+                                                     ],
+                            "status":  "pilot_ready",
+                            "wedge_status":  "pilot_ready",
+                            "customer_safe_label":  "Service Growth Pack"
+                        },
+                        {
+                            "workflow_pack_id":  "workflow_pack_retail_counter_ops",
+                            "business_category":  "retail",
+                            "business_subcategory":  [
+                                                         "boutique_retail",
+                                                         "ecommerce_retail",
+                                                         "office_services"
+                                                     ],
+                            "status":  "planned",
+                            "wedge_status":  "planned",
+                            "customer_safe_label":  "Retail Counter Ops Pack"
+                        },
+                        {
+                            "workflow_pack_id":  "workflow_pack_restaurant_shift_ops",
+                            "business_category":  "restaurant",
+                            "business_subcategory":  [
+                                                         "restaurant_general",
+                                                         "cafe"
+                                                     ],
+                            "status":  "planned",
+                            "wedge_status":  "planned",
+                            "customer_safe_label":  "Restaurant Shift Ops Pack"
+                        },
+                        {
+                            "workflow_pack_id":  "workflow_pack_bookkeeping_advisory",
+                            "business_category":  "bookkeeping_advisory",
+                            "business_subcategory":  [
+                                                         "bookkeeping_practice"
+                                                     ],
+                            "status":  "experimental",
+                            "wedge_status":  "experimental",
+                            "customer_safe_label":  "Bookkeeping Advisory Pack"
+                        }
+                    ],
+    "current_categories":  [
+                               "general_small_business",
+                               "contractor",
+                               "services",
+                               "retail",
+                               "restaurant",
+                               "bookkeeping_advisory"
+                           ],
+    "current_subcategories":  [
+                                  "other",
+                                  "general_contractor",
+                                  "plumber",
+                                  "painter",
+                                  "cabinet_maker",
+                                  "studio_creative",
+                                  "consulting_practice",
+                                  "salon",
+                                  "barber",
+                                  "boutique_retail",
+                                  "ecommerce_retail",
+                                  "office_services",
+                                  "restaurant_general",
+                                  "cafe",
+                                  "bookkeeping_practice"
+                              ],
+    "pack_statuses":  {
+                          "customer_ready":  1,
+                          "pilot_ready":  2,
+                          "experimental":  1,
+                          "planned":  2
+                      },
+    "default_fallback_rules":  {
+                                   "segment_profile":  "segment_profile_general_small_business",
+                                   "workflow_pack_id":  "workflow_pack_general_small_business",
+                                   "onboarding_overlay_id":  "onboarding_overlay_general_small_business",
+                                   "dashboard_overlay_id":  "dashboard_overlay_general_small_business",
+                                   "recommendation_rule_pack_id":  "recommendation_rules_general_small_business",
+                                   "customer_safe_label":  "General Small Business"
+                               },
+    "latest_artifacts":  {
+                             "framework":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\wedge_pack_framework_last.json",
+                             "overlays":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\segment_overlay_last.json",
+                             "workflow_packs":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\workflow_pack_last.json",
+                             "policy":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\wedge_pack_policy.json"
+                         },
+    "active_tenant_fit":  {
+                              "tenant_id":  "tenant_http_check",
+                              "active":  true,
+                              "business_name":  "HTTP Tenant Check",
+                              "business_type":  "Studio",
+                              "business_category":  "services",
+                              "business_subcategory":  "studio_creative",
+                              "segment_profile_id":  "segment_profile_services",
+                              "onboarding_overlay_ids":  [
+                                                             "onboarding_overlay_services"
+                                                         ],
+                              "dashboard_overlay_ids":  [
+                                                            "dashboard_overlay_services"
+                                                        ],
+                              "recommendation_overlay_ids":  [
+                                                                 "recommendation_overlay_services"
+                                                             ],
+                              "tool_bundle_ids":  [
+                                                      "tool_bundle_service_growth"
+                                                  ],
+                              "workflow_pack_ids":  [
+                                                        "workflow_pack_service_growth"
+                                                    ],
+                              "recommendation_rule_pack_ids":  [
+                                                                   "recommendation_rules_services"
+                                                               ],
+                              "wedge_status":  "pilot_ready",
+                              "tenant_fit_confidence":  0.88,
+                              "tenant_fit_reason":  "Business profile keywords match a studio or consulting service workflow.",
+                              "customer_safe_category_label":  "Services",
+                              "customer_safe_subcategory_label":  "Studio / Creative Service",
+                              "enabled_feature_count":  4,
+                              "enabled_features":  [
+                                                       "invoices",
+                                                       "clients",
+                                                       "tasks",
+                                                       "deals"
+                                                   ],
+                              "recommendation_count":  3,
+                              "source_artifacts":  [
+                                                       "C:\\Users\\Chris\\Desktop\\Mason2\\state\\onyx\\tenant_workspace.json",
+                                                       "C:\\Users\\Chris\\Desktop\\Mason2\\config\\tool_registry.json",
+                                                       "C:\\Users\\Chris\\Desktop\\Mason2\\state\\onyx\\recommendations\\tenant_http_check.json"
+                                                   ]
+                          }
+}

@@ -1,0 +1,67 @@
+﻿{
+    "version":  1,
+    "policy_name":  "wedge_pack_segment_expansion_framework",
+    "allowed_wedge_pack_statuses":  [
+                                        "planned",
+                                        "experimental",
+                                        "internal_only",
+                                        "pilot_ready",
+                                        "customer_ready"
+                                    ],
+    "category_subcategory_policy":  {
+                                        "broad_categories_supported":  [
+                                                                           "general_small_business",
+                                                                           "contractor",
+                                                                           "services",
+                                                                           "retail",
+                                                                           "restaurant",
+                                                                           "bookkeeping_advisory"
+                                                                       ],
+                                        "fallback_category":  "general_small_business",
+                                        "fallback_subcategory":  "other",
+                                        "new_subcategories_must_declare_parent_category":  true,
+                                        "future_wedges_must_not_break_existing_segment_ids":  true
+                                    },
+    "default_fallback_segment_behavior":  {
+                                              "segment_profile":  "segment_profile_general_small_business",
+                                              "workflow_pack_id":  "workflow_pack_general_small_business",
+                                              "onboarding_overlay_id":  "onboarding_overlay_general_small_business",
+                                              "dashboard_overlay_id":  "dashboard_overlay_general_small_business",
+                                              "recommendation_rule_pack_id":  "recommendation_rules_general_small_business",
+                                              "customer_safe_label":  "General Small Business"
+                                          },
+    "tenant_fit_confidence_rules":  {
+                                        "high_confidence_min":  0.85,
+                                        "medium_confidence_min":  0.65,
+                                        "low_confidence_below":  0.65,
+                                        "low_confidence_action":  "fallback_to_general_small_business"
+                                    },
+    "overlay_application_rules":  [
+                                      "Onboarding overlays may add priority questions and advanced optional fields, but must not remove the baseline tenant identity fields.",
+                                      "Dashboard overlays may highlight or suppress cards, but must preserve the core operator and governance surfaces.",
+                                      "Only customer_ready or pilot_ready overlays may be proposed for tenant-facing rollout."
+                                  ],
+    "workflow_pack_application_rules":  [
+                                            "Workflow packs attach by category and optional subcategory match.",
+                                            "Default fallback workflow pack must remain available when tenant fit is unclear.",
+                                            "Experimental workflow packs must stay clearly marked and must not be presented as customer-ready by default."
+                                        ],
+    "recommendation_pack_application_rules":  [
+                                                  "Recommendation rule packs may raise or suppress priorities by segment, but must stay grounded in actual tools and current tenant context.",
+                                                  "Experimental recommendation packs remain internal until explicitly promoted."
+                                              ],
+    "blocked_or_experimental_wedge_statuses":  [
+                                                   "experimental",
+                                                   "internal_only",
+                                                   "planned"
+                                               ],
+    "customer_safe_naming_rules":  [
+                                       "Use Onyx-facing business labels only.",
+                                       "Do not expose internal-only Mason naming in customer-safe wedge summaries.",
+                                       "Customer-ready labels must describe the business workflow, not the internal implementation."
+                                   ],
+    "future_expansion_guidance":  [
+                                      "Add new wedges by registering categories, subcategories, overlays, tool bundles, workflow packs, and recommendation rule packs without rewriting the core platform.",
+                                      "Keep pack status explicit and promote from planned to experimental to pilot_ready to customer_ready only with evidence."
+                                  ]
+}

@@ -1,0 +1,14 @@
+﻿{
+    "generated_at_utc":  "2026-03-12T21:27:45.2793548Z",
+    "overall_status":  "WARN",
+    "latest_revenue_optimization_artifact":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\revenue_optimization_last.json",
+    "tenant_count":  1,
+    "upgrade_opportunity_count":  0,
+    "add_on_fit_count":  1,
+    "churn_rescue_count":  0,
+    "notes":  [
+                  "Billing is still stubbed or approval-gated.",
+                  "Revenue evidence is still pilot-sized.",
+                  "System truth spine was available during revenue optimization generation."
+              ]
+}

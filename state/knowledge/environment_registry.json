@@ -1,0 +1,51 @@
+﻿{
+    "generated_at_utc":  "2026-03-11T11:46:10.8260974Z",
+    "current_environment_id":  "env_8f6a125e2aa8",
+    "prior_environment_id":  "env_8f6a125e2aa8",
+    "last_drift_level":  "no_material_change",
+    "environments":  [
+                         {
+                             "environment_id":  "env_8f6a125e2aa8",
+                             "first_seen_utc":  "2026-03-11T11:36:37.3077157Z",
+                             "last_seen_utc":  "2026-03-11T11:46:10.8260974Z",
+                             "host_identity_summary":  {
+                                                           "hostname":  "CHRIS-BIG-PC",
+                                                           "manufacturer":  "System manufacturer",
+                                                           "model":  "System Product Name",
+                                                           "machine_uuid":  "7B92F70C-32A9-E0E2-ABEE-04D4C45417B6",
+                                                           "bios_serial":  "System Serial Number",
+                                                           "os_caption":  "Microsoft Windows 11 Home",
+                                                           "os_version":  "10.0.26200",
+                                                           "os_build":  "26200",
+                                                           "architecture":  "64-bit",
+                                                           "host_classification":  "desktop"
+                                                       },
+                             "capability_summary":  {
+                                                        "cpu_model":  "AMD Ryzen 7 2700X Eight-Core Processor",
+                                                        "cpu_core_count":  8,
+                                                        "logical_processors":  16,
+                                                        "ram_total_gib":  31.93,
+                                                        "gpu_count":  1,
+                                                        "gpu_names":  [
+                                                                          "NVIDIA GeForce RTX 2060"
+                                                                      ],
+                                                        "fixed_disk_count":  1,
+                                                        "total_fixed_disk_gib":  930.13,
+                                                        "free_fixed_disk_gib":  444.85
+                                                    },
+                             "current_status":  "active",
+                             "notes":  [
+                                           "Discovered by Run_Environment_Adaptation.ps1."
+                                       ],
+                             "migration_events":  [
+                                                      {
+                                                          "observed_at_utc":  "2026-03-11T11:36:37.3077157Z",
+                                                          "event_type":  "environment_discovered",
+                                                          "prior_environment":  "",
+                                                          "drift_level":  "new_environment",
+                                                          "note":  "Keep the runtime posture guarded on this first recorded environment and compare future runs against this baseline."
+                                                      }
+                                                  ]
+                         }
+                     ]
+}

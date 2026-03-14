@@ -711,7 +711,7 @@ class _DashboardTab extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             'High-level view of your business for today. '
-            'Invoices, clients, and tasks will keep expanding as Onyx and Mason grow.',
+            'Invoices, clients, and tasks will keep expanding as Onyx grows.',
             style: theme.textTheme.bodyMedium?.copyWith(
               color: scheme.onSurfaceVariant,
             ),
@@ -844,7 +844,7 @@ class _DashboardTab extends StatelessWidget {
 
           const SizedBox(height: 24),
           Text(
-            'Later, this dashboard will be where Mason surfaces suggestions, alerts, and automation status for you.',
+            'Later, this dashboard will surface suggestions, alerts, and automation status for you.',
             style: theme.textTheme.bodySmall?.copyWith(
               color: scheme.onSurfaceVariant,
             ),
@@ -903,7 +903,7 @@ class _InvoicesTab extends StatelessWidget {
                 Expanded(
                   child: Text(
                     'Founder preview: this tab focuses on invoices. '
-                    'Use it with a small group while Mason stays in caretaker mode.',
+                    'Use it with a small group while Onyx stays in guided rollout mode.',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: scheme.onPrimaryContainer,
                     ),
@@ -1204,7 +1204,7 @@ class _TasksTab extends StatelessWidget {
                 Expanded(
                   child: Text(
                     'Tasks and follow-ups. Use this to track what needs doing. '
-                    'Later, Mason will suggest and automate some of these.',
+                    'Later, Onyx will suggest and automate some of these.',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: scheme.onPrimaryContainer,
                     ),
@@ -1436,7 +1436,7 @@ class _BusinessPlanTabState extends State<_BusinessPlanTab> {
               ),
               const SizedBox(height: 8),
               Text(
-                'This is what Onyx (and eventually Mason) knows about your business, '
+                'This is what Onyx knows about your business, '
                 'and which tools are currently active on your plan.',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: scheme.onSurfaceVariant,
@@ -1606,7 +1606,7 @@ class _BusinessPlanTabState extends State<_BusinessPlanTab> {
                         contentPadding: EdgeInsets.zero,
                         title: const Text('Opt into early feature testing'),
                         subtitle: Text(
-                          'If enabled, Mason can route new Onyx features to you first once they are safe.',
+                          'If enabled, you can receive new Onyx features first once they are safe.',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: scheme.onSurfaceVariant,
                           ),
@@ -1657,7 +1657,7 @@ class _BusinessPlanTabState extends State<_BusinessPlanTab> {
                       const SizedBox(height: 4),
                       Text(
                         'Features marked as "Included" are currently active in your plan. '
-                        'This structure is what Mason will eventually control automatically '
+                        'This structure is what Onyx will eventually manage automatically '
                         '(tiers, add-ons, and upgrades).',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: scheme.onSurfaceVariant,

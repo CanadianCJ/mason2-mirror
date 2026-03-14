@@ -1,0 +1,74 @@
+﻿{
+    "version":  1,
+    "policy_name":  "model_cost_governance",
+    "task_classes":  [
+                         "local_only",
+                         "local_preferred",
+                         "teacher_optional",
+                         "teacher_high_value_only",
+                         "teacher_blocked"
+                     ],
+    "budget_classes":  [
+                           "none",
+                           "minimal",
+                           "guarded",
+                           "moderate",
+                           "elevated_with_approval"
+                       ],
+    "escalation_ladder_rules":  [
+                                    "Stay local-only when existing reports, validators, registries, or playbooks already answer the task well enough.",
+                                    "Use local truth plus internal retrieval before considering any teacher/model escalation.",
+                                    "Allow teacher/model escalation only when the task is high-value, not already solved locally, and the quality floor is met.",
+                                    "Keep low-value, repetitive, or policy-sensitive tasks teacher-blocked even if budget remains."
+                                ],
+    "local_first_mandatory_classes":  [
+                                          "routine reporting",
+                                          "validator and schema maintenance",
+                                          "artifact refresh",
+                                          "known operational playbook execution"
+                                      ],
+    "teacher_allowed_classes":  [
+                                    "novel strategy with weak local precedent",
+                                    "high-value architecture tradeoffs",
+                                    "domain research with clear downstream value and review"
+                                ],
+    "teacher_blocked_classes":  [
+                                    "money or billing mutations",
+                                    "security weakening",
+                                    "tenant-impacting unsafe actions",
+                                    "repetitive low-value analysis already answerable locally"
+                                ],
+    "quality_floor_rules":  {
+                                "reusable_minimum_total_score":  75,
+                                "reusable_minimum_grounding":  40,
+                                "direct_reuse_requires_referenced_action_paths":  true,
+                                "reject_if_classification":  [
+                                                                 "reject"
+                                                             ],
+                                "queue_for_review_default":  "Teacher output stays review-only unless it clears the reusable threshold with grounded evidence."
+                            },
+    "usefulness_scoring_rules":  [
+                                     "Useful requires strong score plus grounded or reusable evidence.",
+                                     "Mixed covers good ideas that still need review or stronger grounding.",
+                                     "Low-value covers outputs that cost attention without clear reuse value.",
+                                     "Reject covers weak, unsafe, or ungrounded output."
+                                 ],
+    "cost_effectiveness_rules":  [
+                                     "Low-cost success means local or tightly-scoped work already succeeds without teacher spend.",
+                                     "High-cost low-value means the task would cost more than the current evidence justifies.",
+                                     "Guarded review-only means there is some value, but policy or quality still blocks direct reuse."
+                                 ],
+    "sparse_data_handling":  [
+                                 "Missing capability/change-budget artifacts must remain optional, not fabricated.",
+                                 "Sparse reviewed teacher data must keep the posture guarded."
+                             ],
+    "mirror_refresh_requirement":  [
+                                       "Use a fresh canonical mirror artifact when it is already current; otherwise invoke tools/sync/Mason_Mirror_Update.ps1.",
+                                       "Treat local checkpoint success with remote push failure as truthful but degraded, not fake green."
+                                   ],
+    "blocked_spend_rules":  [
+                                "Do not escalate because budget remains.",
+                                "Do not treat API balance as approval.",
+                                "Do not loosen local-first posture while validator, regression, or security posture remains WARN."
+                            ]
+}

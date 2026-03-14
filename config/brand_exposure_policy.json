@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "policy_name": "brand_exposure_isolation",
+  "description": "Govern the public/internal vocabulary split so customer-facing surfaces use Onyx while owner/operator surfaces may use Mason where intended.",
+  "owner_internal_allowed_names": [
+    "Mason",
+    "Athena",
+    "Onyx"
+  ],
+  "customer_public_allowed_names": [
+    "Onyx",
+    "Onyx Business Manager",
+    "Onyx Founder",
+    "Business Manager"
+  ],
+  "banned_public_terms": [
+    "Mason",
+    "Athena"
+  ],
+  "severity_levels": {
+    "critical": "Mason or Athena is visible in a customer/public-facing surface.",
+    "high": "A customer/public-facing artifact is ambiguous and likely to leak an internal name.",
+    "medium": "A non-customer artifact could become customer-visible without remediation.",
+    "low": "An internal-only wording inconsistency or policy hygiene issue."
+  },
+  "allowed_exceptions": [
+    {
+      "scope": "owner_only",
+      "term": "Mason",
+      "reason": "Owner-only Athena, Founder Mode, Live Docs, and internal operator artifacts may reference Mason."
+    },
+    {
+      "scope": "internal_operator",
+      "term": "Athena",
+      "reason": "Athena remains the owner/operator cockpit and may be referenced internally."
+    }
+  ],
+  "remediation_guidance": {
+    "critical": "Replace the leaked internal brand term with Onyx or an approved customer-safe label immediately, then rerun the audit.",
+    "high": "Clarify the customer-facing copy so only Onyx or approved public labels remain visible.",
+    "medium": "Review the artifact before it becomes customer-visible and convert internal names to public-safe vocabulary if needed.",
+    "low": "Keep the wording consistent, but do not remove intentional Mason references from owner/internal surfaces."
+  },
+  "public_facing_naming_rules": [
+    "Customer, tenant, billing, support, and public-facing copy must use Onyx or approved public-safe labels only.",
+    "Do not expose Mason or Athena in customer-visible UI copy, exports, billing copy, recommendation copy, manuals, or workflow text.",
+    "If a customer-facing surface needs to describe background intelligence or automation, describe the capability without naming Mason."
+  ],
+  "internal_facing_naming_rules": [
+    "Owner-only and internal operator surfaces may reference Mason, Athena, and Onyx where the distinction is useful.",
+    "Do not treat internal Mason references as leaks when the surface is explicitly owner-only or internal_operator."
+  ],
+  "scan_targets": [
+    {
+      "surface_id": "athena_ui_markup",
+      "surface_type": "ui_markup",
+      "exposure_scope": "owner_only",
+      "target_kind": "path",
+      "path": "MasonConsole/static/athena/index.html"
+    },
+    {
+      "surface_id": "athena_stack_payload_live",
+      "surface_type": "payload",
+      "exposure_scope": "owner_only",
+      "target_kind": "url",
+      "url": "http://127.0.0.1:8000/api/stack_status"
+    },
+    {
+      "surface_id": "live_docs_summary",
+      "surface_type": "generated_manual_summary",
+      "exposure_scope": "owner_only",
+      "target_kind": "path",
+      "path": "reports/live_docs_summary.json"
+    },
+    {
+      "surface_id": "live_docs_manuals",
+      "surface_type": "generated_manual",
+      "exposure_scope": "owner_only",
+      "target_kind": "glob",
+      "glob": "reports/docs/*_live_manual.json"
+    },
+    {
+      "surface_id": "onyx_main_ui_copy",
+      "surface_type": "ui_copy",
+      "exposure_scope": "tenant_customer",
+      "target_kind": "path",
+      "path": "Component - Onyx App/onyx_business_manager/lib/main.dart"
+    },
+    {
+      "surface_id": "onyx_founder_panel_copy",
+      "surface_type": "ui_copy",
+      "exposure_scope": "tenant_customer",
+      "target_kind": "path",
+      "path": "Component - Onyx App/onyx_business_manager/lib/founder/founder_panel.dart"
+    },
+    {
+      "surface_id": "onyx_tenant_tool_copy",
+      "surface_type": "ui_copy",
+      "exposure_scope": "tenant_customer",
+      "target_kind": "path",
+      "path": "Component - Onyx App/onyx_business_manager/lib/founder/tenant_business_plan_tab.dart"
+    },
+    {
+      "surface_id": "onyx_live_root",
+      "surface_type": "live_ui",
+      "exposure_scope": "tenant_customer",
+      "target_kind": "url",
+      "url": "http://127.0.0.1:5353/"
+    },
+    {
+      "surface_id": "onyx_recommendation_artifacts",
+      "surface_type": "recommendation_payload",
+      "exposure_scope": "tenant_customer",
+      "target_kind": "glob",
+      "glob": "state/onyx/recommendations/*.json"
+    },
+    {
+      "surface_id": "billing_summary_artifact",
+      "surface_type": "billing_payload",
+      "exposure_scope": "billing_facing",
+      "target_kind": "path",
+      "path": "reports/billing_summary.json"
+    },
+    {
+      "surface_id": "billing_state_artifacts",
+      "surface_type": "billing_payload",
+      "exposure_scope": "billing_facing",
+      "target_kind": "glob",
+      "glob": "state/onyx/billing/*.json"
+    }
+  ]
+}

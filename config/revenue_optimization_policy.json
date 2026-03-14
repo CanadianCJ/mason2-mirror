@@ -1,0 +1,66 @@
+﻿{
+    "version":  1,
+    "policy_name":  "revenue_optimization_engine",
+    "recommendation_classes":  [
+                                   "plan_fit_analysis",
+                                   "plan_upgrade_review",
+                                   "add_on_fit_review",
+                                   "wedge_pack_fit_review",
+                                   "churn_rescue_review"
+                               ],
+    "evidence_sources":  [
+                             "billing summary and provider posture",
+                             "tenant workspace and onboarding state",
+                             "recommendation records and statuses",
+                             "tool usefulness and tool run artifacts",
+                             "business outcomes and tenant engagement",
+                             "wedge-pack framework and tenant fit",
+                             "tool registry and plan configuration",
+                             "system truth spine"
+                         ],
+    "gating_rules":  [
+                         "Revenue suggestions must remain recommendation-only when billing is stubbed or approval-gated.",
+                         "Low-confidence commercial fit must stay review-only.",
+                         "Sparse pilot data must not be converted into aggressive upgrade posture."
+                     ],
+    "billing_safety_rules":  [
+                                 "No auto-upgrades.",
+                                 "No auto-add-on purchases.",
+                                 "No auto-plan migration.",
+                                 "No live money mutation without explicit approval and real provider readiness."
+                             ],
+    "upgrade_add_on_fit_thresholds":  {
+                                          "upgrade_review_threshold":  0.55,
+                                          "add_on_review_threshold":  0.35,
+                                          "low_confidence_cap_when_dismissed":  0.4
+                                      },
+    "churn_rescue_thresholds":  {
+                                    "elevated":  [
+                                                     "elevated"
+                                                 ],
+                                    "moderate":  [
+                                                     "moderate"
+                                                 ],
+                                    "review_only":  [
+                                                        "moderate",
+                                                        "elevated"
+                                                    ]
+                                },
+    "sparse_data_handling":  [
+                                 "Use low or unknown confidence when only one tenant or one weak signal exists.",
+                                 "Do not treat zero upgrade suggestions as malformed."
+                             ],
+    "no_auto_money_rules":  [
+                                "All commercial suggestions must include action_posture.",
+                                "billing_gated, analysis_only, owner_review_required, or not_actionable_yet are valid outcomes.",
+                                "Execution remains blocked until billing posture changes."
+                            ],
+    "customer_safe_output_rules":  [
+                                       "Customer-safe summaries may mention plan or add-on names but must avoid internal file paths and Mason-private implementation details.",
+                                       "Do not imply a charge or automatic change already happened."
+                                   ],
+    "owner_internal_output_rules":  [
+                                        "Owner/internal outputs may reference billing stub posture, confidence level, and gating reasons.",
+                                        "Revenue suggestions must remain explicit about blocked money actions."
+                                    ]
+}

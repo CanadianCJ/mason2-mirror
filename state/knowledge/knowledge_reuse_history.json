@@ -1,0 +1,122 @@
+﻿{
+    "generated_at_utc":  "2026-03-13T03:18:28.0215058+00:00",
+    "latest_selected_card_ids":  [
+                                     "card_playbook_pb_billing_stub_gated",
+                                     "card_playbook_pb_brand_exposure_leakage",
+                                     "card_playbook_pb_keepalive_policy_escalation",
+                                     "card_playbook_pb_mirror_incomplete_or_stale",
+                                     "card_playbook_pb_host_pending_reboot",
+                                     "card_playbook_pb_regression_promotion_blocked",
+                                     "card_playbook_pb_runtime_singleton_truth_drift",
+                                     "card_playbook_pb_security_tenant_safety_watch",
+                                     "card_playbook_pb_self_improvement_review_gate",
+                                     "card_playbook_pb_service_health_missing_listener",
+                                     "card_playbook_pb_stale_truth_artifact_mismatch",
+                                     "card_business_outcome_churn_risk_indicators"
+                                 ],
+    "latest_blocked_card_ids":  [
+                                    "card_teacher_teacher-20260225043518-004",
+                                    "card_teacher_teacher-20260225043518-005",
+                                    "card_teacher_teacher-20260225043518-008",
+                                    "card_teacher_teacher-20260225043518-006",
+                                    "card_teacher_teacher-20260225043518-007",
+                                    "card_teacher_teacher-20260225043518-009",
+                                    "card_teacher_teacher-20260225043518-002",
+                                    "card_teacher_teacher-20260225043518-003",
+                                    "card_teacher_teacher_suggestions_latest",
+                                    "card_tool_marketing_pack_v1",
+                                    "card_recommendation_tool"
+                                ],
+    "recent_runs":  [
+                        {
+                            "timestamp_utc":  "2026-03-13T03:18:28.0215058+00:00",
+                            "selected_card_ids":  [
+                                                      "card_playbook_pb_billing_stub_gated",
+                                                      "card_playbook_pb_brand_exposure_leakage",
+                                                      "card_playbook_pb_keepalive_policy_escalation",
+                                                      "card_playbook_pb_mirror_incomplete_or_stale",
+                                                      "card_playbook_pb_host_pending_reboot",
+                                                      "card_playbook_pb_regression_promotion_blocked",
+                                                      "card_playbook_pb_runtime_singleton_truth_drift",
+                                                      "card_playbook_pb_security_tenant_safety_watch",
+                                                      "card_playbook_pb_self_improvement_review_gate",
+                                                      "card_playbook_pb_service_health_missing_listener",
+                                                      "card_playbook_pb_stale_truth_artifact_mismatch",
+                                                      "card_business_outcome_churn_risk_indicators"
+                                                  ],
+                            "blocked_card_ids":  [
+                                                     "card_teacher_teacher-20260225043518-004",
+                                                     "card_teacher_teacher-20260225043518-005",
+                                                     "card_teacher_teacher-20260225043518-008",
+                                                     "card_teacher_teacher-20260225043518-006",
+                                                     "card_teacher_teacher-20260225043518-007",
+                                                     "card_teacher_teacher-20260225043518-009",
+                                                     "card_teacher_teacher-20260225043518-002",
+                                                     "card_teacher_teacher-20260225043518-003",
+                                                     "card_teacher_teacher_suggestions_latest",
+                                                     "card_tool_marketing_pack_v1",
+                                                     "card_recommendation_tool"
+                                                 ],
+                            "suppressed_card_ids":  [
+
+                                                    ],
+                            "low_confidence_teacher":  [
+                                                           "card_teacher_teacher-20260225043518-001",
+                                                           "card_teacher_teacher-20260225043518-004",
+                                                           "card_teacher_teacher-20260225043518-005",
+                                                           "card_teacher_teacher-20260225043518-008",
+                                                           "card_teacher_teacher-20260225043518-006",
+                                                           "card_teacher_teacher-20260225043518-007",
+                                                           "card_teacher_teacher-20260225043518-009",
+                                                           "card_teacher_teacher-20260225043518-002",
+                                                           "card_teacher_teacher-20260225043518-003",
+                                                           "card_teacher_teacher_suggestions_latest"
+                                                       ]
+                        },
+                        {
+                            "timestamp_utc":  "2026-03-13T03:13:57.0380269+00:00",
+                            "selected_card_ids":  [
+                                                      "card_playbook_pb_billing_stub_gated",
+                                                      "card_playbook_pb_brand_exposure_leakage",
+                                                      "card_playbook_pb_keepalive_policy_escalation",
+                                                      "card_playbook_pb_mirror_incomplete_or_stale",
+                                                      "card_playbook_pb_host_pending_reboot",
+                                                      "card_playbook_pb_regression_promotion_blocked",
+                                                      "card_playbook_pb_runtime_singleton_truth_drift",
+                                                      "card_playbook_pb_security_tenant_safety_watch",
+                                                      "card_playbook_pb_self_improvement_review_gate",
+                                                      "card_playbook_pb_service_health_missing_listener",
+                                                      "card_playbook_pb_stale_truth_artifact_mismatch",
+                                                      "card_business_outcome_churn_risk_indicators"
+                                                  ],
+                            "blocked_card_ids":  [
+                                                     "card_teacher_teacher-20260225043518-004",
+                                                     "card_teacher_teacher-20260225043518-005",
+                                                     "card_teacher_teacher-20260225043518-008",
+                                                     "card_teacher_teacher-20260225043518-006",
+                                                     "card_teacher_teacher-20260225043518-007",
+                                                     "card_teacher_teacher-20260225043518-009",
+                                                     "card_teacher_teacher-20260225043518-002",
+                                                     "card_teacher_teacher-20260225043518-003",
+                                                     "card_teacher_teacher_suggestions_latest",
+                                                     "card_tool_marketing_pack_v1",
+                                                     "card_recommendation_tool"
+                                                 ],
+                            "suppressed_card_ids":  [
+
+                                                    ],
+                            "low_confidence_teacher":  [
+                                                           "card_teacher_teacher-20260225043518-001",
+                                                           "card_teacher_teacher-20260225043518-004",
+                                                           "card_teacher_teacher-20260225043518-005",
+                                                           "card_teacher_teacher-20260225043518-008",
+                                                           "card_teacher_teacher-20260225043518-006",
+                                                           "card_teacher_teacher-20260225043518-007",
+                                                           "card_teacher_teacher-20260225043518-009",
+                                                           "card_teacher_teacher-20260225043518-002",
+                                                           "card_teacher_teacher-20260225043518-003",
+                                                           "card_teacher_teacher_suggestions_latest"
+                                                       ]
+                        }
+                    ]
+}

@@ -1,0 +1,46 @@
+﻿{
+    "version":  1,
+    "policy_name":  "ux_simplicity_layer",
+    "plain_english_rules":  [
+                                "Prefer short, plain-English labels over internal system jargon.",
+                                "Customer-facing copy should describe business value before implementation detail.",
+                                "Avoid terms like deterministic, tenant-ready, artifact, and structured recommendation in customer copy."
+                            ],
+    "no_internal_jargon_rules":  [
+                                     "Onyx customer surfaces must avoid internal Mason and tenant-operations vocabulary.",
+                                     "Athena founder surfaces may use internal/operator terms because Athena is owner-only."
+                                 ],
+    "no_dead_button_rules":  [
+                                 "Every visible interactive button must map to a real UI or backend action.",
+                                 "Disabled buttons must explain why they are unavailable.",
+                                 "Controls that only expose a file path are not acceptable as actions."
+                             ],
+    "founder_only_athena_rules":  [
+                                      "Athena stays owner-only and loopback-only.",
+                                      "Founder Mode should surface controls, approvals, and docs without exposing them publicly."
+                                  ],
+    "customer_safe_onyx_rules":  [
+                                     "Onyx wording should stay customer-safe, low-jargon, and business-first.",
+                                     "Empty states should explain what to do next in simple language."
+                                 ],
+    "mobile_friendly_layout_rules":  [
+                                         "Founder surfaces should use compact cards and panel navigation.",
+                                         "Avoid endless-scroll founder UX when a panel or card-router pattern is available."
+                                     ],
+    "approval_control_surface_rules":  [
+                                           "Approvals should be visible in Athena with real approve/reject buttons when the backend supports them.",
+                                           "Founder control buttons should point to governed endpoints only."
+                                       ],
+    "action_button_exposure_rules":  [
+                                         "No raw shell execution is exposed in Athena.",
+                                         "Buttons may call signed loopback APIs or local view navigation only."
+                                     ],
+    "progressive_disclosure_rules":  [
+                                         "Show summary first, then details per founder panel.",
+                                         "Customer screens should reveal complexity only when it helps the user."
+                                     ],
+    "clutter_reduction_rules":  [
+                                    "Founder Mode should group related information into panels.",
+                                    "Onyx customer surfaces should reduce intimidating diagnostic phrasing."
+                                ]
+}

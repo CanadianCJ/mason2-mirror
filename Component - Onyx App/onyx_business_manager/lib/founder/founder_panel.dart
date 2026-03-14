@@ -30,7 +30,7 @@ class FounderPanel extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Early access build powered by Mason.\n'
+              'Early access build powered by Onyx.\n'
               'Today you get invoicing, tasks/reminders, and a simple deals pipeline. '
               'We\'ll keep auto-upgrading this over time.',
               style: textTheme.bodyMedium,
@@ -73,7 +73,7 @@ class FounderPanel extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'In the background Mason watches errors, performance, and how you use Onyx, '
+              'In the background Onyx watches errors, performance, and how you use the workspace, '
               'then proposes safe upgrades instead of breaking changes.',
               style: textTheme.bodySmall?.copyWith(
                 color: textTheme.bodySmall?.color?.withOpacity(0.8),

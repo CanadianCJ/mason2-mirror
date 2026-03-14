@@ -61,6 +61,90 @@ function Write-JsonFile {
     $Object | ConvertTo-Json -Depth $Depth | Set-Content -LiteralPath $Path -Encoding UTF8
 }
 
+function Remove-JsonComments {
+    param([Parameter(Mandatory = $true)][string]$Text)
+
+    $builder = New-Object System.Text.StringBuilder
+    $inString = $false
+    $escaped = $false
+    $inLineComment = $false
+    $inBlockComment = $false
+
+    for ($index = 0; $index -lt $Text.Length; $index++) {
+        $char = $Text[$index]
+        $next = if (($index + 1) -lt $Text.Length) { $Text[$index + 1] } else { [char]0 }
+
+        if ($inLineComment) {
+            if ($char -eq "`n" -or $char -eq "`r") {
+                $inLineComment = $false
+                [void]$builder.Append($char)
+            }
+            continue
+        }
+
+        if ($inBlockComment) {
+            if ($char -eq "*" -and $next -eq "/") {
+                $inBlockComment = $false
+                $index++
+            }
+            continue
+        }
+
+        if ($inString) {
+            [void]$builder.Append($char)
+            if ($escaped) {
+                $escaped = $false
+            }
+            elseif ($char -eq "\") {
+                $escaped = $true
+            }
+            elseif ($char -eq '"') {
+                $inString = $false
+            }
+            continue
+        }
+
+        if ($char -eq "/" -and $next -eq "/") {
+            $inLineComment = $true
+            $index++
+            continue
+        }
+
+        if ($char -eq "/" -and $next -eq "*") {
+            $inBlockComment = $true
+            $index++
+            continue
+        }
+
+        [void]$builder.Append($char)
+        if ($char -eq '"') {
+            $inString = $true
+        }
+    }
+
+    return $builder.ToString()
+}
+
+function ConvertFrom-JsonWithJsoncSupport {
+    param([Parameter(Mandatory = $true)][string]$Text)
+
+    $cleaned = Remove-JsonComments -Text $Text
+    $prior = $null
+    do {
+        $prior = $cleaned
+        $cleaned = [System.Text.RegularExpressions.Regex]::Replace($cleaned, ",(?=\s*[}\]])", "")
+    } while ($cleaned -ne $prior)
+
+    return ($cleaned | ConvertFrom-Json -ErrorAction Stop)
+}
+
+function Test-JsoncConfigPath {
+    param([Parameter(Mandatory = $true)][string]$Path)
+
+    $name = [System.IO.Path]::GetFileName($Path)
+    return ($name -match '^(?i)tsconfig(\..+)?\.json$' -or $name -match '^(?i)jsconfig\.json$')
+}
+
 function To-Array {
     param($Value)
 
@@ -436,7 +520,13 @@ function Get-ParseState {
     switch ($Extension) {
         ".json" {
             try {
-                $null = Get-Content -LiteralPath $Path -Raw -Encoding UTF8 | ConvertFrom-Json -ErrorAction Stop
+                $jsonRaw = Get-Content -LiteralPath $Path -Raw -Encoding UTF8
+                if (Test-JsoncConfigPath -Path $Path) {
+                    $null = ConvertFrom-JsonWithJsoncSupport -Text $jsonRaw
+                }
+                else {
+                    $null = $jsonRaw | ConvertFrom-Json -ErrorAction Stop
+                }
                 return @{ parse_checked = $true; parse_ok = $true; parse_errors = @(); parse_reason = "" }
             }
             catch {

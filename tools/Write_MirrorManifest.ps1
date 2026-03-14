@@ -131,9 +131,22 @@ $defaultSlimReportJsonAllowlist = @(
     "reports/launcher/last_fullstack.json",
     "reports/launcher/last_coreonly.json"
 )
-$reportJsonAllowlist = @($defaultSlimReportJsonAllowlist)
+$reportFileAllowlist = @($defaultSlimReportJsonAllowlist)
 $maxMirroredFileBytes = 2097152
-if ($mirrorPolicy -and ($mirrorPolicy.PSObject.Properties.Name -contains "report_json_allowlist")) {
+if ($mirrorPolicy -and ($mirrorPolicy.PSObject.Properties.Name -contains "report_file_allowlist")) {
+    $rawPatterns = @($mirrorPolicy.report_file_allowlist | ForEach-Object { [string]$_ } | Where-Object { $_ })
+    $unsafeBroad = @($rawPatterns | Where-Object {
+            $p = To-NormalizedPath -Path ([string]$_)
+            $p -eq "reports/**" -or
+            $p -eq "reports/*" -or
+            $p -eq "**/*" -or
+            $p -eq "*"
+        })
+    if (@($unsafeBroad).Count -eq 0 -and @($rawPatterns).Count -gt 0) {
+        $reportFileAllowlist = @($rawPatterns)
+    }
+}
+elseif ($mirrorPolicy -and ($mirrorPolicy.PSObject.Properties.Name -contains "report_json_allowlist")) {
     $rawPatterns = @($mirrorPolicy.report_json_allowlist | ForEach-Object { [string]$_ } | Where-Object { $_ })
     $unsafeBroad = @($rawPatterns | Where-Object {
             $p = To-NormalizedPath -Path ([string]$_)
@@ -145,7 +158,7 @@ if ($mirrorPolicy -and ($mirrorPolicy.PSObject.Properties.Name -contains "report
             $p -eq "*.json"
         })
     if (@($unsafeBroad).Count -eq 0 -and @($rawPatterns).Count -gt 0) {
-        $reportJsonAllowlist = @($rawPatterns)
+        $reportFileAllowlist = @($rawPatterns)
     }
 }
 if ($mirrorPolicy -and ($mirrorPolicy.PSObject.Properties.Name -contains "allowlist")) {
@@ -295,25 +308,25 @@ $missing = [ordered]@{}
 $missing["source_top_level_not_allowlisted"] = @($sourceNotAllowlisted | Sort-Object -Unique)
 $missing["allowlist_names_absent_in_mirror"] = @($allowlistAbsentInMirror | Sort-Object -Unique)
 
-$reportJsonFiles = @()
+$reportFiles = @()
 $reportsRoot = Join-Path $RootPath "reports"
 if (Test-Path -LiteralPath $reportsRoot) {
-    $reportJsonFiles = @(Get-ChildItem -LiteralPath $reportsRoot -File -Recurse -Filter *.json -ErrorAction SilentlyContinue)
+    $reportFiles = @(Get-ChildItem -LiteralPath $reportsRoot -File -Recurse -ErrorAction SilentlyContinue)
 }
-$reportJsonPatternMatched = @(
-    $reportJsonFiles | Where-Object {
+$reportFilesPatternMatched = @(
+    $reportFiles | Where-Object {
         $rel = To-RelativeName -Base $RootPath -Path $_.FullName
-        Test-PathMatchesAnyPattern -Path $rel -Patterns $reportJsonAllowlist
+        Test-PathMatchesAnyPattern -Path $rel -Patterns $reportFileAllowlist
     }
 )
-$reportJsonExcludedPattern = @(
-    $reportJsonFiles | Where-Object {
+$reportFilesExcludedPattern = @(
+    $reportFiles | Where-Object {
         $rel = To-RelativeName -Base $RootPath -Path $_.FullName
-        -not (Test-PathMatchesAnyPattern -Path $rel -Patterns $reportJsonAllowlist)
+        -not (Test-PathMatchesAnyPattern -Path $rel -Patterns $reportFileAllowlist)
     }
 )
-$reportJsonEligible = @($reportJsonPatternMatched | Where-Object { [int64]$_.Length -le [int64]$maxMirroredFileBytes })
-$reportJsonExcludedLarge = @($reportJsonPatternMatched | Where-Object { [int64]$_.Length -gt [int64]$maxMirroredFileBytes })
+$reportFilesEligible = @($reportFilesPatternMatched | Where-Object { [int64]$_.Length -le [int64]$maxMirroredFileBytes })
+$reportFilesExcludedLarge = @($reportFilesPatternMatched | Where-Object { [int64]$_.Length -gt [int64]$maxMirroredFileBytes })
 
 $manifest = [ordered]@{}
 $manifest["generated_at_utc"] = (Get-Date).ToUniversalTime().ToString("o")
@@ -332,18 +345,19 @@ $manifest["policy_summary"] = [ordered]@{
     source_top_level_review_count = @($sourceNotAllowlisted).Count
     source_top_level_review_items = @($sourceNotAllowlisted | Sort-Object -Unique | Select-Object -First 40)
 }
-$manifest["reports_json_policy"] = [ordered]@{
-    allowlist_patterns = $reportJsonAllowlist
+$manifest["reports_file_policy"] = [ordered]@{
+    allowlist_patterns = $reportFileAllowlist
     max_file_bytes = [int]$maxMirroredFileBytes
-    candidate_count = @($reportJsonFiles).Count
-    matched_allowlist_count = @($reportJsonPatternMatched).Count
-    excluded_pattern_count = @($reportJsonExcludedPattern).Count
-    eligible_count = @($reportJsonEligible).Count
-    excluded_large_count = @($reportJsonExcludedLarge).Count
-    eligible_files = @($reportJsonEligible | Sort-Object Length -Descending | Select-Object -First 40 | ForEach-Object { To-RelativeName -Base $RootPath -Path $_.FullName })
-    excluded_pattern_files = @($reportJsonExcludedPattern | Sort-Object Length -Descending | Select-Object -First 20 | ForEach-Object { To-RelativeName -Base $RootPath -Path $_.FullName })
-    excluded_large_files = @($reportJsonExcludedLarge | Sort-Object Length -Descending | Select-Object -First 20 | ForEach-Object { To-RelativeName -Base $RootPath -Path $_.FullName })
+    candidate_count = @($reportFiles).Count
+    matched_allowlist_count = @($reportFilesPatternMatched).Count
+    excluded_pattern_count = @($reportFilesExcludedPattern).Count
+    eligible_count = @($reportFilesEligible).Count
+    excluded_large_count = @($reportFilesExcludedLarge).Count
+    eligible_files = @($reportFilesEligible | Sort-Object Length -Descending | Select-Object -First 40 | ForEach-Object { To-RelativeName -Base $RootPath -Path $_.FullName })
+    excluded_pattern_files = @($reportFilesExcludedPattern | Sort-Object Length -Descending | Select-Object -First 20 | ForEach-Object { To-RelativeName -Base $RootPath -Path $_.FullName })
+    excluded_large_files = @($reportFilesExcludedLarge | Sort-Object Length -Descending | Select-Object -First 20 | ForEach-Object { To-RelativeName -Base $RootPath -Path $_.FullName })
 }
+$manifest["reports_json_policy"] = $manifest["reports_file_policy"]
 $manifest["missing_from_mirror"] = $missing
 
 $manifest | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $manifestPath -Encoding UTF8

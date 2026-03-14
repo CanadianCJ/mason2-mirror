@@ -114,6 +114,7 @@
           "pilot"
         ],
         "allowed_plan_tiers": [
+          "Starter",
           "Growth",
           "Founder"
         ],
@@ -206,6 +207,7 @@
           "pilot"
         ],
         "allowed_plan_tiers": [
+          "Growth",
           "Founder"
         ],
         "business_types": [

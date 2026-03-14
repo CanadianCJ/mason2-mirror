@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "tenant_id": "tenant_primary",
+  "tenant": {
+    "tenant_id": "tenant_primary",
+    "owner": "Owner",
+    "created_at_utc": "2026-03-13T17:51:22.164Z",
+    "status": "active",
+    "plan_tier": "Starter",
+    "last_updated_at_utc": "2026-03-13T17:53:17.000Z"
+  },
+  "business_profile": {
+    "tenant_id": "tenant_primary",
+    "business_name": "Your business",
+    "business_type": "General",
+    "team_size": "Solo",
+    "currency": "CAD",
+    "country_region": "CA",
+    "main_goal": "Get organized and get paid",
+    "services_products": [],
+    "locations": [],
+    "operating_area": "",
+    "current_tools": [],
+    "goals": [],
+    "pain_points": [],
+    "growth_priorities": [],
+    "risk_tolerance": "Balanced",
+    "automation_tolerance": "Assist only",
+    "budget_sensitivity": "Balanced",
+    "notes": "",
+    "upload_references": [],
+    "last_updated_at_utc": "2026-03-13T17:53:17.000Z"
+  },
+  "plan": {
+    "current_tier": "Starter",
+    "enabled_features": [
+      "invoices",
+      "clients",
+      "tasks"
+    ],
+    "addon_features": [],
+    "beta_opt_in": true,
+    "last_updated_at_utc": "2026-03-13T17:53:17.000Z"
+  },
+  "onboarding": {
+    "current_step_index": 0,
+    "completed_step_ids": [
+      "preferences"
+    ],
+    "is_completed": false,
+    "completion_percent": 25,
+    "last_updated_at_utc": "2026-03-13T17:53:17.000Z"
+  },
+  "last_updated_at_utc": "2026-03-13T17:53:17.000Z"
+}

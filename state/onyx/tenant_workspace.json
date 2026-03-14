@@ -1,76 +1,127 @@
 {
   "version": 1,
-  "activeTenantId": "tenant_http_check",
+  "activeTenantId": "tenant_168cb95a2f56",
   "contexts": [
     {
       "tenant": {
-        "id": "tenant_http_check",
-        "owner": "Chris",
-        "createdAtUtc": "2026-03-07T23:05:00Z",
+        "id": "tenant_primary",
+        "owner": "Owner",
+        "createdAtUtc": "2026-03-13T17:51:22.164Z",
         "status": "active",
-        "planTier": "Growth",
-        "lastUpdatedAtUtc": "2026-03-08T06:10:00Z"
+        "planTier": "Starter",
+        "lastUpdatedAtUtc": "2026-03-13T17:53:17.000Z"
       },
       "profile": {
-        "tenantId": "tenant_http_check",
-        "businessName": "HTTP Tenant Check",
-        "businessType": "Studio",
+        "tenantId": "tenant_primary",
+        "businessName": "Your business",
+        "businessType": "General",
         "size": "Solo",
         "currency": "CAD",
         "countryRegion": "CA",
-        "mainGoal": "Verify public Onyx sync route",
-        "servicesProducts": [
-          "Testing"
-        ],
-        "locations": [
-          "Toronto"
-        ],
-        "operatingArea": "Remote",
-        "currentTools": [
-          "Onyx"
-        ],
-        "goals": [
-          "Confirm endpoint"
-        ],
-        "painPoints": [
-          "None"
-        ],
-        "growthPriorities": [
-          "Ship"
-        ],
+        "mainGoal": "Get organized and get paid",
+        "servicesProducts": [],
+        "locations": [],
+        "operatingArea": "",
+        "currentTools": [],
+        "goals": [],
+        "painPoints": [],
+        "growthPriorities": [],
         "riskTolerance": "Balanced",
         "automationTolerance": "Assist only",
         "budgetSensitivity": "Balanced",
-        "notes": "HTTP route smoke test",
+        "notes": "",
         "uploadReferences": [],
-        "lastUpdatedAtUtc": "2026-03-07T23:05:00Z"
+        "lastUpdatedAtUtc": "2026-03-13T17:53:17.000Z"
       },
       "plan": {
-        "currentTier": "Growth",
+        "currentTier": "Starter",
         "enabledFeatures": [
           "invoices",
           "clients",
-          "tasks",
-          "deals"
+          "tasks"
         ],
         "addonFeatures": [],
         "betaOptIn": true,
-        "lastUpdatedAtUtc": "2026-03-08T06:10:00Z"
+        "lastUpdatedAtUtc": "2026-03-13T17:53:17.000Z"
       },
       "onboarding": {
-        "currentStepIndex": 3,
+        "currentStepIndex": 0,
         "completedStepIds": [
-          "tenant",
+          "preferences"
+        ],
+        "isCompleted": false,
+        "completionPercent": 25,
+        "lastUpdatedAtUtc": "2026-03-13T17:53:17.000Z"
+      },
+      "lastUpdatedAtUtc": "2026-03-13T17:53:17.000Z"
+    },
+    {
+      "tenant": {
+        "id": "tenant_168cb95a2f56",
+        "owner": "Owner",
+        "createdAtUtc": "2026-03-13T17:53:17.000Z",
+        "status": "pilot",
+        "planTier": "Founder",
+        "lastUpdatedAtUtc": "2026-03-13T18:05:20.965Z"
+      },
+      "profile": {
+        "tenantId": "tenant_168cb95a2f56",
+        "businessName": "Test 1",
+        "businessType": "Contractor",
+        "size": "Solo",
+        "currency": "CAD",
+        "countryRegion": "CA",
+        "mainGoal": "Get organized and get paid",
+        "servicesProducts": [
+          "Dry wall",
+          "Roofing",
+          "Concrete Forming"
+        ],
+        "locations": [
+          "Strathroy"
+        ],
+        "operatingArea": "Strathroy, On",
+        "currentTools": [],
+        "goals": [
+          "Grow and make money while staying organized"
+        ],
+        "painPoints": [
+          "staying organized and growth"
+        ],
+        "growthPriorities": [
+          "more customers"
+        ],
+        "riskTolerance": "Conservative",
+        "automationTolerance": "Assist only",
+        "budgetSensitivity": "Tight",
+        "notes": "",
+        "uploadReferences": [],
+        "lastUpdatedAtUtc": "2026-03-13T18:05:20.965Z"
+      },
+      "plan": {
+        "currentTier": "Founder",
+        "enabledFeatures": [
+          "invoices",
+          "clients",
+          "tasks"
+        ],
+        "addonFeatures": [],
+        "betaOptIn": true,
+        "lastUpdatedAtUtc": "2026-03-13T18:05:20.965Z"
+      },
+      "onboarding": {
+        "currentStepIndex": 2,
+        "completedStepIds": [
           "operations",
           "goals",
           "preferences"
         ],
-        "isCompleted": true,
-        "completionPercent": 100,
-        "lastUpdatedAtUtc": "2026-03-07T23:05:00Z"
+        "isCompleted": false,
+        "completionPercent": 75,
+        "lastUpdatedAtUtc": "2026-03-13T18:05:20.965Z"
       },
-      "lastUpdatedAtUtc": "2026-03-08T06:10:00Z"
+      "lastUpdatedAtUtc": "2026-03-13T18:05:20.965Z"
     }
   ],
-  "lastUpdatedAtUtc": "2026-03-08T06:10:00Z"
+  "lastUpdatedAtUtc": "2026-03-13T18:05:20.965Z"
 }

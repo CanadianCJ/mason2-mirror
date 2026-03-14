@@ -44,6 +44,9 @@ SECRETS_PATH = BASE / "config" / "secrets_mason.json"
 CONFIG_DIR = BASE / "config"
 PORTS_PATH = CONFIG_DIR / "ports.json"
 COMPONENT_REGISTRY_PATH = CONFIG_DIR / "component_registry.json"
+COMPONENT_DOCS_REGISTRY_PATH = CONFIG_DIR / "component_docs_registry.json"
+BRAND_EXPOSURE_POLICY_PATH = CONFIG_DIR / "brand_exposure_policy.json"
+KEEPALIVE_POLICY_PATH = CONFIG_DIR / "keepalive_policy.json"
 REMOTE_ACCESS_POLICY_PATH = CONFIG_DIR / "remote_access_policy.json"
 ATHENA_DEVICE_REGISTRY_PATH = CONFIG_DIR / "athena_device_registry.json"
 TEACHER_POLICY_PATH = CONFIG_DIR / "teacher_policy.json"
@@ -105,8 +108,126 @@ TENANT_SAFETY_REPORT_PATH = REPORTS / "tenant_safety_report.json"
 SECURITY_POSTURE_PATH = REPORTS / "security_posture.json"
 PLATFORM_AUDIT_LOG_PATH = REPORTS / "platform_audit.jsonl"
 SYSTEM_VALIDATION_LAST_PATH = REPORTS / "system_validation_last.json"
+LIVE_DOCS_INDEX_PATH = REPORTS / "live_docs_index.json"
+LIVE_DOCS_SUMMARY_PATH = REPORTS / "live_docs_summary.json"
+LIVE_DOCS_DIR = REPORTS / "docs"
+BRAND_EXPOSURE_SUMMARY_PATH = REPORTS / "brand_exposure_isolation_last.json"
+BRAND_LEAK_AUDIT_PATH = REPORTS / "brand_leak_audit_last.json"
+PUBLIC_VOCABULARY_POLICY_LAST_PATH = REPORTS / "public_vocabulary_policy_last.json"
+KEEPALIVE_LAST_PATH = REPORTS / "keepalive_last.json"
+SELF_HEAL_LAST_PATH = REPORTS / "self_heal_last.json"
+DAILY_REPORT_LAST_PATH = REPORTS / "daily_report_last.json"
+ESCALATION_QUEUE_LAST_PATH = REPORTS / "escalation_queue_last.json"
+SELF_IMPROVEMENT_POLICY_PATH = STATE / "self_improvement_policy.json"
+SELF_IMPROVEMENT_GOVERNOR_REPORT_PATH = REPORTS / "self_improvement_governor_last.json"
+TEACHER_CALL_BUDGET_REPORT_PATH = REPORTS / "teacher_call_budget_last.json"
+TEACHER_DECISION_LOG_REPORT_PATH = REPORTS / "teacher_decision_log_last.json"
+HOST_HEALTH_LAST_PATH = REPORTS / "host_health_last.json"
+ENVIRONMENT_PROFILE_LAST_PATH = REPORTS / "environment_profile_last.json"
+ENVIRONMENT_DRIFT_LAST_PATH = REPORTS / "environment_drift_last.json"
+RUNTIME_POSTURE_LAST_PATH = REPORTS / "runtime_posture_last.json"
+SYSTEM_TRUTH_SPINE_LAST_PATH = REPORTS / "system_truth_spine_last.json"
+SYSTEM_METRICS_SPINE_LAST_PATH = REPORTS / "system_metrics_spine_last.json"
+SYSTEM_TRUTH_SUMMARY_LAST_PATH = REPORTS / "system_truth_summary_last.json"
+SYSTEM_TRUTH_REGISTRY_PATH = STATE / "system_truth_registry.json"
+REGRESSION_GUARD_LAST_PATH = REPORTS / "regression_guard_last.json"
+ROLLBACK_PLAN_LAST_PATH = REPORTS / "rollback_plan_last.json"
+PROMOTION_GATE_LAST_PATH = REPORTS / "promotion_gate_last.json"
+REGRESSION_BASELINES_PATH = STATE / "regression_baselines.json"
+REGRESSION_GUARD_POLICY_PATH = CONFIG_DIR / "regression_guard_policy.json"
+PLAYBOOK_LIBRARY_LAST_PATH = REPORTS / "playbook_library_last.json"
+SUPPORT_BRAIN_LAST_PATH = REPORTS / "support_brain_last.json"
+INCIDENT_EXPLANATIONS_LAST_PATH = REPORTS / "incident_explanations_last.json"
+PLAYBOOK_REGISTRY_PATH = STATE / "playbook_registry.json"
+PLAYBOOK_SUPPORT_POLICY_PATH = CONFIG_DIR / "playbook_support_policy.json"
+WEDGE_PACK_FRAMEWORK_LAST_PATH = REPORTS / "wedge_pack_framework_last.json"
+SEGMENT_OVERLAY_LAST_PATH = REPORTS / "segment_overlay_last.json"
+WORKFLOW_PACK_LAST_PATH = REPORTS / "workflow_pack_last.json"
+WEDGE_PACK_REGISTRY_PATH = STATE / "wedge_pack_registry.json"
+WEDGE_PACK_POLICY_PATH = CONFIG_DIR / "wedge_pack_policy.json"
+BUSINESS_OUTCOMES_LAST_PATH = REPORTS / "business_outcomes_last.json"
+TOOL_USEFULNESS_LAST_PATH = REPORTS / "tool_usefulness_last.json"
+RECOMMENDATION_EFFECTIVENESS_LAST_PATH = REPORTS / "recommendation_effectiveness_last.json"
+TENANT_ENGAGEMENT_LAST_PATH = REPORTS / "tenant_engagement_last.json"
+BUSINESS_OUTCOME_REGISTRY_PATH = STATE / "business_outcome_registry.json"
+BUSINESS_OUTCOME_POLICY_PATH = CONFIG_DIR / "business_outcome_policy.json"
+RELEASE_MANAGEMENT_LAST_PATH = REPORTS / "release_management_last.json"
+RELEASE_CANDIDATE_LAST_PATH = REPORTS / "release_candidate_last.json"
+RELEASE_NOTES_LAST_PATH = REPORTS / "release_notes_last.json"
+RELEASE_ROLLOUT_LAST_PATH = REPORTS / "release_rollout_last.json"
+RELEASE_REGISTRY_PATH = STATE / "release_registry.json"
+RELEASE_MANAGEMENT_POLICY_PATH = CONFIG_DIR / "release_management_policy.json"
+REVENUE_OPTIMIZATION_LAST_PATH = REPORTS / "revenue_optimization_last.json"
+PLAN_FIT_ANALYSIS_LAST_PATH = REPORTS / "plan_fit_analysis_last.json"
+UPGRADE_SUGGESTIONS_LAST_PATH = REPORTS / "upgrade_suggestions_last.json"
+CHURN_RESCUE_LAST_PATH = REPORTS / "churn_rescue_last.json"
+REVENUE_OPTIMIZATION_REGISTRY_PATH = STATE / "revenue_optimization_registry.json"
+REVENUE_OPTIMIZATION_POLICY_PATH = CONFIG_DIR / "revenue_optimization_policy.json"
+MODEL_COST_GOVERNANCE_LAST_PATH = REPORTS / "model_cost_governance_last.json"
+TASK_CLASSIFICATION_LAST_PATH = REPORTS / "task_classification_last.json"
+TEACHER_USEFULNESS_LAST_PATH = REPORTS / "teacher_usefulness_last.json"
+COST_EFFECTIVENESS_LAST_PATH = REPORTS / "cost_effectiveness_last.json"
+MODEL_COST_REGISTRY_PATH = STATE / "model_cost_registry.json"
+MODEL_COST_GOVERNANCE_POLICY_PATH = CONFIG_DIR / "model_cost_governance_policy.json"
+UX_SIMPLICITY_LAST_PATH = REPORTS / "ux_simplicity_last.json"
+ATHENA_FOUNDER_UX_LAST_PATH = REPORTS / "athena_founder_ux_last.json"
+ONYX_CUSTOMER_UX_LAST_PATH = REPORTS / "onyx_customer_ux_last.json"
+APPROVAL_SURFACE_LAST_PATH = REPORTS / "approval_surface_last.json"
+UX_SIMPLICITY_REGISTRY_PATH = STATE / "ux_simplicity_registry.json"
+UX_SIMPLICITY_POLICY_PATH = CONFIG_DIR / "ux_simplicity_policy.json"
+KNOWLEDGE_QUALITY_LAST_PATH = REPORTS / "knowledge_quality_last.json"
+KNOWLEDGE_CARDS_LAST_PATH = REPORTS / "knowledge_cards_last.json"
+KNOWLEDGE_REUSE_LAST_PATH = REPORTS / "knowledge_reuse_last.json"
+ANTI_REPEAT_MEMORY_LAST_PATH = REPORTS / "anti_repeat_memory_last.json"
+OUTCOME_LEARNING_LAST_PATH = REPORTS / "outcome_learning_last.json"
+KNOWLEDGE_CARDS_STATE_PATH = STATE / "knowledge_cards.json"
+KNOWLEDGE_FAILURES_STATE_PATH = STATE / "knowledge_failures.json"
+KNOWLEDGE_OUTCOMES_STATE_PATH = STATE / "knowledge_outcomes.json"
+KNOWLEDGE_REUSE_HISTORY_PATH = STATE / "knowledge_reuse_history.json"
+KNOWLEDGE_QUALITY_POLICY_PATH = CONFIG_DIR / "knowledge_quality_policy.json"
+WHOLE_FOLDER_VERIFICATION_LAST_PATH = REPORTS / "whole_folder_verification_last.json"
+WHOLE_FOLDER_INVENTORY_LAST_PATH = REPORTS / "whole_folder_inventory_last.json"
+WHOLE_FOLDER_REGISTRATION_GAPS_PATH = REPORTS / "whole_folder_registration_gaps.json"
+WHOLE_FOLDER_BROKEN_PATHS_LAST_PATH = REPORTS / "whole_folder_broken_paths_last.json"
+WHOLE_FOLDER_GOLDEN_PATHS_LAST_PATH = REPORTS / "whole_folder_golden_paths_last.json"
+WHOLE_FOLDER_FAULT_TESTS_LAST_PATH = REPORTS / "whole_folder_fault_tests_last.json"
+WHOLE_FOLDER_MIGRATION_CHECKS_LAST_PATH = REPORTS / "whole_folder_migration_checks_last.json"
+WHOLE_FOLDER_USABILITY_CHECKS_LAST_PATH = REPORTS / "whole_folder_usability_checks_last.json"
+WHOLE_FOLDER_CLEANUP_QUEUE_PATH = REPORTS / "whole_folder_cleanup_queue.json"
+WHOLE_FOLDER_VERIFICATION_SUMMARY_MD_PATH = REPORTS / "whole_folder_verification_summary.md"
+WHOLE_FOLDER_VERIFICATION_POLICY_PATH = CONFIG_DIR / "whole_folder_verification_policy.json"
+REPAIR_WAVE_01_LAST_PATH = REPORTS / "repair_wave_01_last.json"
+REPAIR_ONBOARDING_LAST_PATH = REPORTS / "repair_onboarding_last.json"
+REPAIR_BILLING_ENTITLEMENTS_LAST_PATH = REPORTS / "repair_billing_entitlements_last.json"
+REPAIR_HALFWIRED_LAST_PATH = REPORTS / "repair_halfwired_last.json"
+REPAIR_REGISTRATION_GAPS_LAST_PATH = REPORTS / "repair_registration_gaps_last.json"
+REPAIR_SCHEDULER_OVERSIGHT_LAST_PATH = REPORTS / "repair_scheduler_oversight_last.json"
+REPAIR_INTERNAL_VISIBILITY_LAST_PATH = REPORTS / "repair_internal_visibility_last.json"
+REPAIR_MIRROR_HARDENING_LAST_PATH = REPORTS / "repair_mirror_hardening_last.json"
+REPAIR_BROKEN_PATHS_FIXED_LAST_PATH = REPORTS / "repair_broken_paths_fixed_last.json"
+REPAIR_UNFIXED_QUEUE_LAST_PATH = REPORTS / "repair_unfixed_queue_last.json"
+REPAIR_WAVE_02_LAST_PATH = REPORTS / "repair_wave_02_last.json"
+INTERNAL_SCHEDULER_LAST_PATH = REPORTS / "internal_scheduler_last.json"
+LEGACY_TASK_INVENTORY_LAST_PATH = REPORTS / "legacy_task_inventory_last.json"
+LEGACY_TASK_MIGRATION_LAST_PATH = REPORTS / "legacy_task_migration_last.json"
+POPUP_SUPPRESSION_LAST_PATH = REPORTS / "popup_suppression_last.json"
+VALIDATOR_COVERAGE_REPAIR_LAST_PATH = REPORTS / "validator_coverage_repair_last.json"
+BROKEN_PATH_CLUSTER_REPAIR_LAST_PATH = REPORTS / "broken_path_cluster_repair_last.json"
+REMOTE_PUSH_REPAIR_LAST_PATH = REPORTS / "remote_push_repair_last.json"
+REPAIR_WAVE_02_UNFIXED_QUEUE_LAST_PATH = REPORTS / "repair_wave_02_unfixed_queue_last.json"
+MIRROR_COVERAGE_LAST_PATH = REPORTS / "mirror_coverage_last.json"
+MIRROR_OMISSION_LAST_PATH = REPORTS / "mirror_omission_last.json"
+MIRROR_SAFE_INDEX_PATH = REPORTS / "mirror_safe_index.md"
+ATHENA_WIDGET_STATUS_PATH = REPORTS / "athena_widget_status.json"
+ONYX_STACK_HEALTH_PATH = REPORTS / "onyx_stack_health.json"
+REPAIR_WAVE_01_POLICY_PATH = CONFIG_DIR / "repair_wave_01_policy.json"
+REPAIR_WAVE_02_POLICY_PATH = CONFIG_DIR / "repair_wave_02_policy.json"
+INTERNAL_SCHEDULER_POLICY_PATH = CONFIG_DIR / "internal_scheduler_policy.json"
+LEGACY_TASK_MIGRATION_POLICY_PATH = CONFIG_DIR / "legacy_task_migration_policy.json"
 
 PENDING_PATCHES = STATE / "pending_patch_runs.json"
+PENDING_PATCHES_QUARANTINE = STATE / "pending_patch_runs_quarantine.json"
+APPROVALS_HISTORY_PATH = STATE / "approvals_history.json"
 SUGGESTIONS = STATE / "mason_teacher_suggestions.json"
 
 DEVICE_RATE_STATE: dict[str, list[float]] = {}
@@ -296,6 +417,12 @@ class ImprovementStatusRequest(BaseModel):
     improvement_id: str = Field(min_length=8, max_length=96)
     status: str = Field(min_length=3, max_length=24)
     note: str = Field(default="")
+
+
+class ApprovalDecisionRequest(BaseModel):
+    approval_id: str = Field(min_length=3, max_length=160)
+    decision: str = Field(min_length=6, max_length=16)
+    owner_reason: str = Field(default="")
 
 
 class BehaviorCreateRequest(BaseModel):
@@ -2707,8 +2834,11 @@ def build_tenant_billing_detail(tenant_context: dict[str, Any] | None) -> dict[s
         for addon in available_addons
         if normalize_plan_id(addon.get("addon_id")) in active_addon_ids
     ]
+    amount_source = subscription.get("amount_usd")
+    if entitlements.get("entitlement_source") != "billing_subscription" and plan:
+        amount_source = plan.get("price_usd")
     try:
-        amount_usd = round(float(subscription.get("amount_usd") or plan.get("price_usd") or 0.0), 2)
+        amount_usd = round(float(amount_source or plan.get("price_usd") or 0.0), 2)
     except Exception:
         amount_usd = 0.0
     return {
@@ -4490,6 +4620,7 @@ def filter_improvement_items(
     }
     safe_tenant_id = normalize_optional_onyx_tenant_id(tenant_id)
     filtered: list[dict[str, Any]] = []
+    governor_map = self_improvement_decision_lookup()
     for item in items:
         if current_only and not bool(item.get("is_current", True)):
             continue
@@ -4501,7 +4632,7 @@ def filter_improvement_items(
             continue
         if safe_tenant_id and normalize_optional_onyx_tenant_id(item.get("linked_tenant_id")) != safe_tenant_id:
             continue
-        filtered.append(decorate_improvement_item(item, behavior_map))
+        filtered.append(decorate_improvement_item(item, behavior_map, governor_map))
     filtered.sort(key=improvement_sort_key)
     return filtered
 
@@ -5085,45 +5216,100 @@ def behavior_lookup_map(state: dict[str, Any] | None = None) -> dict[str, dict[s
     }
 
 
-def describe_improvement_execution(item: dict[str, Any], behavior: dict[str, Any] | None) -> dict[str, Any]:
+def describe_improvement_execution(
+    item: dict[str, Any],
+    behavior: dict[str, Any] | None,
+    governor_decision: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     if behavior is None:
         if normalize_text(item.get("linked_behavior_id")):
-            return {
-                "execution_mode": "suggestion_only",
-                "execution_reason": "Linked behavior is not registered in the trust ladder.",
-            }
-        if bool(item.get("approval_required")):
-            return {
-                "execution_mode": "approval_required",
-                "execution_reason": "No trusted behavior is linked, so this improvement remains gated.",
-            }
-        return {
-            "execution_mode": "suggestion_only",
-            "execution_reason": "No linked behavior trust state is registered yet.",
-        }
-    if bool(behavior.get("auto_action_eligible")):
-        return {
-            "execution_mode": "auto_allowed",
-            "execution_reason": "Linked low-risk behavior is auto_allowed under policy.",
-        }
-    if bool(item.get("approval_required")) or bool(behavior.get("approval_required")):
-        return {
-            "execution_mode": "approval_required",
-            "execution_reason": "Linked behavior is not auto_allowed and still requires approval.",
-        }
+            execution_mode = "suggestion_only"
+            execution_reason = "Linked behavior is not registered in the trust ladder."
+        elif bool(item.get("approval_required")):
+            execution_mode = "approval_required"
+            execution_reason = "No trusted behavior is linked, so this improvement remains gated."
+        else:
+            execution_mode = "suggestion_only"
+            execution_reason = "No linked behavior trust state is registered yet."
+    elif bool(behavior.get("auto_action_eligible")):
+        execution_mode = "auto_allowed"
+        execution_reason = "Linked low-risk behavior is auto_allowed under policy."
+    elif bool(item.get("approval_required")) or bool(behavior.get("approval_required")):
+        execution_mode = "approval_required"
+        execution_reason = "Linked behavior is not auto_allowed and still requires approval."
+    else:
+        execution_mode = "suggestion_only"
+        execution_reason = "Linked behavior is still earning trust evidence."
+
+    execution_disposition = {
+        "auto_allowed": "safe_to_test",
+        "approval_required": "approval_required",
+    }.get(execution_mode, "suggest_only")
+    execution_disposition_reason = execution_reason
+
+    if isinstance(behavior, dict) and bool(behavior.get("hard_gated")):
+        execution_disposition = "blocked"
+        execution_disposition_reason = normalize_short_text(
+            behavior.get("policy_gate_reason") or "Linked behavior is hard-gated by policy.",
+            max_len=240,
+        ) or "Linked behavior is hard-gated by policy."
+
+    teacher_call_classification = ""
+    teacher_quality_classification = ""
+    teacher_quality_score = 0
+    teacher_cost_tier = ""
+    blocked_by_local_first = False
+    local_first_mandatory = bool(load_self_improvement_policy().get("local_first_mandatory", True))
+
+    if isinstance(governor_decision, dict):
+        decision_disposition = normalize_short_text(governor_decision.get("execution_disposition"), max_len=32).lower()
+        if decision_disposition:
+            execution_disposition = decision_disposition
+        decision_reason = normalize_short_text(governor_decision.get("execution_disposition_reason"), max_len=240)
+        if decision_reason:
+            execution_disposition_reason = decision_reason
+        teacher_call_classification = normalize_short_text(
+            governor_decision.get("teacher_call_classification"),
+            max_len=48,
+        ).lower()
+        teacher_quality_classification = normalize_short_text(
+            governor_decision.get("teacher_quality_classification"),
+            max_len=32,
+        ).lower()
+        try:
+            teacher_quality_score = int(governor_decision.get("teacher_quality_score") or 0)
+        except Exception:
+            teacher_quality_score = 0
+        teacher_cost_tier = normalize_short_text(governor_decision.get("estimated_cost_tier"), max_len=16).lower()
+        blocked_by_local_first = bool(governor_decision.get("blocked_by_local_first", False))
+
     return {
-        "execution_mode": "suggestion_only",
-        "execution_reason": "Linked behavior is still earning trust evidence.",
+        "execution_mode": execution_mode,
+        "execution_reason": execution_reason,
+        "execution_disposition": execution_disposition,
+        "execution_disposition_reason": execution_disposition_reason,
+        "teacher_call_classification": teacher_call_classification,
+        "teacher_quality_classification": teacher_quality_classification,
+        "teacher_quality_score": teacher_quality_score,
+        "teacher_cost_tier": teacher_cost_tier,
+        "blocked_by_local_first": blocked_by_local_first,
+        "local_first_mandatory": local_first_mandatory,
     }
 
 
-def decorate_improvement_item(item: dict[str, Any], lookup: dict[str, dict[str, Any]] | None = None) -> dict[str, Any]:
+def decorate_improvement_item(
+    item: dict[str, Any],
+    lookup: dict[str, dict[str, Any]] | None = None,
+    governor_lookup: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
     output = dict(item)
     behavior_id = normalize_text(output.get("linked_behavior_id"))
     behavior_map = lookup if isinstance(lookup, dict) else behavior_lookup_map()
+    decision_map = governor_lookup if isinstance(governor_lookup, dict) else self_improvement_decision_lookup()
     behavior = behavior_map.get(behavior_id) if behavior_id else None
+    governor_decision = decision_map.get(normalize_text(output.get("improvement_id")))
     output["linked_behavior"] = summarize_behavior_brief(behavior) if isinstance(behavior, dict) else None
-    output.update(describe_improvement_execution(output, behavior))
+    output.update(describe_improvement_execution(output, behavior, governor_decision))
     return output
 
 
@@ -6595,8 +6781,70 @@ def build_recent_actions(limit: int = 50) -> list[dict[str, Any]]:
     return list(reversed(rows[-limit:]))
 
 
-def build_approvals_section() -> dict[str, Any]:
-    items = get_approvals()
+def get_quarantined_approvals() -> list[dict[str, Any]]:
+    data = read_json(PENDING_PATCHES_QUARANTINE, default=[])
+    if isinstance(data, dict):
+        data = [data]
+    return [item for item in normalize_list(data) if isinstance(item, dict)]
+
+
+def get_approvals_history() -> list[dict[str, Any]]:
+    data = read_json(APPROVALS_HISTORY_PATH, default=[])
+    if isinstance(data, dict):
+        data = [data]
+    return [item for item in normalize_list(data) if isinstance(item, dict)]
+
+
+def approval_reason_summary(item: dict[str, Any]) -> str:
+    source = normalize_text(item.get("source") or item.get("kind") or "manual")
+    domain = normalize_text(item.get("domain"))
+    area = normalize_text(item.get("area"))
+    parts = [component_label(normalize_component_id(item.get("component_id"))), source]
+    if area:
+        parts.append(area)
+    if domain:
+        parts.append(domain)
+    return " / ".join(part for part in parts if part)
+
+
+def approval_recommended_action(item: dict[str, Any]) -> str:
+    risk = normalize_founder_risk_level(item.get("risk_level"))
+    if risk in {"R3", "R4"}:
+        return "Review scope carefully before deciding. Reject if the change expands risk, exposure, or tenant impact."
+    if risk == "R2":
+        return "Review the title and component before approving. Reject if the scope no longer matches the intended work."
+    return "Approve only if the title still matches the intended work. Reject if the scope is stale or unclear."
+
+
+def build_actionable_approval_item(item: dict[str, Any]) -> dict[str, Any]:
+    component_id = normalize_component_id(item.get("component_id"))
+    status = normalize_text(item.get("status")).lower() or "pending"
+    evidence_files = item.get("evidence_files")
+    if isinstance(evidence_files, list):
+        source_path = normalize_text(evidence_files[0] if evidence_files else "")
+    else:
+        source_path = normalize_text(evidence_files)
+    source_path = source_path or str(PENDING_PATCHES)
+    return {
+        "approval_id": normalize_text(item.get("id")),
+        "title": normalize_text(item.get("title")) or component_label(component_id) or "Pending approval",
+        "component_id": component_id,
+        "component_label": component_label(component_id),
+        "risk_level": normalize_founder_risk_level(item.get("risk_level")),
+        "status": status,
+        "created_at": normalize_text(item.get("created_at")),
+        "source": normalize_text(item.get("source") or item.get("kind") or "manual"),
+        "why_approval_needed": approval_reason_summary(item),
+        "recommended_action": approval_recommended_action(item),
+        "source_path": source_path,
+        "can_approve": status == "pending",
+        "can_reject": status == "pending",
+        "disabled_reason": "" if status == "pending" else f"Approval is already {status}.",
+    }
+
+
+def build_approvals_section(items: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+    items = items if isinstance(items, list) else get_approvals()
     by_status: dict[str, int] = {}
     by_risk: dict[str, int] = {}
     for item in items:
@@ -6608,16 +6856,33 @@ def build_approvals_section() -> dict[str, Any]:
     posture = read_json(posture_path, default={})
     counts = posture.get("counts") if isinstance(posture, dict) and isinstance(posture.get("counts"), dict) else {}
     eligible_by_status = counts.get("eligible_by_status") if isinstance(counts.get("eligible_by_status"), dict) else {}
+    pending_items = [
+        item for item in items if normalize_text(item.get("status")).lower() == "pending"
+    ]
+    quarantine_items = get_quarantined_approvals()
+    actionable_items = [
+        build_actionable_approval_item(item)
+        for item in sorted(
+            pending_items,
+            key=lambda row: (
+                -founder_risk_sort_value(row.get("risk_level")),
+                normalize_text(row.get("created_at")),
+            ),
+        )[:8]
+    ]
     return {
         "path": str(posture_path),
         "generated_at_utc": normalize_text(posture.get("generated_at_utc")) if isinstance(posture, dict) else "",
-        "pending_total": len(items),
+        "pending_total": len(pending_items),
         "by_status": by_status,
         "by_risk": by_risk,
-        "eligible_total": int(counts.get("eligible_total") or 0),
-        "quarantine_total": int(counts.get("quarantine_total") or 0),
-        "approved_total": int(eligible_by_status.get("approved") or 0),
-        "executed_total": int(eligible_by_status.get("executed") or 0),
+        "eligible_total": len(items),
+        "quarantine_total": len(quarantine_items),
+        "approved_total": int(by_status.get("approved") or eligible_by_status.get("approved") or 0),
+        "executed_total": int(by_status.get("executed") or eligible_by_status.get("executed") or 0),
+        "actionable_items": actionable_items,
+        "quarantine_path": str(PENDING_PATCHES_QUARANTINE),
+        "history_path": str(APPROVALS_HISTORY_PATH),
     }
 
 
@@ -6887,6 +7152,1992 @@ def build_system_validation_summary(validation_data: dict[str, Any] | None = Non
         "mirror_ok": bool(payload.get("mirror_ok", False)),
         "baseline_tag": normalize_text(payload.get("baseline_tag")),
         "path": str(SYSTEM_VALIDATION_LAST_PATH),
+    }
+
+
+def load_live_docs_payload() -> dict[str, Any]:
+    cache = getattr(load_live_docs_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    index_payload = read_json(LIVE_DOCS_INDEX_PATH, default={})
+    index_payload = index_payload if isinstance(index_payload, dict) else {}
+    summary_payload = read_json(LIVE_DOCS_SUMMARY_PATH, default={})
+    summary_payload = summary_payload if isinstance(summary_payload, dict) else {}
+    docs_components = [item for item in normalize_list(summary_payload.get("components") or index_payload.get("components")) if isinstance(item, dict)]
+
+    component_items: list[dict[str, Any]] = []
+    manuals: list[dict[str, Any]] = []
+    for component in sorted(
+        docs_components,
+        key=lambda item: (
+            int(item.get("sort_order") or 100),
+            normalize_text(item.get("display_name") or item.get("component_id")),
+        ),
+    ):
+        manual_path_text = normalize_text(component.get("manual_path"))
+        manual_path = Path(manual_path_text) if manual_path_text else LIVE_DOCS_DIR / f"{normalize_text(component.get('component_id'))}_live_manual.json"
+        if not manual_path.is_absolute():
+            manual_path = BASE / manual_path
+        manual_payload = read_json(manual_path, default={})
+        manual_payload = manual_payload if isinstance(manual_payload, dict) else {}
+
+        warnings = [item for item in normalize_list(manual_payload.get("latest_known_warnings") or component.get("latest_known_warnings")) if isinstance(item, dict)]
+        actions = [item for item in normalize_list(manual_payload.get("safe_next_actions") or component.get("safe_next_actions")) if isinstance(item, dict)]
+        founder_actions = [item for item in normalize_list(manual_payload.get("founder_actions") or component.get("founder_actions")) if isinstance(item, dict)]
+        mason_safe_actions = [item for item in normalize_list(manual_payload.get("mason_safe_actions") or component.get("mason_safe_actions")) if isinstance(item, dict)]
+        blocked_actions = [item for item in normalize_list(manual_payload.get("blocked_or_guarded_actions") or component.get("blocked_or_guarded_actions")) if isinstance(item, dict)]
+        recent_changes = [item for item in normalize_list(manual_payload.get("recent_changes") or component.get("recent_changes")) if isinstance(item, dict)]
+        source_artifacts = [item for item in normalize_list(manual_payload.get("source_artifacts") or component.get("source_artifacts")) if isinstance(item, dict)]
+        warning_summary = manual_payload.get("warning_summary") if isinstance(manual_payload.get("warning_summary"), dict) else {}
+        validation_summary = manual_payload.get("validation_summary") if isinstance(manual_payload.get("validation_summary"), dict) else {}
+        summary_item = {
+            "component_id": normalize_text(component.get("component_id") or manual_payload.get("component_id")),
+            "display_name": normalize_short_text(component.get("display_name") or manual_payload.get("display_name"), max_len=120),
+            "role": normalize_short_text(component.get("role") or manual_payload.get("role"), max_len=64),
+            "purpose_summary": normalize_short_text(component.get("purpose_summary") or manual_payload.get("purpose_summary"), max_len=240),
+            "current_status": normalize_text(component.get("current_status") or manual_payload.get("current_status")).upper() or "WARN",
+            "current_status_reason": normalize_short_text(component.get("current_status_reason") or manual_payload.get("current_status_reason"), max_len=240),
+            "warning_summary": warning_summary,
+            "latest_known_warnings": warnings[:3],
+            "safe_next_actions": actions[:3],
+            "founder_actions": founder_actions[:3],
+            "mason_safe_actions": mason_safe_actions[:3],
+            "blocked_or_guarded_actions": blocked_actions[:3],
+            "recent_changes": recent_changes[:3],
+            "source_artifacts": source_artifacts[:6],
+            "validation_summary": validation_summary,
+            "manual_path": str(manual_path),
+            "owner_surface": normalize_short_text(component.get("owner_surface") or manual_payload.get("owner_surface"), max_len=32),
+            "visible_in_athena": bool(component.get("visible_in_athena", manual_payload.get("visible_in_athena", True))),
+            "sort_order": int(component.get("sort_order") or manual_payload.get("sort_order") or 100),
+            "stale": bool(component.get("stale", manual_payload.get("stale", False))),
+        }
+        component_items.append(summary_item)
+        if manual_payload:
+            manuals.append(manual_payload)
+
+    default_component = normalize_text(summary_payload.get("default_component") or index_payload.get("default_component"))
+    if not default_component and component_items:
+        default_component = normalize_text(component_items[0].get("component_id"))
+
+    payload = {
+        "owner_only": True,
+        "generated_at_utc": normalize_text(summary_payload.get("generated_at_utc") or index_payload.get("generated_at_utc")),
+        "latest_generated_at_utc": normalize_text(
+            summary_payload.get("latest_generated_at_utc") or summary_payload.get("generated_at_utc") or index_payload.get("latest_generated_at_utc") or index_payload.get("generated_at_utc")
+        ),
+        "summary_status": normalize_text(summary_payload.get("summary_status")).upper() or "WARN",
+        "docs_count": int(summary_payload.get("docs_count") or len(component_items)),
+        "components_with_warnings": normalize_string_list(summary_payload.get("components_with_warnings"), max_items=24, max_len=64),
+        "components_healthy": normalize_string_list(summary_payload.get("components_healthy"), max_items=24, max_len=64),
+        "components_blocked": normalize_string_list(summary_payload.get("components_blocked"), max_items=24, max_len=64),
+        "stale_docs_count": int(summary_payload.get("stale_docs_count") or 0),
+        "components": component_items,
+        "index_path": str(LIVE_DOCS_INDEX_PATH),
+        "summary_path": str(LIVE_DOCS_SUMMARY_PATH),
+        "default_component": default_component,
+        "manuals": manuals,
+        "registry_path": str(COMPONENT_DOCS_REGISTRY_PATH),
+    }
+    load_live_docs_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_brand_exposure_payload() -> dict[str, Any]:
+    cache = getattr(load_brand_exposure_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    summary_payload = read_json(BRAND_EXPOSURE_SUMMARY_PATH, default={})
+    summary_payload = summary_payload if isinstance(summary_payload, dict) else {}
+    audit_payload = read_json(BRAND_LEAK_AUDIT_PATH, default={})
+    audit_payload = audit_payload if isinstance(audit_payload, dict) else {}
+    vocabulary_payload = read_json(PUBLIC_VOCABULARY_POLICY_LAST_PATH, default={})
+    vocabulary_payload = vocabulary_payload if isinstance(vocabulary_payload, dict) else {}
+
+    payload = {
+        "overall_status": normalize_text(summary_payload.get("overall_status")).upper() or "UNKNOWN",
+        "public_brand_posture": normalize_short_text(summary_payload.get("public_brand_posture"), max_len=48) or "unknown",
+        "internal_brand_posture": normalize_short_text(summary_payload.get("internal_brand_posture"), max_len=48) or "unknown",
+        "public_leak_count": int(summary_payload.get("public_leak_count") or 0),
+        "surfaces_scanned": int(summary_payload.get("total_surfaces_scanned") or 0),
+        "public_safe_surface_count": int(summary_payload.get("public_safe_surface_count") or 0),
+        "internal_surface_count": int(summary_payload.get("internal_surface_count") or 0),
+        "recommended_next_action": normalize_short_text(summary_payload.get("recommended_next_action"), max_len=240),
+        "owner_only_preserved": bool(summary_payload.get("owner_only_wording_preserved", False)),
+        "customer_safe": bool(summary_payload.get("customer_only_wording_isolated", False)),
+        "severity_summary": audit_payload.get("severity_summary") if isinstance(audit_payload.get("severity_summary"), dict) else {},
+        "exposures_found_count": int(audit_payload.get("exposures_found_count") or 0),
+        "public_surfaces_clean": bool(audit_payload.get("public_surfaces_clean", False)),
+        "owner_internal_surfaces_intact": bool(audit_payload.get("owner_internal_surfaces_intact", False)),
+        "timestamp_utc": normalize_text(summary_payload.get("timestamp_utc") or audit_payload.get("timestamp_utc") or vocabulary_payload.get("timestamp_utc")),
+        "summary_path": str(BRAND_EXPOSURE_SUMMARY_PATH),
+        "audit_path": str(BRAND_LEAK_AUDIT_PATH),
+        "policy_path": str(BRAND_EXPOSURE_POLICY_PATH),
+        "public_vocabulary_policy_path": str(PUBLIC_VOCABULARY_POLICY_LAST_PATH),
+    }
+    load_brand_exposure_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_keepalive_ops_payload() -> dict[str, Any]:
+    cache = getattr(load_keepalive_ops_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    keepalive_payload = read_json(KEEPALIVE_LAST_PATH, default={})
+    keepalive_payload = keepalive_payload if isinstance(keepalive_payload, dict) else {}
+    self_heal_payload = read_json(SELF_HEAL_LAST_PATH, default={})
+    self_heal_payload = self_heal_payload if isinstance(self_heal_payload, dict) else {}
+    daily_report_payload = read_json(DAILY_REPORT_LAST_PATH, default={})
+    daily_report_payload = daily_report_payload if isinstance(daily_report_payload, dict) else {}
+    escalation_payload = read_json(ESCALATION_QUEUE_LAST_PATH, default={})
+    escalation_payload = escalation_payload if isinstance(escalation_payload, dict) else {}
+
+    escalations = [item for item in normalize_list(escalation_payload.get("escalations")) if isinstance(item, dict)]
+    issue_rows = [item for item in normalize_list(self_heal_payload.get("issues")) if isinstance(item, dict)]
+    services_evaluated = [item for item in normalize_list(keepalive_payload.get("services_evaluated")) if isinstance(item, dict)]
+    blocked_repair_items = [
+        {
+            "issue_id": normalize_text(item.get("issue_id")),
+            "component": normalize_short_text(item.get("component"), max_len=48),
+            "reason": normalize_short_text(item.get("recommended_next_step") or item.get("summary"), max_len=220),
+            "policy_decision": normalize_short_text(item.get("policy_decision"), max_len=48),
+        }
+        for item in issue_rows
+        if normalize_text(item.get("action_attempted_or_blocked")) not in {"attempted", "attempted_success", "deferred_due_single_action_limit"}
+    ][:5]
+    latest_escalations = [
+        {
+            "issue_id": normalize_text(item.get("issue_id")),
+            "component": normalize_short_text(item.get("component"), max_len=48),
+            "severity": normalize_short_text(item.get("severity"), max_len=24).upper(),
+            "recommended_next_step": normalize_short_text(item.get("recommended_next_step"), max_len=220),
+            "owner_action_required": bool(item.get("owner_action_required", False)),
+        }
+        for item in escalations[:5]
+    ]
+    latest_attempts = [
+        {
+            "issue_id": normalize_text(item.get("issue_id")),
+            "component": normalize_short_text(item.get("component"), max_len=48),
+            "result": normalize_short_text(item.get("result"), max_len=48).upper(),
+            "action_id": normalize_short_text(item.get("action_id"), max_len=64),
+        }
+        for item in issue_rows
+        if normalize_text(item.get("action_attempted_or_blocked")) in {"attempted", "attempted_success"}
+    ][:5]
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(keepalive_payload.get("overall_status")).upper() or "UNKNOWN",
+        "recoverable_issue_count": int(keepalive_payload.get("recoverable_issue_count") or 0),
+        "escalated_issue_count": int(keepalive_payload.get("escalated_issue_count") or escalation_payload.get("escalation_count") or 0),
+        "repair_success_count": int(keepalive_payload.get("repair_success_count") or 0),
+        "repair_blocked_count": int(keepalive_payload.get("repair_blocked_count") or 0),
+        "repair_attempt_count": int(keepalive_payload.get("repair_attempt_count") or 0),
+        "healthy_service_count": int(keepalive_payload.get("healthy_service_count") or 0),
+        "services_evaluated_count": len(services_evaluated),
+        "daily_report_status": normalize_text(daily_report_payload.get("overall_status") or keepalive_payload.get("daily_report_status")).upper() or "UNKNOWN",
+        "throttle_guidance": normalize_short_text(keepalive_payload.get("throttle_guidance"), max_len=40),
+        "recommended_next_action": normalize_short_text(
+            keepalive_payload.get("recommended_next_action")
+            or daily_report_payload.get("recommended_next_action")
+            or escalation_payload.get("recommended_next_action"),
+            max_len=240,
+        ),
+        "latest_escalations": latest_escalations,
+        "blocked_repair_items": blocked_repair_items,
+        "latest_attempts": latest_attempts,
+        "timestamp_utc": normalize_text(
+            keepalive_payload.get("timestamp_utc")
+            or daily_report_payload.get("timestamp_utc")
+            or escalation_payload.get("timestamp_utc")
+        ),
+        "keepalive_path": str(KEEPALIVE_LAST_PATH),
+        "self_heal_path": str(SELF_HEAL_LAST_PATH),
+        "daily_report_path": str(DAILY_REPORT_LAST_PATH),
+        "escalation_queue_path": str(ESCALATION_QUEUE_LAST_PATH),
+        "policy_path": str(KEEPALIVE_POLICY_PATH),
+    }
+    load_keepalive_ops_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_system_truth_payload() -> dict[str, Any]:
+    cache = getattr(load_system_truth_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    truth_payload = read_json(SYSTEM_TRUTH_SPINE_LAST_PATH, default={})
+    truth_payload = truth_payload if isinstance(truth_payload, dict) else {}
+    summary_payload = read_json(SYSTEM_TRUTH_SUMMARY_LAST_PATH, default={})
+    summary_payload = summary_payload if isinstance(summary_payload, dict) else {}
+    registry_payload = read_json(SYSTEM_TRUTH_REGISTRY_PATH, default={})
+    registry_payload = registry_payload if isinstance(registry_payload, dict) else {}
+    domains_payload = truth_payload.get("domains") if isinstance(truth_payload.get("domains"), dict) else {}
+    top_warning_domains: list[str] = []
+    if isinstance(summary_payload.get("top_warnings"), list):
+        top_warning_domains = [
+            normalize_text(item.get("domain"))
+            for item in summary_payload.get("top_warnings")
+            if isinstance(item, dict) and normalize_text(item.get("domain"))
+        ][:8]
+    if not top_warning_domains and isinstance(truth_payload.get("summary"), dict):
+        top_warning_domains = normalize_string_list(truth_payload.get("summary", {}).get("top_warning_domains"), max_items=8, max_len=64)
+    top_healthy_domains: list[str] = []
+    if isinstance(summary_payload.get("top_healthy_areas"), list):
+        top_healthy_domains = [
+            normalize_text(item.get("domain"))
+            for item in summary_payload.get("top_healthy_areas")
+            if isinstance(item, dict) and normalize_text(item.get("domain"))
+        ][:8]
+    if not top_healthy_domains and isinstance(truth_payload.get("summary"), dict):
+        top_healthy_domains = normalize_string_list(truth_payload.get("summary", {}).get("top_healthy_domains"), max_items=8, max_len=64)
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(truth_payload.get("overall_status") or summary_payload.get("overall_status")).upper() or "UNKNOWN",
+        "recommended_next_action": normalize_short_text(
+            truth_payload.get("recommended_next_action") or summary_payload.get("recommended_next_action"),
+            max_len=240,
+        ),
+        "available_domain_count": int(truth_payload.get("summary", {}).get("available_domain_count") or 0) if isinstance(truth_payload.get("summary"), dict) else 0,
+        "warning_domain_count": int(truth_payload.get("summary", {}).get("warning_domain_count") or 0) if isinstance(truth_payload.get("summary"), dict) else 0,
+        "failing_domain_count": int(truth_payload.get("summary", {}).get("failing_domain_count") or 0) if isinstance(truth_payload.get("summary"), dict) else 0,
+        "healthy_domain_count": int(truth_payload.get("summary", {}).get("healthy_domain_count") or 0) if isinstance(truth_payload.get("summary"), dict) else 0,
+        "domain_count": len(domains_payload),
+        "truth_timestamp_utc": normalize_text(truth_payload.get("timestamp_utc") or summary_payload.get("truth_timestamp_utc")),
+        "top_warning_domains": top_warning_domains,
+        "top_healthy_domains": top_healthy_domains,
+        "current_blocker_domains": normalize_string_list(summary_payload.get("current_blocker_domains"), max_items=8, max_len=64),
+        "baseline_tag": normalize_text(truth_payload.get("baseline_tag") or summary_payload.get("baseline_tag")),
+        "path": str(SYSTEM_TRUTH_SPINE_LAST_PATH),
+        "summary_path": str(SYSTEM_TRUTH_SUMMARY_LAST_PATH),
+        "registry_path": str(SYSTEM_TRUTH_REGISTRY_PATH),
+        "last_build_timestamp_utc": normalize_text(registry_payload.get("last_build_timestamp_utc")),
+    }
+    load_system_truth_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_system_metrics_payload() -> dict[str, Any]:
+    cache = getattr(load_system_metrics_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    metrics_payload = read_json(SYSTEM_METRICS_SPINE_LAST_PATH, default={})
+    metrics_payload = metrics_payload if isinstance(metrics_payload, dict) else {}
+    payload = {
+        "timestamp_utc": normalize_text(metrics_payload.get("timestamp_utc")),
+        "overall_status": normalize_text(metrics_payload.get("overall_status")).upper() or "UNKNOWN",
+        "service_count": int(metrics_payload.get("service_count") or 0),
+        "healthy_service_count": int(metrics_payload.get("healthy_service_count") or 0),
+        "tenant_count": int(metrics_payload.get("tenant_count") or 0),
+        "queue_total": int(metrics_payload.get("queue_total") or 0),
+        "tool_total": int(metrics_payload.get("tool_total") or 0),
+        "enabled_tool_total": int(metrics_payload.get("enabled_tool_total") or 0),
+        "warning_domain_count": int(metrics_payload.get("warning_domain_count") or 0),
+        "failing_domain_count": int(metrics_payload.get("failing_domain_count") or 0),
+        "blocked_governed_count": int(metrics_payload.get("blocked_governed_count") or 0),
+        "path": str(SYSTEM_METRICS_SPINE_LAST_PATH),
+    }
+    load_system_metrics_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_regression_guard_payload() -> dict[str, Any]:
+    cache = getattr(load_regression_guard_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    regression_payload = read_json(REGRESSION_GUARD_LAST_PATH, default={})
+    regression_payload = regression_payload if isinstance(regression_payload, dict) else {}
+    promotion_payload = read_json(PROMOTION_GATE_LAST_PATH, default={})
+    promotion_payload = promotion_payload if isinstance(promotion_payload, dict) else {}
+    rollback_payload = read_json(ROLLBACK_PLAN_LAST_PATH, default={})
+    rollback_payload = rollback_payload if isinstance(rollback_payload, dict) else {}
+    baseline_registry = read_json(REGRESSION_BASELINES_PATH, default={})
+    baseline_registry = baseline_registry if isinstance(baseline_registry, dict) else {}
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(regression_payload.get("overall_status")).upper() or "UNKNOWN",
+        "baseline_available": bool(regression_payload.get("baseline_available", False)),
+        "baseline_trusted": bool(regression_payload.get("baseline_trusted", False)),
+        "baseline_id": normalize_text(regression_payload.get("baseline_id")),
+        "comparison_mode": normalize_short_text(regression_payload.get("comparison_mode"), max_len=40),
+        "comparison_result": normalize_short_text(regression_payload.get("comparison_result"), max_len=80),
+        "regression_count": int(regression_payload.get("regression_count") or 0),
+        "blocking_regression_count": int(regression_payload.get("blocking_regression_count") or 0),
+        "warning_regression_count": int(regression_payload.get("warning_regression_count") or 0),
+        "rollback_recommended": bool(regression_payload.get("rollback_recommended", False)),
+        "promotion_allowed": bool(regression_payload.get("promotion_allowed", False)),
+        "promotion_blocked": bool(promotion_payload.get("promotion_blocked", False) or not regression_payload.get("promotion_allowed", False)),
+        "recommended_next_action": normalize_short_text(
+            regression_payload.get("recommended_next_action") or promotion_payload.get("recommended_next_action"),
+            max_len=240,
+        ),
+        "blocking_reasons": normalize_string_list(promotion_payload.get("blocking_reasons"), max_items=8, max_len=80),
+        "gating_domains": normalize_string_list(promotion_payload.get("gating_domains"), max_items=8, max_len=64),
+        "timestamp_utc": normalize_text(regression_payload.get("timestamp_utc") or promotion_payload.get("timestamp_utc") or rollback_payload.get("timestamp_utc")),
+        "policy_path": str(REGRESSION_GUARD_POLICY_PATH),
+        "regression_path": str(REGRESSION_GUARD_LAST_PATH),
+        "promotion_gate_path": str(PROMOTION_GATE_LAST_PATH),
+        "rollback_plan_path": str(ROLLBACK_PLAN_LAST_PATH),
+        "baseline_registry_path": str(REGRESSION_BASELINES_PATH),
+        "current_active_baseline_id": normalize_text(baseline_registry.get("current_active_baseline_id")),
+    }
+    load_regression_guard_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_playbook_support_payload() -> dict[str, Any]:
+    cache = getattr(load_playbook_support_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    library_payload = read_json(PLAYBOOK_LIBRARY_LAST_PATH, default={})
+    library_payload = library_payload if isinstance(library_payload, dict) else {}
+    support_payload = read_json(SUPPORT_BRAIN_LAST_PATH, default={})
+    support_payload = support_payload if isinstance(support_payload, dict) else {}
+    incident_payload = read_json(INCIDENT_EXPLANATIONS_LAST_PATH, default={})
+    incident_payload = incident_payload if isinstance(incident_payload, dict) else {}
+    registry_payload = read_json(PLAYBOOK_REGISTRY_PATH, default={})
+    registry_payload = registry_payload if isinstance(registry_payload, dict) else {}
+
+    top_issue_explanations: list[dict[str, Any]] = []
+    if isinstance(incident_payload.get("issues"), list):
+        for item in incident_payload.get("issues", [])[:4]:
+            if not isinstance(item, dict):
+                continue
+            top_issue_explanations.append(
+                {
+                    "issue_id": normalize_text(item.get("issue_id")),
+                    "issue_type": normalize_short_text(item.get("issue_type"), max_len=80),
+                    "severity": normalize_short_text(item.get("severity"), max_len=24),
+                    "plain_english_explanation": normalize_short_text(item.get("plain_english_explanation"), max_len=240),
+                    "what_should_happen_next": normalize_short_text(item.get("what_should_happen_next"), max_len=220),
+                    "linked_playbook_id": normalize_short_text(item.get("linked_playbook_id"), max_len=80),
+                    "source_truth_path": normalize_text(item.get("source_truth_path")),
+                }
+            )
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(
+            support_payload.get("overall_status")
+            or library_payload.get("overall_status")
+            or incident_payload.get("overall_status")
+        ).upper()
+        or "UNKNOWN",
+        "playbook_count": int(library_payload.get("playbook_count") or registry_payload.get("current_playbook_count") or 0),
+        "active_playbook_count": int(library_payload.get("active_playbook_count") or 0),
+        "recurring_issue_count": int(support_payload.get("recurring_issue_count") or incident_payload.get("issue_count") or 0),
+        "customer_safe_ready_count": int(support_payload.get("customer_safe_ready_count") or 0),
+        "internal_support_ready_count": int(support_payload.get("internal_support_ready_count") or 0),
+        "recommended_next_action": normalize_short_text(
+            support_payload.get("recommended_next_action")
+            or library_payload.get("recommended_next_action")
+            or incident_payload.get("recommended_next_action"),
+            max_len=240,
+        ),
+        "supported_issue_types": normalize_string_list(support_payload.get("supported_issue_types"), max_items=16, max_len=64),
+        "playbook_categories": normalize_string_list(library_payload.get("playbook_categories"), max_items=16, max_len=64),
+        "generated_at_utc": normalize_text(
+            library_payload.get("timestamp_utc")
+            or support_payload.get("timestamp_utc")
+            or incident_payload.get("timestamp_utc")
+            or registry_payload.get("generated_at_utc")
+        ),
+        "top_issue_explanations": top_issue_explanations,
+        "library_path": str(PLAYBOOK_LIBRARY_LAST_PATH),
+        "support_path": str(SUPPORT_BRAIN_LAST_PATH),
+        "incident_path": str(INCIDENT_EXPLANATIONS_LAST_PATH),
+        "registry_path": str(PLAYBOOK_REGISTRY_PATH),
+        "policy_path": str(PLAYBOOK_SUPPORT_POLICY_PATH),
+    }
+    load_playbook_support_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_wedge_pack_framework_payload() -> dict[str, Any]:
+    cache = getattr(load_wedge_pack_framework_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    framework_payload = read_json(WEDGE_PACK_FRAMEWORK_LAST_PATH, default={})
+    framework_payload = framework_payload if isinstance(framework_payload, dict) else {}
+    overlay_payload = read_json(SEGMENT_OVERLAY_LAST_PATH, default={})
+    overlay_payload = overlay_payload if isinstance(overlay_payload, dict) else {}
+    workflow_payload = read_json(WORKFLOW_PACK_LAST_PATH, default={})
+    workflow_payload = workflow_payload if isinstance(workflow_payload, dict) else {}
+    registry_payload = read_json(WEDGE_PACK_REGISTRY_PATH, default={})
+    registry_payload = registry_payload if isinstance(registry_payload, dict) else {}
+
+    active_tenant_fit = framework_payload.get("active_tenant_fit")
+    active_tenant_fit = active_tenant_fit if isinstance(active_tenant_fit, dict) else {}
+    pack_statuses = registry_payload.get("pack_statuses")
+    pack_statuses = pack_statuses if isinstance(pack_statuses, dict) else {}
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(framework_payload.get("overall_status")).upper() or "UNKNOWN",
+        "business_category_count": int(framework_payload.get("business_category_count") or len(framework_payload.get("categories") or []) or 0),
+        "business_subcategory_count": int(framework_payload.get("business_subcategory_count") or len(framework_payload.get("subcategories") or []) or 0),
+        "wedge_pack_count": int(framework_payload.get("wedge_pack_count") or len(framework_payload.get("wedge_packs") or []) or 0),
+        "customer_ready_pack_count": int(framework_payload.get("customer_ready_pack_count") or pack_statuses.get("customer_ready") or 0),
+        "experimental_pack_count": int(framework_payload.get("experimental_pack_count") or pack_statuses.get("experimental") or 0),
+        "fallback_pack_available": bool(framework_payload.get("fallback_pack_available", False)),
+        "recommended_next_action": normalize_short_text(framework_payload.get("recommended_next_action"), max_len=240),
+        "generated_at_utc": normalize_text(framework_payload.get("timestamp_utc") or registry_payload.get("generated_at_utc")),
+        "active_tenant_id": normalize_text(framework_payload.get("active_tenant_id")),
+        "active_business_category": normalize_short_text(active_tenant_fit.get("business_category"), max_len=64),
+        "active_business_subcategory": normalize_short_text(active_tenant_fit.get("business_subcategory"), max_len=64),
+        "active_workflow_pack_ids": normalize_string_list(active_tenant_fit.get("workflow_pack_ids"), max_items=8, max_len=80),
+        "active_tool_bundle_ids": normalize_string_list(active_tenant_fit.get("tool_bundle_ids"), max_items=8, max_len=80),
+        "pilot_ready_pack_count": int(pack_statuses.get("pilot_ready") or 0),
+        "planned_pack_count": int(pack_statuses.get("planned") or 0),
+        "overlay_count": int(
+            len(overlay_payload.get("onboarding_overlays") or [])
+            + len(overlay_payload.get("dashboard_overlays") or [])
+            + len(overlay_payload.get("recommendation_overlays") or [])
+        ),
+        "workflow_pack_artifact_count": int(len(workflow_payload.get("workflow_packs") or [])),
+        "framework_path": str(WEDGE_PACK_FRAMEWORK_LAST_PATH),
+        "segment_overlay_path": str(SEGMENT_OVERLAY_LAST_PATH),
+        "workflow_pack_path": str(WORKFLOW_PACK_LAST_PATH),
+        "registry_path": str(WEDGE_PACK_REGISTRY_PATH),
+        "policy_path": str(WEDGE_PACK_POLICY_PATH),
+    }
+    load_wedge_pack_framework_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_business_outcomes_payload() -> dict[str, Any]:
+    cache = getattr(load_business_outcomes_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    outcomes_payload = read_json(BUSINESS_OUTCOMES_LAST_PATH, default={})
+    outcomes_payload = outcomes_payload if isinstance(outcomes_payload, dict) else {}
+    tool_payload = read_json(TOOL_USEFULNESS_LAST_PATH, default={})
+    tool_payload = tool_payload if isinstance(tool_payload, dict) else {}
+    recommendation_payload = read_json(RECOMMENDATION_EFFECTIVENESS_LAST_PATH, default={})
+    recommendation_payload = recommendation_payload if isinstance(recommendation_payload, dict) else {}
+    engagement_payload = read_json(TENANT_ENGAGEMENT_LAST_PATH, default={})
+    engagement_payload = engagement_payload if isinstance(engagement_payload, dict) else {}
+    registry_payload = read_json(BUSINESS_OUTCOME_REGISTRY_PATH, default={})
+    registry_payload = registry_payload if isinstance(registry_payload, dict) else {}
+
+    revenue_help = outcomes_payload.get("revenue_help_indicators")
+    revenue_help = revenue_help if isinstance(revenue_help, dict) else {}
+    churn_risk = outcomes_payload.get("churn_risk_indicators")
+    churn_risk = churn_risk if isinstance(churn_risk, dict) else {}
+    onboarding = outcomes_payload.get("onboarding_completion")
+    onboarding = onboarding if isinstance(onboarding, dict) else {}
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(outcomes_payload.get("overall_status")).upper() or "UNKNOWN",
+        "tenant_count": int(outcomes_payload.get("tenant_count") or registry_payload.get("tenant_count") or 0),
+        "tenants_with_measurable_signals": int(outcomes_payload.get("tenants_with_measurable_signals") or 0),
+        "tool_usefulness_summary": normalize_short_text(
+            tool_payload.get("recommended_next_action")
+            or outcomes_payload.get("tool_usefulness", {}).get("summary"),
+            max_len=220,
+        ),
+        "recommendation_effectiveness_summary": normalize_short_text(
+            recommendation_payload.get("effectiveness_summary")
+            or outcomes_payload.get("recommendation_effectiveness", {}).get("summary"),
+            max_len=220,
+        ),
+        "onboarding_completion_summary": normalize_short_text(onboarding.get("summary"), max_len=220),
+        "revenue_help_summary": normalize_short_text(revenue_help.get("summary"), max_len=220),
+        "churn_risk_summary": normalize_short_text(churn_risk.get("summary"), max_len=220),
+        "recommended_next_action": normalize_short_text(outcomes_payload.get("recommended_next_action"), max_len=240),
+        "generated_at_utc": normalize_text(outcomes_payload.get("timestamp_utc") or registry_payload.get("generated_at_utc")),
+        "low_confidence_domain_count": int(outcomes_payload.get("low_confidence_domain_count") or 0),
+        "active_signal_count": int(engagement_payload.get("active_signal_count") or 0),
+        "churn_risk_count": int(engagement_payload.get("churn_risk_count") or 0),
+        "tools_with_usage_signal": int(tool_payload.get("tools_with_usage_signal") or 0),
+        "accepted_recommendation_count": int(recommendation_payload.get("accepted_count") or 0),
+        "dismissed_recommendation_count": int(recommendation_payload.get("rejected_count") or 0),
+        "outcomes_path": str(BUSINESS_OUTCOMES_LAST_PATH),
+        "tool_usefulness_path": str(TOOL_USEFULNESS_LAST_PATH),
+        "recommendation_effectiveness_path": str(RECOMMENDATION_EFFECTIVENESS_LAST_PATH),
+        "tenant_engagement_path": str(TENANT_ENGAGEMENT_LAST_PATH),
+        "registry_path": str(BUSINESS_OUTCOME_REGISTRY_PATH),
+        "policy_path": str(BUSINESS_OUTCOME_POLICY_PATH),
+    }
+    load_business_outcomes_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_release_management_payload() -> dict[str, Any]:
+    cache = getattr(load_release_management_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    management_payload = read_json(RELEASE_MANAGEMENT_LAST_PATH, default={})
+    management_payload = management_payload if isinstance(management_payload, dict) else {}
+    candidate_payload = read_json(RELEASE_CANDIDATE_LAST_PATH, default={})
+    candidate_payload = candidate_payload if isinstance(candidate_payload, dict) else {}
+    rollout_payload = read_json(RELEASE_ROLLOUT_LAST_PATH, default={})
+    rollout_payload = rollout_payload if isinstance(rollout_payload, dict) else {}
+    notes_payload = read_json(RELEASE_NOTES_LAST_PATH, default={})
+    notes_payload = notes_payload if isinstance(notes_payload, dict) else {}
+    registry_payload = read_json(RELEASE_REGISTRY_PATH, default={})
+    registry_payload = registry_payload if isinstance(registry_payload, dict) else {}
+
+    blocked_items = candidate_payload.get("blocking_reasons")
+    blocked_items = blocked_items if isinstance(blocked_items, list) else []
+    warning_items = candidate_payload.get("warning_reasons")
+    warning_items = warning_items if isinstance(warning_items, list) else []
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(management_payload.get("overall_status")).upper() or "UNKNOWN",
+        "release_candidate_id": normalize_text(
+            management_payload.get("release_candidate_id")
+            or candidate_payload.get("release_candidate_id")
+            or registry_payload.get("current_release_candidate_id")
+        ),
+        "release_stage": normalize_text(
+            management_payload.get("release_stage")
+            or candidate_payload.get("release_stage")
+            or registry_payload.get("current_release_stage")
+        ),
+        "promotion_allowed": bool(
+            management_payload.get("promotion_allowed")
+            if "promotion_allowed" in management_payload
+            else candidate_payload.get("promotion_allowed")
+        ),
+        "rollout_mode": normalize_text(
+            management_payload.get("rollout_mode")
+            or rollout_payload.get("rollout_mode")
+        ),
+        "rollback_ready": bool(
+            management_payload.get("rollback_ready")
+            if "rollback_ready" in management_payload
+            else False
+        ),
+        "blocking_reason_count": int(
+            management_payload.get("blocking_reason_count")
+            or len(blocked_items)
+            or 0
+        ),
+        "warning_reason_count": int(
+            management_payload.get("warning_reason_count")
+            or len(warning_items)
+            or 0
+        ),
+        "recommended_next_action": normalize_short_text(
+            management_payload.get("recommended_next_action")
+            or candidate_payload.get("recommended_next_action"),
+            max_len=240,
+        ),
+        "canary_allowed": bool(candidate_payload.get("canary_allowed")) if "canary_allowed" in candidate_payload else False,
+        "pilot_ready": bool(candidate_payload.get("pilot_ready")) if "pilot_ready" in candidate_payload else False,
+        "customer_ready": bool(candidate_payload.get("customer_ready")) if "customer_ready" in candidate_payload else False,
+        "release_readiness_classification": normalize_short_text(
+            management_payload.get("release_readiness_classification"),
+            max_len=64,
+        ),
+        "known_warning_count": int(len(notes_payload.get("known_warnings") or [])),
+        "blocked_item_count": int(len(notes_payload.get("blocked_items") or [])),
+        "recommended_release_scope": normalize_short_text(
+            notes_payload.get("recommended_release_scope"),
+            max_len=80,
+        ),
+        "generated_at_utc": normalize_text(
+            management_payload.get("timestamp_utc")
+            or candidate_payload.get("timestamp_utc")
+            or registry_payload.get("generated_at_utc")
+        ),
+        "release_management_path": str(RELEASE_MANAGEMENT_LAST_PATH),
+        "release_candidate_path": str(RELEASE_CANDIDATE_LAST_PATH),
+        "release_notes_path": str(RELEASE_NOTES_LAST_PATH),
+        "release_rollout_path": str(RELEASE_ROLLOUT_LAST_PATH),
+        "registry_path": str(RELEASE_REGISTRY_PATH),
+        "policy_path": str(RELEASE_MANAGEMENT_POLICY_PATH),
+    }
+    load_release_management_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_revenue_optimization_payload() -> dict[str, Any]:
+    cache = getattr(load_revenue_optimization_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    optimization_payload = read_json(REVENUE_OPTIMIZATION_LAST_PATH, default={})
+    optimization_payload = optimization_payload if isinstance(optimization_payload, dict) else {}
+    plan_fit_payload = read_json(PLAN_FIT_ANALYSIS_LAST_PATH, default={})
+    plan_fit_payload = plan_fit_payload if isinstance(plan_fit_payload, dict) else {}
+    upgrade_payload = read_json(UPGRADE_SUGGESTIONS_LAST_PATH, default={})
+    upgrade_payload = upgrade_payload if isinstance(upgrade_payload, dict) else {}
+    churn_payload = read_json(CHURN_RESCUE_LAST_PATH, default={})
+    churn_payload = churn_payload if isinstance(churn_payload, dict) else {}
+    registry_payload = read_json(REVENUE_OPTIMIZATION_REGISTRY_PATH, default={})
+    registry_payload = registry_payload if isinstance(registry_payload, dict) else {}
+
+    billing_linkage = optimization_payload.get("billing_posture_linkage")
+    billing_linkage = billing_linkage if isinstance(billing_linkage, dict) else {}
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(optimization_payload.get("overall_status")).upper() or "UNKNOWN",
+        "tenant_count": int(optimization_payload.get("tenant_count") or registry_payload.get("tenant_count") or 0),
+        "upgrade_opportunity_count": int(optimization_payload.get("upgrade_opportunity_count") or upgrade_payload.get("upgrade_suggestion_count") or 0),
+        "add_on_fit_count": int(optimization_payload.get("add_on_fit_count") or upgrade_payload.get("add_on_suggestion_count") or 0),
+        "churn_rescue_count": int(optimization_payload.get("churn_rescue_count") or churn_payload.get("churn_rescue_count") or 0),
+        "blocked_money_action_count": int(optimization_payload.get("blocked_money_action_count") or 0),
+        "billing_gated": bool(
+            billing_linkage.get("billing_gated")
+            if "billing_gated" in billing_linkage
+            else True
+        ),
+        "tool_usefulness_summary": normalize_short_text(
+            optimization_payload.get("plan_fit", {}).get("summary"),
+            max_len=220,
+        ),
+        "recommendation_effectiveness_summary": normalize_short_text(
+            optimization_payload.get("upgrade_suggestions", {}).get("summary"),
+            max_len=220,
+        ),
+        "onboarding_completion_summary": normalize_short_text(
+            plan_fit_payload.get("recommended_next_action"),
+            max_len=220,
+        ),
+        "revenue_help_summary": normalize_short_text(
+            billing_linkage.get("summary"),
+            max_len=220,
+        ),
+        "churn_risk_summary": normalize_short_text(
+            churn_payload.get("recommended_next_action"),
+            max_len=220,
+        ),
+        "recommended_next_action": normalize_short_text(
+            optimization_payload.get("recommended_next_action")
+            or upgrade_payload.get("recommended_next_action"),
+            max_len=240,
+        ),
+        "generated_at_utc": normalize_text(
+            optimization_payload.get("timestamp_utc")
+            or registry_payload.get("generated_at_utc")
+        ),
+        "low_confidence_count": int(optimization_payload.get("low_confidence_count") or 0),
+        "customer_safe_suggestion_count": int(upgrade_payload.get("customer_safe_suggestion_count") or 0),
+        "owner_review_required_count": int(upgrade_payload.get("owner_review_required_count") or 0),
+        "underfit_count": int(plan_fit_payload.get("underfit_count") or 0),
+        "well_fit_count": int(plan_fit_payload.get("well_fit_count") or 0),
+        "revenue_optimization_path": str(REVENUE_OPTIMIZATION_LAST_PATH),
+        "plan_fit_analysis_path": str(PLAN_FIT_ANALYSIS_LAST_PATH),
+        "upgrade_suggestions_path": str(UPGRADE_SUGGESTIONS_LAST_PATH),
+        "churn_rescue_path": str(CHURN_RESCUE_LAST_PATH),
+        "registry_path": str(REVENUE_OPTIMIZATION_REGISTRY_PATH),
+        "policy_path": str(REVENUE_OPTIMIZATION_POLICY_PATH),
+    }
+    load_revenue_optimization_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_model_cost_governance_payload() -> dict[str, Any]:
+    cache = getattr(load_model_cost_governance_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    governance_payload = read_json(MODEL_COST_GOVERNANCE_LAST_PATH, default={})
+    governance_payload = governance_payload if isinstance(governance_payload, dict) else {}
+    task_payload = read_json(TASK_CLASSIFICATION_LAST_PATH, default={})
+    task_payload = task_payload if isinstance(task_payload, dict) else {}
+    usefulness_payload = read_json(TEACHER_USEFULNESS_LAST_PATH, default={})
+    usefulness_payload = usefulness_payload if isinstance(usefulness_payload, dict) else {}
+    cost_payload = read_json(COST_EFFECTIVENESS_LAST_PATH, default={})
+    cost_payload = cost_payload if isinstance(cost_payload, dict) else {}
+    registry_payload = read_json(MODEL_COST_REGISTRY_PATH, default={})
+    registry_payload = registry_payload if isinstance(registry_payload, dict) else {}
+
+    mirror_payload = governance_payload.get("mirror_refresh")
+    mirror_payload = mirror_payload if isinstance(mirror_payload, dict) else {}
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(governance_payload.get("overall_status")).upper() or "UNKNOWN",
+        "task_class_count": int(governance_payload.get("task_class_count") or task_payload.get("task_class_total") or 0),
+        "teacher_allowed_count": int(governance_payload.get("teacher_allowed_count") or registry_payload.get("teacher_allowed_count") or 0),
+        "teacher_blocked_count": int(governance_payload.get("teacher_blocked_count") or registry_payload.get("teacher_blocked_count") or 0),
+        "quality_floor_status": normalize_text(governance_payload.get("quality_floor_status")) or normalize_text(registry_payload.get("quality_floor_status")),
+        "cost_governance_posture": normalize_text(governance_payload.get("cost_governance_posture")) or "unknown",
+        "mirror_refresh_status": normalize_text(governance_payload.get("mirror_refresh_status") or registry_payload.get("mirror_refresh_status")) or "unknown",
+        "recommended_next_action": normalize_short_text(
+            governance_payload.get("recommended_next_action")
+            or task_payload.get("recommended_next_action")
+            or usefulness_payload.get("recommended_next_action")
+            or cost_payload.get("recommended_next_action"),
+            max_len=240,
+        ),
+        "budget_class_count": int(governance_payload.get("budget_class_count") or 0),
+        "local_first_mandatory_count": int(governance_payload.get("local_first_mandatory_count") or 0),
+        "teacher_reviewed_item_count": int(usefulness_payload.get("teacher_reviewed_item_count") or 0),
+        "useful_count": int(usefulness_payload.get("useful_count") or 0),
+        "mixed_count": int(usefulness_payload.get("mixed_count") or 0),
+        "reject_count": int(usefulness_payload.get("reject_count") or 0),
+        "successful_low_cost_count": int(cost_payload.get("successful_low_cost_count") or 0),
+        "successful_high_cost_count": int(cost_payload.get("successful_high_cost_count") or 0),
+        "high_cost_low_value_count": int(cost_payload.get("high_cost_low_value_count") or 0),
+        "mirror_ok": bool(mirror_payload.get("ok")) if "ok" in mirror_payload else False,
+        "mirror_phase": normalize_text(mirror_payload.get("phase")) or "",
+        "mirror_push_result": normalize_text(mirror_payload.get("mirror_push_result")) or "",
+        "generated_at_utc": normalize_text(
+            governance_payload.get("timestamp_utc")
+            or registry_payload.get("generated_at_utc")
+        ),
+        "model_cost_governance_path": str(MODEL_COST_GOVERNANCE_LAST_PATH),
+        "task_classification_path": str(TASK_CLASSIFICATION_LAST_PATH),
+        "teacher_usefulness_path": str(TEACHER_USEFULNESS_LAST_PATH),
+        "cost_effectiveness_path": str(COST_EFFECTIVENESS_LAST_PATH),
+        "registry_path": str(MODEL_COST_REGISTRY_PATH),
+        "policy_path": str(MODEL_COST_GOVERNANCE_POLICY_PATH),
+    }
+    load_model_cost_governance_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_knowledge_learning_quality_payload() -> dict[str, Any]:
+    cache = getattr(load_knowledge_learning_quality_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    summary_payload = read_json(KNOWLEDGE_QUALITY_LAST_PATH, default={})
+    summary_payload = summary_payload if isinstance(summary_payload, dict) else {}
+    cards_payload = read_json(KNOWLEDGE_CARDS_LAST_PATH, default={})
+    cards_payload = cards_payload if isinstance(cards_payload, dict) else {}
+    reuse_payload = read_json(KNOWLEDGE_REUSE_LAST_PATH, default={})
+    reuse_payload = reuse_payload if isinstance(reuse_payload, dict) else {}
+    anti_repeat_payload = read_json(ANTI_REPEAT_MEMORY_LAST_PATH, default={})
+    anti_repeat_payload = anti_repeat_payload if isinstance(anti_repeat_payload, dict) else {}
+    outcome_payload = read_json(OUTCOME_LEARNING_LAST_PATH, default={})
+    outcome_payload = outcome_payload if isinstance(outcome_payload, dict) else {}
+
+    trust_band_counts = summary_payload.get("trust_band_counts")
+    trust_band_counts = trust_band_counts if isinstance(trust_band_counts, dict) else {}
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(summary_payload.get("overall_status")).upper() or "UNKNOWN",
+        "card_count": int(summary_payload.get("card_count") or cards_payload.get("card_count") or 0),
+        "reusable_card_count": int(summary_payload.get("reusable_card_count") or reuse_payload.get("selected_card_count") or 0),
+        "trusted_card_count": int(trust_band_counts.get("trusted") or cards_payload.get("trusted_card_count") or 0),
+        "review_card_count": int(summary_payload.get("review_card_count") or cards_payload.get("review_required_count") or 0),
+        "stale_card_count": int(summary_payload.get("stale_card_count") or cards_payload.get("stale_card_count") or 0),
+        "blocked_card_count": int(summary_payload.get("blocked_card_count") or cards_payload.get("blocked_card_count") or 0),
+        "anti_repeat_count": int(summary_payload.get("anti_repeat_count") or anti_repeat_payload.get("anti_repeat_count") or 0),
+        "low_confidence_teacher_count": int(summary_payload.get("low_confidence_teacher_count") or 0),
+        "recommended_next_action": normalize_short_text(
+            summary_payload.get("recommended_next_action")
+            or reuse_payload.get("recommended_next_action")
+            or anti_repeat_payload.get("recommended_next_action"),
+            max_len=240,
+        ),
+        "recent_reused_cards": [
+            {
+                "card_id": normalize_text(item.get("card_id")),
+                "title": normalize_short_text(item.get("title"), max_len=140),
+                "confidence_band": normalize_text(item.get("confidence_band")),
+                "evidence_band": normalize_text(item.get("evidence_band")),
+                "why_selected": normalize_short_text(item.get("why_selected"), max_len=180),
+            }
+            for item in (summary_payload.get("recent_reused_cards") or reuse_payload.get("recent_reused_cards") or [])
+            if isinstance(item, dict)
+        ][:6],
+        "low_confidence_teacher_material": [
+            {
+                "card_id": normalize_text(item.get("card_id")),
+                "title": normalize_short_text(item.get("title"), max_len=160),
+                "confidence_band": normalize_text(item.get("confidence_band")),
+                "review_status": normalize_text(item.get("review_status")),
+                "notes_for_reviewer": [
+                    normalize_short_text(note, max_len=180)
+                    for note in (item.get("notes_for_reviewer") or [])
+                    if normalize_text(note)
+                ][:3],
+            }
+            for item in (summary_payload.get("low_confidence_teacher_material") or reuse_payload.get("low_confidence_teacher_material") or [])
+            if isinstance(item, dict)
+        ][:8],
+        "outcome_update_count": int(outcome_payload.get("update_count") or 0),
+        "outcome_supported_count": int(outcome_payload.get("outcome_supported_count") or 0),
+        "generated_at_utc": normalize_text(summary_payload.get("timestamp_utc") or cards_payload.get("timestamp_utc")),
+        "knowledge_quality_path": str(KNOWLEDGE_QUALITY_LAST_PATH),
+        "knowledge_cards_path": str(KNOWLEDGE_CARDS_LAST_PATH),
+        "knowledge_reuse_path": str(KNOWLEDGE_REUSE_LAST_PATH),
+        "anti_repeat_path": str(ANTI_REPEAT_MEMORY_LAST_PATH),
+        "outcome_learning_path": str(OUTCOME_LEARNING_LAST_PATH),
+        "policy_path": str(KNOWLEDGE_QUALITY_POLICY_PATH),
+        "knowledge_cards_state_path": str(KNOWLEDGE_CARDS_STATE_PATH),
+    }
+    load_knowledge_learning_quality_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_ux_simplicity_payload() -> dict[str, Any]:
+    cache = getattr(load_ux_simplicity_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    summary_payload = read_json(UX_SIMPLICITY_LAST_PATH, default={})
+    summary_payload = summary_payload if isinstance(summary_payload, dict) else {}
+    founder_payload = read_json(ATHENA_FOUNDER_UX_LAST_PATH, default={})
+    founder_payload = founder_payload if isinstance(founder_payload, dict) else {}
+    onyx_payload = read_json(ONYX_CUSTOMER_UX_LAST_PATH, default={})
+    onyx_payload = onyx_payload if isinstance(onyx_payload, dict) else {}
+    approvals_payload = read_json(APPROVAL_SURFACE_LAST_PATH, default={})
+    approvals_payload = approvals_payload if isinstance(approvals_payload, dict) else {}
+    registry_payload = read_json(UX_SIMPLICITY_REGISTRY_PATH, default={})
+    registry_payload = registry_payload if isinstance(registry_payload, dict) else {}
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(summary_payload.get("overall_status")).upper() or "UNKNOWN",
+        "athena_founder_ux_status": normalize_text(
+            summary_payload.get("athena_founder_ux_status")
+            or founder_payload.get("overall_status")
+        ).upper() or "UNKNOWN",
+        "onyx_customer_ux_status": normalize_text(
+            summary_payload.get("onyx_customer_ux_status")
+            or onyx_payload.get("overall_status")
+        ).upper() or "UNKNOWN",
+        "dead_button_count": int(
+            summary_payload.get("dead_button_count")
+            if "dead_button_count" in summary_payload
+            else founder_payload.get("dead_button_count") or 0
+        ),
+        "approval_surface_status": normalize_text(
+            summary_payload.get("approval_surface_status")
+            or founder_payload.get("approval_surface_status")
+            or approvals_payload.get("overall_status")
+        ).upper() or "UNKNOWN",
+        "mobile_layout_status": normalize_text(
+            summary_payload.get("mobile_layout_status")
+            or founder_payload.get("mobile_friendliness_classification")
+        ) or "unknown",
+        "recommended_next_action": normalize_short_text(
+            summary_payload.get("recommended_next_action")
+            or founder_payload.get("recommended_next_action")
+            or onyx_payload.get("recommended_next_action")
+            or approvals_payload.get("recommended_next_action"),
+            max_len=240,
+        ),
+        "approval_button_count": int(approvals_payload.get("approve_button_count") or 0),
+        "reject_button_count": int(approvals_payload.get("reject_button_count") or 0),
+        "control_button_count": int(summary_payload.get("control_button_count") or 0),
+        "founder_only_confirmed": bool(founder_payload.get("founder_only_confirmed")),
+        "generated_at_utc": normalize_text(
+            summary_payload.get("timestamp_utc")
+            or registry_payload.get("generated_at_utc")
+        ),
+        "ux_simplicity_path": str(UX_SIMPLICITY_LAST_PATH),
+        "athena_founder_ux_path": str(ATHENA_FOUNDER_UX_LAST_PATH),
+        "onyx_customer_ux_path": str(ONYX_CUSTOMER_UX_LAST_PATH),
+        "approval_surface_path": str(APPROVAL_SURFACE_LAST_PATH),
+        "registry_path": str(UX_SIMPLICITY_REGISTRY_PATH),
+        "policy_path": str(UX_SIMPLICITY_POLICY_PATH),
+    }
+    load_ux_simplicity_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_whole_folder_verification_payload() -> dict[str, Any]:
+    cache = getattr(load_whole_folder_verification_payload, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    summary_payload = read_json(WHOLE_FOLDER_VERIFICATION_LAST_PATH, default={})
+    summary_payload = summary_payload if isinstance(summary_payload, dict) else {}
+    registration_payload = read_json(WHOLE_FOLDER_REGISTRATION_GAPS_PATH, default={})
+    registration_payload = registration_payload if isinstance(registration_payload, dict) else {}
+    broken_payload = read_json(WHOLE_FOLDER_BROKEN_PATHS_LAST_PATH, default={})
+    broken_payload = broken_payload if isinstance(broken_payload, dict) else {}
+    golden_payload = read_json(WHOLE_FOLDER_GOLDEN_PATHS_LAST_PATH, default={})
+    golden_payload = golden_payload if isinstance(golden_payload, dict) else {}
+    fault_payload = read_json(WHOLE_FOLDER_FAULT_TESTS_LAST_PATH, default={})
+    fault_payload = fault_payload if isinstance(fault_payload, dict) else {}
+    migration_payload = read_json(WHOLE_FOLDER_MIGRATION_CHECKS_LAST_PATH, default={})
+    migration_payload = migration_payload if isinstance(migration_payload, dict) else {}
+    usability_payload = read_json(WHOLE_FOLDER_USABILITY_CHECKS_LAST_PATH, default={})
+    usability_payload = usability_payload if isinstance(usability_payload, dict) else {}
+
+    inventory_summary = summary_payload.get("inventory_summary")
+    inventory_summary = inventory_summary if isinstance(inventory_summary, dict) else {}
+
+    top_broken_paths = []
+    for item in (summary_payload.get("top_broken_paths") or broken_payload.get("records") or []):
+        if not isinstance(item, dict):
+            continue
+        top_broken_paths.append(
+            {
+                "path": normalize_text(item.get("path")),
+                "component": normalize_text(item.get("component")),
+                "severity": normalize_text(item.get("severity")).upper() or "UNKNOWN",
+                "description": normalize_short_text(item.get("description"), max_len=200),
+                "recommended_action": normalize_short_text(item.get("recommended_action"), max_len=200),
+            }
+        )
+        if len(top_broken_paths) >= 6:
+            break
+
+    top_registration_gaps = []
+    for item in (summary_payload.get("top_registration_gaps") or registration_payload.get("gaps") or []):
+        if not isinstance(item, dict):
+            continue
+        top_registration_gaps.append(
+            {
+                "item_id": normalize_text(item.get("item_id")),
+                "gap_type": normalize_text(item.get("gap_type")),
+                "severity": normalize_text(item.get("severity")).upper() or "UNKNOWN",
+                "path": normalize_text(item.get("path")),
+                "description": normalize_short_text(item.get("description"), max_len=200),
+                "recommended_action": normalize_short_text(item.get("recommended_action"), max_len=200),
+            }
+        )
+        if len(top_registration_gaps) >= 6:
+            break
+
+    payload = {
+        "owner_only": True,
+        "overall_status": normalize_text(summary_payload.get("overall_status")).upper() or "UNKNOWN",
+        "inventory_summary": {
+            "total_scanned": int(inventory_summary.get("total_scanned") or 0),
+            "broken_count": int(inventory_summary.get("broken_count") or 0),
+            "orphaned_count": int(inventory_summary.get("orphaned_count") or 0),
+            "dangerous_count": int(inventory_summary.get("dangerous_count") or 0),
+            "stale_count": int(inventory_summary.get("stale_count") or 0),
+        },
+        "broken_path_count": int(summary_payload.get("broken_path_count") or broken_payload.get("broken_path_count") or 0),
+        "unregistered_count": int(summary_payload.get("unregistered_count") or registration_payload.get("unregistered_count") or 0),
+        "registry_gap_count": int(summary_payload.get("registry_gap_count") or registration_payload.get("gap_count") or 0),
+        "golden_path_status": normalize_text(summary_payload.get("golden_path_status") or golden_payload.get("overall_status")).upper() or "UNKNOWN",
+        "fault_test_status": normalize_text(summary_payload.get("fault_test_status") or fault_payload.get("overall_status")).upper() or "UNKNOWN",
+        "migration_risk_status": normalize_text(summary_payload.get("migration_risk_status") or migration_payload.get("overall_status")).upper() or "UNKNOWN",
+        "usability_status": normalize_text(summary_payload.get("usability_status") or usability_payload.get("overall_status")).upper() or "UNKNOWN",
+        "mirror_status": normalize_text(summary_payload.get("mirror_status")).upper() or "UNKNOWN",
+        "critical_path_broken": bool(summary_payload.get("critical_path_broken")),
+        "recommended_next_action": normalize_short_text(
+            summary_payload.get("recommended_next_action")
+            or broken_payload.get("recommended_next_action")
+            or registration_payload.get("recommended_next_action"),
+            max_len=240,
+        ),
+        "inventory_summary_line": normalize_short_text(summary_payload.get("inventory_summary_line"), max_len=220),
+        "mirror_summary_line": normalize_short_text(summary_payload.get("mirror_summary_line"), max_len=220),
+        "generated_at_utc": normalize_text(summary_payload.get("timestamp_utc")),
+        "top_broken_paths": top_broken_paths,
+        "top_registration_gaps": top_registration_gaps,
+        "whole_folder_verification_path": str(WHOLE_FOLDER_VERIFICATION_LAST_PATH),
+        "inventory_path": str(WHOLE_FOLDER_INVENTORY_LAST_PATH),
+        "registration_gaps_path": str(WHOLE_FOLDER_REGISTRATION_GAPS_PATH),
+        "broken_paths_path": str(WHOLE_FOLDER_BROKEN_PATHS_LAST_PATH),
+        "golden_paths_path": str(WHOLE_FOLDER_GOLDEN_PATHS_LAST_PATH),
+        "fault_tests_path": str(WHOLE_FOLDER_FAULT_TESTS_LAST_PATH),
+        "migration_checks_path": str(WHOLE_FOLDER_MIGRATION_CHECKS_LAST_PATH),
+        "usability_checks_path": str(WHOLE_FOLDER_USABILITY_CHECKS_LAST_PATH),
+        "cleanup_queue_path": str(WHOLE_FOLDER_CLEANUP_QUEUE_PATH),
+        "summary_markdown_path": str(WHOLE_FOLDER_VERIFICATION_SUMMARY_MD_PATH),
+        "policy_path": str(WHOLE_FOLDER_VERIFICATION_POLICY_PATH),
+    }
+    load_whole_folder_verification_payload._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def load_repair_wave_payloads() -> dict[str, dict[str, Any]]:
+    cache = getattr(load_repair_wave_payloads, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    summary_payload = read_json(REPAIR_WAVE_01_LAST_PATH, default={})
+    summary_payload = summary_payload if isinstance(summary_payload, dict) else {}
+    onboarding_payload = read_json(REPAIR_ONBOARDING_LAST_PATH, default={})
+    onboarding_payload = onboarding_payload if isinstance(onboarding_payload, dict) else {}
+    billing_payload = read_json(REPAIR_BILLING_ENTITLEMENTS_LAST_PATH, default={})
+    billing_payload = billing_payload if isinstance(billing_payload, dict) else {}
+    halfwired_payload = read_json(REPAIR_HALFWIRED_LAST_PATH, default={})
+    halfwired_payload = halfwired_payload if isinstance(halfwired_payload, dict) else {}
+    scheduler_payload = read_json(REPAIR_SCHEDULER_OVERSIGHT_LAST_PATH, default={})
+    scheduler_payload = scheduler_payload if isinstance(scheduler_payload, dict) else {}
+    visibility_payload = read_json(REPAIR_INTERNAL_VISIBILITY_LAST_PATH, default={})
+    visibility_payload = visibility_payload if isinstance(visibility_payload, dict) else {}
+    mirror_payload = read_json(REPAIR_MIRROR_HARDENING_LAST_PATH, default={})
+    mirror_payload = mirror_payload if isinstance(mirror_payload, dict) else {}
+    repair_wave_02_payload = read_json(REPAIR_WAVE_02_LAST_PATH, default={})
+    repair_wave_02_payload = repair_wave_02_payload if isinstance(repair_wave_02_payload, dict) else {}
+    internal_scheduler_payload = read_json(INTERNAL_SCHEDULER_LAST_PATH, default={})
+    internal_scheduler_payload = internal_scheduler_payload if isinstance(internal_scheduler_payload, dict) else {}
+    legacy_task_inventory_payload = read_json(LEGACY_TASK_INVENTORY_LAST_PATH, default={})
+    legacy_task_inventory_payload = legacy_task_inventory_payload if isinstance(legacy_task_inventory_payload, dict) else {}
+    legacy_task_migration_payload = read_json(LEGACY_TASK_MIGRATION_LAST_PATH, default={})
+    legacy_task_migration_payload = legacy_task_migration_payload if isinstance(legacy_task_migration_payload, dict) else {}
+    popup_suppression_payload = read_json(POPUP_SUPPRESSION_LAST_PATH, default={})
+    popup_suppression_payload = popup_suppression_payload if isinstance(popup_suppression_payload, dict) else {}
+    validator_coverage_repair_payload = read_json(VALIDATOR_COVERAGE_REPAIR_LAST_PATH, default={})
+    validator_coverage_repair_payload = validator_coverage_repair_payload if isinstance(validator_coverage_repair_payload, dict) else {}
+    broken_path_cluster_repair_payload = read_json(BROKEN_PATH_CLUSTER_REPAIR_LAST_PATH, default={})
+    broken_path_cluster_repair_payload = broken_path_cluster_repair_payload if isinstance(broken_path_cluster_repair_payload, dict) else {}
+    remote_push_repair_payload = read_json(REMOTE_PUSH_REPAIR_LAST_PATH, default={})
+    remote_push_repair_payload = remote_push_repair_payload if isinstance(remote_push_repair_payload, dict) else {}
+
+    payload = {
+        "repair_wave_01": {
+            "owner_only": True,
+            "overall_status": normalize_text(summary_payload.get("overall_status")).upper() or "UNKNOWN",
+            "onboarding_repair_status": normalize_text(summary_payload.get("onboarding_repair_status")).upper() or "UNKNOWN",
+            "billing_entitlements_repair_status": normalize_text(summary_payload.get("billing_entitlements_repair_status")).upper() or "UNKNOWN",
+            "halfwired_repair_status": normalize_text(summary_payload.get("halfwired_repair_status")).upper() or "UNKNOWN",
+            "registration_gap_status": normalize_text(summary_payload.get("registration_gap_status")).upper() or "UNKNOWN",
+            "fixed_count": int(summary_payload.get("fixed_count") or 0),
+            "unresolved_queue_count": int(summary_payload.get("unresolved_queue_count") or 0),
+            "broken_paths_before": int(summary_payload.get("broken_paths_before") or 0),
+            "broken_paths_after": int(summary_payload.get("broken_paths_after") or 0),
+            "registration_gaps_before": int(summary_payload.get("registration_gaps_before") or 0),
+            "registration_gaps_after": int(summary_payload.get("registration_gaps_after") or 0),
+            "mirror_push_result": normalize_text(summary_payload.get("mirror_push_result")) or "unknown",
+            "recommended_next_action": normalize_short_text(summary_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(summary_payload.get("timestamp_utc")),
+            "repair_wave_01_path": str(REPAIR_WAVE_01_LAST_PATH),
+            "policy_path": str(REPAIR_WAVE_01_POLICY_PATH),
+        },
+        "onboarding_repair": {
+            "owner_only": True,
+            "overall_status": normalize_text(onboarding_payload.get("overall_status")).upper() or "UNKNOWN",
+            "public_wording_status": normalize_text(onboarding_payload.get("public_wording_status")).upper() or "UNKNOWN",
+            "completion_action_status": normalize_text(onboarding_payload.get("completion_action_status")).upper() or "UNKNOWN",
+            "dead_button_count": int(onboarding_payload.get("dead_button_count") or 0),
+            "active_selector_label": normalize_short_text(onboarding_payload.get("active_selector_label"), max_len=80),
+            "recommended_next_action": normalize_short_text(onboarding_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(onboarding_payload.get("timestamp_utc")),
+            "repair_onboarding_path": str(REPAIR_ONBOARDING_LAST_PATH),
+        },
+        "billing_entitlements_repair": {
+            "owner_only": True,
+            "overall_status": normalize_text(billing_payload.get("overall_status")).upper() or "UNKNOWN",
+            "root_cause_class": normalize_text(billing_payload.get("root_cause_class")) or "unknown",
+            "active_workspace_label": normalize_short_text(billing_payload.get("active_workspace_label"), max_len=120),
+            "current_tier": normalize_short_text(billing_payload.get("current_tier"), max_len=80),
+            "enabled_tools_before_count": len(normalize_list(billing_payload.get("enabled_tools_before"))),
+            "enabled_tools_after_count": len(normalize_list(billing_payload.get("enabled_tools_after"))),
+            "repaired": bool(billing_payload.get("repaired_bool")),
+            "checkout_required": bool(billing_payload.get("checkout_required")),
+            "recommended_next_action": normalize_short_text(
+                billing_payload.get("recommended_next_action") or billing_payload.get("why_blocked_if_not_repaired"),
+                max_len=240,
+            ),
+            "generated_at_utc": normalize_text(billing_payload.get("timestamp_utc")),
+            "repair_billing_path": str(REPAIR_BILLING_ENTITLEMENTS_LAST_PATH),
+        },
+        "halfwired_repair": {
+            "owner_only": True,
+            "overall_status": normalize_text(halfwired_payload.get("overall_status")).upper() or "UNKNOWN",
+            "fixed_count": int(halfwired_payload.get("fixed_count") or 0),
+            "queued_count": int(halfwired_payload.get("queued_count") or 0),
+            "recommended_next_action": normalize_short_text(halfwired_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(halfwired_payload.get("timestamp_utc")),
+            "repair_halfwired_path": str(REPAIR_HALFWIRED_LAST_PATH),
+        },
+        "scheduler_oversight": {
+            "owner_only": True,
+            "overall_status": normalize_text(scheduler_payload.get("overall_status")).upper() or "UNKNOWN",
+            "relevant_task_count": int(scheduler_payload.get("relevant_task_count") or 0),
+            "healthy_count": int(scheduler_payload.get("healthy_count") or 0),
+            "disabled_count": int(scheduler_payload.get("disabled_count") or 0),
+            "stale_count": int(scheduler_payload.get("stale_count") or 0),
+            "failing_count": int(scheduler_payload.get("failing_count") or 0),
+            "recommended_next_action": normalize_short_text(scheduler_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(scheduler_payload.get("timestamp_utc")),
+            "repair_scheduler_path": str(REPAIR_SCHEDULER_OVERSIGHT_LAST_PATH),
+        },
+        "internal_visibility": {
+            "owner_only": True,
+            "overall_status": normalize_text(visibility_payload.get("overall_status")).upper() or "UNKNOWN",
+            "visible_category_count": int(visibility_payload.get("visible_category_count") or 0),
+            "blind_spot_count": int(visibility_payload.get("blind_spot_count") or 0),
+            "recommended_next_action": normalize_short_text(visibility_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(visibility_payload.get("timestamp_utc")),
+            "repair_internal_visibility_path": str(REPAIR_INTERNAL_VISIBILITY_LAST_PATH),
+        },
+        "mirror_hardening": {
+            "owner_only": True,
+            "overall_status": normalize_text(mirror_payload.get("overall_status")).upper() or "UNKNOWN",
+            "coverage_status": normalize_text(mirror_payload.get("coverage_status")).upper() or "UNKNOWN",
+            "omission_status": normalize_text(mirror_payload.get("omission_status")).upper() or "UNKNOWN",
+            "matched_file_count": int(mirror_payload.get("matched_file_count") or 0),
+            "omission_count": int(mirror_payload.get("omission_count") or 0),
+            "remote_push_result": normalize_text(mirror_payload.get("remote_push_result")) or "unknown",
+            "remote_current": bool(mirror_payload.get("remote_current")),
+            "recommended_next_action": normalize_short_text(mirror_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(mirror_payload.get("timestamp_utc")),
+            "repair_mirror_path": str(REPAIR_MIRROR_HARDENING_LAST_PATH),
+            "mirror_coverage_path": str(MIRROR_COVERAGE_LAST_PATH),
+            "mirror_omission_path": str(MIRROR_OMISSION_LAST_PATH),
+            "mirror_safe_index_path": str(MIRROR_SAFE_INDEX_PATH),
+        },
+        "repair_wave_02": {
+            "owner_only": True,
+            "overall_status": normalize_text(repair_wave_02_payload.get("overall_status")).upper() or "UNKNOWN",
+            "internal_scheduler_status": normalize_text(repair_wave_02_payload.get("internal_scheduler_status")).upper() or "UNKNOWN",
+            "legacy_task_migration_status": normalize_text(repair_wave_02_payload.get("legacy_task_migration_status")).upper() or "UNKNOWN",
+            "popup_suppression_status": normalize_text(repair_wave_02_payload.get("popup_suppression_status")).upper() or "UNKNOWN",
+            "validator_coverage_status": normalize_text(repair_wave_02_payload.get("validator_coverage_status")).upper() or "UNKNOWN",
+            "broken_path_repair_status": normalize_text(repair_wave_02_payload.get("broken_path_repair_status")).upper() or "UNKNOWN",
+            "remote_push_repair_status": normalize_text(repair_wave_02_payload.get("remote_push_repair_status")).upper() or "UNKNOWN",
+            "migrated_task_count": int(repair_wave_02_payload.get("migrated_task_count") or 0),
+            "popup_fixed_count": int(repair_wave_02_payload.get("popup_fixed_count") or 0),
+            "broken_paths_before": int(repair_wave_02_payload.get("broken_paths_before") or 0),
+            "broken_paths_after": int(repair_wave_02_payload.get("broken_paths_after") or 0),
+            "remote_push_result": normalize_text(repair_wave_02_payload.get("remote_push_result")) or "unknown",
+            "recommended_next_action": normalize_short_text(repair_wave_02_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(repair_wave_02_payload.get("timestamp_utc")),
+            "repair_wave_02_path": str(REPAIR_WAVE_02_LAST_PATH),
+            "policy_path": str(REPAIR_WAVE_02_POLICY_PATH),
+        },
+        "internal_scheduler": {
+            "owner_only": True,
+            "overall_status": normalize_text(internal_scheduler_payload.get("overall_status")).upper() or "UNKNOWN",
+            "task_definition_count": int(internal_scheduler_payload.get("task_definition_count") or 0),
+            "enabled_task_count": int(internal_scheduler_payload.get("enabled_task_count") or 0),
+            "foundation_status": normalize_text(internal_scheduler_payload.get("foundation_status")).upper() or "UNKNOWN",
+            "audit_logging_status": normalize_text(internal_scheduler_payload.get("audit_logging_status")).upper() or "UNKNOWN",
+            "windows_fallback_dependency_count": int(internal_scheduler_payload.get("windows_fallback_dependency_count") or 0),
+            "recommended_next_action": normalize_short_text(internal_scheduler_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(internal_scheduler_payload.get("timestamp_utc")),
+            "internal_scheduler_path": str(INTERNAL_SCHEDULER_LAST_PATH),
+            "policy_path": str(INTERNAL_SCHEDULER_POLICY_PATH),
+        },
+        "legacy_task_migration": {
+            "owner_only": True,
+            "overall_status": normalize_text(legacy_task_migration_payload.get("overall_status")).upper() or "UNKNOWN",
+            "relevant_task_count": int(legacy_task_inventory_payload.get("relevant_task_count") or 0),
+            "migrated_count": int(legacy_task_migration_payload.get("migrated_count") or 0),
+            "fallback_only_count": int(legacy_task_migration_payload.get("fallback_only_count") or 0),
+            "keep_temporarily_count": int(legacy_task_migration_payload.get("keep_temporarily_count") or 0),
+            "blocked_count": int(legacy_task_migration_payload.get("blocked_count") or 0),
+            "recommended_next_action": normalize_short_text(legacy_task_migration_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(legacy_task_migration_payload.get("timestamp_utc")),
+            "legacy_task_inventory_path": str(LEGACY_TASK_INVENTORY_LAST_PATH),
+            "legacy_task_migration_path": str(LEGACY_TASK_MIGRATION_LAST_PATH),
+            "policy_path": str(LEGACY_TASK_MIGRATION_POLICY_PATH),
+        },
+        "popup_suppression": {
+            "owner_only": True,
+            "overall_status": normalize_text(popup_suppression_payload.get("overall_status")).upper() or "UNKNOWN",
+            "noisy_source_count": int(popup_suppression_payload.get("noisy_source_count") or 0),
+            "fixed_count": int(popup_suppression_payload.get("fixed_count") or 0),
+            "remaining_visible_count": int(popup_suppression_payload.get("remaining_visible_count") or 0),
+            "recommended_next_action": normalize_short_text(popup_suppression_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(popup_suppression_payload.get("timestamp_utc")),
+            "popup_suppression_path": str(POPUP_SUPPRESSION_LAST_PATH),
+        },
+        "validator_coverage_repair": {
+            "owner_only": True,
+            "overall_status": normalize_text(validator_coverage_repair_payload.get("overall_status")).upper() or "UNKNOWN",
+            "components_checked": normalize_list(validator_coverage_repair_payload.get("components_checked")),
+            "fully_covered_count": int(validator_coverage_repair_payload.get("fully_covered_count") or 0),
+            "uncovered_count": int(validator_coverage_repair_payload.get("uncovered_count") or 0),
+            "recommended_next_action": normalize_short_text(validator_coverage_repair_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(validator_coverage_repair_payload.get("timestamp_utc")),
+            "validator_coverage_repair_path": str(VALIDATOR_COVERAGE_REPAIR_LAST_PATH),
+        },
+        "broken_path_cluster_repair": {
+            "owner_only": True,
+            "overall_status": normalize_text(broken_path_cluster_repair_payload.get("overall_status")).upper() or "UNKNOWN",
+            "target_cluster_count": int(broken_path_cluster_repair_payload.get("target_cluster_count") or 0),
+            "fixed_count": int(broken_path_cluster_repair_payload.get("fixed_count") or 0),
+            "broken_paths_before": int(broken_path_cluster_repair_payload.get("broken_paths_before") or 0),
+            "broken_paths_after": int(broken_path_cluster_repair_payload.get("broken_paths_after") or 0),
+            "recommended_next_action": normalize_short_text(broken_path_cluster_repair_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(broken_path_cluster_repair_payload.get("timestamp_utc")),
+            "broken_path_cluster_repair_path": str(BROKEN_PATH_CLUSTER_REPAIR_LAST_PATH),
+        },
+        "remote_push_repair": {
+            "owner_only": True,
+            "overall_status": normalize_text(remote_push_repair_payload.get("overall_status")).upper() or "UNKNOWN",
+            "push_failure_class": normalize_text(remote_push_repair_payload.get("push_failure_class")) or "unknown",
+            "safe_repair_attempted": bool(remote_push_repair_payload.get("safe_repair_attempted")),
+            "remote_push_result": normalize_text(remote_push_repair_payload.get("remote_push_result")) or "unknown",
+            "remote_current": bool(remote_push_repair_payload.get("remote_current")),
+            "oversized_path_count": len(normalize_list(remote_push_repair_payload.get("oversized_paths"))),
+            "recommended_next_action": normalize_short_text(remote_push_repair_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(remote_push_repair_payload.get("timestamp_utc")),
+            "remote_push_repair_path": str(REMOTE_PUSH_REPAIR_LAST_PATH),
+        },
+    }
+    load_repair_wave_payloads._cache = {"ts": now_monotonic, "payload": payload}
+    return payload
+
+
+def normalize_founder_risk_level(value: Any) -> str:
+    text = normalize_short_text(value, max_len=24).upper()
+    if not text:
+        return "R1"
+    if re.fullmatch(r"R\d+", text):
+        return text
+    if text.isdigit():
+        return f"R{text}"
+    if text in {"LOW", "MEDIUM", "HIGH", "CRITICAL"}:
+        return text
+    return "R1"
+
+
+def founder_risk_sort_value(value: Any) -> int:
+    text = normalize_founder_risk_level(value)
+    if text.startswith("R"):
+        try:
+            return int(text[1:])
+        except Exception:
+            return 1
+    order = {"LOW": 1, "MEDIUM": 2, "HIGH": 3, "CRITICAL": 4}
+    return order.get(text, 1)
+
+
+def founder_display_state(value: Any) -> str:
+    text = normalize_text(value).strip().lower()
+    if not text:
+        return "Review Only"
+    if text in {"pass", "ok", "green", "success", "healthy", "guarded", "normal", "done", "no_material_change", "retain_current_posture", "loopback_only"}:
+        return "Healthy"
+    if text in {"blocked", "blocked_pending_human_review"}:
+        return "Blocked"
+    if text in {"review_only", "queue_for_review", "suggest_only", "approval_required"}:
+        return "Review Only"
+    if text in {"fail", "failed", "red", "restricted", "protect_host", "error"}:
+        return "Action Required"
+    if text in {"warn", "warning", "yellow", "watch", "caution", "stub", "pending_reboot", "minor_change", "significant_change", "new_environment"}:
+        return "Warning"
+    return "Review Only"
+
+
+def founder_item(
+    *,
+    title: str,
+    raw_status: Any = "",
+    display_state: str = "",
+    reason: str = "",
+    source_path: str = "",
+    risk_level: str = "R1",
+    action_posture: str = "review_needed",
+    item_id: str = "",
+    component: str = "",
+) -> dict[str, Any]:
+    state = normalize_short_text(display_state, max_len=32) or founder_display_state(raw_status)
+    posture = normalize_short_text(action_posture, max_len=24).lower() or "review_needed"
+    if posture not in {"safe", "review_needed", "blocked"}:
+        posture = "review_needed"
+    return {
+        "item_id": normalize_short_text(item_id, max_len=120),
+        "title": normalize_short_text(title, max_len=140) or "Untitled",
+        "display_state": state,
+        "raw_status": normalize_short_text(raw_status, max_len=32),
+        "reason": normalize_short_text(reason, max_len=240),
+        "source_path": normalize_text(source_path),
+        "risk_level": normalize_founder_risk_level(risk_level),
+        "action_posture": posture,
+        "component": normalize_short_text(component, max_len=80),
+    }
+
+
+def load_host_guardian_summary() -> dict[str, Any]:
+    cache = getattr(load_host_guardian_summary, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    payload = read_json(HOST_HEALTH_LAST_PATH, default={})
+    payload = payload if isinstance(payload, dict) else {}
+    uptime = payload.get("uptime") if isinstance(payload.get("uptime"), dict) else {}
+    disk = payload.get("disk") if isinstance(payload.get("disk"), dict) else {}
+    runtime = payload.get("mason_runtime_health") if isinstance(payload.get("mason_runtime_health"), dict) else {}
+    report_growth = runtime.get("report_growth") if isinstance(runtime.get("report_growth"), dict) else {}
+    summary = {
+        "timestamp_utc": normalize_text(payload.get("timestamp_utc")),
+        "overall_status": normalize_text(payload.get("overall_status")).upper() or "UNKNOWN",
+        "display_state": founder_display_state(payload.get("overall_status")),
+        "pending_reboot": bool(uptime.get("pending_reboot", False)),
+        "throttle_guidance": normalize_short_text(payload.get("throttle_guidance"), max_len=40) or "normal",
+        "disk_free_percent": disk.get("system_drive_free_percent"),
+        "report_growth_status": normalize_text(report_growth.get("status")).upper(),
+        "report_growth_recommended_action": normalize_short_text(report_growth.get("recommended_action"), max_len=240),
+        "recommended_next_action": normalize_short_text(payload.get("recommended_next_action"), max_len=240),
+        "path": str(HOST_HEALTH_LAST_PATH),
+    }
+    load_host_guardian_summary._cache = {"ts": now_monotonic, "payload": summary}
+    return summary
+
+
+def load_environment_adaptation_summary() -> dict[str, Any]:
+    cache = getattr(load_environment_adaptation_summary, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 5.0:
+        return cache["payload"]
+
+    profile = read_json(ENVIRONMENT_PROFILE_LAST_PATH, default={})
+    profile = profile if isinstance(profile, dict) else {}
+    drift = read_json(ENVIRONMENT_DRIFT_LAST_PATH, default={})
+    drift = drift if isinstance(drift, dict) else {}
+    posture = read_json(RUNTIME_POSTURE_LAST_PATH, default={})
+    posture = posture if isinstance(posture, dict) else {}
+    summary = {
+        "timestamp_utc": normalize_text(posture.get("timestamp_utc") or drift.get("timestamp_utc") or profile.get("timestamp_utc")),
+        "environment_id": normalize_short_text(posture.get("environment_id") or drift.get("current_environment_id"), max_len=64),
+        "host_classification": normalize_short_text(posture.get("host_classification"), max_len=40),
+        "drift_level": normalize_short_text(drift.get("drift_level"), max_len=40) or "unknown",
+        "migration_detected": bool(drift.get("migration_detected", False)),
+        "learning_posture": normalize_short_text(posture.get("learning_posture"), max_len=40),
+        "heavy_jobs_posture": normalize_short_text(posture.get("heavy_jobs_posture"), max_len=40),
+        "monitoring_posture": normalize_short_text(posture.get("monitoring_posture"), max_len=40),
+        "cleanup_posture": normalize_short_text(posture.get("cleanup_posture"), max_len=40),
+        "throttle_guidance": normalize_short_text(posture.get("throttle_guidance"), max_len=40),
+        "recommended_next_action": normalize_short_text(posture.get("recommended_next_action") or drift.get("recommended_next_action"), max_len=240),
+        "profile_path": str(ENVIRONMENT_PROFILE_LAST_PATH),
+        "drift_path": str(ENVIRONMENT_DRIFT_LAST_PATH),
+        "posture_path": str(RUNTIME_POSTURE_LAST_PATH),
+    }
+    load_environment_adaptation_summary._cache = {"ts": now_monotonic, "payload": summary}
+    return summary
+
+
+def load_self_improvement_posture_summary() -> dict[str, Any]:
+    cache = getattr(load_self_improvement_posture_summary, "_cache", {"ts": 0.0, "payload": {}})
+    now_monotonic = time.monotonic()
+    if isinstance(cache.get("payload"), dict) and cache.get("payload") and (now_monotonic - float(cache.get("ts") or 0.0)) < 10.0:
+        return cache["payload"]
+
+    governor = read_json(SELF_IMPROVEMENT_GOVERNOR_REPORT_PATH, default={})
+    governor = governor if isinstance(governor, dict) else {}
+    budget = read_json(TEACHER_CALL_BUDGET_REPORT_PATH, default={})
+    budget = budget if isinstance(budget, dict) else {}
+    decision_log = read_json(TEACHER_DECISION_LOG_REPORT_PATH, default={})
+    decision_log = decision_log if isinstance(decision_log, dict) else {}
+    policy = load_self_improvement_policy()
+    exec_counts = governor.get("counts_by_execution_disposition") if isinstance(governor.get("counts_by_execution_disposition"), dict) else {}
+    quality_counts = governor.get("counts_by_teacher_quality_classification") if isinstance(governor.get("counts_by_teacher_quality_classification"), dict) else {}
+    items = [item for item in normalize_list(governor.get("items")) if isinstance(item, dict)]
+
+    def sorted_items_for(dispositions: set[str]) -> list[dict[str, Any]]:
+        filtered = [
+            item
+            for item in items
+            if normalize_text(item.get("execution_disposition")).lower() in dispositions
+        ]
+        return sorted(
+            filtered,
+            key=lambda item: (
+                -int(item.get("priority") or 0),
+                normalize_text(item.get("title")),
+            ),
+        )
+
+    def summarize_item(item: dict[str, Any], posture: str) -> dict[str, Any]:
+        disposition = normalize_text(item.get("execution_disposition")) or normalize_text(item.get("teacher_quality_classification"))
+        return founder_item(
+            item_id=normalize_text(item.get("improvement_id")),
+            title=normalize_text(item.get("title")) or normalize_text(item.get("target_id")) or "Improvement item",
+            raw_status=disposition,
+            display_state=founder_display_state(disposition),
+            reason=normalize_text(item.get("execution_disposition_reason"))
+            or normalize_text(item.get("matched_teacher_title"))
+            or first_sentence_summary(" ".join(normalize_string_list(item.get("rationale"), max_items=6, max_len=80))),
+            source_path=normalize_text(governor.get("queue_path") or str(IMPROVEMENT_QUEUE_PATH)),
+            risk_level=normalize_founder_risk_level(item.get("risk_level")),
+            action_posture=posture,
+            component=normalize_text(item.get("target_type")) or normalize_text(item.get("target_id")),
+        )
+
+    blocked_items = [summarize_item(item, "blocked") for item in sorted_items_for({"blocked"})[:5]]
+    review_items = [summarize_item(item, "review_needed") for item in sorted_items_for({"approval_required", "suggest_only"})[:5]]
+    safe_to_test_items = [summarize_item(item, "safe") for item in sorted_items_for({"safe_to_test"})[:5]]
+
+    summary = {
+        "timestamp_utc": normalize_text(governor.get("timestamp_utc") or budget.get("timestamp_utc")),
+        "overall_status": normalize_text(governor.get("overall_status")).upper() or "UNKNOWN",
+        "display_state": founder_display_state(governor.get("overall_status")),
+        "active_improvement_total": int(governor.get("active_improvement_total") or 0),
+        "teacher_calls_allowed": int(governor.get("total_teacher_allowed") or budget.get("total_allowed") or 0),
+        "teacher_calls_blocked": int(governor.get("total_blocked_by_local_first") or budget.get("total_blocked_by_local_first") or 0),
+        "teacher_calls_high_value_only": int(governor.get("total_teacher_high_value_only") or budget.get("total_high_value_only") or 0),
+        "local_first_enforced": bool(policy.get("local_first_mandatory", True)),
+        "safe_to_test_count": int(exec_counts.get("safe_to_test") or 0),
+        "review_only_count": int(quality_counts.get("queue_for_review") or 0),
+        "blocked_count": int(exec_counts.get("blocked") or 0),
+        "approval_required_count": int(exec_counts.get("approval_required") or 0),
+        "suggest_only_count": int(exec_counts.get("suggest_only") or 0),
+        "teacher_response_reviews_total": int(governor.get("teacher_response_reviews_total") or len(normalize_list(decision_log.get("teacher_response_reviews")))),
+        "budget_posture": normalize_short_text(governor.get("current_budget_posture") or budget.get("current_budget_posture"), max_len=32) or "guarded",
+        "recommended_next_action": normalize_short_text(governor.get("recommended_next_action") or budget.get("recommended_next_action"), max_len=240),
+        "blocked_items": blocked_items,
+        "review_items": review_items,
+        "safe_to_test_items": safe_to_test_items,
+        "artifact_path": str(SELF_IMPROVEMENT_GOVERNOR_REPORT_PATH),
+        "budget_path": str(TEACHER_CALL_BUDGET_REPORT_PATH),
+        "decision_log_path": str(TEACHER_DECISION_LOG_REPORT_PATH),
+        "policy_path": str(SELF_IMPROVEMENT_POLICY_PATH),
+    }
+    load_self_improvement_posture_summary._cache = {"ts": now_monotonic, "payload": summary}
+    return summary
+
+
+def build_founder_mode_payload(
+    *,
+    validation_data: dict[str, Any],
+    system_validation_summary: dict[str, Any],
+    approvals: dict[str, Any],
+    approvals_items: list[dict[str, Any]],
+    security_summary: dict[str, Any],
+    tenant_safety_summary: dict[str, Any],
+    billing_summary: dict[str, Any],
+    mirror_summary: dict[str, Any],
+    controls: dict[str, Any],
+    live_rows: list[dict[str, Any]],
+    live_docs: dict[str, Any],
+) -> dict[str, Any]:
+    host_summary = load_host_guardian_summary()
+    environment_summary = load_environment_adaptation_summary()
+    self_improvement_summary = load_self_improvement_posture_summary()
+    sections = [item for item in normalize_list(validation_data.get("sections")) if isinstance(item, dict)]
+    section_lookup = {
+        normalize_text(item.get("section_name")).strip().lower(): item
+        for item in sections
+        if normalize_text(item.get("section_name"))
+    }
+
+    def section_item(section_name: str, title: str) -> dict[str, Any]:
+        section = section_lookup.get(section_name.lower(), {})
+        status = normalize_text(section.get("status")).upper() or "UNKNOWN"
+        reason = normalize_text(section.get("recommended_next_action")) or normalize_text(section.get("failing_component")) or "No action required."
+        return founder_item(
+            title=title,
+            raw_status=status,
+            display_state=founder_display_state(status),
+            reason=reason,
+            source_path=normalize_text(section.get("relevant_log_or_artifact_path")) or system_validation_summary.get("path", ""),
+            risk_level="R1",
+            action_posture="safe" if founder_display_state(status) == "Healthy" else "review_needed",
+            component=normalize_text(section.get("failing_component")),
+        )
+
+    stack_truth_items = [
+        founder_item(
+            title="Overall Validation",
+            raw_status=system_validation_summary.get("overall_status"),
+            display_state=founder_display_state(system_validation_summary.get("overall_status")),
+            reason=f"{int(system_validation_summary.get('failed_count') or 0)} fail / {int(system_validation_summary.get('warn_count') or 0)} warn / {int(system_validation_summary.get('passed_count') or 0)} pass",
+            source_path=system_validation_summary.get("path", ""),
+            risk_level="R1",
+            action_posture="safe" if normalize_text(system_validation_summary.get("overall_status")).upper() == "PASS" else "review_needed",
+        ),
+        section_item("stack/base", "Stack/Base"),
+        section_item("athena", "Athena"),
+        section_item("onyx", "Onyx"),
+        founder_item(
+            title="Mirror/Checkpoint",
+            raw_status=(section_lookup.get("mirror/checkpoint state", {}) or {}).get("status") or ("PASS" if mirror_summary.get("ok") else "WARN"),
+            display_state=founder_display_state((section_lookup.get("mirror/checkpoint state", {}) or {}).get("status") or ("PASS" if mirror_summary.get("ok") else "WARN")),
+            reason=normalize_text((section_lookup.get("mirror/checkpoint state", {}) or {}).get("recommended_next_action"))
+            or normalize_text(mirror_summary.get("next_action"))
+            or "No action required.",
+            source_path=normalize_text((section_lookup.get("mirror/checkpoint state", {}) or {}).get("relevant_log_or_artifact_path")) or str(MIRROR_UPDATE_LAST_PATH),
+            risk_level="R1",
+            action_posture="safe" if mirror_summary.get("ok") else "review_needed",
+        ),
+        founder_item(
+            title="Host Guardian",
+            raw_status=host_summary.get("overall_status"),
+            display_state=host_summary.get("display_state"),
+            reason=host_summary.get("recommended_next_action") or f"Throttle guidance is {host_summary.get('throttle_guidance') or 'normal'}.",
+            source_path=host_summary.get("path", ""),
+            risk_level="R1",
+            action_posture="review_needed" if host_summary.get("display_state") == "Warning" else "safe",
+        ),
+        founder_item(
+            title="Environment Adaptation",
+            raw_status=(section_lookup.get("environment adaptation", {}) or {}).get("status") or environment_summary.get("drift_level"),
+            display_state=founder_display_state((section_lookup.get("environment adaptation", {}) or {}).get("status") or environment_summary.get("drift_level")),
+            reason=f"Host is {environment_summary.get('host_classification') or 'unknown'} with drift {environment_summary.get('drift_level') or 'unknown'}.",
+            source_path=environment_summary.get("posture_path") or environment_summary.get("profile_path", ""),
+            risk_level="R1",
+            action_posture="safe",
+        ),
+        founder_item(
+            title="Self-Improvement Governor",
+            raw_status=self_improvement_summary.get("overall_status"),
+            display_state=self_improvement_summary.get("display_state"),
+            reason=self_improvement_summary.get("recommended_next_action") or "Governor posture available.",
+            source_path=self_improvement_summary.get("artifact_path", ""),
+            risk_level="R1",
+            action_posture="review_needed" if self_improvement_summary.get("display_state") != "Healthy" else "safe",
+        ),
+    ]
+
+    warnings: list[dict[str, Any]] = []
+    blocked: list[dict[str, Any]] = []
+    owner_actions: list[dict[str, Any]] = []
+    safe_to_ignore: list[dict[str, Any]] = []
+
+    if host_summary.get("pending_reboot"):
+        warnings.append(
+            founder_item(
+                title="Pending Windows reboot",
+                raw_status="pending_reboot",
+                display_state="Warning",
+                reason=host_summary.get("recommended_next_action") or "Host reports a pending reboot after extended uptime.",
+                source_path=host_summary.get("path", ""),
+                risk_level="R1",
+                action_posture="review_needed",
+                component="host",
+            )
+        )
+    if normalize_text(host_summary.get("report_growth_status")).upper() == "WARN":
+        warnings.append(
+            founder_item(
+                title="Report growth is elevated",
+                raw_status="warn",
+                display_state="Warning",
+                reason=host_summary.get("report_growth_recommended_action") or "Reports and logs are growing faster than the comfort baseline.",
+                source_path=host_summary.get("path", ""),
+                risk_level="R1",
+                action_posture="review_needed",
+                component="reports",
+            )
+        )
+    if normalize_text(security_summary.get("overall_status")).lower() not in {"", "guarded"}:
+        warnings.append(
+            founder_item(
+                title="Security posture is watch",
+                raw_status=security_summary.get("overall_status"),
+                display_state=founder_display_state(security_summary.get("overall_status")),
+                reason="Tenant isolation or governance warnings remain active and need review before expanding risk.",
+                source_path=normalize_text(security_summary.get("artifact_path")),
+                risk_level="R2",
+                action_posture="review_needed",
+                component="security",
+            )
+        )
+    provider = billing_summary.get("provider") if isinstance(billing_summary.get("provider"), dict) else {}
+    provider_mode = normalize_short_text(provider.get("mode"), max_len=24) or ("stub" if not billing_summary.get("provider_configured") else "live")
+    if provider_mode == "stub" or not billing_summary.get("provider_configured"):
+        warnings.append(
+            founder_item(
+                title="Billing provider remains stubbed",
+                raw_status="stub",
+                display_state="Warning",
+                reason="Money actions stay approval-gated until external billing is configured for real use.",
+                source_path=normalize_text(billing_summary.get("artifact_path")),
+                risk_level="R2",
+                action_posture="review_needed",
+                component="billing",
+            )
+        )
+    if self_improvement_summary.get("display_state") != "Healthy":
+        warnings.append(
+            founder_item(
+                title="Self-improvement is review-gated",
+                raw_status=self_improvement_summary.get("overall_status"),
+                display_state=self_improvement_summary.get("display_state"),
+                reason=self_improvement_summary.get("recommended_next_action"),
+                source_path=self_improvement_summary.get("artifact_path", ""),
+                risk_level="R1",
+                action_posture="review_needed",
+                component="self_improvement",
+            )
+        )
+
+    if int(self_improvement_summary.get("blocked_count") or 0) > 0:
+        blocked.append(
+            founder_item(
+                title="Blocked governed improvements",
+                raw_status="blocked",
+                display_state="Blocked",
+                reason=f"{int(self_improvement_summary.get('blocked_count') or 0)} improvement items are blocked under current teacher and risk gates.",
+                source_path=self_improvement_summary.get("artifact_path", ""),
+                risk_level="R2",
+                action_posture="blocked",
+                component="self_improvement",
+            )
+        )
+    if int(self_improvement_summary.get("teacher_calls_blocked") or 0) > 0:
+        blocked.append(
+            founder_item(
+                title="Teacher calls blocked by local-first policy",
+                raw_status="blocked_pending_human_review",
+                display_state="Blocked",
+                reason=f"{int(self_improvement_summary.get('teacher_calls_blocked') or 0)} teacher-worthy items were held locally instead of spending budget.",
+                source_path=self_improvement_summary.get("budget_path", ""),
+                risk_level="R1",
+                action_posture="blocked",
+                component="self_improvement",
+            )
+        )
+
+    pending_approval_items = [
+        item for item in approvals_items if normalize_text(item.get("status")).lower() == "pending"
+    ]
+    pending_approval_items = sorted(
+        pending_approval_items,
+        key=lambda item: (
+            -founder_risk_sort_value(item.get("risk_level")),
+            normalize_text(item.get("created_at")),
+        ),
+    )
+    if int(approvals.get("pending_total") or 0) > 0:
+        owner_actions.append(
+            founder_item(
+                title="Pending approvals need owner review",
+                raw_status="review_only",
+                display_state="Review Only",
+                reason=f"{int(approvals.get('pending_total') or 0)} approvals are waiting in Athena.",
+                source_path=normalize_text(approvals.get("path")),
+                risk_level="R1",
+                action_posture="review_needed",
+                component="approvals",
+            )
+        )
+    if int(tenant_safety_summary.get("issues_total") or 0) > 0:
+        owner_actions.append(
+            founder_item(
+                title="Tenant safety warnings need review",
+                raw_status=tenant_safety_summary.get("status"),
+                display_state=founder_display_state(tenant_safety_summary.get("status")),
+                reason=f"{int(tenant_safety_summary.get('issues_total') or 0)} tenant-safety issues are still open.",
+                source_path=normalize_text(tenant_safety_summary.get("artifact_path")),
+                risk_level="R2",
+                action_posture="review_needed",
+                component="tenant_safety",
+            )
+        )
+
+    if provider_mode == "stub" or not billing_summary.get("provider_configured"):
+        safe_to_ignore.append(
+            founder_item(
+                title="Billing stub is acceptable until launch",
+                raw_status="stub",
+                display_state="Warning",
+                reason="You do not need to configure live billing until you are ready to take real money.",
+                source_path=normalize_text(billing_summary.get("artifact_path")),
+                risk_level="R1",
+                action_posture="safe",
+                component="billing",
+            )
+        )
+    if not environment_summary.get("migration_detected"):
+        safe_to_ignore.append(
+            founder_item(
+                title="No environment migration is in progress",
+                raw_status="no_material_change",
+                display_state="Healthy",
+                reason="The current environment matches the known host posture, so no migration response is needed now.",
+                source_path=environment_summary.get("drift_path", ""),
+                risk_level="R1",
+                action_posture="safe",
+                component="environment",
+            )
+        )
+    if int(self_improvement_summary.get("teacher_calls_blocked") or 0) > 0:
+        safe_to_ignore.append(
+            founder_item(
+                title="Teacher spend is being held correctly",
+                raw_status="guarded",
+                display_state="Healthy",
+                reason="Local-first is blocking weak or unnecessary teacher calls, which is protective rather than broken.",
+                source_path=self_improvement_summary.get("budget_path", ""),
+                risk_level="R1",
+                action_posture="safe",
+                component="self_improvement",
+            )
+        )
+
+    safe_next_actions = [
+        founder_item(
+            title="Reboot later to clear the pending reboot flag",
+            raw_status="warn" if host_summary.get("pending_reboot") else "pass",
+            display_state="Warning" if host_summary.get("pending_reboot") else "Healthy",
+            reason=host_summary.get("recommended_next_action") or "No reboot action required right now.",
+            source_path=host_summary.get("path", ""),
+            risk_level="R1",
+            action_posture="review_needed" if host_summary.get("pending_reboot") else "safe",
+            component="host",
+        ),
+        founder_item(
+            title="Review tenant safety warnings",
+            raw_status=tenant_safety_summary.get("status"),
+            display_state=founder_display_state(tenant_safety_summary.get("status")),
+            reason=f"{int(tenant_safety_summary.get('issues_total') or 0)} tenant-safety issues remain in the report.",
+            source_path=normalize_text(tenant_safety_summary.get("artifact_path")),
+            risk_level="R2",
+            action_posture="review_needed",
+            component="tenant_safety",
+        ),
+        founder_item(
+            title="Configure billing only when ready for real money",
+            raw_status="stub" if provider_mode == "stub" else "pass",
+            display_state="Warning" if provider_mode == "stub" else "Healthy",
+            reason="Billing is intentionally stubbed and money actions remain approval-gated until live secrets are configured.",
+            source_path=normalize_text(billing_summary.get("artifact_path")),
+            risk_level="R2",
+            action_posture="review_needed" if provider_mode == "stub" else "safe",
+            component="billing",
+        ),
+        founder_item(
+            title="Run safe maintenance only if report growth keeps climbing",
+            raw_status=host_summary.get("report_growth_status") or "pass",
+            display_state="Warning" if normalize_text(host_summary.get("report_growth_status")).upper() == "WARN" else "Healthy",
+            reason=host_summary.get("report_growth_recommended_action") or "Report growth is within baseline.",
+            source_path=host_summary.get("path", ""),
+            risk_level="R1",
+            action_posture="safe",
+            component="reports",
+        ),
+        founder_item(
+            title="Continue governed chunk execution with lightweight posture",
+            raw_status=environment_summary.get("heavy_jobs_posture") or "guarded",
+            display_state="Healthy",
+            reason=f"Heavy-job posture is {environment_summary.get('heavy_jobs_posture') or 'unknown'} and throttle guidance is {environment_summary.get('throttle_guidance') or 'normal'}.",
+            source_path=environment_summary.get("posture_path", ""),
+            risk_level="R1",
+            action_posture="safe",
+            component="environment",
+        ),
+        founder_item(
+            title="Review blocked teacher-backed items before spending budget",
+            raw_status=self_improvement_summary.get("overall_status"),
+            display_state=self_improvement_summary.get("display_state"),
+            reason=self_improvement_summary.get("recommended_next_action") or "Teacher-backed work remains governed.",
+            source_path=self_improvement_summary.get("artifact_path", ""),
+            risk_level="R1",
+            action_posture="review_needed",
+            component="self_improvement",
+        ),
+    ]
+
+    pending_items = [
+        founder_item(
+            item_id=normalize_text(item.get("id")),
+            title=normalize_text(item.get("title")) or normalize_text(item.get("component_id")) or "Pending approval",
+            raw_status=normalize_text(item.get("status")) or "pending",
+            display_state="Review Only",
+            reason=f"{component_label(normalize_text(item.get('component_id')))} / {normalize_text(item.get('source') or item.get('kind') or 'manual')}",
+            source_path=normalize_text(((item.get("evidence_files")[0] if isinstance(item.get("evidence_files"), list) and item.get("evidence_files") else item.get("evidence_files")))),
+            risk_level=normalize_founder_risk_level(item.get("risk_level")),
+            action_posture="review_needed",
+            component=normalize_text(item.get("component_id")),
+        )
+        for item in pending_approval_items[:5]
+    ]
+
+    actionable_approvals = []
+    for row in approvals.get("actionable_items", []):
+        if not isinstance(row, dict):
+            continue
+        actionable_approvals.append(
+            {
+                **row,
+                "display_state": founder_display_state(row.get("status")),
+                "approve_action": {"api_path": "/api/approvals/decision", "decision": "approve"},
+                "reject_action": {"api_path": "/api/approvals/decision", "decision": "reject"},
+            }
+        )
+
+    quick_actions: list[dict[str, Any]] = []
+    for action_id in ("verify", "mirror", "onyx_restart", "onyx_smoketest", "freeze", "unfreeze", "doctor"):
+        control = controls.get(action_id) if isinstance(controls, dict) else None
+        if not isinstance(control, dict):
+            continue
+        requires_signed_session = action_id in {"freeze", "unfreeze", "doctor"}
+        quick_actions.append(
+            {
+                "action_id": action_id,
+                "action_type": "control",
+                "label": normalize_text(control.get("label")) or action_id.replace("_", " ").title(),
+                "description": normalize_text(control.get("message")) or "Athena control action.",
+                "status": normalize_text(control.get("result_status") or control.get("status")) or "UNKNOWN",
+                "display_state": founder_display_state(control.get("result_status") or control.get("status")),
+                "api_path": normalize_text(control.get("api_path")),
+                "command": normalize_text(control.get("command_run") or control.get("command")),
+                "requires_signed_session": requires_signed_session,
+                "manual_supported": bool(normalize_text(control.get("command_run") or control.get("command"))),
+                "disabled_reason": "Requires a signed Athena session." if requires_signed_session else "",
+            }
+        )
+    quick_actions.extend(
+        [
+            {
+                "action_id": "founder_refresh",
+                "action_type": "refresh",
+                "label": "Refresh Founder View",
+                "description": "Reload the live founder cockpit without leaving the page.",
+                "display_state": "Healthy",
+                "requires_signed_session": False,
+                "manual_supported": True,
+                "disabled_reason": "",
+            },
+            {
+                "action_id": "open_onyx",
+                "action_type": "open_url",
+                "label": "Open Onyx",
+                "description": "Open the Onyx business app on loopback.",
+                "url": "http://127.0.0.1:5353/",
+                "display_state": "Healthy",
+                "requires_signed_session": False,
+                "manual_supported": True,
+                "disabled_reason": "",
+            },
+            {
+                "action_id": "open_docs",
+                "action_type": "view",
+                "label": "Open Live Docs",
+                "description": "Jump straight into the generated manuals tab.",
+                "view": "docs",
+                "display_state": "Healthy",
+                "requires_signed_session": False,
+                "manual_supported": True,
+                "disabled_reason": "",
+            },
+        ]
+    )
+
+    docs_components = {
+        normalize_text(item.get("component_id")).lower(): item
+        for item in normalize_list(live_docs.get("components"))
+        if isinstance(item, dict) and normalize_text(item.get("component_id"))
+    }
+    component_cards = []
+    for row in live_rows:
+        if not isinstance(row, dict):
+            continue
+        component_id = normalize_component_id(row.get("component_id"))
+        status_value = "PASS" if bool(row.get("listening")) and bool(row.get("health_ready")) else ("WARN" if bool(row.get("listening")) else "FAIL")
+        docs_id = component_id if component_id in {"athena", "onyx"} else "mason"
+        docs_component = docs_components.get(docs_id, {})
+        actions = [
+            {"action_id": "open_docs", "action_type": "view_docs", "label": "View docs", "component_id": docs_id},
+        ]
+        if component_id == "athena":
+            actions.append({"action_id": "open_athena", "action_type": "open_url", "label": "Open Athena", "url": "http://127.0.0.1:8000/athena/"})
+        if component_id == "onyx":
+            actions.append({"action_id": "open_onyx", "action_type": "open_url", "label": "Open Onyx", "url": "http://127.0.0.1:5353/"})
+            if isinstance(controls.get("onyx_restart"), dict):
+                actions.append({"action_id": "onyx_restart", "action_type": "control", "label": "Restart Onyx"})
+            if isinstance(controls.get("onyx_smoketest"), dict):
+                actions.append({"action_id": "onyx_smoketest", "action_type": "control", "label": "Smoke test"})
+        component_cards.append(
+            {
+                "component_id": component_id,
+                "label": component_label(component_id),
+                "display_state": founder_display_state(status_value),
+                "status_summary": normalize_text(row.get("health_error"))
+                or ("Listening and healthy." if bool(row.get("health_ready")) else f"Health probe returned {int(row.get('health_status_code') or 0)}."),
+                "port": int(row.get("port") or 0),
+                "listener_count": int(row.get("listener_count") or 0),
+                "health_url": normalize_text(row.get("health_url")),
+                "docs_component_id": docs_id,
+                "docs_available": bool(docs_component),
+                "actions": actions,
+            }
+        )
+
+    summary_line = (
+        f"Validator is {system_validation_summary.get('overall_status') or 'UNKNOWN'} with "
+        f"{int(system_validation_summary.get('failed_count') or 0)} fails, "
+        f"{len(warnings)} active warnings, and {len(blocked)} blocked governance items."
+    )
+
+    return {
+        "owner_only": True,
+        "generated_at_utc": utc_now_iso(),
+        "summary_line": summary_line,
+        "stack_truth_summary": {
+            "items": stack_truth_items,
+            "validation_path": system_validation_summary.get("path", ""),
+        },
+        "attention_queue": {
+            "warnings": warnings[:6],
+            "blocked": blocked[:6],
+            "owner_actions": owner_actions[:6],
+            "safe_to_ignore": safe_to_ignore[:6],
+        },
+        "safe_next_actions": safe_next_actions[:6],
+        "self_improvement_posture": self_improvement_summary,
+        "approvals_governed_actions": {
+            "pending_total": int(approvals.get("pending_total") or 0),
+            "eligible_total": int(approvals.get("eligible_total") or 0),
+            "quarantine_total": int(approvals.get("quarantine_total") or 0),
+            "approval_required_total": int(self_improvement_summary.get("approval_required_count") or 0),
+            "blocked_total": int(self_improvement_summary.get("blocked_count") or 0),
+            "review_only_total": int(self_improvement_summary.get("review_only_count") or 0),
+            "safe_to_test_total": int(self_improvement_summary.get("safe_to_test_count") or 0),
+            "pending_items": pending_items,
+            "blocked_items": self_improvement_summary.get("blocked_items", []),
+            "review_items": self_improvement_summary.get("review_items", []),
+            "safe_to_test_items": self_improvement_summary.get("safe_to_test_items", []),
+            "actionable_items": actionable_approvals[:8],
+            "path": normalize_text(approvals.get("path")),
+            "history_path": normalize_text(approvals.get("history_path")),
+            "quarantine_path": normalize_text(approvals.get("quarantine_path")),
+        },
+        "quick_actions": quick_actions,
+        "component_cards": component_cards,
+        "runtime_environment_host_posture": {
+            "host_classification": environment_summary.get("host_classification") or "unknown",
+            "throttle_guidance": environment_summary.get("throttle_guidance") or host_summary.get("throttle_guidance") or "normal",
+            "learning_posture": environment_summary.get("learning_posture") or "unknown",
+            "heavy_jobs_posture": environment_summary.get("heavy_jobs_posture") or "unknown",
+            "monitoring_posture": environment_summary.get("monitoring_posture") or "unknown",
+            "cleanup_posture": environment_summary.get("cleanup_posture") or "unknown",
+            "loopback_network_posture": "loopback_only" if int(security_summary.get("non_loopback_bindings_total") or 0) == 0 else "review_bindings",
+            "current_environment_id": environment_summary.get("environment_id") or "unknown",
+            "drift_level": environment_summary.get("drift_level") or "unknown",
+            "migration_detected": bool(environment_summary.get("migration_detected")),
+            "disk_free_percent": host_summary.get("disk_free_percent"),
+            "host_status": host_summary.get("overall_status") or "UNKNOWN",
+            "recommended_next_action": host_summary.get("recommended_next_action") or environment_summary.get("recommended_next_action") or "No action required.",
+            "host_path": host_summary.get("path", ""),
+            "environment_profile_path": environment_summary.get("profile_path", ""),
+            "environment_drift_path": environment_summary.get("drift_path", ""),
+            "runtime_posture_path": environment_summary.get("posture_path", ""),
+        },
+        "source_paths": normalize_string_list(
+            [
+                system_validation_summary.get("path"),
+                host_summary.get("path"),
+                environment_summary.get("profile_path"),
+                environment_summary.get("drift_path"),
+                environment_summary.get("posture_path"),
+                self_improvement_summary.get("artifact_path"),
+                self_improvement_summary.get("budget_path"),
+                normalize_text(approvals.get("path")),
+                normalize_text(security_summary.get("artifact_path")),
+                normalize_text(tenant_safety_summary.get("artifact_path")),
+                normalize_text(billing_summary.get("artifact_path")),
+                str(MIRROR_UPDATE_LAST_PATH),
+            ],
+            max_items=16,
+            max_len=220,
+        ),
     }
 
 
@@ -7180,6 +9431,11 @@ def get_control_action_specs() -> dict[str, dict[str, Any]]:
         "stop": {"label": "Stop Stack", "api_path": "/api/control/stack/stop", "command": "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\\Stop_Stack.ps1"},
         "verify": {"label": "Verify Stack", "api_path": "/api/control/verify_stack", "command": build_verify_command_string()},
         "mirror": {"label": "Mirror Update", "api_path": "/api/control/mirror/run", "command": f'powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\\tools\\sync\\Mason_Mirror_Update.ps1 -RootPath "{str(BASE)}" -Reason manual'},
+        "onyx_restart": {"label": "Restart Onyx", "api_path": "/api/control/onyx/restart", "command": 'powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File ".\\Component - Onyx App\\onyx_business_manager\\Restart-Onyx5353.ps1"'},
+        "onyx_smoketest": {"label": "Run Onyx Smoke Test", "api_path": "/api/control/onyx/smoketest", "command": "powershell -NoLogo -NoProfile -Command \"Invoke-WebRequest -UseBasicParsing http://127.0.0.1:5353/main.dart.js | Out-Null\""},
+        "freeze": {"label": "Freeze Changes", "api_path": "/api/control/freeze", "command": ""},
+        "unfreeze": {"label": "Unfreeze Changes", "api_path": "/api/control/unfreeze", "command": ""},
+        "doctor": {"label": "Run Doctor", "api_path": "/api/control/doctor/run", "command": ""},
     }
 
 
@@ -7253,7 +9509,9 @@ def build_stack_status_payload() -> dict[str, Any]:
     mirror_data = read_json(MIRROR_UPDATE_LAST_PATH, default={})
     mirror_data = mirror_data if isinstance(mirror_data, dict) else {}
     mirror_summary = build_mirror_summary(mirror_data)
-    system_validation_summary = build_system_validation_summary()
+    validation_data = read_json(SYSTEM_VALIDATION_LAST_PATH, default={})
+    validation_data = validation_data if isinstance(validation_data, dict) else {}
+    system_validation_summary = build_system_validation_summary(validation_data)
 
     last_failure_data = read_json(LAST_FAILURE_PATH, default=None)
     last_failure_data = last_failure_data if isinstance(last_failure_data, dict) else None
@@ -7348,6 +9606,66 @@ def build_stack_status_payload() -> dict[str, Any]:
             "result_status": "PASS" if mirror_summary.get("ok") else ("FAIL" if mirror_data else ""),
             "message": f"phase={mirror_summary.get('phase') or 'n/a'} push={mirror_summary.get('mirror_push') or 'n/a'}",
         },
+        "onyx_restart": {
+            "action_id": "onyx_restart",
+            "label": specs["onyx_restart"]["label"],
+            "api_path": specs["onyx_restart"]["api_path"],
+            "status": "success" if bool(probe_by_component["onyx"].get("ready")) else "warn",
+            "command": specs["onyx_restart"]["command"],
+            "log_path": str(BASE / "Component - Onyx App" / "onyx_business_manager" / "Restart-Onyx5353.ps1"),
+            "result_path": str(BASE / "Component - Onyx App" / "onyx_business_manager" / "Restart-Onyx5353.ps1"),
+            "last_finished_at_utc": "",
+            "result_status": "READY" if bool(probe_by_component["onyx"].get("ready")) else "WARN",
+            "message": "Restart the loopback Onyx app on port 5353.",
+        },
+        "onyx_smoketest": {
+            "action_id": "onyx_smoketest",
+            "label": specs["onyx_smoketest"]["label"],
+            "api_path": specs["onyx_smoketest"]["api_path"],
+            "status": "success" if bool(probe_by_component["onyx"].get("ready")) else "warn",
+            "command": specs["onyx_smoketest"]["command"],
+            "log_path": normalize_text(probe_by_component["onyx"].get("url")),
+            "result_path": normalize_text(probe_by_component["onyx"].get("url")),
+            "last_finished_at_utc": normalize_text(probe_by_component["onyx"].get("checked_at_utc")),
+            "result_status": "PASS" if bool(probe_by_component["onyx"].get("ready")) else "WARN",
+            "message": "Confirm the Onyx app responds on its main Dart asset route.",
+        },
+        "freeze": {
+            "action_id": "freeze",
+            "label": specs["freeze"]["label"],
+            "api_path": specs["freeze"]["api_path"],
+            "status": "warn" if KILLSWITCH_PATH.exists() else "idle",
+            "command": specs["freeze"]["command"],
+            "log_path": str(KILLSWITCH_PATH),
+            "result_path": str(KILLSWITCH_PATH),
+            "last_finished_at_utc": "",
+            "result_status": "ON" if KILLSWITCH_PATH.exists() else "OFF",
+            "message": "Freeze autonomous changes without widening exposure or touching customer data.",
+        },
+        "unfreeze": {
+            "action_id": "unfreeze",
+            "label": specs["unfreeze"]["label"],
+            "api_path": specs["unfreeze"]["api_path"],
+            "status": "success" if not KILLSWITCH_PATH.exists() else "warn",
+            "command": specs["unfreeze"]["command"],
+            "log_path": str(KILLSWITCH_PATH),
+            "result_path": str(KILLSWITCH_PATH),
+            "last_finished_at_utc": "",
+            "result_status": "OFF" if not KILLSWITCH_PATH.exists() else "ON",
+            "message": "Unfreeze governed changes after review when the stack is ready.",
+        },
+        "doctor": {
+            "action_id": "doctor",
+            "label": specs["doctor"]["label"],
+            "api_path": specs["doctor"]["api_path"],
+            "status": "idle",
+            "command": specs["doctor"]["command"],
+            "log_path": str(BASE / "tools" / "Mason_Doctor.ps1"),
+            "result_path": str(BASE / "tools" / "Mason_Doctor.ps1"),
+            "last_finished_at_utc": "",
+            "result_status": "",
+            "message": "Run the governed doctor path for a deeper stack check.",
+        },
     }
 
     most_relevant_failure = {"component_id": "", "component_label": "No failing component", "why": "All required stack checks are currently passing.", "log_path": "", "source": "current_state"}
@@ -7401,7 +9719,8 @@ def build_stack_status_payload() -> dict[str, Any]:
         failure_log_lines = [most_relevant_failure.get("why") or "No failing component log available."]
 
     last_successful_pass = find_last_successful_start_run(start_run_data)
-    approvals = build_approvals_section()
+    approvals_items = get_approvals()
+    approvals = build_approvals_section(approvals_items)
     security_posture = build_security_posture()
     security_summary = summarize_security_posture(security_posture)
     tenant_safety_summary = summarize_tenant_safety_report(build_tenant_safety_report())
@@ -7409,6 +9728,35 @@ def build_stack_status_payload() -> dict[str, Any]:
     autonomy = build_autonomy_summary(security_summary)
     recent_actions = build_recent_actions(limit=50)
     system_health = build_system_health_summary()
+    live_docs = load_live_docs_payload()
+    brand_exposure = load_brand_exposure_payload()
+    keepalive_ops = load_keepalive_ops_payload()
+    system_truth = load_system_truth_payload()
+    system_metrics = load_system_metrics_payload()
+    regression_guard = load_regression_guard_payload()
+    playbook_support = load_playbook_support_payload()
+    wedge_pack_framework = load_wedge_pack_framework_payload()
+    business_outcomes = load_business_outcomes_payload()
+    release_management = load_release_management_payload()
+    revenue_optimization = load_revenue_optimization_payload()
+    model_cost_governance = load_model_cost_governance_payload()
+    knowledge_learning_quality = load_knowledge_learning_quality_payload()
+    ux_simplicity = load_ux_simplicity_payload()
+    whole_folder_verification = load_whole_folder_verification_payload()
+    repair_wave_payloads = load_repair_wave_payloads()
+    founder_mode = build_founder_mode_payload(
+        validation_data=validation_data,
+        system_validation_summary=system_validation_summary,
+        approvals=approvals,
+        approvals_items=approvals_items,
+        security_summary=security_summary,
+        tenant_safety_summary=tenant_safety_summary,
+        billing_summary=billing_summary,
+        mirror_summary=mirror_summary,
+        controls=controls,
+        live_rows=live_rows,
+        live_docs=live_docs,
+    )
 
     recovery = {"show": False, "recommended_action_id": "", "recommended_action_label": "", "why": ""}
     if overall_status == "RED":
@@ -7448,6 +9796,36 @@ def build_stack_status_payload() -> dict[str, Any]:
         "recent_actions": recent_actions,
         "queues": current_queue_summary(),
         "system_health": system_health,
+        "live_docs": live_docs,
+        "brand_exposure": brand_exposure,
+        "keepalive_ops": keepalive_ops,
+        "system_truth": system_truth,
+        "system_metrics": system_metrics,
+        "regression_guard": regression_guard,
+        "playbook_support": playbook_support,
+        "wedge_pack_framework": wedge_pack_framework,
+        "business_outcomes": business_outcomes,
+        "release_management": release_management,
+        "revenue_optimization": revenue_optimization,
+        "model_cost_governance": model_cost_governance,
+        "knowledge_learning_quality": knowledge_learning_quality,
+        "ux_simplicity": ux_simplicity,
+        "whole_folder_verification": whole_folder_verification,
+        "repair_wave_01": repair_wave_payloads["repair_wave_01"],
+        "onboarding_repair": repair_wave_payloads["onboarding_repair"],
+        "billing_entitlements_repair": repair_wave_payloads["billing_entitlements_repair"],
+        "halfwired_repair": repair_wave_payloads["halfwired_repair"],
+        "scheduler_oversight": repair_wave_payloads["scheduler_oversight"],
+        "internal_visibility": repair_wave_payloads["internal_visibility"],
+        "mirror_hardening": repair_wave_payloads["mirror_hardening"],
+        "repair_wave_02": repair_wave_payloads["repair_wave_02"],
+        "internal_scheduler": repair_wave_payloads["internal_scheduler"],
+        "legacy_task_migration": repair_wave_payloads["legacy_task_migration"],
+        "popup_suppression": repair_wave_payloads["popup_suppression"],
+        "validator_coverage_repair": repair_wave_payloads["validator_coverage_repair"],
+        "broken_path_cluster_repair": repair_wave_payloads["broken_path_cluster_repair"],
+        "remote_push_repair": repair_wave_payloads["remote_push_repair"],
+        "founder_mode": founder_mode,
         "recovery": recovery,
     }
 
@@ -7796,6 +10174,53 @@ def load_teacher_policy() -> dict[str, Any]:
     if isinstance(configured, dict):
         default.update(configured)
     return default
+
+
+def load_self_improvement_policy() -> dict[str, Any]:
+    default = {
+        "version": 1,
+        "policy_name": "self_improvement_governor",
+        "local_first_mandatory": True,
+        "teacher_calls_enabled": True,
+        "cost_sensitivity": "guarded",
+        "minimum_teacher_quality_score": 70,
+        "minimum_teacher_quality_classification": "queue_for_review",
+        "blocked_target_types": ["billing", "security"],
+        "score_thresholds": {
+            "trivial_local_only_max_difficulty": 30,
+            "local_first_optional_min_fallback": 65,
+            "teacher_low_cost_min_expected_value": 55,
+            "teacher_standard_min_expected_value": 70,
+            "teacher_high_value_min_expected_value": 85,
+            "safe_to_stage_min_quality": 78,
+            "safe_to_test_min_quality": 88,
+        },
+    }
+    configured = read_json(SELF_IMPROVEMENT_POLICY_PATH, default={})
+    if isinstance(configured, dict):
+        for key, value in configured.items():
+            if isinstance(value, dict) and isinstance(default.get(key), dict):
+                merged = dict(default.get(key) or {})
+                merged.update(value)
+                default[key] = merged
+            else:
+                default[key] = value
+    return default
+
+
+def load_self_improvement_governor_report() -> dict[str, Any]:
+    data = read_json(SELF_IMPROVEMENT_GOVERNOR_REPORT_PATH, default={})
+    return data if isinstance(data, dict) else {}
+
+
+def self_improvement_decision_lookup(report: dict[str, Any] | None = None) -> dict[str, dict[str, Any]]:
+    payload = report if isinstance(report, dict) else load_self_improvement_governor_report()
+    items = normalize_list(payload.get("items"))
+    return {
+        normalize_text(item.get("improvement_id")): item
+        for item in items
+        if isinstance(item, dict) and normalize_text(item.get("improvement_id"))
+    }
 
 
 def ensure_knowledge_store() -> None:
@@ -8235,9 +10660,93 @@ def get_approvals_summary() -> dict[str, Any]:
 
     return {
         "total": total,
+        "pending_total": int(by_status.get("pending") or 0),
         "by_status": by_status,
         "by_component": by_component,
         "by_risk": by_risk,
+    }
+
+
+@app.post("/api/approvals/decision")
+def api_approval_decision(payload: ApprovalDecisionRequest, request: Request) -> dict[str, Any]:
+    decision = normalize_text(payload.decision).lower()
+    if decision not in {"approve", "reject"}:
+        return JSONResponse(status_code=400, content={"ok": False, "error": "invalid_decision"})
+
+    items = get_approvals()
+    target_index = -1
+    for index, item in enumerate(items):
+        if normalize_text(item.get("id")) == normalize_text(payload.approval_id):
+            target_index = index
+            break
+    if target_index < 0:
+        return JSONResponse(status_code=404, content={"ok": False, "error": "approval_not_found"})
+
+    target = dict(items[target_index])
+    status = normalize_text(target.get("status")).lower()
+    if status != "pending":
+        return JSONResponse(
+            status_code=409,
+            content={"ok": False, "error": "approval_not_pending", "status": status or "unknown"},
+        )
+
+    now_utc = utc_now_iso()
+    requested_by_device = str(getattr(getattr(request, "state", object()), "authenticated_device_id", "") or "owner")
+    owner_reason = normalize_text(payload.owner_reason)
+
+    target["decision_by"] = requested_by_device
+    target["decision_at"] = now_utc
+    if owner_reason:
+        target["owner_reason"] = owner_reason
+
+    history = get_approvals_history()
+    history.append(
+        {
+            "id": normalize_text(target.get("id")),
+            "component_id": normalize_component_id(target.get("component_id")),
+            "kind": normalize_text(target.get("kind") or "patch_run"),
+            "decision": decision,
+            "owner_reason": owner_reason,
+            "decided_at": now_utc,
+            "risk_level": normalize_founder_risk_level(target.get("risk_level")),
+            "source": normalize_text(target.get("source")),
+        }
+    )
+    write_json(APPROVALS_HISTORY_PATH, history)
+
+    if decision == "approve":
+        target["status"] = "approved"
+        items[target_index] = target
+    else:
+        target["status"] = "rejected"
+        target["quarantine_reason"] = "owner_rejected"
+        items.pop(target_index)
+        quarantine_items = get_quarantined_approvals()
+        quarantine_items.append(target)
+        write_json(PENDING_PATCHES_QUARANTINE, quarantine_items)
+
+    write_json(PENDING_PATCHES, items)
+    append_event(
+        kind="approval_decision",
+        status=decision,
+        details={
+            "approval_id": normalize_text(target.get("id")),
+            "decision": decision,
+            "component_id": normalize_component_id(target.get("component_id")),
+            "requested_by_device": requested_by_device,
+            "risk_level": normalize_founder_risk_level(target.get("risk_level")),
+            "title": normalize_text(target.get("title")),
+            "reason": owner_reason,
+        },
+        correlation_id=normalize_text(target.get("id")),
+    )
+    return {
+        "ok": True,
+        "approval_id": normalize_text(target.get("id")),
+        "decision": decision,
+        "status": normalize_text(target.get("status")),
+        "pending_total": int(build_approvals_section(get_approvals()).get("pending_total") or 0),
+        "history_path": str(APPROVALS_HISTORY_PATH),
     }
 
 

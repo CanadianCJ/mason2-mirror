@@ -107,6 +107,44 @@ function Invoke-GitCapture {
     }
 }
 
+function Invoke-GitCaptureRedirect {
+    param(
+        [Parameter(Mandatory = $true)][string]$RepoPath,
+        [Parameter(Mandatory = $true)][string[]]$Args
+    )
+
+    $stdoutPath = Join-Path ([System.IO.Path]::GetTempPath()) ("mason_git_stdout_{0}.log" -f ([guid]::NewGuid().ToString("N")))
+    $stderrPath = Join-Path ([System.IO.Path]::GetTempPath()) ("mason_git_stderr_{0}.log" -f ([guid]::NewGuid().ToString("N")))
+    try {
+        $argumentList = @("-C", $RepoPath) + @($Args)
+        $process = Start-Process -FilePath "git" -ArgumentList $argumentList -NoNewWindow -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath -Wait -PassThru -ErrorAction Stop
+        $stdoutLines = if (Test-Path -LiteralPath $stdoutPath) { @(Get-Content -LiteralPath $stdoutPath -Encoding UTF8) } else { @() }
+        $stderrLines = if (Test-Path -LiteralPath $stderrPath) { @(Get-Content -LiteralPath $stderrPath -Encoding UTF8) } else { @() }
+        $combinedLines = @($stdoutLines + $stderrLines | ForEach-Object { [string]$_ })
+        return [pscustomobject]@{
+            ok     = ($process.ExitCode -eq 0)
+            exit   = [int]$process.ExitCode
+            lines  = @($combinedLines)
+            joined = ((@($combinedLines) -join "`n").Trim())
+        }
+    }
+    catch {
+        return [pscustomobject]@{
+            ok     = $false
+            exit   = 1
+            lines  = @([string]$_.Exception.Message)
+            joined = [string]$_.Exception.Message
+        }
+    }
+    finally {
+        foreach ($path in @($stdoutPath, $stderrPath)) {
+            if ($path -and (Test-Path -LiteralPath $path)) {
+                Remove-Item -LiteralPath $path -Force -ErrorAction SilentlyContinue
+            }
+        }
+    }
+}
+
 function Get-MirrorDeltaSummary {
     param(
         [Parameter(Mandatory = $true)][string]$MirrorRoot,
@@ -167,6 +205,68 @@ function Get-MirrorDeltaSummary {
         top_changed_paths = @($topChanged.ToArray())
         head_before      = $HeadBefore
         head_after       = $HeadAfter
+    }
+}
+
+function Normalize-Text {
+    param($Value)
+    if ($null -eq $Value) {
+        return ""
+    }
+    return ([string]$Value).Trim()
+}
+
+function Get-MirrorPushFailureSummary {
+    param([string[]]$Lines)
+
+    $output = @($Lines | ForEach-Object { [string]$_ } | Where-Object { $_ -ne $null })
+    $joined = ((@($output) -join "`n").Trim())
+    $joinedLower = $joined.ToLowerInvariant()
+    $oversizedPaths = New-Object System.Collections.Generic.List[string]
+
+    foreach ($line in $output) {
+        $text = [string]$line
+        if ($text -match 'File ([^"]+?) is [0-9.]+ ?(MB|MiB); this exceeds GitHub') {
+            $path = Normalize-Text $Matches[1]
+            if ($path -and $oversizedPaths -notcontains $path) {
+                $oversizedPaths.Add($path) | Out-Null
+            }
+        }
+    }
+
+    $failureClass = "remote_push_failed_unknown"
+    if ($joinedLower -match 'gh001: large files detected' -or $joinedLower -match 'this exceeds github''s file size limit') {
+        $failureClass = "large_file_history_rejection"
+    }
+    elseif ($joinedLower -match 'permission denied \(publickey\)' -or $joinedLower -match 'authentication failed' -or $joinedLower -match 'could not read from remote repository') {
+        $failureClass = "remote_auth_or_access_failure"
+    }
+    elseif ($joinedLower -match 'repository not found') {
+        $failureClass = "remote_repository_missing_or_denied"
+    }
+    elseif ($joinedLower -match 'non-fast-forward' -or $joinedLower -match 'fetch first') {
+        $failureClass = "remote_branch_diverged"
+    }
+
+    $failureReason = ""
+    if ($joinedLower -match 'gh001: large files detected') {
+        $failureReason = "GH001: Large files detected."
+    }
+    elseif (@($oversizedPaths).Count -gt 0) {
+        $failureReason = ("Oversized mirror path(s): " + ((@($oversizedPaths.ToArray()) -join ", ")))
+    }
+    elseif ($joinedLower -match 'failed to push some refs') {
+        $failureReason = "failed to push some refs"
+    }
+    elseif (@($output).Count -gt 0) {
+        $failureReason = Normalize-Text $output[-1]
+    }
+
+    return [ordered]@{
+        failure_class = $failureClass
+        failure_reason = $failureReason
+        oversized_paths = @($oversizedPaths.ToArray())
+        push_output = @($output | Select-Object -Last 40)
     }
 }
 
@@ -414,7 +514,7 @@ function Invoke-MirrorPushFallback {
         }
     }
 
-    $push = Invoke-GitCapture -RepoPath $MirrorRoot -Args @("push")
+    $push = Invoke-GitCaptureRedirect -RepoPath $MirrorRoot -Args @("push")
     if ($push.ok) {
         return [ordered]@{
             ok        = $true
@@ -570,10 +670,9 @@ function Remove-MirrorReportsOutsidePolicy {
         if ($relative.StartsWith($MirrorRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
             $relative = $relative.Substring($MirrorRoot.Length).TrimStart("\", "/")
         }
-        $isJson = ([System.IO.Path]::GetExtension([string]$file.Name)).ToLowerInvariant() -eq ".json"
         $isAllowedPattern = Test-PathMatchesAnyPattern -Path $relative -Patterns $patterns
         $isAllowedSize = ([int64]$file.Length -le [int64]$maxBytes)
-        $keep = ($isJson -and $isAllowedPattern -and $isAllowedSize)
+        $keep = ($isAllowedPattern -and $isAllowedSize)
         if ($keep) { continue }
 
         try {
@@ -829,7 +928,7 @@ function Sync-AllowlistedReportArtifacts {
         return $summary
     }
 
-    $candidateFiles = @(Get-ChildItem -LiteralPath $reportsRoot -File -Recurse -Filter *.json -ErrorAction SilentlyContinue)
+    $candidateFiles = @(Get-ChildItem -LiteralPath $reportsRoot -File -Recurse -ErrorAction SilentlyContinue)
     $summary.candidate_count = @($candidateFiles).Count
 
     $matchedFiles = @(
@@ -1263,7 +1362,11 @@ $result = [ordered]@{
     reports_slim_policy = $null
     reports_slim_cleanup = $null
     mirror_push_result = $null
+    mirror_push_failure_reason = $null
+    mirror_push_failure_class = $null
+    mirror_push_failure_paths = @()
     mirror_push_exit_code = $null
+    push_output = @()
     error         = $null
 }
 
@@ -1292,7 +1395,10 @@ try {
     $result.missing_items = @($missingAllowlist)
     $manifestForRun = $manifest
     $reportsPolicy = $null
-    if ($manifestForRun -and ($manifestForRun.PSObject.Properties.Name -contains "reports_json_policy")) {
+    if ($manifestForRun -and ($manifestForRun.PSObject.Properties.Name -contains "reports_file_policy")) {
+        $reportsPolicy = $manifestForRun.reports_file_policy
+    }
+    elseif ($manifestForRun -and ($manifestForRun.PSObject.Properties.Name -contains "reports_json_policy")) {
         $reportsPolicy = $manifestForRun.reports_json_policy
     }
     if ($manifestForRun -and ($manifestForRun.PSObject.Properties.Name -contains "allowlist")) {
@@ -1498,6 +1604,13 @@ try {
     $result.mirror_push_exit_code = [int]$pushExitCode
     $result.steps.mirror_push = "ok"
     $result.mirror_push_result = $pushResultValue
+    $result.push_output = @($pushOutput | Select-Object -Last 40)
+    if ($pushResultValue -like "*remote_*failed*") {
+        $pushFailureSummary = Get-MirrorPushFailureSummary -Lines $pushOutput
+        $result.mirror_push_failure_reason = [string]$pushFailureSummary.failure_reason
+        $result.mirror_push_failure_class = [string]$pushFailureSummary.failure_class
+        $result.mirror_push_failure_paths = @($pushFailureSummary.oversized_paths)
+    }
     $result.ok = $true
     $result.phase = "done"
 }

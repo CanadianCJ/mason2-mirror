@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "policy_name": "conservative_loopback_keepalive",
+  "policy_posture": "conservative_loopback_only",
+  "description": "Governed keepalive and self-heal policy for Mason's loopback-only stack. Live probes outrank stale artifacts, only one low-risk repair is allowed per run, and blocked or repeated failures escalate instead of retrying blindly.",
+  "truth_source_precedence": [
+    "live_loopback_probes",
+    "current_live_pids",
+    "system_validation_last",
+    "host_guardian_last",
+    "runtime_posture_last",
+    "environment_profile_last",
+    "start_run_last",
+    "mirror_update_last",
+    "self_improvement_governor_last"
+  ],
+  "service_scope": [
+    {
+      "component": "mason_api",
+      "display_name": "Mason API",
+      "port_key": "mason_api",
+      "health_path": "/health",
+      "low_risk_action_id": "restart_core_noapps",
+      "auto_repair_modes": [
+        "not_listening",
+        "health_failed"
+      ]
+    },
+    {
+      "component": "seed_api",
+      "display_name": "Seed API",
+      "port_key": "seed_api",
+      "health_path": "/health",
+      "low_risk_action_id": "restart_core_noapps",
+      "auto_repair_modes": [
+        "not_listening",
+        "health_failed"
+      ]
+    },
+    {
+      "component": "bridge",
+      "display_name": "Bridge",
+      "port_key": "bridge",
+      "health_path": "/health",
+      "low_risk_action_id": "restart_bridge",
+      "auto_repair_modes": [
+        "not_listening",
+        "health_failed"
+      ]
+    },
+    {
+      "component": "athena",
+      "display_name": "Athena",
+      "port_key": "athena",
+      "health_path": "/api/health",
+      "low_risk_action_id": "restart_athena",
+      "auto_repair_modes": [
+        "not_listening",
+        "health_failed"
+      ]
+    },
+    {
+      "component": "onyx",
+      "display_name": "Onyx",
+      "port_key": "onyx",
+      "health_path": "/main.dart.js",
+      "low_risk_action_id": "restart_onyx",
+      "auto_repair_modes": [
+        "not_listening"
+      ]
+    }
+  ],
+  "allowed_low_risk_repair_actions": [
+    {
+      "action_id": "restart_core_noapps",
+      "description": "Start or repair Mason API and Seed API using the canonical core no-apps bootstrap.",
+      "relative_script_path": "tools/Mason_Start_Core_NoApps.ps1",
+      "launch_mode": "background",
+      "components": [
+        "mason_api",
+        "seed_api"
+      ]
+    },
+    {
+      "action_id": "restart_bridge",
+      "description": "Start or repair the Bridge using the guarded loopback-only launcher.",
+      "relative_script_path": "tools/Start_Bridge.ps1",
+      "launch_mode": "background",
+      "components": [
+        "bridge"
+      ]
+    },
+    {
+      "action_id": "restart_athena",
+      "description": "Restart Athena on 127.0.0.1:8000 using the guarded Athena activation script.",
+      "relative_script_path": "tools/ops/Activate_Athena_8000.ps1",
+      "launch_mode": "background",
+      "components": [
+        "athena"
+      ]
+    },
+    {
+      "action_id": "restart_onyx",
+      "description": "Start Onyx on 127.0.0.1:5353 when the listener is missing.",
+      "relative_script_path": "Component - Onyx App/onyx_business_manager/Start-Onyx5353.ps1",
+      "launch_mode": "background",
+      "components": [
+        "onyx"
+      ]
+    },
+    {
+      "action_id": "refresh_validator",
+      "description": "Refresh the authoritative whole-system validator artifact.",
+      "relative_script_path": "tools/ops/Validate_Whole_System.ps1",
+      "launch_mode": "inline",
+      "components": [
+        "validator"
+      ]
+    },
+    {
+      "action_id": "refresh_host_guardian",
+      "description": "Refresh host guardian artifacts when they are missing or stale.",
+      "relative_script_path": "tools/ops/Run_Host_Guardian.ps1",
+      "launch_mode": "inline",
+      "components": [
+        "host_guardian"
+      ]
+    },
+    {
+      "action_id": "refresh_environment_adaptation",
+      "description": "Refresh environment adaptation artifacts when they are missing or stale.",
+      "relative_script_path": "tools/ops/Run_Environment_Adaptation.ps1",
+      "launch_mode": "inline",
+      "components": [
+        "environment"
+      ]
+    }
+  ],
+  "blocked_action_classes": [
+    "destructive_cleanup",
+    "money_billing_enablement",
+    "security_control_weakening",
+    "tenant_impacting_data_mutation",
+    "network_exposure_change",
+    "blind_full_stack_restart",
+    "repeated_blind_restart",
+    "artifact_only_self_heal_when_live_probes_disagree"
+  ],
+  "retry_policy": {
+    "max_repairs_per_run": 1,
+    "per_issue_cooldown_minutes": 45,
+    "per_component_restart_cooldown_minutes": 45,
+    "max_attempts_per_issue_per_24h": 2,
+    "artifact_refresh_cooldown_minutes": 120
+  },
+  "restart_suppression_rules": {
+    "suppress_if_recent_restart_within_minutes": 45,
+    "suppress_if_same_issue_attempted_this_run": true,
+    "suppress_if_listener_exists_but_component_requires_manual_stop": true
+  },
+  "duplicate_repair_suppression": {
+    "single_action_per_run": true,
+    "single_issue_attempt_per_run": true,
+    "single_component_restart_per_run": true
+  },
+  "escalation_thresholds": {
+    "service_repair_failure_after_attempts": 1,
+    "blocked_by_policy_requires_escalation": true,
+    "cooldown_hit_requires_escalation_after_repeat_count": 2,
+    "warn_sections_to_escalate": [
+      "self-improvement governor",
+      "security/legal/tenant safety",
+      "billing/entitlements"
+    ]
+  },
+  "daily_report_policy": {
+    "include_previous_report_comparison": true,
+    "include_attempted_actions": true,
+    "include_refused_actions": true,
+    "include_owner_review_items": true
+  },
+  "owner_escalation_guidance": [
+    "Use live loopback health as the first source of truth.",
+    "Do not authorize destructive cleanup from keepalive/self-heal.",
+    "Reboot only when host posture or pending reboot evidence says it is warranted.",
+    "Leave billing and security posture changes approval-gated."
+  ]
+}

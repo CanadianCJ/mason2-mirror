@@ -1,0 +1,496 @@
+﻿{
+    "generated_at_utc":  "2026-03-13T03:18:28.0215058+00:00",
+    "outcome_count":  49,
+    "outcomes":  [
+                     {
+                         "card_id":  "card_system_truth_stack",
+                         "title":  "System truth: stack",
+                         "outcome_support":  "mixed",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  68.23,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_validator",
+                         "title":  "System truth: validator",
+                         "outcome_support":  "mixed",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  68.23,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_services",
+                         "title":  "System truth: services",
+                         "outcome_support":  "mixed",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  68.23,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_host",
+                         "title":  "System truth: host",
+                         "outcome_support":  "mixed",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  67.38,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_environment",
+                         "title":  "System truth: environment",
+                         "outcome_support":  "mixed",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  67.38,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_mirror",
+                         "title":  "System truth: mirror",
+                         "outcome_support":  "positive",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  81.22,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_system_truth_billing",
+                         "title":  "System truth: billing",
+                         "outcome_support":  "mixed",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  68.23,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_trust",
+                         "title":  "System truth: trust",
+                         "outcome_support":  "positive",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  80.37,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_queues",
+                         "title":  "System truth: queues",
+                         "outcome_support":  "positive",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  80.37,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_tenants",
+                         "title":  "System truth: tenants",
+                         "outcome_support":  "positive",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  80.41,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_tools",
+                         "title":  "System truth: tools",
+                         "outcome_support":  "positive",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  79.61,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_self_improvement",
+                         "title":  "System truth: self_improvement",
+                         "outcome_support":  "mixed",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  68.81,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_live_docs",
+                         "title":  "System truth: live_docs",
+                         "outcome_support":  "mixed",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  69.08,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_brand_exposure",
+                         "title":  "System truth: brand_exposure",
+                         "outcome_support":  "positive",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.11,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_system_truth_keepalive_ops",
+                         "title":  "System truth: keepalive_ops",
+                         "outcome_support":  "mixed",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  68.08,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_playbook_pb_service_health_missing_listener",
+                         "title":  "Service Health Or Missing Listener",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.29,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_playbook_pb_runtime_singleton_truth_drift",
+                         "title":  "Runtime Singleton Or PID Truth Drift",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.29,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_playbook_pb_stale_truth_artifact_mismatch",
+                         "title":  "Stale Artifact Versus Live Probe Mismatch",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.29,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_playbook_pb_keepalive_policy_escalation",
+                         "title":  "KeepAlive Escalated Instead Of Retrying Blindly",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.29,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_playbook_pb_self_improvement_review_gate",
+                         "title":  "Self-Improvement Remains Review-Gated",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.29,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_playbook_pb_security_tenant_safety_watch",
+                         "title":  "Security Or Tenant-Safety Watch Posture",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.29,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_playbook_pb_billing_stub_gated",
+                         "title":  "Billing Remains Stubbed And Approval-Gated",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.29,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_playbook_pb_mirror_incomplete_or_stale",
+                         "title":  "Mirror Or Checkpoint Incomplete",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.29,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_playbook_pb_host_pending_reboot",
+                         "title":  "Pending Reboot And Caution Host Posture",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.29,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_playbook_pb_brand_exposure_leakage",
+                         "title":  "Brand Exposure Leakage",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.29,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_playbook_pb_regression_promotion_blocked",
+                         "title":  "Promotion Blocked By Regression Guard",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.29,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_teacher_teacher-20260225043518-001",
+                         "title":  "Enhance Mason\u0027s Watchdog Health Checks",
+                         "outcome_support":  "weak",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  66.09,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_teacher_teacher-20260225043518-004",
+                         "title":  "Add Clear Status Indicators for Risk and Autonomy Mode",
+                         "outcome_support":  "weak",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  47.09,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_teacher_teacher-20260225043518-005",
+                         "title":  "Improve Onyx Error Handling and Retry Logic",
+                         "outcome_support":  "weak",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  47.09,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_teacher_teacher-20260225043518-008",
+                         "title":  "Add Approval Workflow UI for Risky Changes",
+                         "outcome_support":  "weak",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  47.09,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_teacher_teacher-20260225043518-006",
+                         "title":  "Implement Canary Runs for Medium-Risk Changes",
+                         "outcome_support":  "weak",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  47.02,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_teacher_teacher-20260225043518-007",
+                         "title":  "Integrate Basic AI Model Evaluation Metrics",
+                         "outcome_support":  "weak",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  47.02,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_teacher_teacher-20260225043518-009",
+                         "title":  "Optimize Onyx Startup Time and Resource Usage",
+                         "outcome_support":  "weak",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  47.02,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_teacher_teacher-20260225043518-002",
+                         "title":  "Implement Disk Usage Monitoring and Log Rotation",
+                         "outcome_support":  "weak",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  46.82,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_teacher_teacher-20260225043518-003",
+                         "title":  "Enforce Least Privilege for Mason Scripts",
+                         "outcome_support":  "negative",
+                         "success_count":  0,
+                         "failure_count":  1,
+                         "rejection_count":  1,
+                         "confidence_score":  0,
+                         "review_status":  "blocked"
+                     },
+                     {
+                         "card_id":  "card_teacher_teacher_suggestions_latest",
+                         "title":  "Latest teacher suggestions artifact",
+                         "outcome_support":  "negative",
+                         "success_count":  0,
+                         "failure_count":  1,
+                         "rejection_count":  1,
+                         "confidence_score":  0,
+                         "review_status":  "blocked"
+                     },
+                     {
+                         "card_id":  "card_tool_rescue_plan_v1",
+                         "title":  "Tool usefulness: rescue_plan_v1",
+                         "outcome_support":  "mixed",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  76.27,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_tool_marketing_pack_v1",
+                         "title":  "Tool usefulness: marketing_pack_v1",
+                         "outcome_support":  "weak",
+                         "success_count":  0,
+                         "failure_count":  1,
+                         "rejection_count":  0,
+                         "confidence_score":  51.39,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_tool_sales_followup_v1",
+                         "title":  "Tool usefulness: sales_followup_v1",
+                         "outcome_support":  "positive",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.27,
+                         "review_status":  "trusted"
+                     },
+                     {
+                         "card_id":  "card_tool_workflow_capability_builder_v1",
+                         "title":  "Tool usefulness: workflow_capability_builder_v1",
+                         "outcome_support":  "unknown",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  73.94,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_recommendation_tool",
+                         "title":  "Recommendation effectiveness: tool",
+                         "outcome_support":  "mixed",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  1,
+                         "confidence_score":  24,
+                         "review_status":  "blocked"
+                     },
+                     {
+                         "card_id":  "card_recommendation_workflow",
+                         "title":  "Recommendation effectiveness: workflow",
+                         "outcome_support":  "unknown",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  76.27,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_business_outcome_time_saved_indicators",
+                         "title":  "time_saved_indicators",
+                         "outcome_support":  "mixed",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  66.06,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_business_outcome_tool_usefulness",
+                         "title":  "tool_usefulness",
+                         "outcome_support":  "unknown",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  63.86,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_business_outcome_recommendation_effectiveness",
+                         "title":  "recommendation_effectiveness",
+                         "outcome_support":  "unknown",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  63.86,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_business_outcome_onboarding_completion",
+                         "title":  "onboarding_completion",
+                         "outcome_support":  "unknown",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  76.27,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_business_outcome_tenant_engagement",
+                         "title":  "tenant_engagement",
+                         "outcome_support":  "unknown",
+                         "success_count":  0,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  76.27,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_business_outcome_revenue_help_indicators",
+                         "title":  "revenue_help_indicators",
+                         "outcome_support":  "positive",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  75.27,
+                         "review_status":  "review_required"
+                     },
+                     {
+                         "card_id":  "card_business_outcome_churn_risk_indicators",
+                         "title":  "churn_risk_indicators",
+                         "outcome_support":  "positive",
+                         "success_count":  1,
+                         "failure_count":  0,
+                         "rejection_count":  0,
+                         "confidence_score":  82.27,
+                         "review_status":  "trusted"
+                     }
+                 ]
+}

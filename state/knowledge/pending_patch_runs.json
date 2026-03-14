@@ -2634,13 +2634,26 @@
         "taskgen_reason":  "onyx_health_status_not_ok,onyx_health_summary_unhealthy,onyx_analyzer_nonzero_exit"
     },
     {
+        "id":  "drift-manifest-f9a229980cb5",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "drift_manifest",
+        "created_at":  "2026-03-14T01:31:10.9249195Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ]
+    },
+    {
         "id":  "knowledge-approval-48d4f03b7c13",
         "component_id":  "mason",
         "title":  "[ ] Flip to live Questrade (guarded)",
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-48d4f03b7c13",
         "evidence_files":  [
@@ -2664,7 +2677,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-65de389b8329",
         "evidence_files":  [
@@ -2688,7 +2701,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-d0ee56ae53ae",
         "evidence_files":  [
@@ -2712,7 +2725,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-1d84e0403f92",
         "evidence_files":  [
@@ -2736,7 +2749,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-daa4919b1520",
         "evidence_files":  [
@@ -2760,7 +2773,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-472e7a630fa4",
         "evidence_files":  [
@@ -2784,7 +2797,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-4e0db27b91c4",
         "evidence_files":  [
@@ -2808,7 +2821,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-8614a94542b9",
         "evidence_files":  [
@@ -2832,7 +2845,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-951a84d03a2a",
         "evidence_files":  [
@@ -2856,7 +2869,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-0a7c267ceec8",
         "evidence_files":  [
@@ -2880,7 +2893,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-e6a13e895e52",
         "evidence_files":  [
@@ -2904,7 +2917,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-0bffe00665e3",
         "evidence_files":  [
@@ -2928,7 +2941,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-90df9584346a",
         "evidence_files":  [
@@ -2952,7 +2965,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-781b86ab6c21",
         "evidence_files":  [
@@ -2976,7 +2989,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-51df62268db3",
         "evidence_files":  [
@@ -3000,7 +3013,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-7f4c4a2d56e7",
         "evidence_files":  [
@@ -3024,7 +3037,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-a4ed2bca1d79",
         "evidence_files":  [
@@ -3048,7 +3061,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-1cc5c822b45e",
         "evidence_files":  [
@@ -3072,7 +3085,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-249bb14e420a",
         "evidence_files":  [
@@ -3096,7 +3109,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-65fb664c7d60",
         "evidence_files":  [
@@ -3120,7 +3133,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-17c0d46e96bd",
         "evidence_files":  [
@@ -3144,7 +3157,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-3d8b5436db4a",
         "evidence_files":  [
@@ -3168,7 +3181,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-7f19b865b24e",
         "evidence_files":  [
@@ -3192,7 +3205,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-99c40dec4b34",
         "evidence_files":  [
@@ -3216,7 +3229,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-b8f25894df78",
         "evidence_files":  [
@@ -3240,7 +3253,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-d6e9bdf63319",
         "evidence_files":  [
@@ -3264,7 +3277,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-78c31a6bc58b",
         "evidence_files":  [
@@ -3288,7 +3301,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-e38cfb994451",
         "evidence_files":  [
@@ -3312,7 +3325,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-43185185ac07",
         "evidence_files":  [
@@ -3336,7 +3349,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-2838577603da",
         "evidence_files":  [
@@ -3360,7 +3373,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-5ce955f80edf",
         "evidence_files":  [
@@ -3384,7 +3397,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-45d2b6c9e73d",
         "evidence_files":  [
@@ -3408,7 +3421,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-67f65d7c1ed6",
         "evidence_files":  [
@@ -3432,7 +3445,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-12d1e1003099",
         "evidence_files":  [
@@ -3456,7 +3469,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-ace07820416b",
         "evidence_files":  [
@@ -3480,7 +3493,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-916cba48d41a",
         "evidence_files":  [
@@ -3504,7 +3517,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-c685dd2508d7",
         "evidence_files":  [
@@ -3528,7 +3541,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-08e84d931739",
         "evidence_files":  [
@@ -3552,7 +3565,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-34153c72d736",
         "evidence_files":  [
@@ -3576,7 +3589,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-230c600fb904",
         "evidence_files":  [
@@ -3600,7 +3613,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-4cb6ab2cd506",
         "evidence_files":  [
@@ -3624,7 +3637,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-304cfc99998f",
         "evidence_files":  [
@@ -3648,7 +3661,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-68a3a6678e93",
         "evidence_files":  [
@@ -3672,7 +3685,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-ea1d5f1912ec",
         "evidence_files":  [
@@ -3696,7 +3709,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-7f2c9e09d643",
         "evidence_files":  [
@@ -3720,7 +3733,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-e9018238ac95",
         "evidence_files":  [
@@ -3744,7 +3757,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-108d1103bcaf",
         "evidence_files":  [
@@ -3768,7 +3781,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-d5366b21c11b",
         "evidence_files":  [
@@ -3792,7 +3805,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-8bc269e2487d",
         "evidence_files":  [
@@ -3816,7 +3829,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-21a2ab8ab419",
         "evidence_files":  [
@@ -3840,7 +3853,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-8ed65cda3a4f",
         "evidence_files":  [
@@ -3864,7 +3877,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-b0deedf9e947",
         "evidence_files":  [
@@ -3888,7 +3901,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-be66e5648981",
         "evidence_files":  [
@@ -3912,7 +3925,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-9280e8d25920",
         "evidence_files":  [
@@ -3936,7 +3949,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-0744c278b6b6",
         "evidence_files":  [
@@ -3960,7 +3973,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-9f53aff35cb7",
         "evidence_files":  [
@@ -3984,7 +3997,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-f2e11d4e2933",
         "evidence_files":  [
@@ -4008,7 +4021,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-ff60712630b7",
         "evidence_files":  [
@@ -4032,7 +4045,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-973ad0eb892c",
         "evidence_files":  [
@@ -4056,7 +4069,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-4ea1411e8c80",
         "evidence_files":  [
@@ -4080,7 +4093,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-0c67cc04df8c",
         "evidence_files":  [
@@ -4104,7 +4117,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-8b81360ebd5b",
         "evidence_files":  [
@@ -4128,7 +4141,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-45a712cc293d",
         "evidence_files":  [
@@ -4152,7 +4165,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-168383b1eaf0",
         "evidence_files":  [
@@ -4176,7 +4189,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-13208f015a1b",
         "evidence_files":  [
@@ -4200,7 +4213,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-d91818b16317",
         "evidence_files":  [
@@ -4224,7 +4237,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-fbb70819baa7",
         "evidence_files":  [
@@ -4248,7 +4261,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-5f77ecc07a8f",
         "evidence_files":  [
@@ -4272,7 +4285,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-45fde73c6ab2",
         "evidence_files":  [
@@ -4296,7 +4309,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-e226496b4050",
         "evidence_files":  [
@@ -4320,7 +4333,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-87f433c49c22",
         "evidence_files":  [
@@ -4344,7 +4357,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-8e5123151d58",
         "evidence_files":  [
@@ -4368,7 +4381,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-e21169dc273f",
         "evidence_files":  [
@@ -4392,7 +4405,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-eddcfd7a7b7c",
         "evidence_files":  [
@@ -4416,7 +4429,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-badcf0f9b8ce",
         "evidence_files":  [
@@ -4440,7 +4453,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-b310f5ccd1f7",
         "evidence_files":  [
@@ -4464,7 +4477,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-1a531b431fe9",
         "evidence_files":  [
@@ -4488,7 +4501,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-882ffa2cf6b6",
         "evidence_files":  [
@@ -4512,7 +4525,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-7a93c4fe6404",
         "evidence_files":  [
@@ -4536,7 +4549,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-251fb6c9f0fc",
         "evidence_files":  [
@@ -4560,7 +4573,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-b5122f18ad56",
         "evidence_files":  [
@@ -4584,7 +4597,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-0e7c096fc8f0",
         "evidence_files":  [
@@ -4608,7 +4621,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-4057e63f9432",
         "evidence_files":  [
@@ -4632,7 +4645,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-09c3a244b3ad",
         "evidence_files":  [
@@ -4656,7 +4669,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-1e9bd7eb98bb",
         "evidence_files":  [
@@ -4680,7 +4693,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-6dfbe6e3b67e",
         "evidence_files":  [
@@ -4704,7 +4717,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-27a0e1d4d2c7",
         "evidence_files":  [
@@ -4728,7 +4741,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-54fdb5f30421",
         "evidence_files":  [
@@ -4752,7 +4765,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-46c1eb41e626",
         "evidence_files":  [
@@ -4776,7 +4789,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-6d840e9311cf",
         "evidence_files":  [
@@ -4800,7 +4813,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-131b20e726fd",
         "evidence_files":  [
@@ -4824,7 +4837,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-07e43e67448d",
         "evidence_files":  [
@@ -4848,7 +4861,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-a8b7f1405969",
         "evidence_files":  [
@@ -4872,7 +4885,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-8aa6b9fdc58d",
         "evidence_files":  [
@@ -4896,7 +4909,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-b68f72ccdd8c",
         "evidence_files":  [
@@ -4920,7 +4933,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-0bd3dd0f162a",
         "evidence_files":  [
@@ -4944,7 +4957,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-d6381acefd2d",
         "evidence_files":  [
@@ -4968,7 +4981,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-d9e031d54915",
         "evidence_files":  [
@@ -4992,7 +5005,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-ff379be282df",
         "evidence_files":  [
@@ -5016,7 +5029,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-9b432b9f42b8",
         "evidence_files":  [
@@ -5040,7 +5053,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-6cb6a8a02c6d",
         "evidence_files":  [
@@ -5064,7 +5077,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-edf160c17006",
         "evidence_files":  [
@@ -5088,7 +5101,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-3b6aeb8d6564",
         "evidence_files":  [
@@ -5112,7 +5125,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-b185b2b2e681",
         "evidence_files":  [
@@ -5136,7 +5149,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-030796630284",
         "evidence_files":  [
@@ -5160,7 +5173,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-5d16153cdd44",
         "evidence_files":  [
@@ -5184,7 +5197,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-e5158504a7ee",
         "evidence_files":  [
@@ -5208,7 +5221,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-7e749d003ab6",
         "evidence_files":  [
@@ -5232,7 +5245,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-fe928431a372",
         "evidence_files":  [
@@ -5256,7 +5269,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-fe199e27e71e",
         "evidence_files":  [
@@ -5280,7 +5293,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-a40975f8deb4",
         "evidence_files":  [
@@ -5304,7 +5317,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-3e25a73a1c4b",
         "evidence_files":  [
@@ -5328,7 +5341,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-28dba65e8fe9",
         "evidence_files":  [
@@ -5352,7 +5365,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-11173203e13f",
         "evidence_files":  [
@@ -5376,7 +5389,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-b672576721b4",
         "evidence_files":  [
@@ -5400,7 +5413,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-b372f24047eb",
         "evidence_files":  [
@@ -5424,7 +5437,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-ed1e926eff70",
         "evidence_files":  [
@@ -5448,7 +5461,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-2d0192b79350",
         "evidence_files":  [
@@ -5472,7 +5485,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-0d862e15b1d7",
         "evidence_files":  [
@@ -5496,7 +5509,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-03fb93816d23",
         "evidence_files":  [
@@ -5520,7 +5533,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-4b718b921630",
         "evidence_files":  [
@@ -5544,7 +5557,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-fe6e28655d38",
         "evidence_files":  [
@@ -5568,7 +5581,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-27dba114f825",
         "evidence_files":  [
@@ -5592,7 +5605,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-a39c3d49075e",
         "evidence_files":  [
@@ -5616,7 +5629,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-a0c6e5750e78",
         "evidence_files":  [
@@ -5640,7 +5653,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-3d62a0aca023",
         "evidence_files":  [
@@ -5664,7 +5677,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-0959f1cabc55",
         "evidence_files":  [
@@ -5688,7 +5701,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-9278c0d7bd26",
         "evidence_files":  [
@@ -5712,7 +5725,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-5b8e391f31d4",
         "evidence_files":  [
@@ -5736,7 +5749,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-a386efeb56b5",
         "evidence_files":  [
@@ -5760,7 +5773,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-917c9e8a3085",
         "evidence_files":  [
@@ -5784,7 +5797,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-f4c5160de609",
         "evidence_files":  [
@@ -5808,7 +5821,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-700fc50d1d2c",
         "evidence_files":  [
@@ -5832,7 +5845,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-960b5f7d7f1a",
         "evidence_files":  [
@@ -5856,7 +5869,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-bd936c45ce91",
         "evidence_files":  [
@@ -5880,7 +5893,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-f241ce6d773b",
         "evidence_files":  [
@@ -5904,7 +5917,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-c90b7e743f7f",
         "evidence_files":  [
@@ -5928,7 +5941,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-70875b94a639",
         "evidence_files":  [
@@ -5952,7 +5965,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-1c7dfe6a26a4",
         "evidence_files":  [
@@ -5976,7 +5989,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-98a947c46c16",
         "evidence_files":  [
@@ -6000,7 +6013,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-43b4b98ef75a",
         "evidence_files":  [
@@ -6024,7 +6037,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-dccc4c94f5ae",
         "evidence_files":  [
@@ -6048,7 +6061,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-97ef19eb42d5",
         "evidence_files":  [
@@ -6072,7 +6085,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-803280944823",
         "evidence_files":  [
@@ -6096,7 +6109,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-fb98ca55dbcf",
         "evidence_files":  [
@@ -6120,7 +6133,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-068848afc042",
         "evidence_files":  [
@@ -6144,7 +6157,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-b66beb8bf966",
         "evidence_files":  [
@@ -6168,7 +6181,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-0ca32fbbd80a",
         "evidence_files":  [
@@ -6192,7 +6205,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-25fa7f82bef9",
         "evidence_files":  [
@@ -6216,7 +6229,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-a65134d711fb",
         "evidence_files":  [
@@ -6240,7 +6253,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-a7c6e8931fd1",
         "evidence_files":  [
@@ -6264,7 +6277,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-e8d8eec61406",
         "evidence_files":  [
@@ -6288,7 +6301,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-cbfb379ca019",
         "evidence_files":  [
@@ -6312,7 +6325,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-a9a8dca87198",
         "evidence_files":  [
@@ -6336,7 +6349,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-91fe08f318f2",
         "evidence_files":  [
@@ -6360,7 +6373,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-7b34efd450fc",
         "evidence_files":  [
@@ -6384,7 +6397,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-af4c37e637ec",
         "evidence_files":  [
@@ -6408,7 +6421,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-6a863f5bd9d6",
         "evidence_files":  [
@@ -6432,7 +6445,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-d491040193e4",
         "evidence_files":  [
@@ -6456,7 +6469,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-d90a4eea9552",
         "evidence_files":  [
@@ -6480,7 +6493,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-185b5c8232c3",
         "evidence_files":  [
@@ -6504,7 +6517,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-481801c57a58",
         "evidence_files":  [
@@ -6528,7 +6541,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-163367ddadd4",
         "evidence_files":  [
@@ -6552,7 +6565,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-d181b446f3bc",
         "evidence_files":  [
@@ -6576,7 +6589,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-05086390e8a9",
         "evidence_files":  [
@@ -6600,7 +6613,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-240728463816",
         "evidence_files":  [
@@ -6624,7 +6637,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-9545e857de50",
         "evidence_files":  [
@@ -6648,7 +6661,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-c78f56408705",
         "evidence_files":  [
@@ -6672,7 +6685,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-9e0b8cf94b7a",
         "evidence_files":  [
@@ -6696,7 +6709,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-4c7b21be9a9c",
         "evidence_files":  [
@@ -6720,7 +6733,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-e38872112a79",
         "evidence_files":  [
@@ -6744,7 +6757,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-67ccd8dadccf",
         "evidence_files":  [
@@ -6768,7 +6781,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-e1dfa96eb236",
         "evidence_files":  [
@@ -6792,7 +6805,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-be11c3d758f0",
         "evidence_files":  [
@@ -6816,7 +6829,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-53cc68dee775",
         "evidence_files":  [
@@ -6840,7 +6853,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-0590ab943a68",
         "evidence_files":  [
@@ -6864,7 +6877,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-7bae121b3efd",
         "evidence_files":  [
@@ -6888,7 +6901,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-0655a57df684",
         "evidence_files":  [
@@ -6912,7 +6925,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-9ef42d54bb8b",
         "evidence_files":  [
@@ -6936,7 +6949,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-ce77233266c0",
         "evidence_files":  [
@@ -6960,7 +6973,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-4ea22fa96c4e",
         "evidence_files":  [
@@ -6984,7 +6997,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-6eebb7b829a8",
         "evidence_files":  [
@@ -7008,7 +7021,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-8795a8c43cad",
         "evidence_files":  [
@@ -7032,7 +7045,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-fc73aa1d07ce",
         "evidence_files":  [
@@ -7056,7 +7069,7 @@
         "risk_level":  0,
         "status":  "pending",
         "source":  "knowledge_taskgen",
-        "created_at":  "2026-03-11T08:19:22.2647757Z",
+        "created_at":  "2026-03-14T02:12:29.1259978Z",
         "kind":  "patch_run",
         "source_task":  "knowledge-task-060f6ad45a39",
         "evidence_files":  [

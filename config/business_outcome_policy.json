@@ -1,0 +1,66 @@
+﻿{
+    "version":  1,
+    "policy_name":  "business_outcome_optimization",
+    "outcome_domains":  [
+                            "time_saved_indicators",
+                            "tool_usefulness",
+                            "recommendation_effectiveness",
+                            "onboarding_completion",
+                            "tenant_engagement",
+                            "revenue_help_indicators",
+                            "churn_risk_indicators"
+                        ],
+    "evidence_sources":  [
+                             "tenant workspace and onboarding state",
+                             "tenant recommendation artifacts",
+                             "tenant-linked tool run artifacts",
+                             "tool registry",
+                             "billing summary and entitlement posture",
+                             "system truth spine"
+                         ],
+    "scoring_and_confidence_rules":  {
+                                         "measured_signal":  "A signal backed directly by tool runs, recommendation status records, onboarding completion state, or billing subscription state.",
+                                         "inferred_signal":  "A cautious inference based on linked measured events such as accepted recommendation plus matching tool usage.",
+                                         "sparse_data_signal":  "A low-confidence reading where only one or two weak signals are available.",
+                                         "unavailable_signal":  "No trustworthy local evidence exists for that outcome domain."
+                                     },
+    "fallback_behavior_for_sparse_data":  [
+                                              "Keep the domain present with low or unknown confidence.",
+                                              "Do not infer precise time saved or revenue lift from sparse pilot data."
+                                          ],
+    "customer_safe_vs_internal_metrics_rules":  {
+                                                    "internal_metrics_may_reference":  [
+                                                                                           "tool IDs",
+                                                                                           "artifact paths",
+                                                                                           "recommendation statuses",
+                                                                                           "billing stub posture"
+                                                                                       ],
+                                                    "customer_safe_outputs_must_avoid":  [
+                                                                                             "internal file paths",
+                                                                                             "private Mason-only terminology",
+                                                                                             "unsupported ROI claims"
+                                                                                         ]
+                                                },
+    "tenant_aggregation_rules":  [
+                                     "Aggregate by tenant first, then roll up to platform summaries.",
+                                     "One noisy tenant must not be treated as strong proof of broad product impact."
+                                 ],
+    "churn_risk_rules":  [
+                             "Incomplete onboarding plus no adoption signal increases churn risk.",
+                             "Completed onboarding plus recent tool usage lowers churn risk.",
+                             "Sparse data may yield unknown instead of elevated risk."
+                         ],
+    "revenue_help_heuristics":  [
+                                    "Accepted and followed-through sales or marketing recommendations can count as possible or positive signal.",
+                                    "Active plan fit plus use of follow-up or growth tools may indicate revenue-supportive behavior, not actual revenue lift."
+                                ],
+    "low_confidence_handling":  [
+                                    "Low-confidence domains remain WARN, not FAIL.",
+                                    "Unknown churn or revenue signals are allowed when evidence is sparse."
+                                ],
+    "no_fake_metric_rules":  [
+                                 "Do not invent hours saved.",
+                                 "Do not invent revenue increase.",
+                                 "Do not treat tool existence as usefulness."
+                             ]
+}

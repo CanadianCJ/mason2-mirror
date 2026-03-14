@@ -1,0 +1,138 @@
+﻿{
+    "version":  1,
+    "policy_name":  "whole_folder_verification_campaign",
+    "policy_id":  "whole_folder_verification",
+    "discovery":  {
+                      "scan_roots":  [
+                                         "tools",
+                                         "services",
+                                         "MasonConsole",
+                                         "config",
+                                         "state",
+                                         "reports",
+                                         "roadmap",
+                                         "Component - Onyx App"
+                                     ],
+                      "classifications":  [
+                                              "active",
+                                              "registered",
+                                              "expected-runtime",
+                                              "artifact",
+                                              "config",
+                                              "candidate",
+                                              "orphaned",
+                                              "duplicate",
+                                              "stale",
+                                              "broken",
+                                              "unknown",
+                                              "dangerous",
+                                              "archive-like"
+                                          ],
+                      "stale_report_hours":  168,
+                      "stale_artifact_hours":  168,
+                      "dangerous_name_patterns":  [
+                                                      "stop[_-].*deep",
+                                                      "wipe",
+                                                      "purge",
+                                                      "reset",
+                                                      "kill",
+                                                      "cleanup",
+                                                      "destroy",
+                                                      "nuke",
+                                                      "remove",
+                                                      "delete"
+                                                  ],
+                      "archive_patterns":  [
+                                               "archive",
+                                               "backup",
+                                               "legacy",
+                                               "old",
+                                               "copy",
+                                               "tmp",
+                                               "temp",
+                                               ".bak"
+                                           ]
+                  },
+    "registration_alignment":  {
+                                   "required_registries":  [
+                                                               "config/component_registry.json",
+                                                               "config/tool_registry.json",
+                                                               "state/knowledge/behavior_trust.json",
+                                                               "state/knowledge/improvement_queue.json",
+                                                               "reports/system_truth_spine_last.json"
+                                                           ],
+                                   "severity_thresholds":  {
+                                                               "critical":  90,
+                                                               "high":  70,
+                                                               "medium":  40,
+                                                               "low":  10
+                                                           }
+                               },
+    "registry_alignment":  {
+                               "required_registries":  [
+                                                           "config/component_registry.json",
+                                                           "config/tool_registry.json",
+                                                           "state/knowledge/behavior_trust.json",
+                                                           "state/knowledge/improvement_queue.json",
+                                                           "reports/system_truth_spine_last.json"
+                                                       ],
+                               "severity_thresholds":  {
+                                                           "critical":  90,
+                                                           "high":  70,
+                                                           "medium":  40,
+                                                           "low":  10
+                                                       }
+                           },
+    "golden_paths":  {
+                         "run_stack_restart":  true,
+                         "required_endpoints":  [
+                                                    "http://127.0.0.1:8383/health",
+                                                    "http://127.0.0.1:8109/health",
+                                                    "http://127.0.0.1:8484/health",
+                                                    "http://127.0.0.1:8000/api/health",
+                                                    "http://127.0.0.1:5353/main.dart.js",
+                                                    "http://127.0.0.1:8000/api/stack_status",
+                                                    "http://127.0.0.1:8000/athena/"
+                                                ],
+                         "tool_canary":  {
+                                             "tool_id":  "rescue_plan_v1",
+                                             "default_tenant_id":  "tenant_http_check"
+                                         }
+                     },
+    "fault_tests":  {
+                        "safe_only":  true,
+                        "cases":  [
+                                      "missing_artifact_simulation",
+                                      "stale_registry_entry_simulation",
+                                      "tenant_mismatch_simulation",
+                                      "failed_health_probe_simulation",
+                                      "stale_pass_vs_live_probe_simulation"
+                                  ]
+                    },
+    "migration_checks":  {
+                             "hardcoded_path_patterns":  [
+                                                             "C:\\Users\\Chris",
+                                                             "C:/Users/Chris",
+                                                             "C:\\Mason2_MIRROR",
+                                                             "C:/Mason2_MIRROR"
+                                                         ],
+                             "required_artifacts":  [
+                                                        "reports/environment_profile_last.json",
+                                                        "reports/environment_drift_last.json",
+                                                        "reports/runtime_posture_last.json",
+                                                        "state/knowledge/environment_registry.json",
+                                                        "reports/mirror_update_last.json"
+                                                    ]
+                         },
+    "usability_checks":  {
+                             "founder_only_athena_required":  true,
+                             "no_dead_buttons_required":  true,
+                             "plain_english_required":  true,
+                             "brand_isolation_required":  true
+                         },
+    "mirror":  {
+                   "require_canonical_flow":  true,
+                   "allow_local_only_success":  true,
+                   "reason":  "whole-folder-verification"
+               }
+}

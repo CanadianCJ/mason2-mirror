@@ -379,7 +379,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
     if (!mounted) return false;
     if (showSavedSnack) {
       _showSnack(completeOnboarding
-          ? 'Business profile saved.'
+          ? 'Business onboarding completed.'
           : 'Business context saved.');
     }
     return true;
@@ -444,8 +444,8 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
       'audience': operatingArea.isEmpty ? _joinList(locations) : operatingArea,
       'offers': _splitList(_servicesController.text),
       'sales_pipeline_status': _activeContext.onboarding.isCompleted
-          ? 'Tenant onboarding complete'
-          : 'Needs onboarding detail',
+          ? 'Business onboarding complete'
+          : 'Needs onboarding details',
       'lead_sources': locations,
       'objections': issues,
       'risk_tolerance': _riskTolerance,
@@ -497,9 +497,9 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
       _toolCatalogLoading = true;
       _billingLoading = true;
       _recommendationsLoading = true;
-      _toolCatalogMessage = 'Loading live tools for $businessName...';
+      _toolCatalogMessage = 'Loading available actions for $businessName...';
       _billingMessage = 'Loading billing and plan access for $businessName...';
-      _recommendationsMessage = 'Refreshing recommendations for $businessName...';
+      _recommendationsMessage = 'Refreshing next-step suggestions for $businessName...';
     });
     final catalog = await _toolRuntimeBridge.fetchCatalog(
       tenantId: tenantId,
@@ -528,11 +528,11 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
           (catalog['error'] as String?) ??
           'Tool catalog unavailable.';
     } else if (tools.isEmpty) {
-      message = 'No runnable tools are currently available for this tenant.';
+      message = 'No runnable tools are currently available for this business.';
     } else if (latestRuns['ok'] != true) {
       message = 'Tools loaded. Recent run history is temporarily unavailable.';
     } else {
-      message = 'Only live, tenant-ready tools are shown here.';
+      message = 'Only actions that are ready for this business are shown here.';
     }
     String billingMessage;
     if (billing['ok'] != true) {
@@ -540,10 +540,11 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
           (billing['error'] as String?) ??
           'Billing summary unavailable.';
     } else if (billingTenant.isEmpty) {
-      billingMessage = 'Billing summary loaded. Select a tenant to review plan access.';
+      billingMessage =
+          'Billing summary loaded. Choose a business to review plan access.';
     } else if (billingTenant['checkout_required'] == true) {
       billingMessage =
-          'Select a plan and start checkout to unlock tenant entitlements.';
+          'Select a plan and start checkout to unlock plan access.';
     } else {
       final planName =
           (billingTenant['plan_name'] as String?)?.trim().isNotEmpty == true
@@ -553,7 +554,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
           ((billingTenant['status'] as String?) ?? 'inactive').toUpperCase();
       billingMessage = planName.isEmpty
           ? 'Billing summary loaded.'
-          : '$planName is currently $status for this tenant.';
+          : '$planName is currently $status for this business.';
     }
     String recommendationsMessage;
     if (recommendations['ok'] != true) {
@@ -562,10 +563,10 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
           'Recommendations unavailable.';
     } else if (recommendationItems.isEmpty) {
       recommendationsMessage =
-          'No recommendations are active for this tenant right now.';
+          'No next-step suggestions are active for this business right now.';
     } else {
       recommendationsMessage =
-          'Recommendations are generated from tenant context and latest tool outputs.';
+          'Suggestions are based on this business and the latest results.';
     }
     setState(() {
       _toolCatalogLoading = false;
@@ -703,7 +704,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
     final businessName = _activeContext.profile.businessName;
     setState(() {
       _recommendationsLoading = true;
-      _recommendationsMessage = 'Refreshing recommendations for $businessName...';
+      _recommendationsMessage = 'Refreshing next-step suggestions for $businessName...';
     });
     final result = await _toolRuntimeBridge.refreshRecommendations(
       tenantId: tenantId,
@@ -715,7 +716,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
       _recommendations = _mapList(result['recommendations']);
       _recommendationsMessage = (result['message'] as String?) ??
           (ok
-              ? 'Recommendations refreshed from tenant context and tool outputs.'
+              ? 'Suggestions refreshed from this business and the latest results.'
               : (result['error'] as String?) ?? 'Recommendation refresh failed.');
     });
     _showSnack(_recommendationsMessage);
@@ -764,7 +765,11 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
       completeOnboarding: isLastStep,
       showSavedSnack: isLastStep,
     );
-    if (!mounted || !saved || isLastStep) return;
+    if (!mounted || !saved) return;
+    if (isLastStep) {
+      await _refreshToolCatalog();
+      return;
+    }
     setState(() {
       _currentStep = nextStep;
     });
@@ -845,7 +850,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
     );
     await widget.onWorkspaceChanged(
       switchedWorkspace,
-      localMessage: 'Switched tenant and saved local progress.',
+      localMessage: 'Switched business and saved local progress.',
     );
   }
 
@@ -856,7 +861,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Create tenant'),
+          title: const Text('Add business'),
           content: SizedBox(
             width: 420,
             child: Column(
@@ -896,7 +901,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
                   ),
                 );
               },
-              child: const Text('Create'),
+              child: const Text('Add'),
             ),
           ],
         );
@@ -992,10 +997,10 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
         );
     await widget.onWorkspaceChanged(
       createdWorkspace,
-      localMessage: 'Tenant created and saved locally.',
+      localMessage: 'Business workspace created and saved locally.',
     );
     if (!mounted) return;
-    _showSnack('Tenant created.');
+    _showSnack('Business added.');
   }
 
   Widget _buildHeaderCard(ThemeData theme, ColorScheme scheme) {
@@ -1012,7 +1017,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
               children: [
                 Expanded(
                   child: _LabeledField(
-                    label: 'Active tenant',
+                    label: 'Active business',
                     child: DropdownButtonFormField<String>(
                       initialValue: widget.workspace.activeTenantId,
                       items: widget.workspace.contexts
@@ -1036,7 +1041,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
                 FilledButton.icon(
                   onPressed: _handleCreateTenant,
                   icon: const Icon(Icons.add_business),
-                  label: const Text('Create tenant'),
+                  label: const Text('Add business'),
                 ),
               ],
             ),
@@ -1084,7 +1089,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
 
   Step _buildTenantStep(ThemeData theme) {
     return Step(
-      title: const Text('Tenant'),
+      title: const Text('Business'),
       subtitle: const Text('Business identity, owner, and tier'),
       isActive: _currentStep >= 0,
       state: _activeContext.onboarding.completedStepIds.contains('tenant')
@@ -1139,7 +1144,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
               SizedBox(
                 width: 220,
                 child: _LabeledField(
-                  label: 'Tenant status',
+                  label: 'Business status',
                   child: DropdownButtonFormField<String>(
                     initialValue: _tenantStatus,
                     items: const [
@@ -1204,7 +1209,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
           ),
           const SizedBox(height: 12),
           Text(
-            'Create one tenant per client or business so context stays scoped and editable.',
+            'Create one business workspace per client or company so context stays scoped and editable.',
             style: theme.textTheme.bodySmall,
           ),
         ],
@@ -1598,7 +1603,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
             contentPadding: EdgeInsets.zero,
             title: const Text('Opt into early feature testing'),
             subtitle: const Text(
-              'Useful for pilot tenants that want new tools sooner.',
+              'Useful for pilot businesses that want new tools sooner.',
             ),
             value: _betaOptIn,
             onChanged: (value) {
@@ -1748,7 +1753,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
               Text(
                 checkoutRequired
                     ? 'No tools are unlocked yet. Start checkout on one of the plans below to activate the catalog.'
-                    : 'No entitled tools are currently active for this tenant.',
+                    : 'No entitled tools are currently active for this business.',
                 style: theme.textTheme.bodySmall,
               )
             else
@@ -1774,7 +1779,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
             const SizedBox(height: 8),
             if (activeFeatures.isEmpty)
               Text(
-                'No active features are currently attached to this tenant.',
+                'No active features are currently attached to this business.',
                 style: theme.textTheme.bodySmall,
               )
             else
@@ -1936,14 +1941,14 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Recommended next actions',
+                        'Recommended next steps',
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Deterministic recommendations are generated from tenant profile data, tool availability, and latest tool outputs.',
+                        'These suggestions are based on your business details and the latest results.',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: scheme.onSurfaceVariant,
                         ),
@@ -1997,7 +2002,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
             ] else if (recommendations.isEmpty) ...[
               const SizedBox(height: 16),
               Text(
-                'No structured recommendations are active for this tenant.',
+                'No suggestions are active right now.',
                 style: theme.textTheme.bodyMedium,
               ),
             ] else ...[
@@ -2196,14 +2201,14 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Tenant tools',
+              'Available actions',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),
             const SizedBox(height: 8),
             Text(
-              'Only tools that are registered, enabled, and runnable for $businessName appear here. Every run writes a linked artifact Mason can inspect later.',
+              'Only actions that are ready for $businessName appear here. Each run saves a result to your history.',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: scheme.onSurfaceVariant,
               ),
@@ -2244,7 +2249,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
             ] else if (_toolCatalog.isEmpty) ...[
               const SizedBox(height: 16),
               Text(
-                'No live tool actions are available for this tenant yet.',
+                'No actions are ready for this business yet.',
                 style: theme.textTheme.bodyMedium,
               ),
             ] else ...[
@@ -2422,7 +2427,7 @@ class _TenantBusinessPlanTabState extends State<TenantBusinessPlanTab> {
               ),
               const SizedBox(height: 8),
               Text(
-                'Capture each tenant’s business context so onboarding stays editable, scoped, and useful across future work.',
+                'Capture each business profile so onboarding stays editable, personal, and useful across future work.',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: scheme.onSurfaceVariant,
                 ),

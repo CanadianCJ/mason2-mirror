@@ -1,0 +1,10 @@
+﻿{
+    "generated_at_utc":  "2026-03-12T18:51:03.7306756Z",
+    "overall_status":  "WARN",
+    "latest_business_outcomes_artifact":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\business_outcomes_last.json",
+    "tenant_count":  1,
+    "tool_count":  4,
+    "outcome_domain_count":  7,
+    "current_summary_status":  "WARN",
+    "notes":  "Outcome layer is conservative and pilot-sized; current signals come from one active tenant plus recommendation and tool-run evidence."
+}

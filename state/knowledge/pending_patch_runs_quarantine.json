@@ -16709,5 +16709,145 @@
                                "reports/drift_manifest_history.jsonl"
                            ],
         "quarantine_reason":  "throttle_overflow"
+    },
+    {
+        "id":  "drift-manifest-c95e6fa94818",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "manual",
+        "created_at":  "2026-03-11T13:40:26.9419264Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ],
+        "quarantine_reason":  "throttle_overflow"
+    },
+    {
+        "id":  "drift-manifest-d87e0cad7434",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "manual",
+        "created_at":  "2026-03-11T17:07:05.8885378Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ],
+        "quarantine_reason":  "throttle_overflow"
+    },
+    {
+        "id":  "drift-manifest-8fa99e437a8c",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "manual",
+        "created_at":  "2026-03-11T19:55:04.9642112Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ],
+        "quarantine_reason":  "throttle_overflow"
+    },
+    {
+        "id":  "drift-manifest-6664d100afbd",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "manual",
+        "created_at":  "2026-03-12T04:34:50.9757562Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ],
+        "quarantine_reason":  "throttle_overflow"
+    },
+    {
+        "id":  "drift-manifest-a2f10d4637b4",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "manual",
+        "created_at":  "2026-03-12T18:22:12.6105097Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ],
+        "quarantine_reason":  "throttle_overflow"
+    },
+    {
+        "id":  "drift-manifest-8d8af4cea979",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "manual",
+        "created_at":  "2026-03-12T18:47:54.9013944Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ],
+        "quarantine_reason":  "throttle_overflow"
+    },
+    {
+        "id":  "drift-manifest-91f0bd3d375d",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "manual",
+        "created_at":  "2026-03-12T23:42:46.3483399Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ],
+        "quarantine_reason":  "throttle_overflow"
+    },
+    {
+        "id":  "drift-manifest-a46d89d3b955",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "manual",
+        "created_at":  "2026-03-13T02:01:47.7642348Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ],
+        "quarantine_reason":  "throttle_overflow"
+    },
+    {
+        "id":  "drift-manifest-b01f87edda99",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "manual",
+        "created_at":  "2026-03-13T03:23:01.9562321Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ],
+        "quarantine_reason":  "throttle_overflow"
+    },
+    {
+        "id":  "drift-manifest-38642c4f7cb5",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "manual",
+        "created_at":  "2026-03-13T20:29:30.4835105Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ],
+        "quarantine_reason":  "throttle_overflow"
     }
 ]

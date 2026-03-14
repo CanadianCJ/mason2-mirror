@@ -1,0 +1,69 @@
+﻿{
+    "generated_at_utc":  "2026-03-12T00:48:59.0430163Z",
+    "last_run_status":  "WARN",
+    "last_recommended_next_action":  "Plan a safe reboot window when appropriate.",
+    "issues":  {
+                   "host.pending_reboot":  {
+                                               "last_seen_utc":  "2026-03-12T00:48:59.0430163Z",
+                                               "window_started_utc":  "2026-03-12T00:38:34.0973250Z",
+                                               "attempt_count_in_window":  0,
+                                               "last_policy_decision":  "blocked_by_policy",
+                                               "last_action_state":  "blocked_by_policy",
+                                               "last_result":  "not_auto_healed"
+                                           },
+                   "validator.warn.billing_entitlements":  {
+                                                               "last_seen_utc":  "2026-03-12T00:48:59.0430163Z",
+                                                               "window_started_utc":  "2026-03-12T00:38:34.0973250Z",
+                                                               "attempt_count_in_window":  0,
+                                                               "last_policy_decision":  "blocked_by_policy",
+                                                               "last_action_state":  "blocked_by_policy",
+                                                               "last_result":  "not_auto_healed"
+                                                           },
+                   "validator.warn.security_legal_tenant_safety":  {
+                                                                       "last_seen_utc":  "2026-03-12T00:48:59.0430163Z",
+                                                                       "window_started_utc":  "2026-03-12T00:38:34.0973250Z",
+                                                                       "attempt_count_in_window":  0,
+                                                                       "last_policy_decision":  "blocked_by_policy",
+                                                                       "last_action_state":  "blocked_by_policy",
+                                                                       "last_result":  "not_auto_healed"
+                                                                   },
+                   "validator.warn.self_improvement_governor":  {
+                                                                    "last_seen_utc":  "2026-03-12T00:48:59.0430163Z",
+                                                                    "window_started_utc":  "2026-03-12T00:38:34.0973250Z",
+                                                                    "attempt_count_in_window":  0,
+                                                                    "last_policy_decision":  "blocked_by_policy",
+                                                                    "last_action_state":  "blocked_by_policy",
+                                                                    "last_result":  "not_auto_healed"
+                                                                },
+                   "validator.warn.stack_base":  {
+                                                     "last_seen_utc":  "2026-03-12T00:48:59.0430163Z",
+                                                     "window_started_utc":  "2026-03-12T00:48:59.0430163Z",
+                                                     "attempt_count_in_window":  0,
+                                                     "last_policy_decision":  "blocked_by_policy",
+                                                     "last_action_state":  "blocked_by_policy",
+                                                     "last_result":  "not_auto_healed"
+                                                 }
+               },
+    "components":  {
+                       "billing":  {
+                                       "last_seen_issue_id":  "validator.warn.billing_entitlements",
+                                       "last_seen_utc":  "2026-03-12T00:48:59.0430163Z"
+                                   },
+                       "governance":  {
+                                          "last_seen_issue_id":  "validator.warn.stack_base",
+                                          "last_seen_utc":  "2026-03-12T00:48:59.0430163Z"
+                                      },
+                       "host":  {
+                                    "last_seen_issue_id":  "host.pending_reboot",
+                                    "last_seen_utc":  "2026-03-12T00:48:59.0430163Z"
+                                },
+                       "security_posture":  {
+                                                "last_seen_issue_id":  "validator.warn.security_legal_tenant_safety",
+                                                "last_seen_utc":  "2026-03-12T00:48:59.0430163Z"
+                                            },
+                       "self_improvement":  {
+                                                "last_seen_issue_id":  "validator.warn.self_improvement_governor",
+                                                "last_seen_utc":  "2026-03-12T00:48:59.0430163Z"
+                                            }
+                   }
+}

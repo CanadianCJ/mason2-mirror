@@ -1,0 +1,579 @@
+{
+    "version":  1,
+    "current_active_baseline_id":  "baseline_seed_20260312_002259",
+    "current_trusted_baseline_id":  "",
+    "last_run_timestamp_utc":  "2026-03-12T05:19:19.6714588+00:00",
+    "last_comparison_result":  "warning_regressions_detected",
+    "baselines":  [
+                      {
+                          "baseline_id":  "baseline_seed_20260312_002156",
+                          "created_at_utc":  "2026-03-12T04:21:56.9890359+00:00",
+                          "source_artifacts":  [
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\keepalive_last.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\host_health_last.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\billing_summary.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\security_posture.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\mirror_update_last.json"
+                                               ],
+                          "baseline_tag":  "",
+                          "baseline_status_summary":  {
+                                                          "overall_status":  "UNKNOWN",
+                                                          "validator_status":  "UNKNOWN",
+                                                          "system_truth_status":  "UNKNOWN"
+                                                      },
+                          "domain_statuses":  {
+                                                  "validator":  "UNKNOWN",
+                                                  "stack":  "WARN",
+                                                  "runtime_truth":  "WARN",
+                                                  "host":  "UNKNOWN",
+                                                  "environment":  "UNKNOWN",
+                                                  "keepalive_ops":  "UNKNOWN",
+                                                  "self_improvement":  "UNKNOWN",
+                                                  "security_posture":  "UNKNOWN",
+                                                  "billing":  "PASS",
+                                                  "mirror":  "FAIL",
+                                                  "brand_exposure":  "UNKNOWN",
+                                                  "live_docs":  "UNKNOWN",
+                                                  "system_truth":  "UNKNOWN"
+                                              },
+                          "domain_snapshots":  {
+                                                   "validator":  {
+                                                                     "status":  "UNKNOWN",
+                                                                     "summary":  "Validator UNKNOWN; failed=0; warn=0; passed=0.",
+                                                                     "metrics":  {
+                                                                                     "passed_count":  0,
+                                                                                     "warn_count":  0,
+                                                                                     "failed_count":  0
+                                                                                 },
+                                                                     "details":  {
+                                                                                     "baseline_tag":  ""
+                                                                                 },
+                                                                     "last_updated_utc":  "2026-03-12T03:40:18.6904938+00:00",
+                                                                     "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json"
+                                                                 },
+                                                   "stack":  {
+                                                                 "status":  "WARN",
+                                                                 "summary":  "All required services are healthy, but runtime truth drift remains for 5 service(s).",
+                                                                 "metrics":  {
+                                                                                 "healthy_service_count":  5,
+                                                                                 "unhealthy_service_count":  0,
+                                                                                 "pid_drift_count":  5,
+                                                                                 "service_count":  5
+                                                                             },
+                                                                 "details":  {
+                                                                                 "drifted_services":  [
+                                                                                                          "mason_api",
+                                                                                                          "seed_api",
+                                                                                                          "bridge",
+                                                                                                          "athena",
+                                                                                                          "onyx"
+                                                                                                      ],
+                                                                                 "stack_validator_status":  "UNKNOWN"
+                                                                             },
+                                                                 "last_updated_utc":  "2026-03-12T04:21:56.9285160+00:00",
+                                                                 "evidence_used":  [
+                                                                                       "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                                                                       "C:\\Users\\Chris\\Desktop\\Mason2\\state\\knowledge\\stack_pids.json"
+                                                                                   ]
+                                                             },
+                                                   "runtime_truth":  {
+                                                                         "status":  "WARN",
+                                                                         "summary":  "current_live_pids drift persists for 5 service(s).",
+                                                                         "metrics":  {
+                                                                                         "pid_drift_count":  5,
+                                                                                         "tracked_service_count":  5
+                                                                                     },
+                                                                         "details":  {
+                                                                                         "drifted_services":  [
+                                                                                                                  "mason_api",
+                                                                                                                  "seed_api",
+                                                                                                                  "bridge",
+                                                                                                                  "athena",
+                                                                                                                  "onyx"
+                                                                                                              ]
+                                                                                     },
+                                                                         "last_updated_utc":  "2026-03-11T19:55:24.5666418+00:00",
+                                                                         "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\knowledge\\stack_pids.json"
+                                                                     },
+                                                   "host":  {
+                                                                "status":  "UNKNOWN",
+                                                                "summary":  "Host posture UNKNOWN; throttle=unknown.",
+                                                                "metrics":  {
+                                                                                "throttle_guidance":  ""
+                                                                            },
+                                                                "details":  {
+                                                                                "recommended_next_action":  ""
+                                                                            },
+                                                                "last_updated_utc":  "2026-03-11T11:46:29.2061571+00:00",
+                                                                "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\host_health_last.json"
+                                                            },
+                                                   "environment":  {
+                                                                       "status":  "UNKNOWN",
+                                                                       "summary":  "Environment UNKNOWN; drift=unknown; host_classification=.",
+                                                                       "metrics":  {
+                                                                                       "drift_level":  "",
+                                                                                       "throttle_guidance":  ""
+                                                                                   },
+                                                                       "details":  {
+                                                                                       "migration_detected":  false,
+                                                                                       "environment_id":  ""
+                                                                                   },
+                                                                       "last_updated_utc":  "2026-03-11T11:46:31.2260440+00:00",
+                                                                       "evidence_used":  [
+                                                                                             "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\environment_profile_last.json",
+                                                                                             "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\environment_drift_last.json",
+                                                                                             "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\runtime_posture_last.json"
+                                                                                         ]
+                                                                   },
+                                                   "keepalive_ops":  {
+                                                                         "status":  "UNKNOWN",
+                                                                         "summary":  "KeepAlive UNKNOWN; escalated=0; repairs=0/0; blocked=0.",
+                                                                         "metrics":  {
+                                                                                         "repair_blocked_count":  0,
+                                                                                         "repair_success_count":  0,
+                                                                                         "escalated_issue_count":  0,
+                                                                                         "repair_attempt_count":  0
+                                                                                     },
+                                                                         "details":  {
+                                                                                         "throttle_guidance":  "",
+                                                                                         "daily_report_status":  "UNKNOWN"
+                                                                                     },
+                                                                         "last_updated_utc":  "2026-03-12T00:48:59.2509511+00:00",
+                                                                         "evidence_used":  [
+                                                                                               "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\keepalive_last.json",
+                                                                                               "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\self_heal_last.json",
+                                                                                               "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\daily_report_last.json"
+                                                                                           ]
+                                                                     },
+                                                   "self_improvement":  {
+                                                                            "status":  "UNKNOWN",
+                                                                            "summary":  "Self-improvement UNKNOWN; teacher_allowed=0; active_improvements=0.",
+                                                                            "metrics":  {
+                                                                                            "active_improvement_total":  0,
+                                                                                            "safe_to_test_total":  0
+                                                                                        },
+                                                                            "details":  {
+                                                                                            "budget_posture":  ""
+                                                                                        },
+                                                                            "last_updated_utc":  "2026-03-11T12:41:24.1859726+00:00",
+                                                                            "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\self_improvement_governor_last.json"
+                                                                        },
+                                                   "security_posture":  {
+                                                                            "status":  "UNKNOWN",
+                                                                            "summary":  "Security posture UNKNOWN; tenant_safety_issues=0; audit_events=0.",
+                                                                            "metrics":  {
+                                                                                            "audit_event_total":  0,
+                                                                                            "tenant_safety_critical_total":  0,
+                                                                                            "tenant_safety_issues_total":  0
+                                                                                        },
+                                                                            "details":  {
+                                                                                            "tenant_isolation_posture":  ""
+                                                                                        },
+                                                                            "last_updated_utc":  "2026-03-12T03:40:56.6085625+00:00",
+                                                                            "evidence_used":  [
+                                                                                                  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\security_posture.json",
+                                                                                                  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\tenant_safety_report.json"
+                                                                                              ]
+                                                                        },
+                                                   "billing":  {
+                                                                   "status":  "PASS",
+                                                                   "summary":  "Billing PASS; provider_mode=unknown; enabled_tools=0; tenant_status=.",
+                                                                   "metrics":  {
+                                                                                   "enabled_tool_total":  0,
+                                                                                   "subscription_total":  0
+                                                                               },
+                                                                   "details":  {
+                                                                                   "plan_id":  "",
+                                                                                   "provider_mode":  ""
+                                                                               },
+                                                                   "last_updated_utc":  "2026-03-12T03:40:56.6331854+00:00",
+                                                                   "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\billing_summary.json"
+                                                               },
+                                                   "mirror":  {
+                                                                  "status":  "FAIL",
+                                                                  "summary":  "Mirror FAIL; ok=false; phase=unknown.",
+                                                                  "metrics":  {
+                                                                                  "ok":  false,
+                                                                                  "phase":  ""
+                                                                              },
+                                                                  "details":  {
+                                                                                  "mirror_push_result":  ""
+                                                                              },
+                                                                  "last_updated_utc":  "2026-03-12T03:25:22.5186042+00:00",
+                                                                  "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\mirror_update_last.json"
+                                                              },
+                                                   "brand_exposure":  {
+                                                                          "status":  "UNKNOWN",
+                                                                          "summary":  "Brand exposure UNKNOWN; public_leaks=0; scanned=0.",
+                                                                          "metrics":  {
+                                                                                          "public_leak_count":  0,
+                                                                                          "surfaces_scanned":  0
+                                                                                      },
+                                                                          "details":  {
+                                                                                          "public_brand_posture":  ""
+                                                                                      },
+                                                                          "last_updated_utc":  "2026-03-11T19:53:22.7958382+00:00",
+                                                                          "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\brand_exposure_isolation_last.json"
+                                                                      },
+                                                   "live_docs":  {
+                                                                     "status":  "UNKNOWN",
+                                                                     "summary":  "Live docs UNKNOWN; docs_count=0; stale_docs=0.",
+                                                                     "metrics":  {
+                                                                                     "docs_count":  0,
+                                                                                     "stale_docs_count":  0
+                                                                                 },
+                                                                     "details":  {
+                                                                                     "components_with_warnings":  {
+
+                                                                                                                  }
+                                                                                 },
+                                                                     "last_updated_utc":  "2026-03-11T17:50:07.1827816+00:00",
+                                                                     "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\live_docs_summary.json"
+                                                                 },
+                                                   "system_truth":  {
+                                                                        "status":  "UNKNOWN",
+                                                                        "summary":  "System truth UNKNOWN; warning_domains=0; failing_domains=0.",
+                                                                        "metrics":  {
+                                                                                        "failing_domain_count":  0,
+                                                                                        "available_domain_count":  0,
+                                                                                        "warning_domain_count":  0
+                                                                                    },
+                                                                        "details":  {
+                                                                                        "top_warning_domains":  {
+
+                                                                                                                }
+                                                                                    },
+                                                                        "last_updated_utc":  "2026-03-12T03:40:33.1921448+00:00",
+                                                                        "evidence_used":  [
+                                                                                              "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                                                                              "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_metrics_spine_last.json"
+                                                                                          ]
+                                                                    }
+                                               },
+                          "notes":  [
+                                        "Initial regression baseline captured from current local truth.",
+                                        "Seed baselines are comparison-capable for observation but do not unlock promotion."
+                                    ],
+                          "eligible_for_comparison":  true,
+                          "promoted":  false,
+                          "approved":  false,
+                          "trusted":  false,
+                          "baseline_kind":  "seed"
+                      },
+                      {
+                          "baseline_id":  "baseline_seed_20260312_002259",
+                          "created_at_utc":  "2026-03-12T04:22:59.7373204+00:00",
+                          "source_artifacts":  [
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\keepalive_last.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\host_health_last.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\billing_summary.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\security_posture.json",
+                                                   "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\mirror_update_last.json"
+                                               ],
+                          "baseline_tag":  "CoreWithAthenaOnyx",
+                          "baseline_status_summary":  {
+                                                          "overall_status":  "WARN",
+                                                          "validator_status":  "WARN",
+                                                          "system_truth_status":  "WARN"
+                                                      },
+                          "domain_statuses":  {
+                                                  "validator":  "WARN",
+                                                  "stack":  "WARN",
+                                                  "runtime_truth":  "WARN",
+                                                  "host":  "WARN",
+                                                  "environment":  "WARN",
+                                                  "keepalive_ops":  "WARN",
+                                                  "self_improvement":  "WARN",
+                                                  "security_posture":  "WARN",
+                                                  "billing":  "WARN",
+                                                  "mirror":  "PASS",
+                                                  "brand_exposure":  "PASS",
+                                                  "live_docs":  "WARN",
+                                                  "system_truth":  "WARN"
+                                              },
+                          "domain_snapshots":  {
+                                                   "validator":  {
+                                                                     "status":  "WARN",
+                                                                     "summary":  "Validator WARN; failed=0; warn=8; passed=147.",
+                                                                     "metrics":  {
+                                                                                     "passed_count":  147,
+                                                                                     "warn_count":  8,
+                                                                                     "failed_count":  0
+                                                                                 },
+                                                                     "details":  {
+                                                                                     "baseline_tag":  "CoreWithAthenaOnyx"
+                                                                                 },
+                                                                     "last_updated_utc":  "2026-03-12T03:40:18.6904938+00:00",
+                                                                     "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json"
+                                                                 },
+                                                   "stack":  {
+                                                                 "status":  "WARN",
+                                                                 "summary":  "All required services are healthy, but runtime truth drift remains for 1 service(s).",
+                                                                 "metrics":  {
+                                                                                 "healthy_service_count":  5,
+                                                                                 "unhealthy_service_count":  0,
+                                                                                 "pid_drift_count":  1,
+                                                                                 "service_count":  5
+                                                                             },
+                                                                 "details":  {
+                                                                                 "drifted_services":  [
+                                                                                                          "athena"
+                                                                                                      ],
+                                                                                 "stack_validator_status":  "WARN"
+                                                                             },
+                                                                 "last_updated_utc":  "2026-03-12T04:22:59.6637580+00:00",
+                                                                 "evidence_used":  [
+                                                                                       "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_validation_last.json",
+                                                                                       "C:\\Users\\Chris\\Desktop\\Mason2\\state\\knowledge\\stack_pids.json"
+                                                                                   ]
+                                                             },
+                                                   "runtime_truth":  {
+                                                                         "status":  "WARN",
+                                                                         "summary":  "current_live_pids drift persists for 1 service(s).",
+                                                                         "metrics":  {
+                                                                                         "pid_drift_count":  1,
+                                                                                         "tracked_service_count":  5
+                                                                                     },
+                                                                         "details":  {
+                                                                                         "drifted_services":  [
+                                                                                                                  "athena"
+                                                                                                              ]
+                                                                                     },
+                                                                         "last_updated_utc":  "2026-03-11T19:55:24.5666418+00:00",
+                                                                         "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\state\\knowledge\\stack_pids.json"
+                                                                     },
+                                                   "host":  {
+                                                                "status":  "WARN",
+                                                                "summary":  "Host posture WARN; throttle=caution.",
+                                                                "metrics":  {
+                                                                                "throttle_guidance":  "caution"
+                                                                            },
+                                                                "details":  {
+                                                                                "recommended_next_action":  "Schedule a controlled Windows reboot to clear the pending reboot state."
+                                                                            },
+                                                                "last_updated_utc":  "2026-03-11T11:46:29.2061571+00:00",
+                                                                "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\host_health_last.json"
+                                                            },
+                                                   "environment":  {
+                                                                       "status":  "WARN",
+                                                                       "summary":  "Environment WARN; drift=no_material_change; host_classification=desktop.",
+                                                                       "metrics":  {
+                                                                                       "drift_level":  "no_material_change",
+                                                                                       "throttle_guidance":  "caution"
+                                                                                   },
+                                                                       "details":  {
+                                                                                       "migration_detected":  false,
+                                                                                       "environment_id":  "env_8f6a125e2aa8"
+                                                                                   },
+                                                                       "last_updated_utc":  "2026-03-11T11:46:31.2260440+00:00",
+                                                                       "evidence_used":  [
+                                                                                             "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\environment_profile_last.json",
+                                                                                             "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\environment_drift_last.json",
+                                                                                             "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\runtime_posture_last.json"
+                                                                                         ]
+                                                                   },
+                                                   "keepalive_ops":  {
+                                                                         "status":  "WARN",
+                                                                         "summary":  "KeepAlive WARN; escalated=5; repairs=0/0; blocked=5.",
+                                                                         "metrics":  {
+                                                                                         "repair_blocked_count":  5,
+                                                                                         "repair_success_count":  0,
+                                                                                         "escalated_issue_count":  5,
+                                                                                         "repair_attempt_count":  0
+                                                                                     },
+                                                                         "details":  {
+                                                                                         "throttle_guidance":  "caution",
+                                                                                         "daily_report_status":  "WARN"
+                                                                                     },
+                                                                         "last_updated_utc":  "2026-03-12T00:48:59.2509511+00:00",
+                                                                         "evidence_used":  [
+                                                                                               "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\keepalive_last.json",
+                                                                                               "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\self_heal_last.json",
+                                                                                               "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\daily_report_last.json"
+                                                                                           ]
+                                                                     },
+                                                   "self_improvement":  {
+                                                                            "status":  "WARN",
+                                                                            "summary":  "Self-improvement WARN; teacher_allowed=0; active_improvements=197.",
+                                                                            "metrics":  {
+                                                                                            "active_improvement_total":  197,
+                                                                                            "safe_to_test_total":  1
+                                                                                        },
+                                                                            "details":  {
+                                                                                            "budget_posture":  ""
+                                                                                        },
+                                                                            "last_updated_utc":  "2026-03-11T12:41:24.1859726+00:00",
+                                                                            "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\self_improvement_governor_last.json"
+                                                                        },
+                                                   "security_posture":  {
+                                                                            "status":  "WARN",
+                                                                            "summary":  "Security posture WARN; tenant_safety_issues=5; audit_events=2.",
+                                                                            "metrics":  {
+                                                                                            "audit_event_total":  2,
+                                                                                            "tenant_safety_critical_total":  0,
+                                                                                            "tenant_safety_issues_total":  5
+                                                                                        },
+                                                                            "details":  {
+                                                                                            "tenant_isolation_posture":  "watch"
+                                                                                        },
+                                                                            "last_updated_utc":  "2026-03-12T03:40:56.6085625+00:00",
+                                                                            "evidence_used":  [
+                                                                                                  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\security_posture.json",
+                                                                                                  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\tenant_safety_report.json"
+                                                                                              ]
+                                                                        },
+                                                   "billing":  {
+                                                                   "status":  "WARN",
+                                                                   "summary":  "Billing WARN; provider_mode=stub; enabled_tools=2; tenant_status=active.",
+                                                                   "metrics":  {
+                                                                                   "enabled_tool_total":  2,
+                                                                                   "subscription_total":  1
+                                                                               },
+                                                                   "details":  {
+                                                                                   "plan_id":  "growth_monthly",
+                                                                                   "provider_mode":  "stub"
+                                                                               },
+                                                                   "last_updated_utc":  "2026-03-12T03:40:56.6331854+00:00",
+                                                                   "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\billing_summary.json"
+                                                               },
+                                                   "mirror":  {
+                                                                  "status":  "PASS",
+                                                                  "summary":  "Mirror PASS; ok=true; phase=done.",
+                                                                  "metrics":  {
+                                                                                  "ok":  true,
+                                                                                  "phase":  "done"
+                                                                              },
+                                                                  "details":  {
+                                                                                  "mirror_push_result":  "local_commit_only_remote_push_failed"
+                                                                              },
+                                                                  "last_updated_utc":  "2026-03-12T03:25:22.5186042+00:00",
+                                                                  "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\mirror_update_last.json"
+                                                              },
+                                                   "brand_exposure":  {
+                                                                          "status":  "PASS",
+                                                                          "summary":  "Brand exposure PASS; public_leaks=0; scanned=13.",
+                                                                          "metrics":  {
+                                                                                          "public_leak_count":  0,
+                                                                                          "surfaces_scanned":  13
+                                                                                      },
+                                                                          "details":  {
+                                                                                          "public_brand_posture":  "clean"
+                                                                                      },
+                                                                          "last_updated_utc":  "2026-03-11T19:53:22.7958382+00:00",
+                                                                          "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\brand_exposure_isolation_last.json"
+                                                                      },
+                                                   "live_docs":  {
+                                                                     "status":  "WARN",
+                                                                     "summary":  "Live docs WARN; docs_count=3; stale_docs=0.",
+                                                                     "metrics":  {
+                                                                                     "docs_count":  3,
+                                                                                     "stale_docs_count":  0
+                                                                                 },
+                                                                     "details":  {
+                                                                                     "components_with_warnings":  [
+                                                                                                                      "mason",
+                                                                                                                      "onyx"
+                                                                                                                  ]
+                                                                                 },
+                                                                     "last_updated_utc":  "2026-03-11T17:50:07.1827816+00:00",
+                                                                     "evidence_used":  "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\live_docs_summary.json"
+                                                                 },
+                                                   "system_truth":  {
+                                                                        "status":  "WARN",
+                                                                        "summary":  "System truth WARN; warning_domains=9; failing_domains=0.",
+                                                                        "metrics":  {
+                                                                                        "failing_domain_count":  0,
+                                                                                        "available_domain_count":  15,
+                                                                                        "warning_domain_count":  9
+                                                                                    },
+                                                                        "details":  {
+                                                                                        "top_warning_domains":  [
+                                                                                                                    "stack",
+                                                                                                                    "validator",
+                                                                                                                    "services",
+                                                                                                                    "host",
+                                                                                                                    "environment",
+                                                                                                                    "billing"
+                                                                                                                ]
+                                                                                    },
+                                                                        "last_updated_utc":  "2026-03-12T03:40:33.1921448+00:00",
+                                                                        "evidence_used":  [
+                                                                                              "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_truth_spine_last.json",
+                                                                                              "C:\\Users\\Chris\\Desktop\\Mason2\\reports\\system_metrics_spine_last.json"
+                                                                                          ]
+                                                                    }
+                                               },
+                          "notes":  [
+                                        "Initial regression baseline captured from current local truth.",
+                                        "Seed baselines are comparison-capable for observation but do not unlock promotion."
+                                    ],
+                          "eligible_for_comparison":  true,
+                          "promoted":  false,
+                          "approved":  false,
+                          "trusted":  false,
+                          "baseline_kind":  "seed"
+                      }
+                  ],
+    "history":  [
+                    {
+                        "timestamp_utc":  "2026-03-12T04:21:57.1242837+00:00",
+                        "comparison_result":  "baseline_seeded_not_comparable",
+                        "overall_status":  "WARN",
+                        "baseline_id":  "",
+                        "regression_count":  0,
+                        "promotion_allowed":  false
+                    },
+                    {
+                        "timestamp_utc":  "2026-03-12T04:23:00.0002451+00:00",
+                        "comparison_result":  "baseline_seeded_not_comparable",
+                        "overall_status":  "WARN",
+                        "baseline_id":  "baseline_seed_20260312_002259",
+                        "regression_count":  0,
+                        "promotion_allowed":  false
+                    },
+                    {
+                        "timestamp_utc":  "2026-03-12T04:23:15.7502902+00:00",
+                        "comparison_result":  "seed_baseline_no_material_change",
+                        "overall_status":  "WARN",
+                        "baseline_id":  "baseline_seed_20260312_002259",
+                        "regression_count":  0,
+                        "promotion_allowed":  false
+                    },
+                    {
+                        "timestamp_utc":  "2026-03-12T04:31:19.3068744+00:00",
+                        "comparison_result":  "seed_baseline_no_material_change",
+                        "overall_status":  "WARN",
+                        "baseline_id":  "baseline_seed_20260312_002259",
+                        "regression_count":  0,
+                        "promotion_allowed":  false
+                    },
+                    {
+                        "timestamp_utc":  "2026-03-12T05:15:26.8551909+00:00",
+                        "comparison_result":  "worse_than_baseline",
+                        "overall_status":  "FAIL",
+                        "baseline_id":  "baseline_seed_20260312_002259",
+                        "regression_count":  2,
+                        "promotion_allowed":  false
+                    },
+                    {
+                        "timestamp_utc":  "2026-03-12T05:18:01.4286218+00:00",
+                        "comparison_result":  "worse_than_baseline",
+                        "overall_status":  "FAIL",
+                        "baseline_id":  "baseline_seed_20260312_002259",
+                        "regression_count":  2,
+                        "promotion_allowed":  false
+                    },
+                    {
+                        "timestamp_utc":  "2026-03-12T05:19:19.6814646+00:00",
+                        "comparison_result":  "warning_regressions_detected",
+                        "overall_status":  "WARN",
+                        "baseline_id":  "baseline_seed_20260312_002259",
+                        "regression_count":  2,
+                        "promotion_allowed":  false
+                    }
+                ]
+}

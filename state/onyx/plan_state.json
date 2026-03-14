@@ -1,75 +1,81 @@
 {
   "version": 2,
-  "owner": "Chris",
-  "tenant_id": "tenant_http_check",
-  "status": "active",
+  "owner": "Owner",
+  "tenant_id": "tenant_168cb95a2f56",
+  "status": "pilot",
   "plan": {
-    "current_tier": "Growth",
+    "current_tier": "Founder",
     "enabled_features": [
       "invoices",
       "clients",
-      "tasks",
-      "deals"
+      "tasks"
     ],
     "addon_features": [],
     "beta_opt_in": true,
-    "last_updated_at_utc": "2026-03-08T06:10:00Z"
+    "last_updated_at_utc": "2026-03-13T18:05:20.965Z"
   },
   "business_profile": {
-    "tenant_id": "tenant_http_check",
-    "business_name": "HTTP Tenant Check",
-    "business_type": "Studio",
+    "tenant_id": "tenant_168cb95a2f56",
+    "business_name": "Test 1",
+    "business_type": "Contractor",
     "team_size": "Solo",
     "currency": "CAD",
     "country_region": "CA",
-    "main_goal": "Verify public Onyx sync route",
+    "main_goal": "Get organized and get paid",
     "services_products": [
-      "Testing"
+      "Dry wall",
+      "Roofing",
+      "Concrete Forming"
     ],
     "locations": [
-      "Toronto"
+      "Strathroy"
     ],
-    "operating_area": "Remote",
-    "current_tools": [
-      "Onyx"
-    ],
+    "operating_area": "Strathroy, On",
+    "current_tools": [],
     "goals": [
-      "Confirm endpoint"
+      "Grow and make money while staying organized"
     ],
     "pain_points": [
-      "None"
+      "staying organized and growth"
     ],
     "growth_priorities": [
-      "Ship"
+      "more customers"
     ],
-    "risk_tolerance": "Balanced",
+    "risk_tolerance": "Conservative",
     "automation_tolerance": "Assist only",
-    "budget_sensitivity": "Balanced",
-    "notes": "HTTP route smoke test",
+    "budget_sensitivity": "Tight",
+    "notes": "",
     "upload_references": [],
-    "last_updated_at_utc": "2026-03-07T23:05:00Z"
+    "last_updated_at_utc": "2026-03-13T18:05:20.965Z"
   },
   "onboarding": {
-    "current_step_index": 3,
+    "current_step_index": 2,
     "completed_step_ids": [
-      "tenant",
       "operations",
       "goals",
       "preferences"
     ],
-    "is_completed": true,
-    "completion_percent": 100,
-    "last_updated_at_utc": "2026-03-07T23:05:00Z"
+    "is_completed": false,
+    "completion_percent": 75,
+    "last_updated_at_utc": "2026-03-13T18:05:20.965Z"
   },
   "tenants": [
     {
-      "tenant_id": "tenant_http_check",
-      "business_name": "HTTP Tenant Check",
-      "owner": "Chris",
+      "tenant_id": "tenant_primary",
+      "business_name": "Your business",
+      "owner": "Owner",
       "status": "active",
-      "plan_tier": "Growth",
-      "last_updated_at_utc": "2026-03-08T06:10:00Z"
+      "plan_tier": "Starter",
+      "last_updated_at_utc": "2026-03-13T17:53:17.000Z"
+    },
+    {
+      "tenant_id": "tenant_168cb95a2f56",
+      "business_name": "Test 1",
+      "owner": "Owner",
+      "status": "pilot",
+      "plan_tier": "Founder",
+      "last_updated_at_utc": "2026-03-13T18:05:20.965Z"
     }
   ],
-  "last_updated_at_utc": "2026-03-08T06:10:00Z"
+  "last_updated_at_utc": "2026-03-13T18:05:20.965Z"
 }
