@@ -1,17 +1,13 @@
 ﻿{
-    "generated_at_utc":  "2026-03-14T17:43:51.3202338Z",
+    "generated_at_utc":  "2026-03-14T19:49:23.6684238Z",
     "mirror_root":  "C:\\Mason2_MIRROR",
-    "changed_count":  5,
+    "changed_count":  0,
     "added_count":  0,
-    "modified_count":  5,
+    "modified_count":  0,
     "removed_count":  0,
     "top_changed_paths":  [
-                              "docs/knowledge_pack/index.json",
-                              "docs/knowledge_pack/stats.json",
-                              "docs/mirror_delta.json",
-                              "docs/mirror_manifest.json",
-                              "state/knowledge/pending_patch_runs.json"
+
                           ],
-    "head_before":  "4913fc8307e00efd1df9b721b7d15e57a95fde9f",
-    "head_after":  "52a2168d5b9f91ea35ecf82425897288a3058b92"
+    "head_before":  "53ee5d3e55c72f991c497bda553b75d761ba63b6",
+    "head_after":  ""
 }

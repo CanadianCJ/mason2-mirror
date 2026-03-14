@@ -114,6 +114,44 @@ function Convert-ToUtcIso {
     }
 }
 
+function Get-RelativePathSafe {
+    param(
+        [Parameter(Mandatory = $true)][string]$BasePath,
+        [Parameter(Mandatory = $true)][string]$FullPath
+    )
+
+    try {
+        $baseResolved = (Resolve-Path -LiteralPath $BasePath -ErrorAction Stop).Path.TrimEnd([char[]]@([char]'\'))
+        $fullResolved = (Resolve-Path -LiteralPath $FullPath -ErrorAction Stop).Path
+        if ($fullResolved.StartsWith($baseResolved, [System.StringComparison]::OrdinalIgnoreCase)) {
+            return $fullResolved.Substring($baseResolved.Length).TrimStart([char[]]@([char]'\', [char]'/'))
+        }
+        return $fullResolved
+    }
+    catch {
+        return $FullPath
+    }
+}
+
+function Test-ArtifactRecent {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [int]$MaxAgeMinutes = 60
+    )
+
+    if (-not (Test-Path -LiteralPath $Path)) {
+        return $false
+    }
+
+    try {
+        $item = Get-Item -LiteralPath $Path -ErrorAction Stop
+        return ($item.LastWriteTimeUtc -ge (Get-Date).ToUniversalTime().AddMinutes(-1 * [Math]::Abs($MaxAgeMinutes)))
+    }
+    catch {
+        return $false
+    }
+}
+
 function Invoke-ExternalScript {
     param(
         [Parameter(Mandatory = $true)][string]$Path,
@@ -394,6 +432,7 @@ Ensure-Directory -Path $configDir
 $repairPolicyPath = Join-Path $configDir "repair_wave_02_policy.json"
 $internalSchedulerPolicyPath = Join-Path $configDir "internal_scheduler_policy.json"
 $legacyTaskMigrationPolicyPath = Join-Path $configDir "legacy_task_migration_policy.json"
+$mirrorPolicyPath = Join-Path $configDir "mirror_policy.json"
 $schedulerManifestPath = Join-Path $configDir "scheduler_manifest.json"
 $componentRegistryPath = Join-Path $configDir "component_registry.json"
 
@@ -406,6 +445,7 @@ $systemValidationPath = Join-Path $reportsDir "system_validation_last.json"
 $mirrorUpdatePath = Join-Path $reportsDir "mirror_update_last.json"
 $mirrorCoveragePath = Join-Path $reportsDir "mirror_coverage_last.json"
 $mirrorOmissionPath = Join-Path $reportsDir "mirror_omission_last.json"
+$mirrorSafeIndexPath = Join-Path $reportsDir "mirror_safe_index.md"
 $codebaseInventoryPath = Join-Path $reportsDir "codebase_inventory_last.json"
 
 $repairWave02Path = Join-Path $reportsDir "repair_wave_02_last.json"
@@ -428,6 +468,7 @@ $commandRun = "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\too
 $repairPolicy = Read-JsonSafe -Path $repairPolicyPath -Default @{}
 $internalSchedulerPolicy = Read-JsonSafe -Path $internalSchedulerPolicyPath -Default @{}
 $legacyTaskPolicy = Read-JsonSafe -Path $legacyTaskMigrationPolicyPath -Default @{}
+$mirrorPolicy = Read-JsonSafe -Path $mirrorPolicyPath -Default @{}
 $schedulerManifest = Read-JsonSafe -Path $schedulerManifestPath -Default @{}
 $componentRegistry = Read-JsonSafe -Path $componentRegistryPath -Default @{}
 
@@ -821,7 +862,17 @@ $mirrorInvocation = [ordered]@{
     output = @()
 }
 if (-not $SkipMirrorRefresh -and (Test-Path -LiteralPath $mirrorRunnerPath)) {
-    $mirrorInvocation = Invoke-ExternalScript -Path $mirrorRunnerPath -Arguments @("-Reason", "repair-wave-02")
+    if ((Normalize-Text (Get-PropValue -Object $mirrorBefore -Name "mirror_push_result" -Default "")) -in @("pushed", "noop") -and (Test-ArtifactRecent -Path $mirrorUpdatePath -MaxAgeMinutes 90)) {
+        $mirrorInvocation = [ordered]@{
+            ok = $true
+            exit_code = 0
+            command_run = "reuse_recent_mirror_artifact"
+            output = @("mirror_update_last.json already reports a current pushed/noop state within the freshness window")
+        }
+    }
+    else {
+        $mirrorInvocation = Invoke-ExternalScript -Path $mirrorRunnerPath -Arguments @("-Reason", "repair-wave-02")
+    }
 }
 
 $mirrorAfter = Read-JsonSafe -Path $mirrorUpdatePath -Default @{}
@@ -848,11 +899,15 @@ elseif (-not $SkipMirrorRefresh) {
 
 if (-not $SkipWholeFolderReverify) {
     $script:RepairWave02Stage = "whole_folder_reverify"
-    [void](Invoke-ExternalScript -Path $wholeFolderRunnerPath)
+    if (-not (Test-ArtifactRecent -Path $wholeFolderVerificationPath -MaxAgeMinutes 60)) {
+        [void](Invoke-ExternalScript -Path $wholeFolderRunnerPath)
+    }
 }
 if (-not $SkipValidator) {
     $script:RepairWave02Stage = "validator_rerun"
-    [void](Invoke-ExternalScript -Path $validatorPath)
+    if (-not (Test-ArtifactRecent -Path $systemValidationPath -MaxAgeMinutes 60)) {
+        [void](Invoke-ExternalScript -Path $validatorPath)
+    }
 }
 
 $script:RepairWave02Stage = "finalize_artifacts"
@@ -925,6 +980,98 @@ $remotePushRepairArtifact = @{
     recommended_next_action = $remotePushNextAction
 }
 Write-JsonFile -Path $remotePushRepairPath -Object $remotePushRepairArtifact -Depth 18
+
+$reportPatterns = @()
+foreach ($propertyName in @("report_file_allowlist", "report_json_allowlist")) {
+    $values = @(To-Array (Get-PropValue -Object $mirrorPolicy -Name $propertyName -Default @()) | ForEach-Object { Normalize-Text $_ } | Where-Object { $_ })
+    foreach ($value in $values) {
+        if ($reportPatterns -notcontains $value) {
+            $reportPatterns += $value
+        }
+    }
+}
+
+$matchedMirrorFiles = New-Object System.Collections.Generic.List[string]
+$missingMirrorPatterns = New-Object System.Collections.Generic.List[string]
+foreach ($pattern in $reportPatterns) {
+    $resolvedPattern = Join-Path $repoRootPath (($pattern -replace "/", "\").TrimStart("\"))
+    $patternMatches = @()
+    try {
+        $patternMatches = @(
+            Get-ChildItem -Path $resolvedPattern -File -ErrorAction SilentlyContinue |
+                ForEach-Object { Get-RelativePathSafe -BasePath $repoRootPath -FullPath $_.FullName }
+        )
+    }
+    catch {
+        $patternMatches = @()
+    }
+
+    if (@($patternMatches).Count -gt 0) {
+        foreach ($match in $patternMatches) {
+            if ($match -and -not $matchedMirrorFiles.Contains($match)) {
+                $matchedMirrorFiles.Add($match) | Out-Null
+            }
+        }
+    }
+    else {
+        $missingMirrorPatterns.Add($pattern) | Out-Null
+    }
+}
+
+$mirrorCoverageStatus = if (@($reportPatterns).Count -eq 0 -or $matchedMirrorFiles.Count -eq 0 -or $missingMirrorPatterns.Count -gt 0) { "WARN" } else { "PASS" }
+$mirrorCoverageArtifact = @{
+    timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
+    overall_status = $mirrorCoverageStatus
+    allowlist_pattern_count = @($reportPatterns).Count
+    matched_file_count = $matchedMirrorFiles.Count
+    missing_pattern_count = $missingMirrorPatterns.Count
+    safe_report_files = @($matchedMirrorFiles.ToArray() | Sort-Object | Select-Object -First 120)
+    missing_patterns = @($missingMirrorPatterns.ToArray() | Select-Object -First 60)
+    recommended_next_action = if (@($reportPatterns).Count -eq 0) { "Restore the report mirror allowlist so mirror coverage can be evaluated truthfully." } elseif ($matchedMirrorFiles.Count -eq 0) { "Verify the mirror allowlist paths and report discovery logic because no safe report files were matched." } elseif ($missingMirrorPatterns.Count -eq 0) { "No action required." } else { "Expand the safe mirror allowlist or generate the missing safe artifacts before the next mirror refresh." }
+}
+Write-JsonFile -Path $mirrorCoveragePath -Object $mirrorCoverageArtifact -Depth 16
+
+$mirrorOmissionArtifact = @{
+    timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
+    overall_status = if (@($reportPatterns).Count -eq 0 -or $missingMirrorPatterns.Count -gt 0) { "WARN" } else { "PASS" }
+    omission_count = $missingMirrorPatterns.Count
+    omissions = @($missingMirrorPatterns.ToArray() | ForEach-Object {
+            @{
+                pattern = [string]$_
+                reason = "No current matching safe artifact was found under reports."
+            }
+        })
+    recommended_next_action = if (@($reportPatterns).Count -eq 0) { "Restore the report mirror allowlist so omissions can be evaluated truthfully." } elseif ($missingMirrorPatterns.Count -eq 0) { "No action required." } else { "Review the omitted mirror-safe patterns and decide whether the source artifact should be generated or the allowlist should be tightened." }
+}
+Write-JsonFile -Path $mirrorOmissionPath -Object $mirrorOmissionArtifact -Depth 16
+
+$mirrorSafeIndex = @(
+    "# Mason2 Mirror Safe Index",
+    "",
+    "Generated: " + (Get-Date).ToUniversalTime().ToString("o"),
+    "",
+    "## Safe Remote Inspection Summary",
+    "",
+    "- Whole-folder verification: reports/whole_folder_verification_last.json",
+    "- Whole-folder broken paths: reports/whole_folder_broken_paths_last.json",
+    "- Whole-folder registration gaps: reports/whole_folder_registration_gaps.json",
+    "- Validator summary: reports/system_validation_last.json",
+    "- Internal scheduler: reports/internal_scheduler_last.json",
+    "- Legacy task inventory: reports/legacy_task_inventory_last.json",
+    "- Legacy task migration: reports/legacy_task_migration_last.json",
+    "- Popup suppression: reports/popup_suppression_last.json",
+    "- Validator coverage repair: reports/validator_coverage_repair_last.json",
+    "- Broken path cluster repair: reports/broken_path_cluster_repair_last.json",
+    "- Remote push repair: reports/remote_push_repair_last.json",
+    "- Mirror coverage: reports/mirror_coverage_last.json",
+    "- Mirror omissions: reports/mirror_omission_last.json",
+    "",
+    "## Current Mirror Truth",
+    "",
+    "- Remote currentness depends on reports/mirror_update_last.json.",
+    "- GitHub/off-box is only current when mirror_push_result is pushed or noop."
+)
+Set-Content -LiteralPath $mirrorSafeIndexPath -Value ($mirrorSafeIndex -join "`r`n") -Encoding UTF8
 
 $repairWave02OverallStatus = "WARN"
 if ($remoteCurrent -and $brokenPathsAfter -lt $brokenPathsBefore -and $uncoveredComponents.Count -eq 0) {

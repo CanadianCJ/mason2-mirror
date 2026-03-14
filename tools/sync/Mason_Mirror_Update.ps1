@@ -1234,6 +1234,51 @@ function Remove-MirrorPolicyDeniedContent {
     }
 }
 
+function Remove-ExactMirrorDenylistEntries {
+    param(
+        [Parameter(Mandatory = $true)][string]$MirrorRoot,
+        [Parameter(Mandatory = $true)][string[]]$Denylist
+    )
+
+    $removed = New-Object System.Collections.Generic.List[string]
+    $failed = New-Object System.Collections.Generic.List[string]
+    foreach ($pattern in @($Denylist | Where-Object { $_ })) {
+        $normalized = Normalize-Text $pattern
+        if (-not $normalized) {
+            continue
+        }
+        if ($normalized -match '^(?i)\.git([\\/]|$)') {
+            continue
+        }
+        if ($normalized -match '[\*\?\[]') {
+            continue
+        }
+
+        $candidate = Join-Path $MirrorRoot (($normalized -replace "/", "\").TrimStart("\"))
+        if (-not (Test-Path -LiteralPath $candidate)) {
+            continue
+        }
+
+        try {
+            $removeResult = Remove-PathWithMirrorFallback -Path $candidate
+            if (-not $removeResult.ok) {
+                throw $removeResult.detail
+            }
+            $removed.Add((Get-RelativePathSafe -BasePath $MirrorRoot -FullPath $candidate)) | Out-Null
+        }
+        catch {
+            $failed.Add(("{0} :: {1}" -f $normalized, [string]$_.Exception.Message)) | Out-Null
+        }
+    }
+
+    return [ordered]@{
+        removed_count = @($removed).Count
+        failed_count  = @($failed).Count
+        removed_items = @($removed | Select-Object -First 40)
+        failed_items  = @($failed | Select-Object -First 40)
+    }
+}
+
 function Test-KnowledgePackNoSecrets {
     param(
         [Parameter(Mandatory = $true)][string]$PackRoot
@@ -1497,6 +1542,13 @@ try {
         $result.steps.sync_allowlisted_content = "failed"
         $result.next_action = "Inspect tools\\Write_MirrorManifest.ps1 output and rerun tools\\sync\\Mason_Mirror_Update.ps1."
         throw "Mirror manifest missing or invalid after sync."
+    }
+    $result.exact_policy_cleanup = Remove-ExactMirrorDenylistEntries -MirrorRoot $MirrorPath -Denylist $denylistForRun
+    if ($result.exact_policy_cleanup.failed_count -gt 0) {
+        $result.steps.sync_allowlisted_content = "failed"
+        $result.missing_items = @($result.exact_policy_cleanup.failed_items)
+        $result.next_action = "Review exact denylist cleanup failures and rerun tools\\sync\\Mason_Mirror_Update.ps1."
+        throw "Failed to remove exact denylisted mirror content."
     }
     $missingAllowlistPostSync = @(Get-MissingAllowlistNames -Manifest $manifestPostSync)
     if ($missingAllowlistPostSync.Count -gt 0) {
