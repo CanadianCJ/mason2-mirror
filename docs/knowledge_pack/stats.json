@@ -1,9 +1,9 @@
 ﻿{
-    "generated_at_utc":  "2026-03-14T22:25:49.4072039Z",
-    "last_run_id":  "20260313_213101",
+    "generated_at_utc":  "2026-03-14T23:10:28.9407014Z",
+    "last_run_id":  "20260314_180110",
     "ingest_indexes_count":  25,
-    "source_records_count":  24496,
-    "chunk_records_count":  24496,
+    "source_records_count":  24695,
+    "chunk_records_count":  24695,
     "file_records_count":  0,
     "roadmap_present":  true,
     "roadmap_build_present":  true,
