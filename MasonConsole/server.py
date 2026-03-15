@@ -9934,6 +9934,12 @@ def build_stack_status_payload() -> dict[str, Any]:
         "validator_coverage_repair": repair_wave_payloads["validator_coverage_repair"],
         "broken_path_cluster_repair": repair_wave_payloads["broken_path_cluster_repair"],
         "remote_push_repair": repair_wave_payloads["remote_push_repair"],
+        "repair_wave_03": repair_wave_payloads["repair_wave_03"],
+        "internal_scheduler_migration": repair_wave_payloads["internal_scheduler_migration"],
+        "windows_task_fallback": repair_wave_payloads["windows_task_fallback"],
+        "popup_window_elimination": repair_wave_payloads["popup_window_elimination"],
+        "broken_path_reduction_wave_03": repair_wave_payloads["broken_path_reduction_wave_03"],
+        "onyx_core_flow_verification": repair_wave_payloads["onyx_core_flow_verification"],
         "founder_mode": founder_mode,
         "recovery": recovery,
     }

@@ -840,7 +840,7 @@ $masonApiHealthUrl = "http://127.0.0.1:8383/health"
 $seedApiHealthUrl = "http://127.0.0.1:8109/health"
 $bridgeHealthUrl = "http://127.0.0.1:8484/health"
 
-$stackStatusProbe = Invoke-HttpJsonProbeCached -Url $stackStatusUrl -TimeoutSeconds $HttpTimeoutSeconds
+$stackStatusProbe = Invoke-HttpJsonProbeCached -Url $stackStatusUrl -TimeoutSeconds ([Math]::Max($HttpTimeoutSeconds, 45))
 $athenaUiProbe = Invoke-HttpProbeCached -Url $athenaUiUrl -TimeoutSeconds $HttpTimeoutSeconds
 $athenaHealthProbe = Invoke-HttpProbeCached -Url $athenaHealthUrl -TimeoutSeconds $HttpTimeoutSeconds
 $onyxRootProbe = Invoke-HttpProbeCached -Url $onyxRootUrl -TimeoutSeconds $HttpTimeoutSeconds

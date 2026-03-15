@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at_utc":  "2026-03-15T06:01:52.4127841Z",
+    "generated_at_utc":  "2026-03-15T07:52:28.1532249Z",
     "source_root":  "C:\\Users\\Chris\\Desktop\\Mason2",
     "mirror_root":  "C:\\Mason2_MIRROR",
     "policy_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\mirror_policy.json",
@@ -187,7 +187,7 @@
                      "Component - Onyx App/mason-live/.venv/**",
                      "Component - Onyx App/mason-live/__pycache__/**"
                  ],
-    "last_sync_timestamp_utc":  "2026-03-15T06:01:52.4458371Z",
+    "last_sync_timestamp_utc":  "2026-03-15T07:52:28.1655252Z",
     "counts_per_folder":  [
                               {
                                   "name":  ".gitignore",
@@ -243,7 +243,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  588,
-                                  "total_bytes":  7068897
+                                  "total_bytes":  7068916
                               },
                               {
                                   "name":  "config",
@@ -257,7 +257,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  17,
-                                  "total_bytes":  145895872
+                                  "total_bytes":  146082364
                               },
                               {
                                   "name":  "roadmap",
@@ -278,7 +278,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  4335,
-                                  "total_bytes":  49651324
+                                  "total_bytes":  49652000
                               },
                               {
                                   "name":  "bridge",
@@ -298,8 +298,8 @@
                                   "name":  "state/knowledge",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  116,
-                                  "total_bytes":  14279785
+                                  "file_count":  117,
+                                  "total_bytes":  14375594
                               },
                               {
                                   "name":  "state/onyx",
@@ -648,8 +648,8 @@
                                   "name":  "reports",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  45037,
-                                  "total_bytes":  1688456015
+                                  "file_count":  45168,
+                                  "total_bytes":  1693097688
                               }
                           ],
     "policy_summary":  {
@@ -765,9 +765,9 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  45037,
+                                "candidate_count":  45168,
                                 "matched_allowlist_count":  94,
-                                "excluded_pattern_count":  44943,
+                                "excluded_pattern_count":  45074,
                                 "eligible_count":  94,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -831,8 +831,8 @@
                                                                "reports\\mirror_update_log.jsonl",
                                                                "reports\\metrics.csv",
                                                                "reports\\mason_teacher_import.log",
-                                                               "reports\\ingest_index_20260313_162922.json",
-                                                               "reports\\ingest_index_20260312_235237.json"
+                                                               "reports\\ingest_index_20260313_213101.json",
+                                                               "reports\\ingest_index_20260314_180110.json"
                                                            ],
                                 "excluded_large_files":  [
 
@@ -903,9 +903,9 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  45037,
+                                "candidate_count":  45168,
                                 "matched_allowlist_count":  94,
-                                "excluded_pattern_count":  44943,
+                                "excluded_pattern_count":  45074,
                                 "eligible_count":  94,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -969,8 +969,8 @@
                                                                "reports\\mirror_update_log.jsonl",
                                                                "reports\\metrics.csv",
                                                                "reports\\mason_teacher_import.log",
-                                                               "reports\\ingest_index_20260313_162922.json",
-                                                               "reports\\ingest_index_20260312_235237.json"
+                                                               "reports\\ingest_index_20260313_213101.json",
+                                                               "reports\\ingest_index_20260314_180110.json"
                                                            ],
                                 "excluded_large_files":  [
 
