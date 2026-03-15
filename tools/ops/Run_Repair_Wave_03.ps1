@@ -133,6 +133,32 @@ function Invoke-PowerShellFile {
     }
 }
 
+function Invoke-PowerShellFileInline {
+    param(
+        [Parameter(Mandatory = $true)][string]$ScriptPath,
+        [string[]]$Arguments = @()
+    )
+
+    try {
+        $output = @(& $ScriptPath @Arguments 2>&1 | ForEach-Object { [string]$_ })
+        $exitCode = if ($null -ne $LASTEXITCODE) { [int]$LASTEXITCODE } else { 0 }
+        return [pscustomobject]@{
+            ok = ($exitCode -eq 0)
+            exit_code = $exitCode
+            output = @($output | Select-Object -Last 80)
+            command_run = ("powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File {0}{1}" -f $ScriptPath, $(if (@($Arguments).Count -gt 0) { " " + (@($Arguments) -join " ") } else { "" }))
+        }
+    }
+    catch {
+        return [pscustomobject]@{
+            ok = $false
+            exit_code = 1
+            output = @([string]$_.Exception.Message)
+            command_run = ("powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File {0}{1}" -f $ScriptPath, $(if (@($Arguments).Count -gt 0) { " " + (@($Arguments) -join " ") } else { "" }))
+        }
+    }
+}
+
 function Invoke-HttpProbe {
     param([Parameter(Mandatory = $true)][string]$Url)
     try {
@@ -424,7 +450,7 @@ else {
 }
 
 $migrationTargets = @((To-Array (Get-PropValue -Object (Get-PropValue -Object $policy -Name "migration_targets" -Default @{}) -Name "internal_primary_task_ids" -Default @())) | ForEach-Object { [string]$_ })
-$internalRunnerInvocation = Invoke-PowerShellFile -ScriptPath $internalRunnerPath -Arguments (@("-TaskIds") + @($migrationTargets) + @("-ForceRun", "-TriggerSource", "repair_wave_03")) -TimeoutSeconds 1800
+$internalRunnerInvocation = Invoke-PowerShellFileInline -ScriptPath $internalRunnerPath -Arguments (@("-TaskIds") + @($migrationTargets) + @("-ForceRun", "-TriggerSource", "repair_wave_03"))
 $internalExecution = Read-JsonSafe -Path $internalExecutionPath -Default @{}
 $executionItems = @(To-Array (Get-PropValue -Object $internalExecution -Name "items" -Default @()))
 $executionByTaskId = @{}
@@ -822,7 +848,7 @@ Write-JsonFile -Path $internalSchedulerMigrationLastPath -Object $internalSchedu
 
 $wholeFolderInvocation = [pscustomobject]@{ ok = $true; exit_code = 0; command_run = "skipped"; output = @("Whole-folder reverification skipped.") }
 if (-not $SkipWholeFolderReverify) {
-    $wholeFolderInvocation = Invoke-PowerShellFile -ScriptPath $wholeFolderScriptPath -Arguments @("-SkipMirrorRefresh", "-SkipStackRestart") -TimeoutSeconds 2400
+    $wholeFolderInvocation = Invoke-PowerShellFileInline -ScriptPath $wholeFolderScriptPath -Arguments @("-SkipMirrorRefresh", "-SkipStackRestart")
     if (-not $wholeFolderInvocation.ok) {
         $unfixedQueue.Add((New-QueueItem -IssueId "whole_folder_reverify" -Category "broken_path_reduction" -Status "blocked" -Reason "Whole-folder reverification did not complete cleanly." -RecommendedNextAction "Repair tools/ops/Run_Whole_Folder_Verification.ps1 before trusting Wave 03 broken-path counts.")) | Out-Null
     }
@@ -911,7 +937,7 @@ if ($onyxCoreFlowArtifact.overall_status -ne "PASS") {
 
 $validatorInvocation = [pscustomobject]@{ ok = $true; exit_code = 0; command_run = "skipped"; output = @("Validator refresh skipped.") }
 if (-not $SkipValidator) {
-    $validatorInvocation = Invoke-PowerShellFile -ScriptPath $validatorScriptPath -Arguments @() -TimeoutSeconds 2400
+    $validatorInvocation = Invoke-PowerShellFileInline -ScriptPath $validatorScriptPath -Arguments @()
     if (-not $validatorInvocation.ok) {
         $unfixedQueue.Add((New-QueueItem -IssueId "validator_refresh" -Category "validation" -Status "blocked" -Reason "Validate_Whole_System.ps1 did not complete cleanly from the Wave 03 runner." -RecommendedNextAction "Repair validator execution before trusting final Wave 03 posture.")) | Out-Null
     }
@@ -921,7 +947,7 @@ $validatorArtifact = Read-JsonSafe -Path $systemValidationLastPath -Default @{}
 $mirrorReason = Normalize-Text (Get-PropValue -Object (Get-PropValue -Object $policy -Name "mirror_closure" -Default @{}) -Name "reason" -Default "repair-wave-03-final")
 $mirrorInvocation = [pscustomobject]@{ ok = $true; exit_code = 0; command_run = "skipped"; output = @("Mirror refresh skipped.") }
 if (-not $SkipMirrorRefresh) {
-    $mirrorInvocation = Invoke-PowerShellFile -ScriptPath $mirrorScriptPath -Arguments @("-Reason", $mirrorReason) -TimeoutSeconds 2400
+    $mirrorInvocation = Invoke-PowerShellFileInline -ScriptPath $mirrorScriptPath -Arguments @("-Reason", $mirrorReason)
     if (-not $mirrorInvocation.ok) {
         $unfixedQueue.Add((New-QueueItem -IssueId "mirror_refresh" -Category "mirror_closure" -Status "blocked" -Reason "Mirror refresh did not complete cleanly from the Wave 03 runner." -RecommendedNextAction "Repair the canonical mirror flow before claiming GitHub/off-box currentness.")) | Out-Null
     }

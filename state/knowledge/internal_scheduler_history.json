@@ -1,0 +1,87 @@
+﻿{
+    "generated_at_utc":  "2026-03-15T03:01:43.4512433Z",
+    "last_trigger_source":  "manual_debug",
+    "run_records":  [
+                        {
+                            "task_id":  "athena_status_snapshot",
+                            "schedule_owner":  "internal_primary",
+                            "status":  "success",
+                            "detail":  "script executed and audit artifact refreshed",
+                            "exit_code":  0,
+                            "artifact_fresh":  true,
+                            "audit_artifact":  "reports\\athena_widget_status.json",
+                            "host_task_name":  "Mason2-AthenaStatus-10m",
+                            "command_run":  "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\Chris\\Desktop\\Mason2\\tools\\Athena_Status_Snapshot.ps1",
+                            "output":  [
+
+                                       ]
+                        },
+                        {
+                            "task_id":  "onyx_health_check",
+                            "schedule_owner":  "internal_primary",
+                            "status":  "success",
+                            "detail":  "script executed and audit artifact refreshed",
+                            "exit_code":  0,
+                            "artifact_fresh":  true,
+                            "audit_artifact":  "reports\\onyx_stack_health.json",
+                            "host_task_name":  "Mason2-OnyxHealth-10m",
+                            "command_run":  "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\Chris\\Desktop\\Mason2\\tools\\Onyx_Health_Check.ps1",
+                            "output":  [
+
+                                       ]
+                        },
+                        {
+                            "task_id":  "system_validation_refresh",
+                            "schedule_owner":  "internal_primary",
+                            "status":  "success",
+                            "detail":  "script executed and audit artifact refreshed",
+                            "exit_code":  0,
+                            "artifact_fresh":  true,
+                            "audit_artifact":  "reports\\system_validation_last.json",
+                            "host_task_name":  "Mason2-TaskGovernor-1h",
+                            "command_run":  "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\Chris\\Desktop\\Mason2\\tools\\ops\\Validate_Whole_System.ps1",
+                            "output":  [
+                                           "    \"relevant_paths\":  [",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\start\\\\start_run_last.json\",",
+                                           "                           \"http://127.0.0.1:8000/athena/\",",
+                                           "                           \"http://127.0.0.1:5353/\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\state\\\\knowledge\\\\memory\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\state\\\\onyx\\\\tenant_workspace.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\config\\\\tool_registry.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\state\\\\onyx\\\\recommendations\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\state\\\\knowledge\\\\improvement_queue.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\state\\\\knowledge\\\\behavior_trust.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\state\\\\knowledge\\\\tool_factory.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\self_improvement_governor_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\keepalive_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\tenant_safety_report.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\config\\\\billing_provider.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\environment_profile_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\config\\\\brand_exposure_policy.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\config\\\\component_docs_registry.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\system_truth_spine_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\regression_guard_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\playbook_library_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\wedge_pack_framework_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\business_outcomes_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\release_management_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\revenue_optimization_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\model_cost_governance_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\knowledge_quality_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\ux_simplicity_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\whole_folder_verification_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\repair_mirror_hardening_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\repair_wave_02_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\repair_wave_03_last.json\",",
+                                           "                           \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\mirror_update_last.json\"",
+                                           "                       ],",
+                                           "    \"mirror_ok\":  true,",
+                                           "    \"baseline_tag\":  \"CoreWithAthenaOnyx\",",
+                                           "    \"command_run\":  \"powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\\\\tools\\\\ops\\\\Validate_Whole_System.ps1\",",
+                                           "    \"repo_root\":  \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\",",
+                                           "    \"artifact_path\":  \"C:\\\\Users\\\\Chris\\\\Desktop\\\\Mason2\\\\reports\\\\system_validation_last.json\"",
+                                           "}"
+                                       ]
+                        }
+                    ]
+}

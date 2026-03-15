@@ -1,22 +1,16 @@
 ﻿{
-    "generated_at_utc":  "2026-03-15T01:34:30.6997333Z",
+    "generated_at_utc":  "2026-03-15T02:36:57.4515308Z",
     "mirror_root":  "C:\\Mason2_MIRROR",
-    "changed_count":  10,
+    "changed_count":  4,
     "added_count":  0,
-    "modified_count":  10,
+    "modified_count":  4,
     "removed_count":  0,
     "top_changed_paths":  [
-                              "MasonConsole/server.py",
-                              "MasonConsole/static/athena/index.html",
                               "docs/knowledge_pack/index.json",
                               "docs/knowledge_pack/stats.json",
                               "docs/mirror_delta.json",
-                              "docs/mirror_manifest.json",
-                              "state/knowledge/pending_patch_runs.json",
-                              "tools/ops/Run_Repair_Wave_03.ps1",
-                              "tools/ops/Run_Whole_Folder_Verification.ps1",
-                              "tools/ops/Validate_Whole_System.ps1"
+                              "docs/mirror_manifest.json"
                           ],
-    "head_before":  "08e8abd9d86e6e3b97f62338f35ce9e6a29683c2",
-    "head_after":  "5e9979b947107fb1afddbba89fe9fe841bca44f2"
+    "head_before":  "5e9979b947107fb1afddbba89fe9fe841bca44f2",
+    "head_after":  "cc3843d98a1936febd9ae228c5c5ba174f01791f"
 }
