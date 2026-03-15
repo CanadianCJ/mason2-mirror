@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at_utc":  "2026-03-15T01:07:36.0643938Z",
+    "generated_at_utc":  "2026-03-15T02:09:22.4267651Z",
     "source_root":  "C:\\Users\\Chris\\Desktop\\Mason2",
     "mirror_root":  "C:\\Mason2_MIRROR",
     "policy_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\mirror_policy.json",
@@ -187,7 +187,7 @@
                      "Component - Onyx App/mason-live/.venv/**",
                      "Component - Onyx App/mason-live/__pycache__/**"
                  ],
-    "last_sync_timestamp_utc":  "2026-03-15T01:07:36.0780245Z",
+    "last_sync_timestamp_utc":  "2026-03-15T02:09:22.4480504Z",
     "counts_per_folder":  [
                               {
                                   "name":  ".gitignore",
@@ -257,7 +257,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  17,
-                                  "total_bytes":  144928609
+                                  "total_bytes":  145895552
                               },
                               {
                                   "name":  "roadmap",
@@ -649,7 +649,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  44909,
-                                  "total_bytes":  1683483109
+                                  "total_bytes":  1683691880
                               }
                           ],
     "policy_summary":  {
@@ -818,8 +818,8 @@
                                                                "reports\\health_index.jsonl",
                                                                "reports\\codebase_salvage_queue.json",
                                                                "reports\\mason_legacy_index.json",
-                                                               "reports\\ingest_index_20260227_022603.json",
                                                                "reports\\mirror_update_stdout.log",
+                                                               "reports\\ingest_index_20260227_022603.json",
                                                                "reports\\trees\\Mason2_file_inventory.csv",
                                                                "reports\\self_index.json",
                                                                "reports\\mem_pressure.jsonl",
@@ -956,8 +956,8 @@
                                                                "reports\\health_index.jsonl",
                                                                "reports\\codebase_salvage_queue.json",
                                                                "reports\\mason_legacy_index.json",
-                                                               "reports\\ingest_index_20260227_022603.json",
                                                                "reports\\mirror_update_stdout.log",
+                                                               "reports\\ingest_index_20260227_022603.json",
                                                                "reports\\trees\\Mason2_file_inventory.csv",
                                                                "reports\\self_index.json",
                                                                "reports\\mem_pressure.jsonl",
