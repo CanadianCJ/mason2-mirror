@@ -215,6 +215,13 @@ VALIDATOR_COVERAGE_REPAIR_LAST_PATH = REPORTS / "validator_coverage_repair_last.
 BROKEN_PATH_CLUSTER_REPAIR_LAST_PATH = REPORTS / "broken_path_cluster_repair_last.json"
 REMOTE_PUSH_REPAIR_LAST_PATH = REPORTS / "remote_push_repair_last.json"
 REPAIR_WAVE_02_UNFIXED_QUEUE_LAST_PATH = REPORTS / "repair_wave_02_unfixed_queue_last.json"
+REPAIR_WAVE_03_LAST_PATH = REPORTS / "repair_wave_03_last.json"
+INTERNAL_SCHEDULER_MIGRATION_LAST_PATH = REPORTS / "internal_scheduler_migration_last.json"
+WINDOWS_TASK_FALLBACK_LAST_PATH = REPORTS / "windows_task_fallback_last.json"
+POPUP_WINDOW_ELIMINATION_LAST_PATH = REPORTS / "popup_window_elimination_last.json"
+BROKEN_PATH_REDUCTION_WAVE_03_LAST_PATH = REPORTS / "broken_path_reduction_wave_03_last.json"
+ONYX_CORE_FLOW_VERIFICATION_LAST_PATH = REPORTS / "onyx_core_flow_verification_last.json"
+REPAIR_WAVE_03_UNFIXED_QUEUE_LAST_PATH = REPORTS / "repair_wave_03_unfixed_queue_last.json"
 MIRROR_COVERAGE_LAST_PATH = REPORTS / "mirror_coverage_last.json"
 MIRROR_OMISSION_LAST_PATH = REPORTS / "mirror_omission_last.json"
 MIRROR_SAFE_INDEX_PATH = REPORTS / "mirror_safe_index.md"
@@ -222,6 +229,7 @@ ATHENA_WIDGET_STATUS_PATH = REPORTS / "athena_widget_status.json"
 ONYX_STACK_HEALTH_PATH = REPORTS / "onyx_stack_health.json"
 REPAIR_WAVE_01_POLICY_PATH = CONFIG_DIR / "repair_wave_01_policy.json"
 REPAIR_WAVE_02_POLICY_PATH = CONFIG_DIR / "repair_wave_02_policy.json"
+REPAIR_WAVE_03_POLICY_PATH = CONFIG_DIR / "repair_wave_03_policy.json"
 INTERNAL_SCHEDULER_POLICY_PATH = CONFIG_DIR / "internal_scheduler_policy.json"
 LEGACY_TASK_MIGRATION_POLICY_PATH = CONFIG_DIR / "legacy_task_migration_policy.json"
 
@@ -8203,6 +8211,18 @@ def load_repair_wave_payloads() -> dict[str, dict[str, Any]]:
     broken_path_cluster_repair_payload = broken_path_cluster_repair_payload if isinstance(broken_path_cluster_repair_payload, dict) else {}
     remote_push_repair_payload = read_json(REMOTE_PUSH_REPAIR_LAST_PATH, default={})
     remote_push_repair_payload = remote_push_repair_payload if isinstance(remote_push_repair_payload, dict) else {}
+    repair_wave_03_payload = read_json(REPAIR_WAVE_03_LAST_PATH, default={})
+    repair_wave_03_payload = repair_wave_03_payload if isinstance(repair_wave_03_payload, dict) else {}
+    internal_scheduler_migration_payload = read_json(INTERNAL_SCHEDULER_MIGRATION_LAST_PATH, default={})
+    internal_scheduler_migration_payload = internal_scheduler_migration_payload if isinstance(internal_scheduler_migration_payload, dict) else {}
+    windows_task_fallback_payload = read_json(WINDOWS_TASK_FALLBACK_LAST_PATH, default={})
+    windows_task_fallback_payload = windows_task_fallback_payload if isinstance(windows_task_fallback_payload, dict) else {}
+    popup_window_elimination_payload = read_json(POPUP_WINDOW_ELIMINATION_LAST_PATH, default={})
+    popup_window_elimination_payload = popup_window_elimination_payload if isinstance(popup_window_elimination_payload, dict) else {}
+    broken_path_reduction_wave_03_payload = read_json(BROKEN_PATH_REDUCTION_WAVE_03_LAST_PATH, default={})
+    broken_path_reduction_wave_03_payload = broken_path_reduction_wave_03_payload if isinstance(broken_path_reduction_wave_03_payload, dict) else {}
+    onyx_core_flow_verification_payload = read_json(ONYX_CORE_FLOW_VERIFICATION_LAST_PATH, default={})
+    onyx_core_flow_verification_payload = onyx_core_flow_verification_payload if isinstance(onyx_core_flow_verification_payload, dict) else {}
 
     payload = {
         "repair_wave_01": {
@@ -8386,6 +8406,95 @@ def load_repair_wave_payloads() -> dict[str, dict[str, Any]]:
             "recommended_next_action": normalize_short_text(remote_push_repair_payload.get("recommended_next_action"), max_len=240),
             "generated_at_utc": normalize_text(remote_push_repair_payload.get("timestamp_utc")),
             "remote_push_repair_path": str(REMOTE_PUSH_REPAIR_LAST_PATH),
+        },
+        "repair_wave_03": {
+            "owner_only": True,
+            "overall_status": normalize_text(repair_wave_03_payload.get("overall_status")).upper() or "UNKNOWN",
+            "internal_scheduler_migration_status": normalize_text(repair_wave_03_payload.get("internal_scheduler_migration_status")).upper() or "UNKNOWN",
+            "windows_task_fallback_status": normalize_text(repair_wave_03_payload.get("windows_task_fallback_status")).upper() or "UNKNOWN",
+            "popup_window_elimination_status": normalize_text(repair_wave_03_payload.get("popup_window_elimination_status")).upper() or "UNKNOWN",
+            "broken_path_reduction_status": normalize_text(repair_wave_03_payload.get("broken_path_reduction_status")).upper() or "UNKNOWN",
+            "onyx_core_flow_status": normalize_text(repair_wave_03_payload.get("onyx_core_flow_status")).upper() or "UNKNOWN",
+            "migrated_task_count": int(repair_wave_03_payload.get("migrated_task_count") or 0),
+            "host_disabled_count": int(repair_wave_03_payload.get("host_disabled_count") or 0),
+            "windows_fallback_dependency_count": int(repair_wave_03_payload.get("windows_fallback_dependency_count") or 0),
+            "popup_fixed_count": int(repair_wave_03_payload.get("popup_fixed_count") or 0),
+            "active_popup_before": int(repair_wave_03_payload.get("active_popup_before") or 0),
+            "active_popup_after": int(repair_wave_03_payload.get("active_popup_after") or 0),
+            "broken_paths_before": int(repair_wave_03_payload.get("broken_paths_before") or 0),
+            "broken_paths_after": int(repair_wave_03_payload.get("broken_paths_after") or 0),
+            "remote_push_result": normalize_text(repair_wave_03_payload.get("remote_push_result")) or "unknown",
+            "github_current": bool(repair_wave_03_payload.get("github_current")),
+            "recommended_next_action": normalize_short_text(repair_wave_03_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(repair_wave_03_payload.get("timestamp_utc")),
+            "repair_wave_03_path": str(REPAIR_WAVE_03_LAST_PATH),
+            "policy_path": str(REPAIR_WAVE_03_POLICY_PATH),
+        },
+        "internal_scheduler_migration": {
+            "owner_only": True,
+            "overall_status": normalize_text(internal_scheduler_migration_payload.get("overall_status")).upper() or "UNKNOWN",
+            "migrated_task_count": int(internal_scheduler_migration_payload.get("migrated_task_count") or 0),
+            "host_disabled_count": int(internal_scheduler_migration_payload.get("host_disabled_count") or 0),
+            "executed_via_internal_scheduler_count": int(internal_scheduler_migration_payload.get("executed_via_internal_scheduler_count") or 0),
+            "bootstrap_task_name": normalize_short_text(internal_scheduler_migration_payload.get("bootstrap_task_name"), max_len=120),
+            "bootstrap_verification_status": normalize_text(internal_scheduler_migration_payload.get("bootstrap_verification_status")).upper() or "UNKNOWN",
+            "recommended_next_action": normalize_short_text(internal_scheduler_migration_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(internal_scheduler_migration_payload.get("timestamp_utc")),
+            "internal_scheduler_migration_path": str(INTERNAL_SCHEDULER_MIGRATION_LAST_PATH),
+        },
+        "windows_task_fallback": {
+            "owner_only": True,
+            "overall_status": normalize_text(windows_task_fallback_payload.get("overall_status")).upper() or "UNKNOWN",
+            "bootstrap_task_name": normalize_short_text(windows_task_fallback_payload.get("bootstrap_task_name"), max_len=120),
+            "bootstrap_task_enabled": bool(windows_task_fallback_payload.get("bootstrap_task_enabled")),
+            "migrated_disable_host_count": int(windows_task_fallback_payload.get("migrated_disable_host_count") or 0),
+            "keep_as_bootstrap_count": int(windows_task_fallback_payload.get("keep_as_bootstrap_count") or 0),
+            "keep_as_fallback_count": int(windows_task_fallback_payload.get("keep_as_fallback_count") or 0),
+            "keep_temporarily_pending_count": int(windows_task_fallback_payload.get("keep_temporarily_pending_count") or 0),
+            "manual_review_required_count": int(windows_task_fallback_payload.get("manual_review_required_count") or 0),
+            "remaining_windows_dependency_count": int(windows_task_fallback_payload.get("remaining_windows_dependency_count") or 0),
+            "recommended_next_action": normalize_short_text(windows_task_fallback_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(windows_task_fallback_payload.get("timestamp_utc")),
+            "windows_task_fallback_path": str(WINDOWS_TASK_FALLBACK_LAST_PATH),
+        },
+        "popup_window_elimination": {
+            "owner_only": True,
+            "overall_status": normalize_text(popup_window_elimination_payload.get("overall_status")).upper() or "UNKNOWN",
+            "active_noisy_before": int(popup_window_elimination_payload.get("active_noisy_before") or 0),
+            "active_noisy_after": int(popup_window_elimination_payload.get("active_noisy_after") or 0),
+            "fixed_count": int(popup_window_elimination_payload.get("fixed_count") or 0),
+            "reduced_count": int(popup_window_elimination_payload.get("reduced_count") or 0),
+            "intentionally_visible_count": int(popup_window_elimination_payload.get("intentionally_visible_count") or 0),
+            "dormant_legacy_visible_count": int(popup_window_elimination_payload.get("dormant_legacy_visible_count") or 0),
+            "recommended_next_action": normalize_short_text(popup_window_elimination_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(popup_window_elimination_payload.get("timestamp_utc")),
+            "popup_window_elimination_path": str(POPUP_WINDOW_ELIMINATION_LAST_PATH),
+        },
+        "broken_path_reduction_wave_03": {
+            "owner_only": True,
+            "overall_status": normalize_text(broken_path_reduction_wave_03_payload.get("overall_status")).upper() or "UNKNOWN",
+            "target_cluster_count": int(broken_path_reduction_wave_03_payload.get("target_cluster_count") or 0),
+            "fixed_count": int(broken_path_reduction_wave_03_payload.get("fixed_count") or 0),
+            "broken_paths_before": int(broken_path_reduction_wave_03_payload.get("broken_paths_before") or 0),
+            "broken_paths_after": int(broken_path_reduction_wave_03_payload.get("broken_paths_after") or 0),
+            "recommended_next_action": normalize_short_text(broken_path_reduction_wave_03_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(broken_path_reduction_wave_03_payload.get("timestamp_utc")),
+            "broken_path_reduction_wave_03_path": str(BROKEN_PATH_REDUCTION_WAVE_03_LAST_PATH),
+        },
+        "onyx_core_flow_verification": {
+            "owner_only": True,
+            "overall_status": normalize_text(onyx_core_flow_verification_payload.get("overall_status")).upper() or "UNKNOWN",
+            "app_reachable": bool(onyx_core_flow_verification_payload.get("app_reachable")),
+            "bundle_reachable": bool(onyx_core_flow_verification_payload.get("bundle_reachable")),
+            "runtime_status": normalize_text(onyx_core_flow_verification_payload.get("runtime_status")).upper() or "UNKNOWN",
+            "onboarding_wording_status": normalize_text(onyx_core_flow_verification_payload.get("onboarding_wording_status")).upper() or "UNKNOWN",
+            "onboarding_completion_status": normalize_text(onyx_core_flow_verification_payload.get("onboarding_completion_status")).upper() or "UNKNOWN",
+            "core_surface_status": normalize_text(onyx_core_flow_verification_payload.get("core_surface_status")).upper() or "UNKNOWN",
+            "verified_label_count": int(onyx_core_flow_verification_payload.get("verified_label_count") or 0),
+            "required_label_count": int(onyx_core_flow_verification_payload.get("required_label_count") or 0),
+            "recommended_next_action": normalize_short_text(onyx_core_flow_verification_payload.get("recommended_next_action"), max_len=240),
+            "generated_at_utc": normalize_text(onyx_core_flow_verification_payload.get("timestamp_utc")),
+            "onyx_core_flow_verification_path": str(ONYX_CORE_FLOW_VERIFICATION_LAST_PATH),
         },
     }
     load_repair_wave_payloads._cache = {"ts": now_monotonic, "payload": payload}

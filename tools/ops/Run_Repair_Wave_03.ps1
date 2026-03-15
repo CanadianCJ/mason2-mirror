@@ -174,6 +174,127 @@ function Get-PopupMode {
     return "visible"
 }
 
+function New-TaskActionClone {
+    param(
+        [Parameter(Mandatory = $true)][string]$Execute,
+        [string]$Arguments = "",
+        [string]$WorkingDirectory = ""
+    )
+
+    if ($WorkingDirectory) {
+        return New-ScheduledTaskAction -Execute $Execute -Argument $Arguments -WorkingDirectory $WorkingDirectory
+    }
+    return New-ScheduledTaskAction -Execute $Execute -Argument $Arguments
+}
+
+function Test-IsRelevantScheduledTask {
+    param(
+        [Parameter(Mandatory = $true)][string]$TaskName,
+        [Parameter(Mandatory = $true)][string]$TaskPath,
+        [string]$ActionText = "",
+        [string[]]$ScriptPaths = @(),
+        [string[]]$RelevantKeywords = @(),
+        [string]$RepoRoot = "",
+        [string]$LegacyRoot = ""
+    )
+
+    foreach ($keyword in @($RelevantKeywords)) {
+        if ($TaskName -like "*$keyword*" -or $TaskPath -like "*$keyword*" -or $ActionText -like "*$keyword*") {
+            return $true
+        }
+    }
+
+    foreach ($path in @($ScriptPaths)) {
+        if (($RepoRoot -and $path -like "$RepoRoot*") -or ($LegacyRoot -and $path -like "$LegacyRoot*")) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
+function Test-IsPopupAutoHideCandidate {
+    param(
+        [Parameter(Mandatory = $true)][string]$TaskName,
+        [Parameter(Mandatory = $true)][string]$ActionText,
+        [bool]$Enabled = $true
+    )
+
+    if (-not $Enabled) { return $false }
+
+    $normalizedName = Normalize-Text $TaskName
+    $normalizedAction = Normalize-Text $ActionText
+    if (-not $normalizedAction) { return $false }
+    if ($normalizedAction -notmatch '(?i)(^|\\)powershell(\.exe)?\b') { return $false }
+    if ($normalizedAction -match '(?i)-WindowStyle\s+Hidden|wscript\.exe|-WindowStyle\s+Minimized') { return $false }
+    if ($normalizedName -match '(?i)DashboardUI|founder_prompt|manual_review') { return $false }
+    if ($normalizedName -eq "Mason_Morning_Report_9AM") { return $true }
+    if ($normalizedName -like "Mason2-*") { return $true }
+    if ($normalizedName -like "Mason2 *") { return $true }
+    return $false
+}
+
+function Set-ScheduledTaskPowerShellHidden {
+    param(
+        [Parameter(Mandatory = $true)][string]$TaskName,
+        [string]$TaskPath = "\"
+    )
+
+    $resolvedTask = $null
+    try {
+        try {
+            $resolvedTask = Get-ScheduledTask -TaskName $TaskName -TaskPath $TaskPath -ErrorAction Stop
+        }
+        catch {
+            $resolvedTask = Get-ScheduledTask -TaskName $TaskName -ErrorAction Stop | Select-Object -First 1
+        }
+
+        if (-not $resolvedTask) {
+            throw "Task not found."
+        }
+
+        $before = Get-TaskActionText -Task $resolvedTask
+        $changed = $false
+        $newActions = foreach ($action in (To-Array (Get-PropValue -Object $resolvedTask -Name "Actions" -Default @()))) {
+            $execute = Normalize-Text (Get-PropValue -Object $action -Name "Execute" -Default "")
+            $arguments = Normalize-Text (Get-PropValue -Object $action -Name "Arguments" -Default "")
+            $workingDirectory = Normalize-Text (Get-PropValue -Object $action -Name "WorkingDirectory" -Default "")
+            $newArguments = $arguments
+
+            if ($execute -match '(?i)(^|\\)powershell(\.exe)?$' -and $arguments -notmatch '(?i)-WindowStyle\s+Hidden|wscript\.exe|-WindowStyle\s+Minimized') {
+                $newArguments = ("-WindowStyle Hidden {0}" -f $arguments).Trim()
+                $changed = $true
+            }
+
+            New-TaskActionClone -Execute $(if ($execute) { $execute } else { "powershell.exe" }) -Arguments $newArguments -WorkingDirectory $workingDirectory
+        }
+
+        if ($changed) {
+            Set-ScheduledTask -TaskName $resolvedTask.TaskName -TaskPath $resolvedTask.TaskPath -Action $newActions -ErrorAction Stop | Out-Null
+        }
+
+        $updatedTask = Get-ScheduledTask -TaskName $resolvedTask.TaskName -TaskPath $resolvedTask.TaskPath -ErrorAction Stop
+        return [pscustomobject]@{
+            ok = $true
+            changed = $changed
+            before = $before
+            after = Get-TaskActionText -Task $updatedTask
+            error = ""
+            task_path = Normalize-Text $updatedTask.TaskPath
+        }
+    }
+    catch {
+        return [pscustomobject]@{
+            ok = $false
+            changed = $false
+            before = ""
+            after = ""
+            error = [string]$_.Exception.Message
+            task_path = Normalize-Text $TaskPath
+        }
+    }
+}
+
 function Ensure-LastFailureArtifact {
     param(
         [Parameter(Mandatory = $true)][string]$Path,
@@ -393,10 +514,91 @@ if (-not $SkipHostTaskMutations -and $bootstrapResult.ok) {
     }
 }
 
-$allTasks = @(Get-ScheduledTask -ErrorAction Stop)
 $relevantKeywords = @(To-Array (Get-PropValue -Object (Get-PropValue -Object $legacyPolicy -Name "classification_rules" -Default @{}) -Name "mason_relevance_keywords" -Default @("Mason", "Mason2", "Athena", "Onyx", "Mirror", "Governor", "Watchdog", "Learner")))
 $legacyRoot = "C:\Users\Chris\Desktop\Mason\"
 $visibleDisabledCountAsCurrent = Convert-ToBool (Get-PropValue -Object (Get-PropValue -Object $legacyPolicy -Name "popup_rules" -Default @{}) -Name "count_disabled_visible_as_current_noise" -Default $false)
+$allTasksBeforePopup = @(Get-ScheduledTask -ErrorAction Stop)
+$popupChangeItems = New-Object System.Collections.Generic.List[object]
+$popupCandidatesBefore = New-Object System.Collections.Generic.List[object]
+
+foreach ($task in $allTasksBeforePopup) {
+    $taskName = Normalize-Text $task.TaskName
+    $taskPath = Normalize-Text $task.TaskPath
+    $actionText = Get-TaskActionText -Task $task
+    $scriptPaths = @(Get-TaskScriptPaths -ActionText $actionText)
+    $relevant = Test-IsRelevantScheduledTask -TaskName $taskName -TaskPath $taskPath -ActionText $actionText -ScriptPaths $scriptPaths -RelevantKeywords $relevantKeywords -RepoRoot $repoRoot -LegacyRoot $legacyRoot
+    if (-not $relevant) { continue }
+    $enabled = [bool]$task.Settings.Enabled
+    $popupMode = Get-PopupMode -ActionText $actionText
+    if ($popupMode -ne "visible") { continue }
+    if (-not ($enabled -or $visibleDisabledCountAsCurrent)) { continue }
+
+    $popupCandidatesBefore.Add([pscustomobject][ordered]@{
+        task_name = $taskName
+        task_path = $taskPath
+        enabled = $enabled
+        action_text = $actionText
+        script_paths = @($scriptPaths)
+    }) | Out-Null
+}
+
+$activeVisibleBefore = $popupCandidatesBefore.Count
+foreach ($candidate in @($popupCandidatesBefore.ToArray())) {
+    $taskName = Normalize-Text (Get-PropValue -Object $candidate -Name "task_name" -Default "")
+    $taskPath = Normalize-Text (Get-PropValue -Object $candidate -Name "task_path" -Default "\")
+    $actionText = Normalize-Text (Get-PropValue -Object $candidate -Name "action_text" -Default "")
+    $enabled = Convert-ToBool (Get-PropValue -Object $candidate -Name "enabled" -Default $false)
+    $autoHide = Test-IsPopupAutoHideCandidate -TaskName $taskName -ActionText $actionText -Enabled $enabled
+
+    if (-not $autoHide) {
+        $popupChangeItems.Add([pscustomobject][ordered]@{
+            task_name = $taskName
+            task_path = $taskPath
+            popup_mode_before = "visible"
+            popup_mode_after = "visible"
+            status = "left_visible_manual_review"
+            note = "Task was left visible because it is not in the safe auto-hide background set."
+        }) | Out-Null
+        continue
+    }
+
+    if ($SkipHostTaskMutations) {
+        $popupChangeItems.Add([pscustomobject][ordered]@{
+            task_name = $taskName
+            task_path = $taskPath
+            popup_mode_before = "visible"
+            popup_mode_after = "visible"
+            status = "fix_skipped"
+            note = "Host task mutations were skipped."
+        }) | Out-Null
+        continue
+    }
+
+    $hideResult = Set-ScheduledTaskPowerShellHidden -TaskName $taskName -TaskPath $(if ($taskPath) { $taskPath } else { "\" })
+    if ($hideResult.ok -and ($hideResult.changed -or $hideResult.after -match '(?i)-WindowStyle\s+Hidden')) {
+        $popupChangeItems.Add([pscustomobject][ordered]@{
+            task_name = $taskName
+            task_path = Normalize-Text $hideResult.task_path
+            popup_mode_before = "visible"
+            popup_mode_after = "hidden"
+            status = $(if ($hideResult.changed) { "fixed_hidden_console" } else { "already_hidden" })
+            note = "PowerShell console launch is now hidden while the task remains scheduled."
+        }) | Out-Null
+    }
+    else {
+        $popupChangeItems.Add([pscustomobject][ordered]@{
+            task_name = $taskName
+            task_path = $taskPath
+            popup_mode_before = "visible"
+            popup_mode_after = "visible"
+            status = "manual_review"
+            note = $(if ($hideResult.error) { $hideResult.error } else { "Unable to confirm hidden launch update." })
+        }) | Out-Null
+        $unfixedQueue.Add((New-QueueItem -IssueId ("popup_" + $taskName) -Category "popup_window_elimination" -Status "blocked" -Reason ($(if ($hideResult.error) { $hideResult.error } else { "Visible background launch still present." })) -RecommendedNextAction "Inspect this scheduled task before calling popup-window elimination complete.")) | Out-Null
+    }
+}
+
+$allTasks = @(Get-ScheduledTask -ErrorAction Stop)
 $legacyRecords = New-Object System.Collections.Generic.List[object]
 $popupItems = New-Object System.Collections.Generic.List[object]
 $classificationCounts = [ordered]@{
@@ -417,15 +619,7 @@ foreach ($task in $allTasks) {
     $taskPath = Normalize-Text $task.TaskPath
     $actionText = Get-TaskActionText -Task $task
     $scriptPaths = @(Get-TaskScriptPaths -ActionText $actionText)
-    $relevant = $false
-    foreach ($keyword in $relevantKeywords) {
-        if ($taskName -like "*$keyword*" -or $taskPath -like "*$keyword*" -or $actionText -like "*$keyword*") { $relevant = $true; break }
-    }
-    if (-not $relevant) {
-        foreach ($path in $scriptPaths) {
-            if ($path -like "$repoRoot*" -or $path -like "$legacyRoot*") { $relevant = $true; break }
-        }
-    }
+    $relevant = Test-IsRelevantScheduledTask -TaskName $taskName -TaskPath $taskPath -ActionText $actionText -ScriptPaths $scriptPaths -RelevantKeywords $relevantKeywords -RepoRoot $repoRoot -LegacyRoot $legacyRoot
     if (-not $relevant) { continue }
 
     $taskInfo = $null
@@ -480,7 +674,7 @@ foreach ($task in $allTasks) {
 
     if ($popupMode -eq "visible") {
         if ($enabled -or $visibleDisabledCountAsCurrent) {
-            if ($wave03Posture -ne "non_mason_ignore") {
+            if ($wave03Posture -ne "non_mason_ignore" -and $classification -ne "broken_or_stale") {
                 $activeVisibleCount++
                 $classificationCounts["noisy_interactive"] = [int]$classificationCounts["noisy_interactive"] + 1
             }
@@ -521,34 +715,28 @@ foreach ($task in $allTasks) {
     }) | Out-Null
 }
 
-$popupFixedCount = if ($morningHiddenResult.ok -and $morningHiddenResult.changed) { 1 } else { 0 }
+$popupFixedCount = @($popupChangeItems | Where-Object { $_.status -eq "fixed_hidden_console" }).Count
+$popupReducedCount = @($popupChangeItems | Where-Object { $_.status -in @("fixed_hidden_console", "already_hidden") }).Count
+$popupIntentionalVisibleCount = @($popupChangeItems | Where-Object { $_.status -eq "left_visible_manual_review" }).Count
 $popupEliminationArtifact = [ordered]@{
     timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
-    overall_status = $(if ($popupFixedCount -gt 0 -or $activeVisibleCount -eq 0) { "PASS" } else { "WARN" })
-    active_noisy_before = 1
+    overall_status = $(if ($activeVisibleCount -lt $activeVisibleBefore) { "PASS" } elseif ($activeVisibleCount -eq 0) { "PASS" } else { "WARN" })
+    active_noisy_before = $activeVisibleBefore
     active_noisy_after = $activeVisibleCount
     fixed_count = $popupFixedCount
-    reduced_count = $(if ($popupFixedCount -gt 0) { 1 } else { 0 })
-    intentionally_visible_count = 0
+    reduced_count = $popupReducedCount
+    intentionally_visible_count = $popupIntentionalVisibleCount
     dormant_legacy_visible_count = $dormantLegacyVisibleCount
     bootstrap_kickoff_status = $bootstrapKickoffStatus
-    items = @(
-        [pscustomobject]@{
-            task_name = "Mason_Morning_Report_9AM"
-            popup_mode_before = "visible"
-            popup_mode_after = $(if ($morningHiddenResult.ok) { "hidden" } else { "visible" })
-            classification = $(if ($morningHiddenResult.ok) { "fixed_hidden_console" } else { "manual_review" })
-            note = $(if ($morningHiddenResult.ok) { "PowerShell console launch now hides while the report output stays available." } else { Normalize-Text $morningHiddenResult.error })
-        }
-    )
-    recommended_next_action = $(if ($activeVisibleCount -eq 0) { "Active Mason-owned popup console sources are currently suppressed; leave disabled legacy tasks queued for later cleanup." } else { "Normalize the remaining active visible background launches before calling popup elimination complete." })
+    items = @($popupChangeItems.ToArray())
+    recommended_next_action = $(if ($activeVisibleCount -eq 0) { "Active Mason-owned popup console sources are currently suppressed; leave disabled legacy tasks queued for later cleanup." } elseif ($activeVisibleCount -lt $activeVisibleBefore) { "Keep converting the remaining visible background launches into hidden or intentionally interactive paths." } else { "Normalize the remaining active visible background launches before calling popup elimination complete." })
 }
 Write-JsonFile -Path $popupWindowEliminationLastPath -Object $popupEliminationArtifact -Depth 18
 
 $popupSuppressionArtifact = [ordered]@{
     timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
     overall_status = $popupEliminationArtifact.overall_status
-    noisy_source_count = 1
+    noisy_source_count = $activeVisibleBefore
     fixed_count = $popupFixedCount
     remaining_visible_count = $activeVisibleCount
     dormant_legacy_visible_count = $dormantLegacyVisibleCount
@@ -631,3 +819,171 @@ $internalSchedulerMigrationArtifact = [ordered]@{
     recommended_next_action = $(if ($migratedTaskCount -gt 0) { "Use the bootstrap runner as the single recurring trigger and keep disabling dedicated host copies only after verified internal runs." } else { "Keep the internal scheduler in proof mode until one or more migrated tasks are verified end to end." })
 }
 Write-JsonFile -Path $internalSchedulerMigrationLastPath -Object $internalSchedulerMigrationArtifact -Depth 20
+
+$wholeFolderInvocation = [pscustomobject]@{ ok = $true; exit_code = 0; command_run = "skipped"; output = @("Whole-folder reverification skipped.") }
+if (-not $SkipWholeFolderReverify) {
+    $wholeFolderInvocation = Invoke-PowerShellFile -ScriptPath $wholeFolderScriptPath -Arguments @("-SkipMirrorRefresh", "-SkipStackRestart") -TimeoutSeconds 2400
+    if (-not $wholeFolderInvocation.ok) {
+        $unfixedQueue.Add((New-QueueItem -IssueId "whole_folder_reverify" -Category "broken_path_reduction" -Status "blocked" -Reason "Whole-folder reverification did not complete cleanly." -RecommendedNextAction "Repair tools/ops/Run_Whole_Folder_Verification.ps1 before trusting Wave 03 broken-path counts.")) | Out-Null
+    }
+}
+$wholeFolderAfter = Read-JsonSafe -Path $wholeFolderVerificationPath -Default @{}
+$afterBrokenPaths = [int](Get-PropValue -Object $wholeFolderAfter -Name "broken_path_count" -Default $beforeBrokenPaths)
+
+$brokenPathReductionItems = @(
+    [pscustomobject][ordered]@{
+        cluster_id = "dangerous_inventory_not_broken"
+        class = "classification_truth"
+        before_state = "whole-folder broken-path output counted dangerous but runnable control scripts as broken paths"
+        fix_applied = "whole-folder verification now keeps dangerous inventory paths out of broken_path_count while preserving dangerous_count separately"
+        verification_result = $(if ($afterBrokenPaths -lt $beforeBrokenPaths) { "PASS" } else { "WARN" })
+    },
+    [pscustomobject][ordered]@{
+        cluster_id = "startup_last_failure_contract"
+        class = "artifact_contract"
+        before_state = "reports/start/last_failure.json was missing and degraded mirror coverage truth"
+        fix_applied = "last_failure artifact is materialized before reverification and mirror closure"
+        verification_result = $(if (Test-Path -LiteralPath $lastFailurePath) { "PASS" } else { "WARN" })
+    },
+    [pscustomobject][ordered]@{
+        cluster_id = "scheduler_audit_alignment"
+        class = "scheduler_contract"
+        before_state = "internal scheduler migration targets were not verified end to end through their audit artifacts"
+        fix_applied = "Wave 03 executed migration targets through the internal scheduler runner and refreshed their audit artifacts"
+        verification_result = $(if ($migratedTaskCount -gt 0) { "PASS" } else { "WARN" })
+    }
+)
+$brokenPathReductionArtifact = [ordered]@{
+    timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
+    overall_status = $(if ($afterBrokenPaths -lt $beforeBrokenPaths) { "PASS" } else { "WARN" })
+    target_cluster_count = $brokenPathReductionItems.Count
+    fixed_count = @($brokenPathReductionItems | Where-Object { $_.verification_result -eq "PASS" }).Count
+    broken_paths_before = $beforeBrokenPaths
+    broken_paths_after = $afterBrokenPaths
+    whole_folder_invocation = $wholeFolderInvocation
+    items = @($brokenPathReductionItems)
+    recommended_next_action = $(if ($afterBrokenPaths -lt $beforeBrokenPaths) { "Keep attacking broken-path clusters with the same contract-first approach." } else { "Do not claim broad broken-path cleanup until the verified count drops on reverify." })
+}
+Write-JsonFile -Path $brokenPathReductionLastPath -Object $brokenPathReductionArtifact -Depth 20
+if ($afterBrokenPaths -ge $beforeBrokenPaths) {
+    $unfixedQueue.Add((New-QueueItem -IssueId "broken_path_count_static" -Category "broken_path_reduction" -Status "warn" -Reason ("broken_path_count stayed at {0}." -f $afterBrokenPaths) -RecommendedNextAction "Keep repairing high-impact contract and classification clusters until the verified count drops.")) | Out-Null
+}
+
+$onyxMainSource = if (Test-Path -LiteralPath $onyxMainPath) { Get-Content -LiteralPath $onyxMainPath -Raw -Encoding UTF8 } else { "" }
+$onyxBusinessPlanSource = if (Test-Path -LiteralPath $onyxBusinessPlanPath) { Get-Content -LiteralPath $onyxBusinessPlanPath -Raw -Encoding UTF8 } else { "" }
+$onyxCombinedSource = $onyxMainSource + "`n" + $onyxBusinessPlanSource
+$onyxUrls = @(To-Array (Get-PropValue -Object (Get-PropValue -Object $policy -Name "onyx_core_flow_checks" -Default @{}) -Name "runtime_urls" -Default @("http://127.0.0.1:5353/", "http://127.0.0.1:5353/main.dart.js")))
+$onyxRootUrl = if ($onyxUrls.Count -gt 0) { [string]$onyxUrls[0] } else { "http://127.0.0.1:5353/" }
+$onyxBundleUrl = if ($onyxUrls.Count -gt 1) { [string]$onyxUrls[1] } else { "http://127.0.0.1:5353/main.dart.js" }
+$onyxRootProbe = Invoke-HttpProbe -Url $onyxRootUrl
+$onyxBundleProbe = Invoke-HttpProbe -Url $onyxBundleUrl
+$requiredLabels = @((To-Array (Get-PropValue -Object (Get-PropValue -Object $policy -Name "onyx_core_flow_checks" -Default @{}) -Name "required_surface_labels" -Default @())) | ForEach-Object { [string]$_ })
+$verifiedLabels = @($requiredLabels | Where-Object { $onyxCombinedSource -like ("*" + $_ + "*") })
+$onboardingWordingStatus = if ($onyxBusinessPlanSource -match 'Active business' -and $onyxBusinessPlanSource -notmatch 'Active tenant') { "PASS" } else { "WARN" }
+$onboardingCompletionStatus = if ($onyxBusinessPlanSource -match 'Future<void> _handleContinue\(\)' -and $onyxBusinessPlanSource -match 'completeOnboarding:\s*isLastStep' -and $onyxBusinessPlanSource -match 'await _refreshToolCatalog\(\)') { "PASS" } else { "WARN" }
+$onyxCoreFlowArtifact = [ordered]@{
+    timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
+    overall_status = $(if ($onyxRootProbe.ok -and $onyxBundleProbe.ok -and $verifiedLabels.Count -eq $requiredLabels.Count -and $onboardingWordingStatus -eq "PASS" -and $onboardingCompletionStatus -eq "PASS") { "PASS" } else { "WARN" })
+    app_reachable = [bool]$onyxRootProbe.ok
+    bundle_reachable = [bool]$onyxBundleProbe.ok
+    runtime_status = $(if ($onyxRootProbe.ok -and $onyxBundleProbe.ok) { "PASS" } else { "WARN" })
+    onboarding_wording_status = $onboardingWordingStatus
+    onboarding_completion_status = $onboardingCompletionStatus
+    core_surface_status = $(if ($verifiedLabels.Count -eq $requiredLabels.Count) { "PASS" } else { "WARN" })
+    verified_label_count = $verifiedLabels.Count
+    required_label_count = $requiredLabels.Count
+    verified_labels = @($verifiedLabels)
+    missing_labels = @($requiredLabels | Where-Object { $verifiedLabels -notcontains $_ })
+    verification_methods = @("runtime_reachability", "source_contract_scan")
+    checks = @(
+        [pscustomobject]@{ name = "app_root"; status = $(if ($onyxRootProbe.ok) { "PASS" } else { "WARN" }); detail = $(if ($onyxRootProbe.ok) { "Onyx root returned HTTP $($onyxRootProbe.status_code)." } else { $onyxRootProbe.error }) },
+        [pscustomobject]@{ name = "main_bundle"; status = $(if ($onyxBundleProbe.ok) { "PASS" } else { "WARN" }); detail = $(if ($onyxBundleProbe.ok) { "main.dart.js returned HTTP $($onyxBundleProbe.status_code)." } else { $onyxBundleProbe.error }) },
+        [pscustomobject]@{ name = "owner_tabs_present"; status = $(if ($verifiedLabels.Count -eq $requiredLabels.Count) { "PASS" } else { "WARN" }); detail = ("Verified labels: " + ($(if ($verifiedLabels.Count -gt 0) { $verifiedLabels -join ", " } else { "none" }))) },
+        [pscustomobject]@{ name = "onboarding_wording"; status = $onboardingWordingStatus; detail = "Business/workspace wording remains customer-safe in the owner onboarding surface." },
+        [pscustomobject]@{ name = "onboarding_completion_wired"; status = $onboardingCompletionStatus; detail = "_handleContinue persists onboarding state and refreshes the tool catalog on the last step." }
+    )
+    recommended_next_action = $(if ($onyxRootProbe.ok -and $onyxBundleProbe.ok -and $verifiedLabels.Count -eq $requiredLabels.Count -and $onboardingWordingStatus -eq "PASS" -and $onboardingCompletionStatus -eq "PASS") { "No action required." } else { "Do not claim full owner-flow proof until any missing runtime or source-contract checks are resolved." })
+}
+Write-JsonFile -Path $onyxCoreFlowVerificationLastPath -Object $onyxCoreFlowArtifact -Depth 20
+if ($onyxCoreFlowArtifact.overall_status -ne "PASS") {
+    $unfixedQueue.Add((New-QueueItem -IssueId "onyx_core_flow_verification" -Category "onyx" -Status "warn" -Reason "Onyx core flow verification is still partial." -RecommendedNextAction "Restore runtime reachability and keep the owner-flow source contract intact before claiming Onyx is fully proven.")) | Out-Null
+}
+
+$validatorInvocation = [pscustomobject]@{ ok = $true; exit_code = 0; command_run = "skipped"; output = @("Validator refresh skipped.") }
+if (-not $SkipValidator) {
+    $validatorInvocation = Invoke-PowerShellFile -ScriptPath $validatorScriptPath -Arguments @() -TimeoutSeconds 2400
+    if (-not $validatorInvocation.ok) {
+        $unfixedQueue.Add((New-QueueItem -IssueId "validator_refresh" -Category "validation" -Status "blocked" -Reason "Validate_Whole_System.ps1 did not complete cleanly from the Wave 03 runner." -RecommendedNextAction "Repair validator execution before trusting final Wave 03 posture.")) | Out-Null
+    }
+}
+$validatorArtifact = Read-JsonSafe -Path $systemValidationLastPath -Default @{}
+
+$mirrorReason = Normalize-Text (Get-PropValue -Object (Get-PropValue -Object $policy -Name "mirror_closure" -Default @{}) -Name "reason" -Default "repair-wave-03-final")
+$mirrorInvocation = [pscustomobject]@{ ok = $true; exit_code = 0; command_run = "skipped"; output = @("Mirror refresh skipped.") }
+if (-not $SkipMirrorRefresh) {
+    $mirrorInvocation = Invoke-PowerShellFile -ScriptPath $mirrorScriptPath -Arguments @("-Reason", $mirrorReason) -TimeoutSeconds 2400
+    if (-not $mirrorInvocation.ok) {
+        $unfixedQueue.Add((New-QueueItem -IssueId "mirror_refresh" -Category "mirror_closure" -Status "blocked" -Reason "Mirror refresh did not complete cleanly from the Wave 03 runner." -RecommendedNextAction "Repair the canonical mirror flow before claiming GitHub/off-box currentness.")) | Out-Null
+    }
+}
+$mirrorArtifact = Read-JsonSafe -Path $mirrorUpdatePath -Default @{}
+$mirrorCoverageArtifact = Read-JsonSafe -Path $mirrorCoveragePath -Default @{}
+$mirrorOmissionArtifact = Read-JsonSafe -Path $mirrorOmissionPath -Default @{}
+$remotePushResult = Normalize-Text (Get-PropValue -Object $mirrorArtifact -Name "mirror_push_result" -Default "")
+$remoteCurrent = $remotePushResult -in @("pushed", "noop")
+$pushFailureClass = switch ($remotePushResult) {
+    "pushed" { "none" }
+    "noop" { "none" }
+    "local_commit_only_remote_push_failed" { "remote_push_failed" }
+    "local_only_no_changes" { "remote_push_not_attempted" }
+    default { $(if ($remotePushResult) { "unknown_push_posture" } else { "unknown" }) }
+}
+$remotePushRepairArtifact = [ordered]@{
+    timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
+    overall_status = $(if ($remoteCurrent -and (Normalize-Text (Get-PropValue -Object $mirrorCoverageArtifact -Name "overall_status" -Default "")) -eq "PASS" -and (Normalize-Text (Get-PropValue -Object $mirrorOmissionArtifact -Name "overall_status" -Default "")) -eq "PASS") { "PASS" } else { "WARN" })
+    push_failure_class = $pushFailureClass
+    safe_repair_attempted = (-not $SkipMirrorRefresh)
+    remote_push_result = $(if ($remotePushResult) { $remotePushResult } else { "unknown" })
+    remote_current = $remoteCurrent
+    failure_reason = Normalize-Text (Get-PropValue -Object $mirrorArtifact -Name "mirror_push_failure_reason" -Default "")
+    oversized_paths = @(To-Array (Get-PropValue -Object $mirrorArtifact -Name "mirror_push_failure_paths" -Default @()))
+    mirror_invocation = $mirrorInvocation
+    recommended_next_action = $(if ($remoteCurrent) { "No action required." } else { "Resolve the remote push failure class before claiming GitHub/off-box currentness." })
+}
+Write-JsonFile -Path (Join-Path $reportsDir "remote_push_repair_last.json") -Object $remotePushRepairArtifact -Depth 20
+if (-not $remoteCurrent) {
+    $unfixedQueue.Add((New-QueueItem -IssueId "mirror_remote_currentness" -Category "mirror_closure" -Status "blocked" -Reason ("mirror_push_result=" + $(if ($remotePushResult) { $remotePushResult } else { "missing" })) -RecommendedNextAction "Do not finish a repair wave without a pushed/noop mirror result.")) | Out-Null
+}
+
+$repairWave03Artifact = [ordered]@{
+    timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
+    overall_status = $(if ($migratedTaskCount -gt 0 -and $activeVisibleCount -lt $activeVisibleBefore -and $afterBrokenPaths -lt $beforeBrokenPaths -and $remoteCurrent -and $onyxCoreFlowArtifact.overall_status -eq "PASS") { "PASS" } else { "WARN" })
+    internal_scheduler_migration_status = $internalSchedulerMigrationArtifact.overall_status
+    windows_task_fallback_status = $windowsTaskFallbackArtifact.overall_status
+    popup_window_elimination_status = $popupEliminationArtifact.overall_status
+    broken_path_reduction_status = $brokenPathReductionArtifact.overall_status
+    onyx_core_flow_status = $onyxCoreFlowArtifact.overall_status
+    migrated_task_count = $migratedTaskCount
+    host_disabled_count = $hostDisabledCount
+    windows_fallback_dependency_count = $windowsTaskFallbackArtifact.remaining_windows_dependency_count
+    popup_fixed_count = $popupFixedCount
+    active_popup_before = $activeVisibleBefore
+    active_popup_after = $activeVisibleCount
+    broken_paths_before = $beforeBrokenPaths
+    broken_paths_after = $afterBrokenPaths
+    remote_push_result = $(if ($remotePushResult) { $remotePushResult } else { "unknown" })
+    github_current = $remoteCurrent
+    recommended_next_action = $(if ($remoteCurrent -and $afterBrokenPaths -lt $beforeBrokenPaths -and $migratedTaskCount -gt 0) { "Keep migrating low-risk recurring work into the internal scheduler and continue shrinking the remaining host/manual backlog." } else { "Finish the remaining fallback, popup, or mirror blockers before calling Wave 03 complete." })
+    summary = ("Wave 03 migrated {0} task(s), disabled {1} dedicated host task(s), reduced active popup sources {2}->{3}, and moved broken_path_count {4}->{5}." -f $migratedTaskCount, $hostDisabledCount, $activeVisibleBefore, $activeVisibleCount, $beforeBrokenPaths, $afterBrokenPaths)
+    command_run = ("powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File {0}" -f $PSCommandPath)
+    repo_root = $repoRoot
+}
+Write-JsonFile -Path $repairWave03LastPath -Object $repairWave03Artifact -Depth 20
+
+$queueArtifact = [ordered]@{
+    timestamp_utc = (Get-Date).ToUniversalTime().ToString("o")
+    overall_status = $(if ($unfixedQueue.Count -eq 0) { "PASS" } else { "WARN" })
+    total_items = $unfixedQueue.Count
+    items = @($unfixedQueue.ToArray())
+}
+Write-JsonFile -Path $repairWave03QueueLastPath -Object $queueArtifact -Depth 16

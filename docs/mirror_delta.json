@@ -1,18 +1,27 @@
 ﻿{
-    "generated_at_utc":  "2026-03-15T00:13:26.3429481Z",
+    "generated_at_utc":  "2026-03-15T00:52:22.6293685Z",
     "mirror_root":  "C:\\Mason2_MIRROR",
-    "changed_count":  6,
-    "added_count":  0,
-    "modified_count":  6,
+    "changed_count":  15,
+    "added_count":  4,
+    "modified_count":  11,
     "removed_count":  0,
     "top_changed_paths":  [
+                              "Start_Mason2.ps1",
+                              "config/internal_scheduler_policy.json",
+                              "config/legacy_task_migration_policy.json",
+                              "config/repair_wave_03_policy.json",
                               "docs/knowledge_pack/index.json",
                               "docs/knowledge_pack/stats.json",
                               "docs/mirror_delta.json",
                               "docs/mirror_manifest.json",
-                              "state/knowledge/internal_scheduler_registry.json",
-                              "state/workspaces/tenant_http_check/workspace.json"
+                              "tools/Athena_Status_Snapshot.ps1",
+                              "tools/Mason_Morning_Report.ps1",
+                              "tools/Mason_Onyx_Health_Watcher.ps1",
+                              "tools/Onyx_Health_Check.ps1",
+                              "tools/ops/Run_Internal_Scheduler_Once.ps1",
+                              "tools/ops/Run_Repair_Wave_03.ps1",
+                              "tools/ops/Scan_Codebase_Salvage.ps1"
                           ],
     "head_before":  "c601633230662b67288efe3b95948d652392de20",
-    "head_after":  "1f0e9f17ec2eb5622ed1440cefc2a0f1f83fb0b2"
+    "head_after":  "08e8abd9d86e6e3b97f62338f35ce9e6a29683c2"
 }

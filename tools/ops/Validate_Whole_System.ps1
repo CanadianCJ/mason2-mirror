@@ -725,6 +725,13 @@ $validatorCoverageRepairLastPath = Join-Path $reportsDir "validator_coverage_rep
 $brokenPathClusterRepairLastPath = Join-Path $reportsDir "broken_path_cluster_repair_last.json"
 $remotePushRepairLastPath = Join-Path $reportsDir "remote_push_repair_last.json"
 $repairWave02UnfixedQueueLastPath = Join-Path $reportsDir "repair_wave_02_unfixed_queue_last.json"
+$repairWave03LastPath = Join-Path $reportsDir "repair_wave_03_last.json"
+$internalSchedulerMigrationLastPath = Join-Path $reportsDir "internal_scheduler_migration_last.json"
+$windowsTaskFallbackLastPath = Join-Path $reportsDir "windows_task_fallback_last.json"
+$popupWindowEliminationLastPath = Join-Path $reportsDir "popup_window_elimination_last.json"
+$brokenPathReductionWave03LastPath = Join-Path $reportsDir "broken_path_reduction_wave_03_last.json"
+$onyxCoreFlowVerificationLastPath = Join-Path $reportsDir "onyx_core_flow_verification_last.json"
+$repairWave03UnfixedQueueLastPath = Join-Path $reportsDir "repair_wave_03_unfixed_queue_last.json"
 $mirrorCoverageLastPath = Join-Path $reportsDir "mirror_coverage_last.json"
 $mirrorOmissionLastPath = Join-Path $reportsDir "mirror_omission_last.json"
 $mirrorSafeIndexPath = Join-Path $reportsDir "mirror_safe_index.md"
@@ -803,6 +810,7 @@ $uxSimplicityPolicyPath = Join-Path $repoRoot "config\ux_simplicity_policy.json"
 $wholeFolderVerificationPolicyPath = Join-Path $repoRoot "config\whole_folder_verification_policy.json"
 $repairWave01PolicyPath = Join-Path $repoRoot "config\repair_wave_01_policy.json"
 $repairWave02PolicyPath = Join-Path $repoRoot "config\repair_wave_02_policy.json"
+$repairWave03PolicyPath = Join-Path $repoRoot "config\repair_wave_03_policy.json"
 $internalSchedulerPolicyPath = Join-Path $repoRoot "config\internal_scheduler_policy.json"
 $legacyTaskMigrationPolicyPath = Join-Path $repoRoot "config\legacy_task_migration_policy.json"
 $tiersPath = Join-Path $repoRoot "config\tiers.json"
@@ -3372,6 +3380,81 @@ else {
     $repairWave02Checks += New-Check -Name "repair_wave_02_payload_visible" -Status "WARN" -Detail "Athena stack payload is unavailable, so repair-wave-02 payload visibility cannot be verified right now." -Component "repair_wave_02" -Path $stackStatusUrl -NextAction "Restore Athena stack status first, then verify repair-wave-02 payload visibility."
 }
 $sections += New-SectionResult -SectionName "repair wave 02 / internal scheduler / popup suppression / remote push repair" -Checks $repairWave02Checks
+
+# repair wave 03 / scheduler migration / popup elimination / Onyx core flow / mirror closure
+$repairWave03Checks = @()
+$repairWave03ArtifactCheck = Get-FileArtifactCheck -CheckName "repair_wave_03_artifact" -Path $repairWave03LastPath -Component "repair_wave_03" -MissingNextAction "Run tools/ops/Run_Repair_Wave_03.ps1 so the repair-wave-03 summary is written." -RequiredKeys @("timestamp_utc", "overall_status", "internal_scheduler_migration_status", "windows_task_fallback_status", "popup_window_elimination_status", "broken_path_reduction_status", "onyx_core_flow_status", "migrated_task_count", "host_disabled_count", "broken_paths_before", "broken_paths_after", "remote_push_result", "github_current", "recommended_next_action", "command_run", "repo_root")
+$repairWave03Checks += $repairWave03ArtifactCheck.check
+$internalSchedulerMigrationArtifactCheck = Get-FileArtifactCheck -CheckName "internal_scheduler_migration_artifact" -Path $internalSchedulerMigrationLastPath -Component "repair_wave_03" -MissingNextAction "Run tools/ops/Run_Repair_Wave_03.ps1 so actual internal scheduler migration state is written." -RequiredKeys @("timestamp_utc", "overall_status", "migrated_task_count", "host_disabled_count", "executed_via_internal_scheduler_count", "bootstrap_task_name", "bootstrap_verification_status", "items", "recommended_next_action")
+$repairWave03Checks += $internalSchedulerMigrationArtifactCheck.check
+$windowsTaskFallbackArtifactCheck = Get-FileArtifactCheck -CheckName "windows_task_fallback_artifact" -Path $windowsTaskFallbackLastPath -Component "repair_wave_03" -MissingNextAction "Run tools/ops/Run_Repair_Wave_03.ps1 so the remaining Windows fallback dependence is written." -RequiredKeys @("timestamp_utc", "overall_status", "bootstrap_task_name", "migrated_disable_host_count", "keep_as_bootstrap_count", "keep_as_fallback_count", "keep_temporarily_pending_count", "manual_review_required_count", "remaining_windows_dependency_count", "items", "recommended_next_action")
+$repairWave03Checks += $windowsTaskFallbackArtifactCheck.check
+$popupWindowEliminationArtifactCheck = Get-FileArtifactCheck -CheckName "popup_window_elimination_artifact" -Path $popupWindowEliminationLastPath -Component "repair_wave_03" -MissingNextAction "Run tools/ops/Run_Repair_Wave_03.ps1 so popup-window elimination posture is written." -RequiredKeys @("timestamp_utc", "overall_status", "active_noisy_before", "active_noisy_after", "fixed_count", "reduced_count", "items", "recommended_next_action")
+$repairWave03Checks += $popupWindowEliminationArtifactCheck.check
+$brokenPathReductionWave03ArtifactCheck = Get-FileArtifactCheck -CheckName "broken_path_reduction_wave_03_artifact" -Path $brokenPathReductionWave03LastPath -Component "repair_wave_03" -MissingNextAction "Run tools/ops/Run_Repair_Wave_03.ps1 so broken-path reduction wave 03 is written." -RequiredKeys @("timestamp_utc", "overall_status", "target_cluster_count", "fixed_count", "broken_paths_before", "broken_paths_after", "items", "recommended_next_action")
+$repairWave03Checks += $brokenPathReductionWave03ArtifactCheck.check
+$onyxCoreFlowVerificationArtifactCheck = Get-FileArtifactCheck -CheckName "onyx_core_flow_verification_artifact" -Path $onyxCoreFlowVerificationLastPath -Component "repair_wave_03" -MissingNextAction "Run tools/ops/Run_Repair_Wave_03.ps1 so the Onyx core-flow verification summary is written." -RequiredKeys @("timestamp_utc", "overall_status", "app_reachable", "bundle_reachable", "runtime_status", "onboarding_wording_status", "onboarding_completion_status", "core_surface_status", "verified_label_count", "required_label_count", "recommended_next_action")
+$repairWave03Checks += $onyxCoreFlowVerificationArtifactCheck.check
+$repairWave03QueueArtifactCheck = Get-FileArtifactCheck -CheckName "repair_wave_03_unfixed_queue_artifact" -Path $repairWave03UnfixedQueueLastPath -Component "repair_wave_03" -MissingNextAction "Run tools/ops/Run_Repair_Wave_03.ps1 so the unresolved Wave 03 queue is written." -RequiredKeys @("timestamp_utc", "overall_status", "total_items", "items")
+$repairWave03Checks += $repairWave03QueueArtifactCheck.check
+$repairWave03PolicyCheck = Get-FileArtifactCheck -CheckName "repair_wave_03_policy" -Path $repairWave03PolicyPath -Component "repair_wave_03" -MissingNextAction "Restore config/repair_wave_03_policy.json so Wave 03 remains canonical." -RequiredKeys @("version", "policy_name", "migration_targets", "popup_rules", "broken_path_reduction", "onyx_core_flow_checks", "mirror_closure")
+$repairWave03Checks += $repairWave03PolicyCheck.check
+
+if ($internalSchedulerMigrationArtifactCheck.data) {
+    $migratedCount = [int](Get-PropValue -Object $internalSchedulerMigrationArtifactCheck.data -Name "migrated_task_count" -Default 0)
+    $executedCount = [int](Get-PropValue -Object $internalSchedulerMigrationArtifactCheck.data -Name "executed_via_internal_scheduler_count" -Default 0)
+    $migrationStatus = if ($migratedCount -gt 0 -and $executedCount -gt 0) { "PASS" } else { "WARN" }
+    $repairWave03Checks += New-Check -Name "internal_scheduler_migration_truth" -Status $migrationStatus -Detail ("Wave 03 migration reports migrated_task_count={0} executed_via_internal_scheduler_count={1}." -f $migratedCount, $executedCount) -Component "repair_wave_03" -Path $internalSchedulerMigrationLastPath -NextAction "Do not claim scheduler migration unless tasks actually ran through the internal scheduler and refreshed their audit artifacts."
+}
+
+if ($windowsTaskFallbackArtifactCheck.data) {
+    $remainingWindowsDependencies = [int](Get-PropValue -Object $windowsTaskFallbackArtifactCheck.data -Name "remaining_windows_dependency_count" -Default 0)
+    $repairWave03Checks += New-Check -Name "windows_task_fallback_truth" -Status ($(if ($remainingWindowsDependencies -ge 0) { "PASS" } else { "FAIL" })) -Detail ("Windows fallback artifact reports remaining_windows_dependency_count={0}." -f $remainingWindowsDependencies) -Component "repair_wave_03" -Path $windowsTaskFallbackLastPath -NextAction "Keep Windows Task Scheduler scoped to bootstrap/fallback only and report the remaining set truthfully."
+}
+
+if ($popupWindowEliminationArtifactCheck.data) {
+    $activeBefore = [int](Get-PropValue -Object $popupWindowEliminationArtifactCheck.data -Name "active_noisy_before" -Default 0)
+    $activeAfter = [int](Get-PropValue -Object $popupWindowEliminationArtifactCheck.data -Name "active_noisy_after" -Default 0)
+    $fixedCount = [int](Get-PropValue -Object $popupWindowEliminationArtifactCheck.data -Name "fixed_count" -Default 0)
+    $popupStatus = if ($activeAfter -lt $activeBefore -or $activeAfter -eq 0 -or $fixedCount -gt 0) { "PASS" } else { "WARN" }
+    $repairWave03Checks += New-Check -Name "popup_window_elimination_truth" -Status $popupStatus -Detail ("Popup elimination reports active_noisy_before={0} active_noisy_after={1} fixed_count={2}." -f $activeBefore, $activeAfter, $fixedCount) -Component "repair_wave_03" -Path $popupWindowEliminationLastPath -NextAction "Keep background Mason jobs hidden unless they genuinely require direct interaction."
+}
+
+if ($brokenPathReductionWave03ArtifactCheck.data) {
+    $brokenBefore = [int](Get-PropValue -Object $brokenPathReductionWave03ArtifactCheck.data -Name "broken_paths_before" -Default 0)
+    $brokenAfter = [int](Get-PropValue -Object $brokenPathReductionWave03ArtifactCheck.data -Name "broken_paths_after" -Default 0)
+    $repairWave03Checks += New-Check -Name "broken_path_reduction_truth" -Status ($(if ($brokenAfter -lt $brokenBefore) { "PASS" } else { "WARN" })) -Detail ("Wave 03 broken-path reduction reports broken_paths_before={0} broken_paths_after={1}." -f $brokenBefore, $brokenAfter) -Component "repair_wave_03" -Path $brokenPathReductionWave03LastPath -NextAction "Do not claim broken-path cleanup unless the verified count actually drops."
+}
+
+if ($onyxCoreFlowVerificationArtifactCheck.data) {
+    $appReachable = Convert-ToBool -Value (Get-PropValue -Object $onyxCoreFlowVerificationArtifactCheck.data -Name "app_reachable" -Default $false)
+    $bundleReachable = Convert-ToBool -Value (Get-PropValue -Object $onyxCoreFlowVerificationArtifactCheck.data -Name "bundle_reachable" -Default $false)
+    $onyxStatus = if ($appReachable -and $bundleReachable) { "PASS" } else { "WARN" }
+    $repairWave03Checks += New-Check -Name "onyx_core_flow_truth" -Status $onyxStatus -Detail ("Onyx core-flow verification reports app_reachable={0} bundle_reachable={1}." -f $appReachable.ToString().ToLowerInvariant(), $bundleReachable.ToString().ToLowerInvariant()) -Component "repair_wave_03" -Path $onyxCoreFlowVerificationLastPath -NextAction "Do not overclaim Onyx owner-flow proof if runtime reachability or wiring verification is still partial."
+}
+
+if ($repairWave03ArtifactCheck.data) {
+    $githubCurrent = Convert-ToBool -Value (Get-PropValue -Object $repairWave03ArtifactCheck.data -Name "github_current" -Default $false)
+    $remotePushResult = Normalize-Text (Get-PropValue -Object $repairWave03ArtifactCheck.data -Name "remote_push_result" -Default "")
+    $repairWave03Checks += New-Check -Name "mirror_closure_truth" -Status ($(if ($githubCurrent) { "PASS" } elseif ($remotePushResult) { "WARN" } else { "FAIL" })) -Detail ("Wave 03 repair summary reports remote_push_result={0} github_current={1}." -f $(if ($remotePushResult) { $remotePushResult } else { "missing" }), $githubCurrent.ToString().ToLowerInvariant()) -Component "repair_wave_03" -Path $repairWave03LastPath -NextAction "Do not finish the wave without a truthful GitHub currentness statement."
+}
+
+$stackRepairWave03 = Get-PropValue -Object $stackStatusProbe.data -Name "repair_wave_03" -Default $null
+$stackInternalSchedulerMigration = Get-PropValue -Object $stackStatusProbe.data -Name "internal_scheduler_migration" -Default $null
+$stackWindowsTaskFallback = Get-PropValue -Object $stackStatusProbe.data -Name "windows_task_fallback" -Default $null
+$stackPopupWindowElimination = Get-PropValue -Object $stackStatusProbe.data -Name "popup_window_elimination" -Default $null
+$stackBrokenPathReductionWave03 = Get-PropValue -Object $stackStatusProbe.data -Name "broken_path_reduction_wave_03" -Default $null
+$stackOnyxCoreFlowVerification = Get-PropValue -Object $stackStatusProbe.data -Name "onyx_core_flow_verification" -Default $null
+if ($stackStatusProbe.ok -and $stackRepairWave03 -and $stackInternalSchedulerMigration -and $stackWindowsTaskFallback -and $stackPopupWindowElimination -and $stackBrokenPathReductionWave03 -and $stackOnyxCoreFlowVerification) {
+    $repairWave03Checks += New-Check -Name "repair_wave_03_payload_visible" -Status "PASS" -Detail "Athena stack payload exposes all repair-wave-03 summary branches." -Component "repair_wave_03" -Path $stackStatusUrl -NextAction "No action required."
+}
+elseif ($stackStatusProbe.ok) {
+    $repairWave03Checks += New-Check -Name "repair_wave_03_payload_visible" -Status "WARN" -Detail "Athena stack payload is readable but one or more repair-wave-03 branches are missing." -Component "repair_wave_03" -Path $stackStatusUrl -NextAction "Restart Athena on the normal loopback-only flow or patch MasonConsole/server.py so repair-wave-03 payload branches are exposed."
+}
+else {
+    $repairWave03Checks += New-Check -Name "repair_wave_03_payload_visible" -Status "WARN" -Detail "Athena stack payload is unavailable, so repair-wave-03 payload visibility cannot be verified right now." -Component "repair_wave_03" -Path $stackStatusUrl -NextAction "Restore Athena stack status first, then verify repair-wave-03 payload visibility."
+}
+$sections += New-SectionResult -SectionName "repair wave 03 / scheduler migration / popup elimination / Onyx core flow / mirror closure" -Checks $repairWave03Checks
 
 # mirror/checkpoint state
 $mirrorChecks = @()

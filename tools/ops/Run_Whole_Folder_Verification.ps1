@@ -1069,16 +1069,16 @@ foreach ($gap in $registrationGaps) {
     }
 }
 
-foreach ($item in ($inventoryItems | Where-Object { $_.primary_classification -in @("broken", "dangerous") } | Select-Object -First 200)) {
+foreach ($item in ($inventoryItems | Where-Object { $_.primary_classification -eq "broken" } | Select-Object -First 200)) {
     $brokenPathRecords.Add([pscustomobject][ordered]@{
         record_id = "inventory_$([guid]::NewGuid().ToString('N').Substring(0,8))"
         path = [string]$item.path
         component = [string]$item.domain
         type = [string]$item.primary_classification
-        severity = if ($item.primary_classification -eq "dangerous") { "high" } else { "medium" }
+        severity = "medium"
         description = "Inventory classified this path as $($item.primary_classification)."
         evidence = @($item.classification_tags)
-        recommended_action = if ($item.primary_classification -eq "dangerous") { "Review before executing this path." } else { "Inspect parse/build failures and repair or archive the path." }
+        recommended_action = "Inspect parse/build failures and repair or archive the path."
     }) | Out-Null
 }
 

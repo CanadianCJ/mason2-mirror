@@ -653,6 +653,12 @@
       <div class="card card-block"><div class="section-head"><h2>Validator Coverage Repair</h2><span class="section-note">Stack/base coverage closure for Mason APIs and bridge</span></div><div id="validatorCoverageRepairSummary" class="summary-list"></div></div>
       <div class="card card-block"><div class="section-head"><h2>Broken Path Reduction</h2><span class="section-note">High-value cluster repair and verified count movement</span></div><div id="brokenPathClusterRepairSummary" class="summary-list"></div></div>
       <div class="card card-block"><div class="section-head"><h2>Remote Push Repair</h2><span class="section-note">Mirror remote currentness, failure class, and oversized-path truth</span></div><div id="remotePushRepairSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Repair Wave 03</h2><span class="section-note">Real scheduler migration, popup elimination, broken-path reduction, and mirror closure</span></div><div id="repairWave03Summary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Scheduler Migration</h2><span class="section-note">Actual internal-run migration progress and disabled host copies</span></div><div id="internalSchedulerMigrationSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Windows Task Fallback</h2><span class="section-note">What still depends on Windows Task Scheduler and why</span></div><div id="windowsTaskFallbackSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Popup Window Elimination</h2><span class="section-note">Active popup-source reduction for Mason-owned background tasks</span></div><div id="popupWindowEliminationSummary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Broken Path Reduction Wave 03</h2><span class="section-note">Verified before/after counts for the current repair wave</span></div><div id="brokenPathReductionWave03Summary" class="summary-list"></div></div>
+      <div class="card card-block"><div class="section-head"><h2>Onyx Core Flow Verification</h2><span class="section-note">Owner-first runtime, onboarding, and core-surface proof</span></div><div id="onyxCoreFlowVerificationSummary" class="summary-list"></div></div>
       <div class="card card-block"><div class="section-head"><h2>Autonomy And Trust</h2><span class="section-note">Guardrails and drift posture</span></div><div id="autonomySummary" class="summary-list"></div></div>
     </section>
 
@@ -1952,6 +1958,57 @@
         { label: "Remote current", value: String(Boolean(data.remote_push_repair?.remote_current)) },
         { label: "Oversized paths", value: data.remote_push_repair?.oversized_path_count ?? 0 },
         { label: "Next action", value: data.remote_push_repair?.recommended_next_action || "Review remote push repair posture." }
+      ]);
+      renderSummaryList("repairWave03Summary", [
+        { label: "Status", value: data.repair_wave_03?.overall_status || "UNKNOWN" },
+        { label: "Migrated tasks", value: `${data.repair_wave_03?.migrated_task_count ?? 0} migrated / ${data.repair_wave_03?.host_disabled_count ?? 0} host copies disabled` },
+        { label: "Windows fallback", value: data.repair_wave_03?.windows_fallback_dependency_count ?? 0 },
+        { label: "Popup reduction", value: `${data.repair_wave_03?.active_popup_before ?? 0} -> ${data.repair_wave_03?.active_popup_after ?? 0}` },
+        { label: "Broken paths", value: `${data.repair_wave_03?.broken_paths_before ?? 0} -> ${data.repair_wave_03?.broken_paths_after ?? 0}` },
+        { label: "GitHub current", value: String(Boolean(data.repair_wave_03?.github_current)) },
+        { label: "Next action", value: data.repair_wave_03?.recommended_next_action || "Run repair wave 03." }
+      ]);
+      renderSummaryList("internalSchedulerMigrationSummary", [
+        { label: "Status", value: data.internal_scheduler_migration?.overall_status || "UNKNOWN" },
+        { label: "Migrated", value: data.internal_scheduler_migration?.migrated_task_count ?? 0 },
+        { label: "Host disabled", value: data.internal_scheduler_migration?.host_disabled_count ?? 0 },
+        { label: "Executed internally", value: data.internal_scheduler_migration?.executed_via_internal_scheduler_count ?? 0 },
+        { label: "Bootstrap task", value: data.internal_scheduler_migration?.bootstrap_task_name || "unknown" },
+        { label: "Bootstrap verify", value: data.internal_scheduler_migration?.bootstrap_verification_status || "UNKNOWN" },
+        { label: "Next action", value: data.internal_scheduler_migration?.recommended_next_action || "Review actual scheduler migration progress." }
+      ]);
+      renderSummaryList("windowsTaskFallbackSummary", [
+        { label: "Status", value: data.windows_task_fallback?.overall_status || "UNKNOWN" },
+        { label: "Remaining dependency", value: data.windows_task_fallback?.remaining_windows_dependency_count ?? 0 },
+        { label: "Bootstrap only", value: data.windows_task_fallback?.keep_as_bootstrap_count ?? 0 },
+        { label: "Fallback", value: data.windows_task_fallback?.keep_as_fallback_count ?? 0 },
+        { label: "Pending", value: data.windows_task_fallback?.keep_temporarily_pending_count ?? 0 },
+        { label: "Manual review", value: data.windows_task_fallback?.manual_review_required_count ?? 0 },
+        { label: "Next action", value: data.windows_task_fallback?.recommended_next_action || "Review remaining Windows Task Scheduler dependence." }
+      ]);
+      renderSummaryList("popupWindowEliminationSummary", [
+        { label: "Status", value: data.popup_window_elimination?.overall_status || "UNKNOWN" },
+        { label: "Active noisy", value: `${data.popup_window_elimination?.active_noisy_before ?? 0} -> ${data.popup_window_elimination?.active_noisy_after ?? 0}` },
+        { label: "Fixed", value: data.popup_window_elimination?.fixed_count ?? 0 },
+        { label: "Reduced", value: data.popup_window_elimination?.reduced_count ?? 0 },
+        { label: "Intentional visible", value: data.popup_window_elimination?.intentionally_visible_count ?? 0 },
+        { label: "Dormant legacy", value: data.popup_window_elimination?.dormant_legacy_visible_count ?? 0 },
+        { label: "Next action", value: data.popup_window_elimination?.recommended_next_action || "Review remaining popup sources." }
+      ]);
+      renderSummaryList("brokenPathReductionWave03Summary", [
+        { label: "Status", value: data.broken_path_reduction_wave_03?.overall_status || "UNKNOWN" },
+        { label: "Target clusters", value: `${data.broken_path_reduction_wave_03?.fixed_count ?? 0} fixed / ${data.broken_path_reduction_wave_03?.target_cluster_count ?? 0} targeted` },
+        { label: "Broken paths", value: `${data.broken_path_reduction_wave_03?.broken_paths_before ?? 0} -> ${data.broken_path_reduction_wave_03?.broken_paths_after ?? 0}` },
+        { label: "Next action", value: data.broken_path_reduction_wave_03?.recommended_next_action || "Review Wave 03 broken-path reduction." }
+      ]);
+      renderSummaryList("onyxCoreFlowVerificationSummary", [
+        { label: "Status", value: data.onyx_core_flow_verification?.overall_status || "UNKNOWN" },
+        { label: "Runtime", value: data.onyx_core_flow_verification?.runtime_status || "UNKNOWN" },
+        { label: "Onboarding wording", value: data.onyx_core_flow_verification?.onboarding_wording_status || "UNKNOWN" },
+        { label: "Completion action", value: data.onyx_core_flow_verification?.onboarding_completion_status || "UNKNOWN" },
+        { label: "Core surfaces", value: `${data.onyx_core_flow_verification?.verified_label_count ?? 0} / ${data.onyx_core_flow_verification?.required_label_count ?? 0}` },
+        { label: "App reachable", value: String(Boolean(data.onyx_core_flow_verification?.app_reachable)) },
+        { label: "Next action", value: data.onyx_core_flow_verification?.recommended_next_action || "Review Onyx core-flow verification." }
       ]);
       renderSummaryList("autonomySummary", [
         { label: "Trust posture", value: data.autonomy?.trust_posture || "n/a" },
