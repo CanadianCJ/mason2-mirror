@@ -1162,13 +1162,13 @@ foreach ($record in $records) {
             $classification = "duplicate"
             $classificationEvidence += @("exact_duplicate_of:" + $duplicateByPath[$record.relative_path])
         }
-        elseif ($record.parse_checked -and $record.parse_ok -eq $false) {
-            $classification = "broken"
-            $classificationEvidence += @("parse_error:" + ([string]::Join(" | ", (To-Array $record.parse_errors))))
-        }
         elseif ($record.archive_signal -and -not $record.strong_active) {
             $classification = "archive"
             $classificationEvidence += @("archive_path_signal")
+        }
+        elseif ($record.parse_checked -and $record.parse_ok -eq $false) {
+            $classification = "broken"
+            $classificationEvidence += @("parse_error:" + ([string]::Join(" | ", (To-Array $record.parse_errors))))
         }
         elseif ($record.strong_active -or $record.in_start_flow -or $record.in_component_inventory) {
             $classification = "active"

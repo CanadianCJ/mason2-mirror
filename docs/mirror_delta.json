@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at_utc":  "2026-03-14T23:25:23.6486819Z",
+    "generated_at_utc":  "2026-03-15T00:13:26.3429481Z",
     "mirror_root":  "C:\\Mason2_MIRROR",
     "changed_count":  6,
     "added_count":  0,
@@ -10,9 +10,9 @@
                               "docs/knowledge_pack/stats.json",
                               "docs/mirror_delta.json",
                               "docs/mirror_manifest.json",
-                              "state/knowledge/budget_state.json",
-                              "state/knowledge/internal_scheduler_registry.json"
+                              "state/knowledge/internal_scheduler_registry.json",
+                              "state/workspaces/tenant_http_check/workspace.json"
                           ],
-    "head_before":  "09fd2b06517af114dd2c3151a5228903bb79641a",
-    "head_after":  "c601633230662b67288efe3b95948d652392de20"
+    "head_before":  "c601633230662b67288efe3b95948d652392de20",
+    "head_after":  "1f0e9f17ec2eb5622ed1440cefc2a0f1f83fb0b2"
 }

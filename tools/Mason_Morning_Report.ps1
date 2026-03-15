@@ -1,5 +1,6 @@
 param(
-    [string]$Base
+    [string]$Base,
+    [switch]$SuppressOpen
 )
 
 # 1) Locate Mason2 base
@@ -53,6 +54,7 @@ $now = Get-Date
 $todayStamp = $now.ToString("yyyy-MM-dd")
 $outPath = Join-Path $dailyRoot "${todayStamp}_morning_report.txt"
 $latestPath = Join-Path $reportsRoot "latest_morning_report.txt"
+$statusPath = Join-Path $reportsRoot "daily_report_last.json"
 
 $lines = @()
 $lines += "============================================================"
@@ -175,7 +177,23 @@ $historyItem = [pscustomobject]@{
 }
 $historyItem | ConvertTo-Json -Compress | Add-Content -Path $historyPath
 
-# 6) Open the latest report for Chris to read
-Start-Process -FilePath "notepad.exe" -ArgumentList "`"$latestPath`""
+$statusPayload = [ordered]@{
+    timestamp_utc      = $now.ToUniversalTime().ToString("o")
+    overall_status     = "PASS"
+    latest_report_path = $latestPath
+    dated_report_path  = $outPath
+    report_opened      = [bool](-not $SuppressOpen)
+    self_state_present = [bool]$selfState
+    risk_state_present = [bool]$riskState
+    onyx_health_present = [bool]$onyxHealth
+    ue_status_present   = [bool]$ueStatus
+    recommended_next_action = "Read the latest morning report and keep the report artifact current."
+}
+$statusPayload | ConvertTo-Json -Depth 8 | Set-Content -Path $statusPath -Encoding UTF8
 
-Write-Host "Mason_Morning_Report: wrote $outPath and opened $latestPath"
+if (-not $SuppressOpen) {
+    # Keep the report visible for interactive use while allowing hidden scheduler launches.
+    Start-Process -FilePath "notepad.exe" -ArgumentList "`"$latestPath`""
+}
+
+Write-Host ("Mason_Morning_Report: wrote {0}{1}" -f $outPath, $(if ($SuppressOpen) { "" } else { " and opened $latestPath" }))

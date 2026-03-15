@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "policy_name": "repair_wave_03_real_scheduler_migration",
+  "migration_targets": {
+    "internal_primary_task_ids": [
+      "athena_status_snapshot",
+      "onyx_health_check",
+      "system_validation_refresh"
+    ],
+    "host_disable_after_verified_run": [
+      "Mason2-AthenaStatus-10m",
+      "Mason2-OnyxHealth-10m"
+    ],
+    "host_keep_hidden": [
+      "Mason_Morning_Report_9AM"
+    ]
+  },
+  "popup_rules": {
+    "reduce_active_visible_sources_first": true,
+    "count_disabled_visible_legacy_as_current_popup": false,
+    "allow_visible_if_interactive": [
+      "report_open",
+      "founder_prompt",
+      "manual_review"
+    ]
+  },
+  "broken_path_reduction": {
+    "target_clusters": [
+      "archive_parse_precedence",
+      "startup_failure_artifact_contract",
+      "scheduler_audit_artifact_alignment"
+    ],
+    "do_not_claim_cleanup_without_reverify": true
+  },
+  "onyx_core_flow_checks": {
+    "runtime_urls": [
+      "http://127.0.0.1:5353/",
+      "http://127.0.0.1:5353/main.dart.js"
+    ],
+    "required_surface_labels": [
+      "Dashboard",
+      "Invoices",
+      "Clients",
+      "Tasks",
+      "Business & Plan",
+      "Complete onboarding"
+    ]
+  },
+  "mirror_closure": {
+    "required": true,
+    "success_results": [
+      "pushed",
+      "noop"
+    ],
+    "reason": "repair-wave-03-final"
+  }
+}

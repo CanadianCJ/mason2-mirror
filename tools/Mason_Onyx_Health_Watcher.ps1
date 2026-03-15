@@ -1,96 +1,118 @@
 [CmdletBinding()]
 param(
-    # Onyx web URL – for now we assume localhost:5353 (your tester/dev Onyx)
     [string]$OnyxUrl = "http://localhost:5353"
 )
 
-# ---------------------------------------------
-# Mason_Onyx_Health_Watcher.ps1
-# Purpose:
-#   - Let Mason "see" whether Onyx is healthy.
-#   - Log results to onyx_health.log and athena_status.log.
-#   - Write a small JSON status file Athena can show later.
-# ---------------------------------------------
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
 
-# Resolve Mason2 base path from this script location:
-# Script lives in: C:\Users\Chris\Desktop\Mason2\tools
-# Base folder is:  C:\Users\Chris\Desktop\Mason2
 $scriptDir = Split-Path -Parent $PSCommandPath
-$basePath  = Split-Path -Parent $scriptDir
+$basePath = Split-Path -Parent $scriptDir
 
-$logsDir    = Join-Path $basePath "logs"
+$logsDir = Join-Path $basePath "logs"
 $reportsDir = Join-Path $basePath "reports"
 
-if (-not (Test-Path $logsDir)) {
-    New-Item -Path $logsDir -ItemType Directory -Force | Out-Null
-}
-if (-not (Test-Path $reportsDir)) {
-    New-Item -Path $reportsDir -ItemType Directory -Force | Out-Null
+foreach ($dir in @($logsDir, $reportsDir)) {
+    if (-not (Test-Path -LiteralPath $dir)) {
+        New-Item -Path $dir -ItemType Directory -Force | Out-Null
+    }
 }
 
-$onyxLogPath    = Join-Path $logsDir "onyx_health.log"
-$athenaLogPath  = Join-Path $logsDir "athena_status.log"
+$onyxLogPath = Join-Path $logsDir "onyx_health.log"
+$athenaLogPath = Join-Path $logsDir "athena_status.log"
 $statusJsonPath = Join-Path $reportsDir "onyx_health_status.json"
+$stackHealthPath = Join-Path $reportsDir "onyx_stack_health.json"
 
 function Write-OnyxHealthLog {
-    param(
-        [string]$Message
-    )
+    param([string]$Message)
 
     $timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
-    $line      = "[${timestamp}][OnyxHealth] $Message"
-
-    # Main Onyx health log
+    $line = "[${timestamp}][OnyxHealth] $Message"
     Add-Content -Path $onyxLogPath -Value $line
 
-    # Also mirror into athena_status.log so Athena has a single stream to read from
     try {
         Add-Content -Path $athenaLogPath -Value $line
-    } catch {
-        # If athena_status.log doesn't exist yet, just ignore
+    }
+    catch {
+    }
+}
+
+function Invoke-OnyxProbe {
+    param([Parameter(Mandatory = $true)][string]$Url)
+
+    $timer = [System.Diagnostics.Stopwatch]::StartNew()
+    try {
+        $response = Invoke-WebRequest -Uri $Url -UseBasicParsing -TimeoutSec 5 -ErrorAction Stop
+        $timer.Stop()
+        return [pscustomobject]@{
+            ok = ($response.StatusCode -ge 200 -and $response.StatusCode -lt 400)
+            status_code = [int]$response.StatusCode
+            elapsed_ms = [int]$timer.ElapsedMilliseconds
+            error = $null
+        }
+    }
+    catch {
+        $timer.Stop()
+        $statusCode = $null
+        try { $statusCode = [int]$_.Exception.Response.StatusCode.value__ } catch { }
+        return [pscustomobject]@{
+            ok = $false
+            status_code = $statusCode
+            elapsed_ms = [int]$timer.ElapsedMilliseconds
+            error = [string]$_.Exception.Message
+        }
     }
 }
 
 Write-OnyxHealthLog "Starting Onyx health check for URL: $OnyxUrl"
 
-$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
-$ok          = $false
-$statusCode  = $null
-$errorText   = $null
+$rootProbe = Invoke-OnyxProbe -Url $OnyxUrl
+$bundleProbe = Invoke-OnyxProbe -Url (($OnyxUrl.TrimEnd('/')) + "/main.dart.js")
+
+if ($rootProbe.ok) {
+    Write-OnyxHealthLog "OK - root StatusCode=$($rootProbe.status_code); ElapsedMs=$($rootProbe.elapsed_ms)"
+}
+else {
+    Write-OnyxHealthLog "WARN - root StatusCode=$($rootProbe.status_code); ElapsedMs=$($rootProbe.elapsed_ms); Message=$($rootProbe.error)"
+}
+
+if ($bundleProbe.ok) {
+    Write-OnyxHealthLog "OK - bundle StatusCode=$($bundleProbe.status_code); ElapsedMs=$($bundleProbe.elapsed_ms)"
+}
+else {
+    Write-OnyxHealthLog "WARN - bundle StatusCode=$($bundleProbe.status_code); ElapsedMs=$($bundleProbe.elapsed_ms); Message=$($bundleProbe.error)"
+}
 
 try {
-    # We only care that the server responds; root HTML is fine for now
-    $response = Invoke-WebRequest -Uri $OnyxUrl -UseBasicParsing -TimeoutSec 5
-    $stopwatch.Stop()
-    $statusCode = $response.StatusCode
-    $ok         = ($statusCode -ge 200 -and $statusCode -lt 400)
-
-    if ($ok) {
-        Write-OnyxHealthLog "OK - StatusCode=$statusCode; ElapsedMs=$($stopwatch.ElapsedMilliseconds)"
-    } else {
-        Write-OnyxHealthLog "WARN - Non-success StatusCode=$statusCode; ElapsedMs=$($stopwatch.ElapsedMilliseconds)"
+    $timestampUtc = (Get-Date).ToUniversalTime().ToString("o")
+    $statusObject = [ordered]@{
+        timestamp_utc = $timestampUtc
+        url = $OnyxUrl
+        ok = [bool]$rootProbe.ok
+        statusCode = $rootProbe.status_code
+        elapsedMs = $rootProbe.elapsed_ms
+        error = $rootProbe.error
+        bundle_ok = [bool]$bundleProbe.ok
+        bundle_status_code = $bundleProbe.status_code
+        bundle_elapsed_ms = $bundleProbe.elapsed_ms
+        bundle_error = $bundleProbe.error
     }
+    $stackHealth = [ordered]@{
+        timestamp_utc = $timestampUtc
+        overall_status = $(if ($rootProbe.ok -and $bundleProbe.ok) { "PASS" } elseif ($rootProbe.ok) { "WARN" } else { "FAIL" })
+        app_reachable = [bool]$rootProbe.ok
+        bundle_reachable = [bool]$bundleProbe.ok
+        http_status = $rootProbe.status_code
+        bundle_http_status = $bundleProbe.status_code
+        latency_ms = $rootProbe.elapsed_ms
+        bundle_latency_ms = $bundleProbe.elapsed_ms
+        recommended_next_action = $(if ($rootProbe.ok -and $bundleProbe.ok) { "No action required." } else { "Restore the Onyx web runtime before trusting owner flows." })
+    }
+
+    $statusObject | ConvertTo-Json -Depth 6 | Set-Content -Path $statusJsonPath -Encoding UTF8
+    $stackHealth | ConvertTo-Json -Depth 6 | Set-Content -Path $stackHealthPath -Encoding UTF8
 }
 catch {
-    $stopwatch.Stop()
-    $errorText = $_.Exception.Message
-    Write-OnyxHealthLog "ERROR - ElapsedMs=$($stopwatch.ElapsedMilliseconds); Message=$errorText"
-}
-
-# Write a JSON status snapshot for Athena/Mason to read
-$statusObject = [ordered]@{
-    timestamp   = (Get-Date).ToString("o")
-    url         = $OnyxUrl
-    ok          = $ok
-    statusCode  = $statusCode
-    elapsedMs   = $stopwatch.ElapsedMilliseconds
-    error       = $errorText
-}
-
-try {
-    $json = $statusObject | ConvertTo-Json -Depth 4
-    Set-Content -Path $statusJsonPath -Value $json -Encoding UTF8
-} catch {
     Write-OnyxHealthLog "ERROR - Failed to write status JSON: $($_.Exception.Message)"
 }
 

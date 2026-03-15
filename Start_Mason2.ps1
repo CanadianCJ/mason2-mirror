@@ -460,6 +460,39 @@ function Write-LastFailureJson {
     }
 }
 
+function Write-LastFailurePlaceholderJson {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][string]$RunId
+    )
+
+    $payload = [ordered]@{
+        generated_at_utc = (Get-Date).ToUniversalTime().ToString("o")
+        run_id           = [string]$RunId
+        failure_count    = 0
+        failures         = @()
+    }
+
+    try {
+        Write-JsonFile -Path $Path -Object $payload -Depth 8
+        return $true
+    }
+    catch {
+        try {
+            $parent = Split-Path -Parent $Path
+            if ($parent -and -not (Test-Path -LiteralPath $parent)) {
+                New-Item -ItemType Directory -Path $parent -Force | Out-Null
+            }
+            $payload | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $Path -Encoding UTF8
+            return $true
+        }
+        catch {
+            Write-LaunchLog ("Could not write last failure placeholder JSON at {0}: {1}" -f $Path, $_.Exception.Message) "WARN"
+            return $false
+        }
+    }
+}
+
 function Test-ScheduledTaskExists {
     param(
         [Parameter(Mandatory = $true)][string]$TaskName,
@@ -1997,6 +2030,9 @@ $startRunManifest = [ordered]@{
 }
 Write-JsonFile -Path $startRunManifestPath -Object $startRunManifest -Depth 14
 Write-JsonFile -Path $startRunLastPath -Object $startRunManifest -Depth 14
+if (-not $startFailureArtifactWritten -and -not (Test-Path -LiteralPath $lastFailurePath)) {
+    [void](Write-LastFailurePlaceholderJson -Path $lastFailurePath -RunId $startRunId)
+}
 
 $statusBlob = [ordered]@{
     generated_at_utc = (Get-Date).ToUniversalTime().ToString("o")

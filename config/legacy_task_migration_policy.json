@@ -1,11 +1,12 @@
 {
-  "version": 1,
+  "version": 2,
   "policy_name": "legacy_task_migration",
   "classification_rules": {
     "bootstrap_only_keywords": [
       "watchdog",
       "startup",
-      "revive"
+      "revive",
+      "bootstrap"
     ],
     "stale_path_indicators": [
       "C:\\Users\\Chris\\Desktop\\Mason\\",
@@ -33,16 +34,27 @@
     "noisy_interactive",
     "broken_or_stale"
   ],
+  "wave_03_postures": [
+    "migrated_disable_host",
+    "keep_as_bootstrap",
+    "keep_as_fallback",
+    "keep_temporarily_pending",
+    "manual_review_required",
+    "non_mason_ignore"
+  ],
   "popup_rules": {
     "background_should_be_hidden": true,
+    "count_disabled_visible_as_current_noise": false,
     "visible_only_if_interactive": [
       "manual_review",
       "interactive_auth",
-      "founder_prompt"
+      "founder_prompt",
+      "report_open"
     ]
   },
   "safe_disable_rules": {
     "allow_disable_only_when_internal_definition_exists": true,
-    "keep_bootstrap_fallback_for_startup_recovery": true
+    "keep_bootstrap_fallback_for_startup_recovery": true,
+    "require_verified_internal_run_before_disable": true
   }
 }
