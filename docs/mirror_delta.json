@@ -1,28 +1,24 @@
 ﻿{
-    "generated_at_utc":  "2026-03-15T06:33:06.7072485Z",
+    "generated_at_utc":  "2026-03-15T09:43:21.3072537Z",
     "mirror_root":  "C:\\Mason2_MIRROR",
-    "changed_count":  16,
-    "added_count":  2,
-    "modified_count":  14,
+    "changed_count":  12,
+    "added_count":  1,
+    "modified_count":  11,
     "removed_count":  0,
     "top_changed_paths":  [
+                              "MasonConsole/server.py",
                               "docs/knowledge_pack/index.json",
                               "docs/knowledge_pack/stats.json",
                               "docs/mirror_delta.json",
                               "docs/mirror_manifest.json",
-                              "state/knowledge/budget_state.json",
-                              "state/knowledge/internal_scheduler_history.json",
-                              "state/knowledge/internal_scheduler_registry.json",
                               "state/knowledge/pending_patch_runs.json",
-                              "state/knowledge/pending_patch_runs_archive_20260315_011101.json",
-                              "state/knowledge/pending_patch_runs_archive_20260315_014729.json",
+                              "state/knowledge/pending_patch_runs_archive_20260315_032631.json",
                               "state/knowledge/pending_patch_runs_quarantine.json",
                               "state/knowledge/stack_last_pids.json",
                               "state/knowledge/stack_pids.json",
                               "state/workspaces/tenant_http_check/workspace.json",
-                              "tools/ops/Run_Repair_Wave_03.ps1",
-                              "tools/sync/Mason_Mirror_Update.ps1"
+                              "tools/ops/Validate_Whole_System.ps1"
                           ],
     "head_before":  "4042da2a7680382963decb9f81b0e2ace2f5a857",
-    "head_after":  "a488fbb8f9253be6681acbb8c0f482453daebe73"
+    "head_after":  "d47530e6fbd7392ab0811b7fbbca72eb41cfb9e9"
 }

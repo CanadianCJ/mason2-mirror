@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at_utc":  "2026-03-15T07:52:28.1532249Z",
+    "generated_at_utc":  "2026-03-15T10:42:39.8270019Z",
     "source_root":  "C:\\Users\\Chris\\Desktop\\Mason2",
     "mirror_root":  "C:\\Mason2_MIRROR",
     "policy_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\mirror_policy.json",
@@ -187,7 +187,7 @@
                      "Component - Onyx App/mason-live/.venv/**",
                      "Component - Onyx App/mason-live/__pycache__/**"
                  ],
-    "last_sync_timestamp_utc":  "2026-03-15T07:52:28.1655252Z",
+    "last_sync_timestamp_utc":  "2026-03-15T10:42:45.7843085Z",
     "counts_per_folder":  [
                               {
                                   "name":  ".gitignore",
@@ -257,7 +257,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  17,
-                                  "total_bytes":  146082364
+                                  "total_bytes":  146082024
                               },
                               {
                                   "name":  "roadmap",
@@ -299,7 +299,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  117,
-                                  "total_bytes":  14375594
+                                  "total_bytes":  14536685
                               },
                               {
                                   "name":  "state/onyx",
@@ -648,8 +648,8 @@
                                   "name":  "reports",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  45168,
-                                  "total_bytes":  1693097688
+                                  "file_count":  45302,
+                                  "total_bytes":  1700265959
                               }
                           ],
     "policy_summary":  {
@@ -765,9 +765,9 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  45168,
+                                "candidate_count":  45302,
                                 "matched_allowlist_count":  94,
-                                "excluded_pattern_count":  45074,
+                                "excluded_pattern_count":  45208,
                                 "eligible_count":  94,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -831,8 +831,8 @@
                                                                "reports\\mirror_update_log.jsonl",
                                                                "reports\\metrics.csv",
                                                                "reports\\mason_teacher_import.log",
-                                                               "reports\\ingest_index_20260313_213101.json",
-                                                               "reports\\ingest_index_20260314_180110.json"
+                                                               "reports\\ingest_index_20260312_235237.json",
+                                                               "reports\\ingest_index_20260312_220137.json"
                                                            ],
                                 "excluded_large_files":  [
 
@@ -903,9 +903,9 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  45168,
+                                "candidate_count":  45302,
                                 "matched_allowlist_count":  94,
-                                "excluded_pattern_count":  45074,
+                                "excluded_pattern_count":  45208,
                                 "eligible_count":  94,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -969,8 +969,8 @@
                                                                "reports\\mirror_update_log.jsonl",
                                                                "reports\\metrics.csv",
                                                                "reports\\mason_teacher_import.log",
-                                                               "reports\\ingest_index_20260313_213101.json",
-                                                               "reports\\ingest_index_20260314_180110.json"
+                                                               "reports\\ingest_index_20260312_235237.json",
+                                                               "reports\\ingest_index_20260312_220137.json"
                                                            ],
                                 "excluded_large_files":  [
 
