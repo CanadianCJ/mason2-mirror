@@ -1,16 +1,21 @@
 ﻿{
-    "generated_at_utc":  "2026-03-15T02:36:57.4515308Z",
-    "mirror_root":  "C:\\Mason2_MIRROR",
-    "changed_count":  4,
+    "generated_at_utc":  "2026-03-15T04:56:56.1204813Z",
+    "mirror_root":  "C:\\Users\\Chris\\Desktop\\Mason2\\repair-wave-03-final",
+    "changed_count":  9,
     "added_count":  0,
-    "modified_count":  4,
+    "modified_count":  9,
     "removed_count":  0,
     "top_changed_paths":  [
-                              "docs/knowledge_pack/index.json",
-                              "docs/knowledge_pack/stats.json",
-                              "docs/mirror_delta.json",
-                              "docs/mirror_manifest.json"
+                              "repair-wave-03-final/docs/knowledge_pack/index.json",
+                              "repair-wave-03-final/docs/knowledge_pack/stats.json",
+                              "repair-wave-03-final/docs/mirror_delta.json",
+                              "repair-wave-03-final/docs/mirror_manifest.json",
+                              "repair-wave-03-final/state/knowledge/internal_scheduler_history.json",
+                              "repair-wave-03-final/state/knowledge/internal_scheduler_registry.json",
+                              "repair-wave-03-final/state/workspaces/tenant_http_check/workspace.json",
+                              "repair-wave-03-final/tools/ops/Run_Repair_Wave_03.ps1",
+                              "repair-wave-03-final/tools/sync/Mason_Mirror_Update.ps1"
                           ],
-    "head_before":  "5e9979b947107fb1afddbba89fe9fe841bca44f2",
-    "head_after":  "cc3843d98a1936febd9ae228c5c5ba174f01791f"
+    "head_before":  "19bd55228b4054cedfba7d4a8cf4379b421920b4",
+    "head_after":  "34818d473530ec1d8a05bcaa5c2d31981b092b97"
 }

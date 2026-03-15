@@ -1,7 +1,7 @@
 ﻿{
-    "generated_at_utc":  "2026-03-15T03:16:21.6960986Z",
+    "generated_at_utc":  "2026-03-15T06:01:52.4127841Z",
     "source_root":  "C:\\Users\\Chris\\Desktop\\Mason2",
-    "mirror_root":  "C:\\Users\\Chris\\Desktop\\Mason2\\repair-wave-03-final",
+    "mirror_root":  "C:\\Mason2_MIRROR",
     "policy_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\mirror_policy.json",
     "allowlist":  [
                       ".gitignore",
@@ -187,7 +187,7 @@
                      "Component - Onyx App/mason-live/.venv/**",
                      "Component - Onyx App/mason-live/__pycache__/**"
                  ],
-    "last_sync_timestamp_utc":  "2026-03-15T03:16:21.7016280Z",
+    "last_sync_timestamp_utc":  "2026-03-15T06:01:52.4458371Z",
     "counts_per_folder":  [
                               {
                                   "name":  ".gitignore",
@@ -243,7 +243,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  588,
-                                  "total_bytes":  7064626
+                                  "total_bytes":  7068897
                               },
                               {
                                   "name":  "config",
@@ -257,7 +257,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  17,
-                                  "total_bytes":  145895132
+                                  "total_bytes":  145895872
                               },
                               {
                                   "name":  "roadmap",
@@ -298,8 +298,8 @@
                                   "name":  "state/knowledge",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  114,
-                                  "total_bytes":  14080070
+                                  "file_count":  116,
+                                  "total_bytes":  14279785
                               },
                               {
                                   "name":  "state/onyx",
@@ -648,8 +648,8 @@
                                   "name":  "reports",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  44913,
-                                  "total_bytes":  1683919899
+                                  "file_count":  45037,
+                                  "total_bytes":  1688456015
                               }
                           ],
     "policy_summary":  {
@@ -765,10 +765,10 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  44913,
-                                "matched_allowlist_count":  92,
-                                "excluded_pattern_count":  44821,
-                                "eligible_count":  92,
+                                "candidate_count":  45037,
+                                "matched_allowlist_count":  94,
+                                "excluded_pattern_count":  44943,
+                                "eligible_count":  94,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
                                                        "reports\\whole_folder_cleanup_queue.json",
@@ -779,9 +779,10 @@
                                                        "reports\\system_validation_last.json",
                                                        "reports\\cost_effectiveness_last.json",
                                                        "reports\\knowledge_cards_last.json",
-                                                       "reports\\system_truth_spine_last.json",
                                                        "reports\\whole_folder_broken_paths_last.json",
+                                                       "reports\\system_truth_spine_last.json",
                                                        "reports\\legacy_task_inventory_last.json",
+                                                       "reports\\remote_push_repair_last.json",
                                                        "reports\\mirror_update_last.json",
                                                        "reports\\live_docs_index.json",
                                                        "reports\\live_docs_summary.json",
@@ -796,8 +797,8 @@
                                                        "reports\\host_health_last.json",
                                                        "reports\\start\\start_run_last.json",
                                                        "reports\\knowledge_quality_last.json",
-                                                       "reports\\brand_leak_audit_last.json",
                                                        "reports\\tenant_safety_report.json",
+                                                       "reports\\brand_leak_audit_last.json",
                                                        "reports\\support_brain_last.json",
                                                        "reports\\environment_profile_last.json",
                                                        "reports\\release_candidate_last.json",
@@ -805,12 +806,11 @@
                                                        "reports\\teacher_usefulness_last.json",
                                                        "reports\\self_heal_last.json",
                                                        "reports\\mirror_coverage_last.json",
+                                                       "reports\\repair_wave_03_unfixed_queue_last.json",
+                                                       "reports\\internal_scheduler_last.json",
                                                        "reports\\incident_explanations_last.json",
                                                        "reports\\popup_suppression_last.json",
-                                                       "reports\\whole_folder_golden_paths_last.json",
-                                                       "reports\\billing_summary.json",
-                                                       "reports\\queue\\behavior_trust_last.json",
-                                                       "reports\\internal_scheduler_last.json"
+                                                       "reports\\whole_folder_golden_paths_last.json"
                                                    ],
                                 "excluded_pattern_files":  [
                                                                "reports\\onyx_health_investigation.json",
@@ -831,7 +831,7 @@
                                                                "reports\\mirror_update_log.jsonl",
                                                                "reports\\metrics.csv",
                                                                "reports\\mason_teacher_import.log",
-                                                               "reports\\ingest_index_20260312_220137.json",
+                                                               "reports\\ingest_index_20260313_162922.json",
                                                                "reports\\ingest_index_20260312_235237.json"
                                                            ],
                                 "excluded_large_files":  [
@@ -903,10 +903,10 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  44913,
-                                "matched_allowlist_count":  92,
-                                "excluded_pattern_count":  44821,
-                                "eligible_count":  92,
+                                "candidate_count":  45037,
+                                "matched_allowlist_count":  94,
+                                "excluded_pattern_count":  44943,
+                                "eligible_count":  94,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
                                                        "reports\\whole_folder_cleanup_queue.json",
@@ -917,9 +917,10 @@
                                                        "reports\\system_validation_last.json",
                                                        "reports\\cost_effectiveness_last.json",
                                                        "reports\\knowledge_cards_last.json",
-                                                       "reports\\system_truth_spine_last.json",
                                                        "reports\\whole_folder_broken_paths_last.json",
+                                                       "reports\\system_truth_spine_last.json",
                                                        "reports\\legacy_task_inventory_last.json",
+                                                       "reports\\remote_push_repair_last.json",
                                                        "reports\\mirror_update_last.json",
                                                        "reports\\live_docs_index.json",
                                                        "reports\\live_docs_summary.json",
@@ -934,8 +935,8 @@
                                                        "reports\\host_health_last.json",
                                                        "reports\\start\\start_run_last.json",
                                                        "reports\\knowledge_quality_last.json",
-                                                       "reports\\brand_leak_audit_last.json",
                                                        "reports\\tenant_safety_report.json",
+                                                       "reports\\brand_leak_audit_last.json",
                                                        "reports\\support_brain_last.json",
                                                        "reports\\environment_profile_last.json",
                                                        "reports\\release_candidate_last.json",
@@ -943,12 +944,11 @@
                                                        "reports\\teacher_usefulness_last.json",
                                                        "reports\\self_heal_last.json",
                                                        "reports\\mirror_coverage_last.json",
+                                                       "reports\\repair_wave_03_unfixed_queue_last.json",
+                                                       "reports\\internal_scheduler_last.json",
                                                        "reports\\incident_explanations_last.json",
                                                        "reports\\popup_suppression_last.json",
-                                                       "reports\\whole_folder_golden_paths_last.json",
-                                                       "reports\\billing_summary.json",
-                                                       "reports\\queue\\behavior_trust_last.json",
-                                                       "reports\\internal_scheduler_last.json"
+                                                       "reports\\whole_folder_golden_paths_last.json"
                                                    ],
                                 "excluded_pattern_files":  [
                                                                "reports\\onyx_health_investigation.json",
@@ -969,7 +969,7 @@
                                                                "reports\\mirror_update_log.jsonl",
                                                                "reports\\metrics.csv",
                                                                "reports\\mason_teacher_import.log",
-                                                               "reports\\ingest_index_20260312_220137.json",
+                                                               "reports\\ingest_index_20260313_162922.json",
                                                                "reports\\ingest_index_20260312_235237.json"
                                                            ],
                                 "excluded_large_files":  [
@@ -1093,23 +1093,7 @@
                                                                          "watchdog.ps1"
                                                                      ],
                                 "allowlist_names_absent_in_mirror":  [
-                                                                         ".gitignore",
-                                                                         "AGENTS.md",
-                                                                         "bridge",
-                                                                         "Component - Onyx App",
-                                                                         "config",
-                                                                         "docs",
-                                                                         "MasonConsole",
-                                                                         "reports",
-                                                                         "roadmap",
-                                                                         "services",
-                                                                         "Start_FullStack_OneClick.ps1",
-                                                                         "Start_Mason2.ps1",
-                                                                         "Start-Athena.ps1",
-                                                                         "state",
-                                                                         "Stop_Stack.ps1",
-                                                                         "Stop_Stack_Deep.ps1",
-                                                                         "tools"
+
                                                                      ]
                             }
 }

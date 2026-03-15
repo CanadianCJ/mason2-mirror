@@ -429,7 +429,7 @@ if ($bootstrapTaskName -and $bootstrapScriptPath -and (Test-Path -LiteralPath $b
         $triggerRepeat = New-ScheduledTaskTrigger -Once -At ((Get-Date).AddMinutes(2)) -RepetitionInterval (New-TimeSpan -Minutes $bootstrapTaskCadence) -RepetitionDuration (New-TimeSpan -Days 3650)
         $bootstrapSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances IgnoreNew
         $bootstrapSettings.Hidden = $true
-        $bootstrapPrincipal = New-ScheduledTaskPrincipal -UserId ('{0}\{1}' -f $env:USERDOMAIN, $env:USERNAME) -LogonType InteractiveToken -RunLevel LeastPrivilege
+        $bootstrapPrincipal = New-ScheduledTaskPrincipal -UserId ('{0}\{1}' -f $env:USERDOMAIN, $env:USERNAME) -LogonType Interactive -RunLevel LeastPrivilege
         Register-ScheduledTask -TaskName $bootstrapTaskName -TaskPath $bootstrapTaskPath -Action $bootstrapAction -Trigger @($triggerLogon, $triggerRepeat) -Settings $bootstrapSettings -Principal $bootstrapPrincipal -Description "Mason2 internal scheduler bootstrap runner" -Force | Out-Null
         $bootstrapTask = Get-ScheduledTask -TaskName $bootstrapTaskName -TaskPath $bootstrapTaskPath -ErrorAction Stop
         $bootstrapResult = [pscustomobject]@{
@@ -450,7 +450,30 @@ else {
 }
 
 $migrationTargets = @((To-Array (Get-PropValue -Object (Get-PropValue -Object $policy -Name "migration_targets" -Default @{}) -Name "internal_primary_task_ids" -Default @())) | ForEach-Object { [string]$_ })
-$internalRunnerInvocation = Invoke-PowerShellFileInline -ScriptPath $internalRunnerPath -Arguments (@("-TaskIds") + @($migrationTargets) + @("-ForceRun", "-TriggerSource", "repair_wave_03"))
+$internalRunnerInvocation = [pscustomobject]@{
+    ok = $true
+    exit_code = 0
+    output = @("Internal scheduler execution skipped.")
+    command_run = "skipped"
+}
+try {
+    $internalRunnerOutput = @(& $internalRunnerPath -TaskIds $migrationTargets -ForceRun -TriggerSource "repair_wave_03" 2>&1 | ForEach-Object { [string]$_ })
+    $internalRunnerExitCode = if ($null -ne $LASTEXITCODE) { [int]$LASTEXITCODE } else { 0 }
+    $internalRunnerInvocation = [pscustomobject]@{
+        ok = ($internalRunnerExitCode -eq 0)
+        exit_code = $internalRunnerExitCode
+        output = @($internalRunnerOutput | Select-Object -Last 80)
+        command_run = ("powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File {0} -TaskIds {1} -ForceRun -TriggerSource repair_wave_03" -f $internalRunnerPath, ($migrationTargets -join " "))
+    }
+}
+catch {
+    $internalRunnerInvocation = [pscustomobject]@{
+        ok = $false
+        exit_code = 1
+        output = @([string]$_.Exception.Message)
+        command_run = ("powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File {0} -TaskIds {1} -ForceRun -TriggerSource repair_wave_03" -f $internalRunnerPath, ($migrationTargets -join " "))
+    }
+}
 $internalExecution = Read-JsonSafe -Path $internalExecutionPath -Default @{}
 $executionItems = @(To-Array (Get-PropValue -Object $internalExecution -Name "items" -Default @()))
 $executionByTaskId = @{}
@@ -848,7 +871,24 @@ Write-JsonFile -Path $internalSchedulerMigrationLastPath -Object $internalSchedu
 
 $wholeFolderInvocation = [pscustomobject]@{ ok = $true; exit_code = 0; command_run = "skipped"; output = @("Whole-folder reverification skipped.") }
 if (-not $SkipWholeFolderReverify) {
-    $wholeFolderInvocation = Invoke-PowerShellFileInline -ScriptPath $wholeFolderScriptPath -Arguments @("-SkipMirrorRefresh", "-SkipStackRestart")
+    try {
+        $wholeFolderOutput = @(& $wholeFolderScriptPath -SkipMirrorRefresh -SkipStackRestart 2>&1 | ForEach-Object { [string]$_ })
+        $wholeFolderExitCode = if ($null -ne $LASTEXITCODE) { [int]$LASTEXITCODE } else { 0 }
+        $wholeFolderInvocation = [pscustomobject]@{
+            ok = ($wholeFolderExitCode -eq 0)
+            exit_code = $wholeFolderExitCode
+            command_run = ("powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File {0} -SkipMirrorRefresh -SkipStackRestart" -f $wholeFolderScriptPath)
+            output = @($wholeFolderOutput | Select-Object -Last 80)
+        }
+    }
+    catch {
+        $wholeFolderInvocation = [pscustomobject]@{
+            ok = $false
+            exit_code = 1
+            command_run = ("powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File {0} -SkipMirrorRefresh -SkipStackRestart" -f $wholeFolderScriptPath)
+            output = @([string]$_.Exception.Message)
+        }
+    }
     if (-not $wholeFolderInvocation.ok) {
         $unfixedQueue.Add((New-QueueItem -IssueId "whole_folder_reverify" -Category "broken_path_reduction" -Status "blocked" -Reason "Whole-folder reverification did not complete cleanly." -RecommendedNextAction "Repair tools/ops/Run_Whole_Folder_Verification.ps1 before trusting Wave 03 broken-path counts.")) | Out-Null
     }

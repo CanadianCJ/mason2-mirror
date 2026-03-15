@@ -515,6 +515,48 @@ function Invoke-MirrorPushFallback {
     }
 
     $push = Invoke-GitCaptureRedirect -RepoPath $MirrorRoot -Args @("push")
+    if (-not $push.ok) {
+        $pushLines = @($push.lines | ForEach-Object { [string]$_ })
+        $pushJoined = ((@($pushLines) -join "`n").ToLowerInvariant())
+        if ($pushJoined -match "has no upstream branch") {
+            $branch = Invoke-GitCapture -RepoPath $MirrorRoot -Args @("rev-parse", "--abbrev-ref", "HEAD")
+            $branchName = @($branch.lines | ForEach-Object { ([string]$_).Trim() } | Where-Object { $_ } | Select-Object -First 1)
+            if ($branch.ok -and $branchName) {
+                $push = Invoke-GitCaptureRedirect -RepoPath $MirrorRoot -Args @("push", "--set-upstream", "origin", [string]$branchName)
+            }
+        }
+    }
+    if (-not $push.ok) {
+        $pushLines = @($push.lines | ForEach-Object { [string]$_ })
+        $pushJoined = ((@($pushLines) -join "`n").ToLowerInvariant())
+        if ($pushJoined -match "fetch first|non-fast-forward|failed to push some refs") {
+            $fetchMain = Invoke-GitCapture -RepoPath $MirrorRoot -Args @("fetch", "origin", "main")
+            if ($fetchMain.ok) {
+                $mergeMain = Invoke-GitCaptureRedirect -RepoPath $MirrorRoot -Args @("merge", "--no-edit", "origin/main")
+                $mergeOutput = @($mergeMain.lines | ForEach-Object { [string]$_ })
+                $mergeJoined = ((@($mergeOutput) -join "`n").ToLowerInvariant())
+                if ($mergeMain.ok -or $mergeJoined -match "already up to date") {
+                    $branch = Invoke-GitCapture -RepoPath $MirrorRoot -Args @("rev-parse", "--abbrev-ref", "HEAD")
+                    $branchName = @($branch.lines | ForEach-Object { ([string]$_).Trim() } | Where-Object { $_ } | Select-Object -First 1)
+                    if ($branch.ok -and $branchName) {
+                        $push = Invoke-GitCaptureRedirect -RepoPath $MirrorRoot -Args @("push", "--set-upstream", "origin", [string]$branchName)
+                    }
+                    if (-not $push.ok) {
+                        $push = Invoke-GitCaptureRedirect -RepoPath $MirrorRoot -Args @("push")
+                    }
+                }
+                else {
+                    return [ordered]@{
+                        ok        = $true
+                        result    = "local_commit_only_remote_push_failed"
+                        exit_code = [int]$mergeMain.exit
+                        output    = @($mergeOutput | Select-Object -Last 20)
+                    }
+                }
+            }
+        }
+    }
+
     if ($push.ok) {
         return [ordered]@{
             ok        = $true

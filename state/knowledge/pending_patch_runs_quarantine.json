@@ -16863,5 +16863,19 @@
                                "reports/drift_manifest_history.jsonl"
                            ],
         "quarantine_reason":  "throttle_overflow"
+    },
+    {
+        "id":  "drift-manifest-5dde79ca045d",
+        "component_id":  "mason",
+        "title":  "Review unexpected drift manifest changes",
+        "risk_level":  1,
+        "status":  "pending",
+        "source":  "manual",
+        "created_at":  "2026-03-15T05:11:05.2391197Z",
+        "evidence_files":  [
+                               "reports/drift_manifest.json",
+                               "reports/drift_manifest_history.jsonl"
+                           ],
+        "quarantine_reason":  "throttle_overflow"
     }
 ]
