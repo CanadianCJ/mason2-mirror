@@ -1,9 +1,9 @@
 ﻿{
-    "generated_at_utc":  "2026-03-14T22:48:05.7762535Z",
+    "generated_at_utc":  "2026-03-14T23:25:23.6486819Z",
     "mirror_root":  "C:\\Mason2_MIRROR",
-    "changed_count":  12,
-    "added_count":  1,
-    "modified_count":  11,
+    "changed_count":  6,
+    "added_count":  0,
+    "modified_count":  6,
     "removed_count":  0,
     "top_changed_paths":  [
                               "docs/knowledge_pack/index.json",
@@ -11,14 +11,8 @@
                               "docs/mirror_delta.json",
                               "docs/mirror_manifest.json",
                               "state/knowledge/budget_state.json",
-                              "state/knowledge/internal_scheduler_registry.json",
-                              "state/knowledge/pending_patch_runs.json",
-                              "state/knowledge/pending_patch_runs_archive_20260314_180118.json",
-                              "state/knowledge/pending_patch_runs_quarantine.json",
-                              "state/knowledge/stack_last_pids.json",
-                              "state/knowledge/stack_pids.json",
-                              "tools/ops/Run_Repair_Wave_02.ps1"
+                              "state/knowledge/internal_scheduler_registry.json"
                           ],
     "head_before":  "09fd2b06517af114dd2c3151a5228903bb79641a",
-    "head_after":  "5db162e509a9641c6c03b322457534039aab5787"
+    "head_after":  "c601633230662b67288efe3b95948d652392de20"
 }

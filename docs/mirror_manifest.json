@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at_utc":  "2026-03-14T23:08:10.6078120Z",
+    "generated_at_utc":  "2026-03-14T23:30:58.5769240Z",
     "source_root":  "C:\\Users\\Chris\\Desktop\\Mason2",
     "mirror_root":  "C:\\Mason2_MIRROR",
     "policy_path":  "C:\\Users\\Chris\\Desktop\\Mason2\\config\\mirror_policy.json",
@@ -187,7 +187,7 @@
                      "Component - Onyx App/mason-live/.venv/**",
                      "Component - Onyx App/mason-live/__pycache__/**"
                  ],
-    "last_sync_timestamp_utc":  "2026-03-14T23:08:10.6136703Z",
+    "last_sync_timestamp_utc":  "2026-03-14T23:30:58.5824287Z",
     "counts_per_folder":  [
                               {
                                   "name":  ".gitignore",
@@ -257,7 +257,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  17,
-                                  "total_bytes":  144742321
+                                  "total_bytes":  144928442
                               },
                               {
                                   "name":  "roadmap",
@@ -299,7 +299,7 @@
                                   "exists":  true,
                                   "type":  "directory",
                                   "file_count":  113,
-                                  "total_bytes":  13911168
+                                  "total_bytes":  13911394
                               },
                               {
                                   "name":  "state/onyx",
@@ -648,8 +648,8 @@
                                   "name":  "reports",
                                   "exists":  true,
                                   "type":  "directory",
-                                  "file_count":  44863,
-                                  "total_bytes":  1680933467
+                                  "file_count":  44886,
+                                  "total_bytes":  1682176355
                               }
                           ],
     "policy_summary":  {
@@ -765,9 +765,9 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  44863,
+                                "candidate_count":  44886,
                                 "matched_allowlist_count":  92,
-                                "excluded_pattern_count":  44771,
+                                "excluded_pattern_count":  44794,
                                 "eligible_count":  92,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -781,12 +781,15 @@
                                                        "reports\\knowledge_cards_last.json",
                                                        "reports\\whole_folder_broken_paths_last.json",
                                                        "reports\\system_truth_spine_last.json",
+                                                       "reports\\legacy_task_inventory_last.json",
                                                        "reports\\mirror_update_last.json",
                                                        "reports\\live_docs_index.json",
                                                        "reports\\live_docs_summary.json",
+                                                       "reports\\legacy_task_migration_last.json",
                                                        "reports\\wedge_pack_framework_last.json",
                                                        "reports\\outcome_learning_last.json",
                                                        "reports\\whole_folder_migration_checks_last.json",
+                                                       "reports\\popup_suppression_last.json",
                                                        "reports\\segment_overlay_last.json",
                                                        "reports\\workflow_pack_last.json",
                                                        "reports\\knowledge_reuse_last.json",
@@ -807,10 +810,7 @@
                                                        "reports\\internal_scheduler_last.json",
                                                        "reports\\incident_explanations_last.json",
                                                        "reports\\whole_folder_golden_paths_last.json",
-                                                       "reports\\billing_summary.json",
-                                                       "reports\\queue\\behavior_trust_last.json",
-                                                       "reports\\keepalive_last.json",
-                                                       "reports\\security_posture.json"
+                                                       "reports\\billing_summary.json"
                                                    ],
                                 "excluded_pattern_files":  [
                                                                "reports\\onyx_health_investigation.json",
@@ -903,9 +903,9 @@
                                                            "reports/remote_push_repair_last.json"
                                                        ],
                                 "max_file_bytes":  67108864,
-                                "candidate_count":  44863,
+                                "candidate_count":  44886,
                                 "matched_allowlist_count":  92,
-                                "excluded_pattern_count":  44771,
+                                "excluded_pattern_count":  44794,
                                 "eligible_count":  92,
                                 "excluded_large_count":  0,
                                 "eligible_files":  [
@@ -919,12 +919,15 @@
                                                        "reports\\knowledge_cards_last.json",
                                                        "reports\\whole_folder_broken_paths_last.json",
                                                        "reports\\system_truth_spine_last.json",
+                                                       "reports\\legacy_task_inventory_last.json",
                                                        "reports\\mirror_update_last.json",
                                                        "reports\\live_docs_index.json",
                                                        "reports\\live_docs_summary.json",
+                                                       "reports\\legacy_task_migration_last.json",
                                                        "reports\\wedge_pack_framework_last.json",
                                                        "reports\\outcome_learning_last.json",
                                                        "reports\\whole_folder_migration_checks_last.json",
+                                                       "reports\\popup_suppression_last.json",
                                                        "reports\\segment_overlay_last.json",
                                                        "reports\\workflow_pack_last.json",
                                                        "reports\\knowledge_reuse_last.json",
@@ -945,10 +948,7 @@
                                                        "reports\\internal_scheduler_last.json",
                                                        "reports\\incident_explanations_last.json",
                                                        "reports\\whole_folder_golden_paths_last.json",
-                                                       "reports\\billing_summary.json",
-                                                       "reports\\queue\\behavior_trust_last.json",
-                                                       "reports\\keepalive_last.json",
-                                                       "reports\\security_posture.json"
+                                                       "reports\\billing_summary.json"
                                                    ],
                                 "excluded_pattern_files":  [
                                                                "reports\\onyx_health_investigation.json",
